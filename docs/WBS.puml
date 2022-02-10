@@ -60,6 +60,7 @@ arrow {
 ** Generate Room
 *** FR2 - Generate.Game.Session
 **** Design
+***** Design the system so that the server generates a game room ID
 ***** Design the system so that the server opens up its sockets to other clients to connect
 **** Implementation
 ***** Open up the server socket connection to other clients
@@ -188,9 +189,11 @@ arrow {
 ***** Display the button to all players in the game room page
 **** Test
 ***** Test Sabotage button using the Jest library
-*** FR20 - Display.Inputs.Server
+*** FR20 - Send.Inputs.Server
 **** Design
+***** Design key mapping and other button press listeners for collecting client input
 **** Implementation
+***** Add logic to send input events to game server for each key/button map
 **** Test
 *** FR21 - Display.Room.Full.Message
 **** Design
@@ -238,29 +241,37 @@ arrow {
 ***** Add server logic to increment game state periodically and after player input
 *** FR28 - Send.Game.State
 **** Design
-***** Design a socket.io event to send periodic game updates to connected clients
+***** Design a socket.io event to broadcast game updates and format of the update packet
 **** Implementation
-*****
+***** Add server logic to broadcast game updates to connected clients
 **** Test
 *** FR29 - Send.Voting.State
 **** Design
+***** Design socket.io event to broadcast voting state and format of the voting state packet
 **** Implementation
-**** Test
+***** Add server logic to broadcast voting updates to connected clients
 *** FR30 - Send.Voting.Button
 **** Design
-**** Design UI for Voting button
+***** Design UI for Voting button
 **** Implementation
 ***** Push the voting button to the game room
 **** Test
-***** Test SVoting button using the Jest library
+***** Test Voting button using the Jest library
 
 *** FR31 - Handle.Voting.Results
 **** Design
+***** Design socket.io event to broadcast end result to all connected clients
 **** Implementation
+***** Add server game logic to determine the end result of the game 
 **** Test
+
 *** FR32 - Send.Results
 **** Design
+***** Design UI for showing End game message
+***** Design logic for determining the game end
 **** Implementation
+***** Get information about the game state from the server
+***** Display the end game message to all players
 **** Test
 
 ** Voting System
@@ -287,13 +298,17 @@ arrow {
 **** Test
 *** FR36 - Send.VoteData
 **** Design
-***** Design server logic so that 
+***** Design Socket.io to send back the vote data to all players in a game room
 **** Implementation
+***** Send voting results to all connected clients in the game room
 **** Test
 *** FR37 - Return.VoteData
 **** Design
-***** Design logic for 
+***** Design logic for displaying voting results to all players in a game room
 **** Implementation
+***** Get information about the voting result from the server
+****** Display the players ID who received the majority of votes
+****** Display tie status if two players had the same number of votes 
 **** Test
 
 ** User Help Page
