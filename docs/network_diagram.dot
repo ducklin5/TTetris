@@ -1,9 +1,11 @@
 digraph G {
     rankdir=LR
-    node [shape=box, width=0.5]
+    node [shape=box, width=0.5, fillcolor=lightskyblue2, style=filled]
 
-    start
-    end
+    u1, u2, u3, u4, u5, u6, u7, u8 [style=filled, fillcolor=lightcoral]
+    u7_done, u3_done, u4_done, u5_done, u6_done, u5_u6_done [style=filled, fillcolor=lightseagreen]
+
+    start, end [style=filled, fillcolor=aquamarine]
 
     u1 [label="u1. Home Page"]
     f1_1 [label="f1_1. Generate Room Button"]
