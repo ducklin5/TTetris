@@ -2,23 +2,21 @@ digraph G {
     rankdir=LR
     node [shape=box, width=0.5, fillcolor=lightskyblue2, style=filled]
 
-    u1, u2, u3, u4, u5, u6, u7, u8 [style=filled, fillcolor=lightcoral]
-    u7_done, u3_done, u4_done, u5_done, u6_done, u5_u6_done [style=filled, fillcolor=lightseagreen]
+    g1, g2, g3, g4, g5, g6, g7, g8 [style=filled, fillcolor=lightcoral]
+    g7_done, g3_done, g4_done, g5_done, g6_done, g5_g6_done [style=filled, fillcolor=lightseagreen]
 
     start, end [style=filled, fillcolor=aquamarine]
 
-    u1 [label="u1. Home Page"]
+    g1 [label="g1. Home Page"]
     f1_1 [label="f1_1. Generate Room Button"]
     f1_2 [label="f1_2. Design generate room button UI \n for homepage"]
     f1_3 [label="f1_3. Push generate room button on \n homepage UI"]
-    f1_4 [label="f1_4. Test the form using the \n Jest library"]
 
     f5_1 [label="f5_1. Join Room Form"]
     f5_2 [label="f5_2. Design join room button for \n homepage"]
     f5_3 [label="f5_3. Push join room button to \n homepage UI"]
-    f5_4 [label="f5_4. Test the form using the \n Jest library"]
 
-    u2 [label="u2. Generate Room"]
+    g2 [label="g2. Generate Room"]
     f2_1 [label="f2_1. Generate game session"]
     f2_2 [label="f2_2. Design the system so that \nthe server generates a game room ID"]
     f2_3 [label="f2_3. Design the system so that \n the server opens up its \n sockets to other clients to \n connect"]
@@ -27,39 +25,32 @@ digraph G {
     f2_6 [label="f2_6. Verify the information on the \n UI form"]
     f2_7 [label="f2_7. Notify the user of any \n empty field"]
     f2_8 [label="f2_8. Generate aink for joining room"]
-    f2_9 [label="f2_9. Test the socket initialization using the \nMocha library"]
 
     f3_1 [label="f3_1. Start WebRTC Session"]
     f3_2 [label="f3_2. Design the system so that\n the server listens for incoming \n requests for a WebRTC session"]
     f3_3 [label="f3_3. Listen for all clients who \n are trying to connect to \n the room host via WebRTC"]
-    f3_4 [label="f3_4. Test the initialization of WebRTC \n using the webrtc-test-suite library"]
 
     f4_1 [label="f4_1. Start Text Chat Session"]
     f4_2 [label="f4_2. Design the system so that \n the server opens up its \n sockets to other clients"]
     f4_3 [label="f4_3. Establish a Websocket API for \n bidirectional communication \n between the client and server"]
-    f4_4 [label="f4_4. Test the initialization of the \n socket using the Mocha library"]
     
-    u3 [label="u3. U3. Join Room"]
+    g3 [label="g3. U3. Join Room"]
     f6_1 [label="f6_1. Connect Game Session"]
     f6_2 [label="f6_2. Design socket so that the \n server connects the client to \n the correct socket on the server"]
     f6_3 [label="f6_3. Verify that the room link \n belongs a to a valid existing room"]
     f6_4 [label="f6_4. Implement scoketio endpoint logic to \n connect to the existing session"]
-    f6_5 [label="f6_5. Create server tests to ensure \n clients can connect to an existing room"]
-    f6_6 [label="f6_6. Create server to tests to \n ensure client cannot connect \n to an non-existing room"]
     
     f7_1 [label="f7_1. Connect WebRTC Session"]
     f7_2 [label="f7_2. Design the server in a \n way that it would verify \n connections between users,\n and upon verification, give \n permission to let the users \n connect"]
     f7_3 [label="f7_3. Create a request to the \n server indicating that the user \n wishes to connect to the \n room host via WebRTC"]
     f7_4 [label="f7_4. The server should that the \n correct user is trying to \n connect with the correct room host"]
     f7_5 [label="f7_5. Establish peer-to-peer connection \n between the user and the \n room host using WebRTC "]
-    f7_6 [label="f7_6. Test the connection and verification \n of WebRTC using the \n webrtc-test-suite library"]
 
     f8_1 [label="f8_1. Connect Chat Session"]
     f8_2 [label="f8_2. Design the system so that \n the client sends a request \n to the server to connect \n to its open socket"]
     f8_3 [label="f8_3. The client connects to the \n socket on the server for \n the corresponding room"]
-    f8_4 [label="f8_4. Test the connection of the \n socket using the Mocha library"]
     
-    u4 [label="u4. Room Status Page"]
+    g4 [label="g4. Room Status Page"]
     f9_1 [label="f9_1. Host Edit Game Settings"]
     f9_2 [label="f9_2. Design UI for game settings \n which is available before the \n game start"]
     f9_3 [label="f9_3. Capture the settings information entered \n by the host"]
@@ -68,7 +59,6 @@ digraph G {
     f10_1 [label="f10_1. Host Start Game"]
     f10_2 [label="f10_2. Design UI button for starting \n the game"]
     f10_3 [label="f10_3. Push the UI button for \n starting the game to the page"]
-    f10_4 [label="f10_4. Test the button using the \n Jest library"]
     
     f11_1 [label="f11_1. Player Edit Self Settings"]
     f11_2 [label="f11_2. Design UI for game settings \n with limited options than the \n host to players"]
@@ -121,7 +111,7 @@ digraph G {
     f21_3 [label= "f21_3. Get the information about the \n number of players in a \n room from the server"]
     f21_4 [label= "f21_4. Display the error message when \n a join room request is \n received for a full game room "]
     
-    u5 [label="u5. Game Canvas"]
+    g5 [label="g5. Game Canvas"]
     f22_1 [label= "f22_1. Display Canvas"]
     f22_2 [label= "f22_2. Design UI of the game \ncanvas including styles of the tetris blocks"]
     f22_3 [label= "f22_3. Push tetris block display logic \nto the UI Canvas layer"]
@@ -135,9 +125,8 @@ digraph G {
     f24_2 [label="f24_2. Design UI of the game board \nwithin the Canvas"]
     f24_3 [label="f24_3. Push game board display logic \nto UI Canvas Layer"]
     f24_4 [label="f24_4. Add logic to adjust gameboard \nsize according to number of \nplayers at game start"]
-    f24_5 [label="f24_5. Test that canvas displays correctly \ngiven the game state"]
 
-    u6 [label="u6. Game Server"]
+    g6 [label="g6. Game Server"]
     f25_1 [label="f25_1. Start Game"]
     f25_2 [label="f25_2. Design Socket.io Start Game event"]
     f25_3 [label="f25_3. Add server logic to start \na game instance given event arguments"]
@@ -161,7 +150,6 @@ digraph G {
     f30_1 [label="f30_1. Send Voting Button"]
     f30_2 [label="f30_2. Design UI for Voting button"]
     f30_3 [label="f30_3. Push the voting button to \n the game room"]
-    f30_4 [label="f30_4. Test Voting button using the \n Jest library"]
 
     f31_1 [label= "f31_1. Handle Voting Results"]
     f31_2 [label="f31_2. Design socket.io event to \n broadcast end result to all \n connected clients"]
@@ -173,16 +161,14 @@ digraph G {
     f32_3 [label="f32_3. Get information about the game \n state from the server"]
     f32_4 [label="f32_4. Display the end game message \n to all players"]
 
-    u7 [label="u7. Voting System"]
+    g7 [label="g7. Voting System"]
     f33_1 [label="f33_1. Initialize Timer"]
     f33_2 [label="f33_2. Design a timer that counts \n down from 30 seconds"]
     f33_3 [label="f33_3. Begin count down of the \n timer"]
-    f33_4 [label="f33_4. Test that the timer notifies \n the server after 30 seconds"]
     
     f34_1 [label="f34_1. Count Votes"]
     f34_2 [label="f34_2. Design Socket.io Input endpoints for \n voting endpoint"]
     f34_3 [label="f34_3. Upon receiving votes from each \n player, count the votes on \n the server"]
-    f34_4 [label="f34_4. Test that the server correctly \n counts votes"]
 
     f35_1 [label="f35_1. Handle Ties"]
     f35_2 [label="f35_2. Design logic so that the \n server recognizes a tie when \n voting is complete"]
@@ -197,70 +183,70 @@ digraph G {
     f37_3 [label="f37_3. Display the players ID who \n received the majority of votes"]
     f37_4 [label="f37_4. Display tie status if two \n players had the same number \n of votes "]
 
-    u8 [label="u8. User Help Page"]
+    g8 [label="g8. User Help Page"]
     f38_1 [label="f38_1. View Help Page"]
     f38_2 [label="f38_2. Design a UI for Help page"]
     f38_3 [label="f38_3. Add the information about the \n game rules and features in \n the help page in HTML format"]
     f38_4 [label="f38_4. Make the help page accessible \n to all visitors"]
 
-    start -> u1
-    start -> u8
+    start -> g1
+    start -> g8
 
-    u1 -> f1_1 -> f1_2 -> f1_3 -> f1_4 -> u2
-    u1 -> f5_1 -> f5_2 -> f5_3 -> f5_4 -> u3
+    g1 -> f1_1 -> f1_2 -> f1_3 -> g2
+    g1 -> f5_1 -> f5_2 -> f5_3 -> g3
 
-    u2 -> f2_1 -> f2_2 -> f2_3 -> f2_4 -> f2_5 -> f2_6 -> f2_7 -> f2_8 -> f2_9 -> u3
-    u2 -> f3_1 -> f3_2 -> f3_3 -> f3_4 -> u3
-    u2 -> f4_1 -> f4_2 -> f4_3 -> f4_4 -> u3
+    g2 -> f2_1 -> f2_2 -> f2_3 -> f2_4 -> f2_5 -> f2_6 -> f2_7 -> f2_8 -> g3
+    g2 -> f3_1 -> f3_2 -> f3_3 -> g3
+    g2 -> f4_1 -> f4_2 -> f4_3 -> g3
 
-    u3 -> f6_1 -> f6_2 -> f6_3 -> f6_4 -> f6_5 -> f6_6 -> u3_done
-    u3 -> f7_1 -> f7_2 -> f7_3 -> f7_4 -> f7_5 -> f7_6 -> u3_done
-    u3 -> f8_1 -> f8_2 -> f8_3 -> f8_4 -> u3_done
+    g3 -> f6_1 -> f6_2 -> f6_3 -> f6_4 -> g3_done
+    g3 -> f7_1 -> f7_2 -> f7_3 -> f7_4 -> f7_5 -> g3_done
+    g3 -> f8_1 -> f8_2 -> f8_3 -> g3_done
 
-    u3_done -> u5
-    u3_done -> u6
+    g3_done -> g5
+    g3_done -> g6
 
-    u4 -> f9_1 -> f9_2 -> f9_3 -> f9_4 -> u4_done
-    u4 -> f10_1 -> f10_2 -> f10_3 -> f10_4 -> u4_done
-    u4 -> f11_1 -> f11_2 -> f11_3 -> f11_4 -> u4_done
-    u4 -> f12_1 -> f12_2 -> f12_3 -> f12_4 -> u4_done
-    u4 -> f13_1 -> f13_2 -> f13_3 -> f13_4 -> u4_done
-    u4 -> f14_1 -> f14_2 -> f14_3 -> f14_4 -> u4_done
-    u4 -> f15_1 -> f15_2 -> f15_3  -> u4_done
-    u4 -> f16_1 -> f16_2 -> f16_3  -> u4_done
-    u4 -> f17_1 -> f17_2 -> f17_3 -> f17_4  -> u4_done
-    u4 -> f18_1 -> f18_2 -> f18_3  -> u4_done
-    u4 -> f19_1 -> f19_2 -> f19_3 -> f19_4 -> u4_done
-    u4 -> f20_1 -> f20_2 -> f20_3  -> u4_done
-    u4 -> f21_1 -> f21_2 -> f21_3 -> f21_4 -> u4_done
+    g4 -> f9_1 -> f9_2 -> f9_3 -> f9_4 -> g4_done
+    g4 -> f10_1 -> f10_2 -> f10_3 -> g4_done
+    g4 -> f11_1 -> f11_2 -> f11_3 -> f11_4 -> g4_done
+    g4 -> f12_1 -> f12_2 -> f12_3 -> f12_4 -> g4_done
+    g4 -> f13_1 -> f13_2 -> f13_3 -> f13_4 -> g4_done
+    g4 -> f14_1 -> f14_2 -> f14_3 -> f14_4 -> g4_done
+    g4 -> f15_1 -> f15_2 -> f15_3  -> g4_done
+    g4 -> f16_1 -> f16_2 -> f16_3  -> g4_done
+    g4 -> f17_1 -> f17_2 -> f17_3 -> f17_4  -> g4_done
+    g4 -> f18_1 -> f18_2 -> f18_3  -> g4_done
+    g4 -> f19_1 -> f19_2 -> f19_3 -> f19_4 -> g4_done
+    g4 -> f20_1 -> f20_2 -> f20_3  -> g4_done
+    g4 -> f21_1 -> f21_2 -> f21_3 -> f21_4 -> g4_done
 
-    u4_done -> u7
+    g4_done -> g7
 
-    u5 -> f22_1 -> f22_2 -> f22_3 -> f22_4 -> u5_done
-    u5 -> f23_1 -> f23_2 -> f23_3 -> u5_done
-    u5 -> f24_1 -> f24_2 -> f24_3 -> f24_4 -> f24_5 -> u5_done
+    g5 -> f22_1 -> f22_2 -> f22_3 -> f22_4 -> g5_done
+    g5 -> f23_1 -> f23_2 -> f23_3 -> g5_done
+    g5 -> f24_1 -> f24_2 -> f24_3 -> f24_4 -> g5_done
     
-    u6 -> f25_1 -> f25_2 -> f25_3 -> u6_done
-    u6 -> f26_1 -> f26_2 -> f26_3 -> u6_done
-    u6 -> f27_1 -> f27_2 -> f27_3 -> u6_done
-    u6 -> f28_1 -> f28_2 -> f28_3 -> u6_done
-    u6 -> f29_1 -> f29_2 -> f29_3 -> u6_done
-    u6 -> f30_1 -> f30_2 -> f30_3 -> f30_4 -> u6_done
-    u6 -> f31_1 -> f31_2 -> f31_3 -> u6_done
-    u6 -> f32_1 -> f32_2 -> f32_3 -> f32_4 -> u6_done
+    g6 -> f25_1 -> f25_2 -> f25_3 -> g6_done
+    g6 -> f26_1 -> f26_2 -> f26_3 -> g6_done
+    g6 -> f27_1 -> f27_2 -> f27_3 -> g6_done
+    g6 -> f28_1 -> f28_2 -> f28_3 -> g6_done
+    g6 -> f29_1 -> f29_2 -> f29_3 -> g6_done
+    g6 -> f30_1 -> f30_2 -> f30_3 -> g6_done
+    g6 -> f31_1 -> f31_2 -> f31_3 -> g6_done
+    g6 -> f32_1 -> f32_2 -> f32_3 -> f32_4 -> g6_done
 
-    u6_done -> u5_u6_done
-    u5_done -> u5_u6_done
+    g6_done -> g5_g6_done
+    g5_done -> g5_g6_done
     
-    u5_u6_done -> u4
+    g5_g6_done -> g4
 
-    u7 -> f33_1 -> f33_2 -> f33_3 -> f33_4 -> u7_done 
-    u7 -> f34_1 -> f34_2 -> f34_3 -> f34_4 -> u7_done
-    u7 -> f35_1 -> f35_2 -> f35_3 -> u7_done
-    u7 -> f36_1 -> f36_2 -> f36_3 -> u7_done
-    u7 -> f37_1 -> f37_2 -> f37_3 -> f37_4 -> u7_done
+    g7 -> f33_1 -> f33_2 -> f33_3 -> g7_done 
+    g7 -> f34_1 -> f34_2 -> f34_3 -> g7_done
+    g7 -> f35_1 -> f35_2 -> f35_3 -> g7_done
+    g7 -> f36_1 -> f36_2 -> f36_3 -> g7_done
+    g7 -> f37_1 -> f37_2 -> f37_3 -> f37_4 -> g7_done
 
-    u7_done -> end
+    g7_done -> end
     
-    u8 -> f38_1 -> f38_2 -> f38_3 -> f38_4 -> end
+    g8 -> f38_1 -> f38_2 -> f38_3 -> f38_4 -> end
 }

@@ -41,60 +41,47 @@ arrow {
 
 * Treacherous Tetris WBS
 
-** Home Page
+** G1 - Home Page
 *** FR1 - Generate.Room.Form
 **** Design
 ***** Design generate room button UI for homepage
 **** Implementation
 ***** Push generate room button on homepage UI
-**** Test
-***** Test the form using the Jest library
 *** FR5 - Join.Room.Form
 **** Design
 ***** Design join room button for homepage
 **** Implementation
 ***** Push join room button to hompepage UI
-**** Test
-***** Test the form using the Jest library
 
-** Generate Room
+** G2 - Generate Room
 *** FR2 - Generate.Game.Session
 **** Design
 ***** Design the system so that the server generates a game room ID
 ***** Design the system so that the server opens up its sockets to other clients to connect
 **** Implementation
 ***** Open up the server socket connection to other clients
-***** Capture the information from UI form
-***** Verify the information on the UI form
-****** Notify the user of any field was empty
+' ***** Capture the information from UI form
+' ***** Verify the information on the UI form
+' ****** Notify the user of any field was empty
 ***** Generate a link for joining room
-**** Test
-***** Test the socket initialization using the Mocha library 
 *** FR3 - Start.WebRTC.Session
 **** Design
 ***** Design the system so that the server listens for incoming requests for a WebRTC Session
 **** Implementation
 ***** Listen for all clients who are trying to connect to the room host via WebRTC
-**** Test
-***** Test the initialization of WebRTC using the webrtc-test-suite library
 *** FR4 - Start.Text.Chat.Session
 **** Design
 ***** Design the system so that the server opens up its sockets to other clients
 **** Implementation
 ***** Establish a Websocket API for bidirectional communication between the client and server
-**** Test
-***** Test the initialization of the socket using the Mocha library
 
-** Join Room
+** G3 - Join Room
 *** FR6 - Connect.Game.Session
 **** Design
 ***** Design sock
 **** Implementation
 ***** Verify that the room link belongs a to a valid existing room
 ***** Implement scoketio endpoint logic to connect to the existing session
-**** Test
-***** Create server tests to ensure clients can connect to an existing room
-***** Create server to tests to ensure client cannot connect to an non-existing room
 *** FR7 - Connect.WebRTC.Session
 **** Design
 ***** Design the server in a way that it would verify connections between users, and upon verification, give permission to let the users connect
@@ -102,108 +89,88 @@ arrow {
 ***** Create a request to the server indicating that the user wishes to connect to the room host via WebRTC
 ***** The server should that the correct user is trying to connect with the correct room host
 ***** Establish peer-to-peer connection between the user and the room host using WebRTC 
-**** Test
-***** Test the connection and verification of WebRTC using the webrtc-test-suite library
 *** FR8 - Connect.Chat.Session
 **** Design
 ***** Design the system so that the client sends a request to the server to connect to its open socket
 **** Implementation
 ***** The client connects to the socket on the server for the corresponding room
-**** Test
-***** Test the connection of the socket using the Mocha library
 
-** Room Status Page
+** G4 - Room Status Page
 *** FR9 - Host.Edit.Game.Settings
 **** Design
 ***** Design UI for game settings which is available before the game start
 **** Implementation
 ***** Capture the settings information entered by the host
 ***** Sends the settings information to the server 
-**** Test
 *** FR10 - Host.Start.Game
 **** Design
 ***** Design UI button for starting the game
 **** Implementation
 ***** Push the UI button for starting the game to the page
-**** Test
-***** Test the button using the Jest library
 *** FR11 - Player.Edit.Self.Settings
 **** Design
 ***** Design UI for game settings with limited options than the host to players
 **** Implementation
 ***** Capture the settings information from UI
 ***** Send players' setting information to the server 
-**** Test
 *** FR12 - Display.Chatbox
 **** Design
 ***** Design a UI for Chat box
 **** Implementation
 ***** Enable chat box for all players in a game room
 ***** Broadcast messages from each client (players) to all players in the room
-**** Test
 *** FR13 - Display.Game.Settings
 **** Design
 ***** Design Settings display in a game room
 **** Implementation
 ***** Send request to the server to capture the last settings update for a game session
 ***** Display the updated settings to all players
-**** Test
 *** FR14 - Display.Player.Connection.Status
 **** Design
 ***** Design simple icons for indicating player connection status
 **** Implementation
 ***** For each player in the room, check their connection status
 ***** Push the icon UI to the game game room page depending on the player's connection status
-**** Test
 *** FR15 - Display.Players.Information
 **** Design
 ***** Design UI for player information, such as username, and block color
 **** Implementation
 ***** Push the player information UI to the game room page
-**** Test
 *** FR16 - Display.Game.Canvas
 **** Design
 ***** Design the game canvas using p5.js
 **** Implementation
 ***** Push the game canvas to the game room page
-**** Test
 *** FR17 - Display.Emergency.Buttons
 **** Design
 ***** Design UI for an Emergency button
 **** Implementation
 ***** Push Emergency button to game room page
 ***** Display the button to all players in a game room
-**** Test
-***** Test the emergency button using the Jest library
 *** FR18 - Display.Voting.Modal
 **** Design
 ***** Design UI for displaying the voting modal
 **** Implementation
 ***** Push the voting modal UI to the game room page
-**** Test
 *** FR19 - Display.Sabotage.Button
 **** Design
 ***** Design a button UI for sabotaging
 **** Implementation
 ***** Push sabotage button to the game room page
 ***** Display the button to all players in the game room page
-**** Test
-***** Test Sabotage button using the Jest library
 *** FR20 - Send.Inputs.Server
 **** Design
 ***** Design key mapping and other button press listeners for collecting client input
 **** Implementation
 ***** Add logic to send input events to game server for each key/button map
-**** Test
 *** FR21 - Display.Room.Full.Message
 **** Design
 ***** Design a UI for Room Full Error message
 **** Implementation
 ***** Get the information about the number of players in a room from the server
 ***** Display the error message when a join room request is received for a full game room 
-**** Test
 
-**  Game Canvas
+** G5 - Game Canvas
 *** FR22 - Display.Canvas
 **** Design
 ***** Design UI of the game canvas including styles of the tetris blocks
@@ -221,9 +188,8 @@ arrow {
 **** Implementation
 ***** Push game board display logic to UI Canvas Layer
 ***** Add logic to adjust gameboard size according to number of players at game start
-***[#pink] Test that canvas displays correctly given the game state 
 
-** Game Server
+** G6 - Game Server
 *** FR25 - Start.Game
 **** Design
 ***** Design Socket.io Start Game event
@@ -244,7 +210,6 @@ arrow {
 ***** Design a socket.io event to broadcast game updates and format of the update packet
 **** Implementation
 ***** Add server logic to broadcast game updates to connected clients
-**** Test
 *** FR29 - Send.Voting.State
 **** Design
 ***** Design socket.io event to broadcast voting state and format of the voting state packet
@@ -255,16 +220,11 @@ arrow {
 ***** Design UI for Voting button
 **** Implementation
 ***** Push the voting button to the game room
-**** Test
-***** Test Voting button using the Jest library
-
 *** FR31 - Handle.Voting.Results
 **** Design
 ***** Design socket.io event to broadcast end result to all connected clients
 **** Implementation
 ***** Add server game logic to determine the end result of the game 
-**** Test
-
 *** FR32 - Send.Results
 **** Design
 ***** Design UI for showing End game message
@@ -272,36 +232,29 @@ arrow {
 **** Implementation
 ***** Get information about the game state from the server
 ***** Display the end game message to all players
-**** Test
 
-** Voting System
+** G7 - Voting System
 *** FR33 - Initialize.Timer
 **** Design
 ***** Design a timer that counts down from 30 seconds
 **** Implementation
 ***** Begin count down of the timer
 ***** Notify the server upon timer value at 0
-**** Test
-***** Test that the timer notifies the server after 30 seconds
 *** FR34 - Count.Votes
 **** Design
 ***** Design Socket.io Input endpoints for voting endpoint
 **** Implementation
 ***** Upon receiving votes from each player, count the votes on the server
-**** Test
-***** Test that the server correctly counts votes
 *** FR35 - Handle.Ties
 **** Design
 ***** Design logic so that the server recognizes a tie when voting is complete
 **** Implementation
 ***** Add server logic to recognize ties in a vote, and update the state accordingly
-**** Test
 *** FR36 - Send.VoteData
 **** Design
 ***** Design Socket.io to send back the vote data to all players in a game room
 **** Implementation
 ***** Send voting results to all connected clients in the game room
-**** Test
 *** FR37 - Return.VoteData
 **** Design
 ***** Design logic for displaying voting results to all players in a game room
@@ -309,9 +262,8 @@ arrow {
 ***** Get information about the voting result from the server
 ****** Display the players ID who received the majority of votes
 ****** Display tie status if two players had the same number of votes 
-**** Test
 
-** User Help Page
+** G8 - User Help Page
 *** FR38 - View.Help.Page
 **** Design
 ***** Design a UI for Help page
