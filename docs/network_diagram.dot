@@ -8,245 +8,245 @@ digraph G {
     start, end [style=filled, fillcolor=aquamarine]
 
     g1 [label="g1. Home Page"]
-    f1_1 [label="f1_1. Generate Room Button"]
-    f1_2 [label="f1_2. Design generate room button UI \n for homepage"]
-    f1_3 [label="f1_3. Push generate room button on \n homepage UI"]
+    f1 [label="f1. Generate Room Button"]
+    f1_1 [label="f1_1. Design generate room button UI \n for homepage"]
+    f1_2 [label="f1_2. Push generate room button on \n homepage UI"]
 
-    f5_1 [label="f5_1. Join Room Form"]
-    f5_2 [label="f5_2. Design join room button for \n homepage"]
-    f5_3 [label="f5_3. Push join room button to \n homepage UI"]
+    f5 [label="f5. Join Room Form"]
+    f5_1 [label="f5_1. Design join room button for \n homepage"]
+    f5_2 [label="f5_2. Push join room button to \n homepage UI"]
 
     g2 [label="g2. Generate Room"]
-    f2_1 [label="f2_1. Generate game session"]
-    f2_2 [label="f2_2. Design the system so that \nthe server generates a game room ID"]
-    f2_3 [label="f2_3. Design the system so that \n the server opens up its \n sockets to other clients to \n connect"]
-    f2_4 [label="f2_4. Open up the server socket \n connection to other clients"]
-    f2_5 [label="f2_5. Capture the information from UI \n form"]
-    f2_6 [label="f2_6. Verify the information on the \n UI form"]
-    f2_7 [label="f2_7. Notify the user of any \n empty field"]
-    f2_8 [label="f2_8. Generate aink for joining room"]
+    f2 [label="f2. Generate game session"]
+    f2_1 [label="f2_1. Design the system so that \nthe server generates a game room ID"]
+    f2_2 [label="f2_2. Design the system so that \n the server opens up its \n sockets to other clients to \n connect"]
+    f2_3 [label="f2_3. Open up the server socket \n connection to other clients"]
+    f2_4 [label="f2_4. Capture the information from UI \n form"]
+    f2_5 [label="f2_5. Verify the information on the \n UI form"]
+    f2_6 [label="f2_6. Notify the user of any \n empty field"]
+    f2_7 [label="f2_7. Generate aink for joining room"]
 
-    f3_1 [label="f3_1. Start WebRTC Session"]
-    f3_2 [label="f3_2. Design the system so that\n the server listens for incoming \n requests for a WebRTC session"]
-    f3_3 [label="f3_3. Listen for all clients who \n are trying to connect to \n the room host via WebRTC"]
+    f3 [label="f3. Start WebRTC Session"]
+    f3_1 [label="f3_1. Design the system so that\n the server listens for incoming \n requests for a WebRTC session"]
+    f3_2 [label="f3_2. Listen for all clients who \n are trying to connect to \n the room host via WebRTC"]
 
-    f4_1 [label="f4_1. Start Text Chat Session"]
-    f4_2 [label="f4_2. Design the system so that \n the server opens up its \n sockets to other clients"]
-    f4_3 [label="f4_3. Establish a Websocket API for \n bidirectional communication \n between the client and server"]
+    f4 [label="f4. Start Text Chat Session"]
+    f4_1 [label="f4_1. Design the system so that \n the server opens up its \n sockets to other clients"]
+    f4_2 [label="f4_2. Establish a Websocket API for \n bidirectional communication \n between the client and server"]
     
     g3 [label="g3. U3. Join Room"]
-    f6_1 [label="f6_1. Connect Game Session"]
-    f6_2 [label="f6_2. Design socket so that the \n server connects the client to \n the correct socket on the server"]
-    f6_3 [label="f6_3. Verify that the room link \n belongs a to a valid existing room"]
-    f6_4 [label="f6_4. Implement scoketio endpoint logic to \n connect to the existing session"]
+    f6 [label="f6. Connect Game Session"]
+    f6_1 [label="f6_1. Design socket so that the \n server connects the client to \n the correct socket on the server"]
+    f6_2 [label="f6_2. Verify that the room link \n belongs a to a valid existing room"]
+    f6_3 [label="f6_3. Implement scoketio endpoint logic to \n connect to the existing session"]
     
-    f7_1 [label="f7_1. Connect WebRTC Session"]
-    f7_2 [label="f7_2. Design the server in a \n way that it would verify \n connections between users,\n and upon verification, give \n permission to let the users \n connect"]
-    f7_3 [label="f7_3. Create a request to the \n server indicating that the user \n wishes to connect to the \n room host via WebRTC"]
-    f7_4 [label="f7_4. The server should that the \n correct user is trying to \n connect with the correct room host"]
-    f7_5 [label="f7_5. Establish peer-to-peer connection \n between the user and the \n room host using WebRTC "]
+    f7 [label="f7. Connect WebRTC Session"]
+    f7_1 [label="f7_1. Design the server in a \n way that it would verify \n connections between users,\n and upon verification, give \n permission to let the users \n connect"]
+    f7_2 [label="f7_2. Create a request to the \n server indicating that the user \n wishes to connect to the \n room host via WebRTC"]
+    f7_3 [label="f7_3. The server should that the \n correct user is trying to \n connect with the correct room host"]
+    f7_4 [label="f7_4. Establish peer-to-peer connection \n between the user and the \n room host using WebRTC "]
 
-    f8_1 [label="f8_1. Connect Chat Session"]
-    f8_2 [label="f8_2. Design the system so that \n the client sends a request \n to the server to connect \n to its open socket"]
-    f8_3 [label="f8_3. The client connects to the \n socket on the server for \n the corresponding room"]
+    f8 [label="f8. Connect Chat Session"]
+    f8_1 [label="f8_1. Design the system so that \n the client sends a request \n to the server to connect \n to its open socket"]
+    f8_2 [label="f8_2. The client connects to the \n socket on the server for \n the corresponding room"]
     
     g4 [label="g4. Room Status Page"]
-    f9_1 [label="f9_1. Host Edit Game Settings"]
-    f9_2 [label="f9_2. Design UI for game settings \n which is available before the \n game start"]
-    f9_3 [label="f9_3. Capture the settings information entered \n by the host"]
-    f9_4 [label="f9_4. Sends the settings information to \n the server "]
+    f9 [label="f9. Host Edit Game Settings"]
+    f9_1 [label="f9_1. Design UI for game settings \n which is available before the \n game start"]
+    f9_2 [label="f9_2. Capture the settings information entered \n by the host"]
+    f9_3 [label="f9_3. Sends the settings information to \n the server "]
     
-    f10_1 [label="f10_1. Host Start Game"]
-    f10_2 [label="f10_2. Design UI button for starting \n the game"]
-    f10_3 [label="f10_3. Push the UI button for \n starting the game to the page"]
+    f10 [label="f10. Host Start Game"]
+    f10_1 [label="f10_1. Design UI button for starting \n the game"]
+    f10_2 [label="f10_2. Push the UI button for \n starting the game to the page"]
     
-    f11_1 [label="f11_1. Player Edit Self Settings"]
-    f11_2 [label="f11_2. Design UI for game settings \n with limited options than the \n host to players"]
-    f11_3 [label="f11_3. Capture the settings information from \n UI"]
-    f11_4 [label="f11_4. Send players' setting information \n to the server "]
+    f11 [label="f11. Player Edit Self Settings"]
+    f11_1 [label="f11_1. Design UI for game settings \n with limited options than the \n host to players"]
+    f11_2 [label="f11_2. Capture the settings information from \n UI"]
+    f11_3 [label="f11_3. Send players' setting information \n to the server "]
 
-    f12_1 [label="f12_1. Display Chatbox"]
-    f12_2 [label="f12_2. Design a UI for \n Chat box"]
-    f12_3 [label="f12_3. Enable chat box for all \n players in a game room"]
-    f12_4 [label="f12_4. Broadcast messages from each client \n (players) to all players in the room"]
+    f12 [label="f12. Display Chatbox"]
+    f12_1 [label="f12_1. Design a UI for \n Chat box"]
+    f12_2 [label="f12_2. Enable chat box for all \n players in a game room"]
+    f12_3 [label="f12_3. Broadcast messages from each client \n (players) to all players in the room"]
     
-    f13_1 [label="f13_1. Display Game Settings"]
-    f13_2 [label="f13_2. Design Settings display in \n a game room"]
-    f13_3 [label="f13_3. Send request to the server \n to capture the last settings update \n for a game session"]
-    f13_4 [label="f13_4. Display the updated settings to \n all players"]
+    f13 [label="f13. Display Game Settings"]
+    f13_1 [label="f13_1. Design Settings display in \n a game room"]
+    f13_2 [label="f13_2. Send request to the server \n to capture the last settings update \n for a game session"]
+    f13_3 [label="f13_3. Display the updated settings to \n all players"]
     
-    f14_1 [label= "f14_1. Display Player Connection Status"]
-    f14_2 [label= "f14_2. Design simple icons for indicating \n player connection status"]
-    f14_3 [label= "f14_3. For each player in the room,\n  check their connection status"]
-    f14_4 [label= "f14_4. Push the icon UI to \n the game game room page \ndepending on the player's connection status"]
+    f14 [label= "f14. Display Player Connection Status"]
+    f14_1 [label= "f14_1. Design simple icons for indicating \n player connection status"]
+    f14_2 [label= "f14_2. For each player in the room,\n  check their connection status"]
+    f14_3 [label= "f14_3. Push the icon UI to \n the game game room page \ndepending on the player's connection status"]
     
-    f15_1 [label= "f15_1. Display Players Information"]
-    f15_2 [label= "f15_2. Design UI for player information,\n such as username, and block color"]
-    f15_3 [label= "f15_3. Push the player information UI \n to the game room page"]
+    f15 [label= "f15. Display Players Information"]
+    f15_1 [label= "f15_1. Design UI for player information,\n such as username, and block color"]
+    f15_2 [label= "f15_2. Push the player information UI \n to the game room page"]
 
-    f16_1 [label= "f16_1. Display Game Canvas"]
-    f16_2 [label= "f16_2. Design the game canvas \n using p5.js"]
-    f16_3 [label= "f16_3. Push the game canvas to \n the game room page"]
+    f16 [label= "f16. Display Game Canvas"]
+    f16_1 [label= "f16_1. Design the game canvas \n using p5.js"]
+    f16_2 [label= "f16_2. Push the game canvas to \n the game room page"]
     
-    f17_1 [label= "f17_1. Display.Emergency.Buttons"]
-    f17_2 [label= "f17_2. Design UI for an Emergency \n button"]
-    f17_3 [label= "f17_3. Push Emergency button to game \n room page"]
-    f17_4 [label= "f17_4. Display the button to all \n players in a game room"]
+    f17 [label= "f17. Display.Emergency.Buttons"]
+    f17_1 [label= "f17_1. Design UI for an Emergency \n button"]
+    f17_2 [label= "f17_2. Push Emergency button to game \n room page"]
+    f17_3 [label= "f17_3. Display the button to all \n players in a game room"]
     
-    f18_1 [label= "f18_1. Display Voting Modal"]
-    f18_2 [label= "f18_2. Design UI for displaying \n the voting modal"]
-    f18_3 [label= "f18_3. Push the voting modal UI \n to the game room page"]
+    f18 [label= "f18. Display Voting Modal"]
+    f18_1 [label= "f18_1. Design UI for displaying \n the voting modal"]
+    f18_2 [label= "f18_2. Push the voting modal UI \n to the game room page"]
     
-    f19_1 [label= "f19_1. Display Sabotage Button"]
-    f19_2 [label= "f19_2. Design a button UI for \n sabotaging"]
-    f19_3 [label= "f19_3. Push sabotage button to \n the game room page"]
-    f19_4 [label= "f19_4. Display the button to all \n players in the game room page"]
+    f19 [label= "f19. Display Sabotage Button"]
+    f19_1 [label= "f19_1. Design a button UI for \n sabotaging"]
+    f19_2 [label= "f19_2. Push sabotage button to \n the game room page"]
+    f19_3 [label= "f19_3. Display the button to all \n players in the game room page"]
     
-    f20_1 [label= "f20_1. Send Inputs Server"]
-    f20_2 [label= "f20_2. Design key mapping and other \n button press listeners for \n collecting client input"]
-    f20_3 [label= "f20_3. Add logic to send input \n events to game server for \n each key/button map"]
+    f20 [label= "f20. Send Inputs Server"]
+    f20_1 [label= "f20_1. Design key mapping and other \n button press listeners for \n collecting client input"]
+    f20_2 [label= "f20_2. Add logic to send input \n events to game server for \n each key/button map"]
 
-    f21_1 [label= "f21_1. Display Room Full Message"]
-    f21_2 [label= "f21_2. Design a UI for Room \n Full Error message"]
-    f21_3 [label= "f21_3. Get the information about the \n number of players in a \n room from the server"]
-    f21_4 [label= "f21_4. Display the error message when \n a join room request is \n received for a full game room "]
+    f21 [label= "f21. Display Room Full Message"]
+    f21_1 [label= "f21_1. Design a UI for Room \n Full Error message"]
+    f21_2 [label= "f21_2. Get the information about the \n number of players in a \n room from the server"]
+    f21_3 [label= "f21_3. Display the error message when \n a join room request is \n received for a full game room "]
     
     g5 [label="g5. Game Canvas"]
-    f22_1 [label= "f22_1. Display Canvas"]
-    f22_2 [label= "f22_2. Design UI of the game \ncanvas including styles of the tetris blocks"]
-    f22_3 [label= "f22_3. Push tetris block display logic \nto the UI Canvas layer"]
-    f22_4 [label= "f22_4. Add logic to make the \nCanvas respond to server updates"]
+    f22 [label= "f22. Display Canvas"]
+    f22_1 [label= "f22_1. Design UI of the game \ncanvas including styles of the tetris blocks"]
+    f22_2 [label= "f22_2. Push tetris block display logic \nto the UI Canvas layer"]
+    f22_3 [label= "f22_3. Add logic to make the \nCanvas respond to server updates"]
     
-    f23_1 [label= "f23_1. Display ProgressBar"]
-    f23_2 [label= "f23_2. Design UI of the Game \nProgress Bar"]
-    f23_3 [label= "f23_3. Push ProgressBar display logic to \nthe UI Canvas layer"]
+    f23 [label= "f23. Display ProgressBar"]
+    f23_1 [label= "f23_1. Design UI of the Game \nProgress Bar"]
+    f23_2 [label= "f23_2. Push ProgressBar display logic to \nthe UI Canvas layer"]
     
-    f24_1 [label="f24_1. Display GameBoard"]
-    f24_2 [label="f24_2. Design UI of the game board \nwithin the Canvas"]
-    f24_3 [label="f24_3. Push game board display logic \nto UI Canvas Layer"]
-    f24_4 [label="f24_4. Add logic to adjust gameboard \nsize according to number of \nplayers at game start"]
+    f24 [label="f24. Display GameBoard"]
+    f24_1 [label="f24_1. Design UI of the game board \nwithin the Canvas"]
+    f24_2 [label="f24_2. Push game board display logic \nto UI Canvas Layer"]
+    f24_3 [label="f24_3. Add logic to adjust gameboard \nsize according to number of \nplayers at game start"]
 
     g6 [label="g6. Game Server"]
-    f25_1 [label="f25_1. Start Game"]
-    f25_2 [label="f25_2. Design Socket.io Start Game event"]
-    f25_3 [label="f25_3. Add server logic to start \na game instance given event arguments"]
+    f25 [label="f25. Start Game"]
+    f25_1 [label="f25_1. Design Socket.io Start Game event"]
+    f25_2 [label="f25_2. Add server logic to start \na game instance given event arguments"]
 
-    f26_1 [label="f26_1. Update Player Input"]
-    f26_2 [label="f26_2. Design Socket.io Input events for \n a game instance"]
-    f26_3 [label="f26_3. Add server logic to apply \n user inputs from input event \n to a game instance"]
+    f26 [label="f26. Update Player Input"]
+    f26_1 [label="f26_1. Design Socket.io Input events for \n a game instance"]
+    f26_2 [label="f26_2. Add server logic to apply \n user inputs from input event \n to a game instance"]
 
-    f27_1 [label="f27_1. Update Frame"]
-    f27_2 [label="f27_2. Design game instance stimulus response \n sequences"]
-    f27_3 [label="f27_3. Add server logic to increment \n game state periodically and after \n player input"]
+    f27 [label="f27. Update Frame"]
+    f27_1 [label="f27_1. Design game instance stimulus response \n sequences"]
+    f27_2 [label="f27_2. Add server logic to increment \n game state periodically and after \n player input"]
 
-    f28_1 [label="f28_1. Send Game State"]
-    f28_2 [label="f28_2. Design a socket.io event to \n broadcast game updates and format \n of the update packet"]
-    f28_3 [label="f28_3. Add server logic to broadcast \n game updates to connected clients"]
+    f28 [label="f28. Send Game State"]
+    f28_1 [label="f28_1. Design a socket.io event to \n broadcast game updates and format \n of the update packet"]
+    f28_2 [label="f28_2. Add server logic to broadcast \n game updates to connected clients"]
 
-    f29_1 [label="f29_1. Send Voting State"]
-    f29_2 [label="f29_2. Design socket.io event to broadcast \n voting state and format of \n the voting state packet"]
-    f29_3 [label="f29_3. Add server logic to broadcast \n voting updates to connected clients"]
+    f29 [label="f29. Send Voting State"]
+    f29_1 [label="f29_1. Design socket.io event to broadcast \n voting state and format of \n the voting state packet"]
+    f29_2 [label="f29_2. Add server logic to broadcast \n voting updates to connected clients"]
 
-    f30_1 [label="f30_1. Send Voting Button"]
-    f30_2 [label="f30_2. Design UI for Voting button"]
-    f30_3 [label="f30_3. Push the voting button to \n the game room"]
+    f30 [label="f30. Send Voting Button"]
+    f30_1 [label="f30_1. Design UI for Voting button"]
+    f30_2 [label="f30_2. Push the voting button to \n the game room"]
 
-    f31_1 [label= "f31_1. Handle Voting Results"]
-    f31_2 [label="f31_2. Design socket.io event to \n broadcast end result to all \n connected clients"]
-    f31_3 [label="f31_3. Add server game logic to \n determine the end result of \n the game"]
+    f31 [label= "f31. Handle Voting Results"]
+    f31_1 [label="f31_1. Design socket.io event to \n broadcast end result to all \n connected clients"]
+    f31_2 [label="f31_2. Add server game logic to \n determine the end result of \n the game"]
     
-    f32_1 [label = "f32_1. Send Results"]
-    f32_1 [label="f32_1. Design UI for showing End \n game message"]
-    f32_2 [label="f32_2. Design logic for determining the \n game end"]
-    f32_3 [label="f32_3. Get information about the game \n state from the server"]
-    f32_4 [label="f32_4. Display the end game message \n to all players"]
+    f32 [label = "f32. Send Results"]
+    f32 [label="f32. Design UI for showing End \n game message"]
+    f32_1 [label="f32_1. Design logic for determining the \n game end"]
+    f32_2 [label="f32_2. Get information about the game \n state from the server"]
+    f32_3 [label="f32_3. Display the end game message \n to all players"]
 
     g7 [label="g7. Voting System"]
-    f33_1 [label="f33_1. Initialize Timer"]
-    f33_2 [label="f33_2. Design a timer that counts \n down from 30 seconds"]
-    f33_3 [label="f33_3. Begin count down of the \n timer"]
+    f33 [label="f33. Initialize Timer"]
+    f33_1 [label="f33_1. Design a timer that counts \n down from 30 seconds"]
+    f33_2 [label="f33_2. Begin count down of the \n timer"]
     
-    f34_1 [label="f34_1. Count Votes"]
-    f34_2 [label="f34_2. Design Socket.io Input endpoints for \n voting endpoint"]
-    f34_3 [label="f34_3. Upon receiving votes from each \n player, count the votes on \n the server"]
+    f34 [label="f34. Count Votes"]
+    f34_1 [label="f34_1. Design Socket.io Input endpoints for \n voting endpoint"]
+    f34_2 [label="f34_2. Upon receiving votes from each \n player, count the votes on \n the server"]
 
-    f35_1 [label="f35_1. Handle Ties"]
-    f35_2 [label="f35_2. Design logic so that the \n server recognizes a tie when \n voting is complete"]
-    f35_3 [label="f35_3. Add server logic to recognize \n ties in a vote, and \n update the state accordingly"]
+    f35 [label="f35. Handle Ties"]
+    f35_1 [label="f35_1. Design logic so that the \n server recognizes a tie when \n voting is complete"]
+    f35_2 [label="f35_2. Add server logic to recognize \n ties in a vote, and \n update the state accordingly"]
     
-    f36_1 [label= "f36_1. Send VoteData"]
-    f36_2 [label="f36_2. Design Socket.io to send \n back the vote data to \n all players in a game \n room"]
-    f36_3 [label="f36_3. Send voting results to all \n connected clients in the game \n room"]
+    f36 [label= "f36. Send VoteData"]
+    f36_1 [label="f36_1. Design Socket.io to send \n back the vote data to \n all players in a game \n room"]
+    f36_2 [label="f36_2. Send voting results to all \n connected clients in the game \n room"]
     
-    f37_1 [label="f37_1. Return VoteData"]
-    f37_2 [label="f37_2. Get information about the voting \n result from the server"]
-    f37_3 [label="f37_3. Display the players ID who \n received the majority of votes"]
-    f37_4 [label="f37_4. Display tie status if two \n players had the same number \n of votes "]
+    f37 [label="f37. Return VoteData"]
+    f37_1 [label="f37_1. Get information about the voting \n result from the server"]
+    f37_2 [label="f37_2. Display the players ID who \n received the majority of votes"]
+    f37_3 [label="f37_3. Display tie status if two \n players had the same number \n of votes "]
 
     g8 [label="g8. User Help Page"]
-    f38_1 [label="f38_1. View Help Page"]
-    f38_2 [label="f38_2. Design a UI for Help page"]
-    f38_3 [label="f38_3. Add the information about the \n game rules and features in \n the help page in HTML format"]
-    f38_4 [label="f38_4. Make the help page accessible \n to all visitors"]
+    f38 [label="f38. View Help Page"]
+    f38_1 [label="f38_1. Design a UI for Help page"]
+    f38_2 [label="f38_2. Add the information about the \n game rules and features in \n the help page in HTML format"]
+    f38_3 [label="f38_3. Make the help page accessible \n to all visitors"]
 
     start -> g1
     start -> g8
 
-    g1 -> f1_1 -> f1_2 -> f1_3 -> g2
-    g1 -> f5_1 -> f5_2 -> f5_3 -> g3
+    g1 -> f1 -> f1_1 -> f1_2 -> g2
+    g1 -> f5 -> f5_1 -> f5_2 -> g3
 
-    g2 -> f2_1 -> f2_2 -> f2_3 -> f2_4 -> f2_5 -> f2_6 -> f2_7 -> f2_8 -> g3
-    g2 -> f3_1 -> f3_2 -> f3_3 -> g3
-    g2 -> f4_1 -> f4_2 -> f4_3 -> g3
+    g2 -> f2 -> f2_1 -> f2_2 -> f2_3 -> f2_4 -> f2_5 -> f2_6 -> f2_7 -> g3
+    g2 -> f3 -> f3_1 -> f3_2 -> g3
+    g2 -> f4 -> f4_1 -> f4_2 -> g3
 
-    g3 -> f6_1 -> f6_2 -> f6_3 -> f6_4 -> g3_done
-    g3 -> f7_1 -> f7_2 -> f7_3 -> f7_4 -> f7_5 -> g3_done
-    g3 -> f8_1 -> f8_2 -> f8_3 -> g3_done
+    g3 -> f6 -> f6_1 -> f6_2 -> f6_3 -> g3_done
+    g3 -> f7 -> f7_1 -> f7_2 -> f7_3 -> f7_4 -> g3_done
+    g3 -> f8 -> f8_1 -> f8_2 -> g3_done
 
     g3_done -> g5
     g3_done -> g6
 
-    g4 -> f9_1 -> f9_2 -> f9_3 -> f9_4 -> g4_done
-    g4 -> f10_1 -> f10_2 -> f10_3 -> g4_done
-    g4 -> f11_1 -> f11_2 -> f11_3 -> f11_4 -> g4_done
-    g4 -> f12_1 -> f12_2 -> f12_3 -> f12_4 -> g4_done
-    g4 -> f13_1 -> f13_2 -> f13_3 -> f13_4 -> g4_done
-    g4 -> f14_1 -> f14_2 -> f14_3 -> f14_4 -> g4_done
-    g4 -> f15_1 -> f15_2 -> f15_3  -> g4_done
-    g4 -> f16_1 -> f16_2 -> f16_3  -> g4_done
-    g4 -> f17_1 -> f17_2 -> f17_3 -> f17_4  -> g4_done
-    g4 -> f18_1 -> f18_2 -> f18_3  -> g4_done
-    g4 -> f19_1 -> f19_2 -> f19_3 -> f19_4 -> g4_done
-    g4 -> f20_1 -> f20_2 -> f20_3  -> g4_done
-    g4 -> f21_1 -> f21_2 -> f21_3 -> f21_4 -> g4_done
+    g4 -> f9 -> f9_1 -> f9_2 -> f9_3 -> g4_done
+    g4 -> f10 -> f10_1 -> f10_2 -> g4_done
+    g4 -> f11 -> f11_1 -> f11_2 -> f11_3 -> g4_done
+    g4 -> f12 -> f12_1 -> f12_2 -> f12_3 -> g4_done
+    g4 -> f13 -> f13_1 -> f13_2 -> f13_3 -> g4_done
+    g4 -> f14 -> f14_1 -> f14_2 -> f14_3 -> g4_done
+    g4 -> f15 -> f15_1 -> f15_2  -> g4_done
+    g4 -> f16 -> f16_1 -> f16_2  -> g4_done
+    g4 -> f17 -> f17_1 -> f17_2 -> f17_3  -> g4_done
+    g4 -> f18 -> f18_1 -> f18_2  -> g4_done
+    g4 -> f19 -> f19_1 -> f19_2 -> f19_3 -> g4_done
+    g4 -> f20 -> f20_1 -> f20_2  -> g4_done
+    g4 -> f21 -> f21_1 -> f21_2 -> f21_3 -> g4_done
 
     g4_done -> g7
 
-    g5 -> f22_1 -> f22_2 -> f22_3 -> f22_4 -> g5_done
-    g5 -> f23_1 -> f23_2 -> f23_3 -> g5_done
-    g5 -> f24_1 -> f24_2 -> f24_3 -> f24_4 -> g5_done
+    g5 -> f22 -> f22_1 -> f22_2 -> f22_3 -> g5_done
+    g5 -> f23 -> f23_1 -> f23_2 -> g5_done
+    g5 -> f24 -> f24_1 -> f24_2 -> f24_3 -> g5_done
     
-    g6 -> f25_1 -> f25_2 -> f25_3 -> g6_done
-    g6 -> f26_1 -> f26_2 -> f26_3 -> g6_done
-    g6 -> f27_1 -> f27_2 -> f27_3 -> g6_done
-    g6 -> f28_1 -> f28_2 -> f28_3 -> g6_done
-    g6 -> f29_1 -> f29_2 -> f29_3 -> g6_done
-    g6 -> f30_1 -> f30_2 -> f30_3 -> g6_done
-    g6 -> f31_1 -> f31_2 -> f31_3 -> g6_done
-    g6 -> f32_1 -> f32_2 -> f32_3 -> f32_4 -> g6_done
+    g6 -> f25 -> f25_1 -> f25_2 -> g6_done
+    g6 -> f26 -> f26_1 -> f26_2 -> g6_done
+    g6 -> f27 -> f27_1 -> f27_2 -> g6_done
+    g6 -> f28 -> f28_1 -> f28_2 -> g6_done
+    g6 -> f29 -> f29_1 -> f29_2 -> g6_done
+    g6 -> f30 -> f30_1 -> f30_2 -> g6_done
+    g6 -> f31 -> f31_1 -> f31_2 -> g6_done
+    g6 -> f32 -> f32_1 -> f32_2 -> f32_3 -> g6_done
 
     g6_done -> g5_g6_done
     g5_done -> g5_g6_done
     
     g5_g6_done -> g4
 
-    g7 -> f33_1 -> f33_2 -> f33_3 -> g7_done 
-    g7 -> f34_1 -> f34_2 -> f34_3 -> g7_done
-    g7 -> f35_1 -> f35_2 -> f35_3 -> g7_done
-    g7 -> f36_1 -> f36_2 -> f36_3 -> g7_done
-    g7 -> f37_1 -> f37_2 -> f37_3 -> f37_4 -> g7_done
+    g7 -> f33 -> f33_1 -> f33_2 -> g7_done 
+    g7 -> f34 -> f34_1 -> f34_2 -> g7_done
+    g7 -> f35 -> f35_1 -> f35_2 -> g7_done
+    g7 -> f36 -> f36_1 -> f36_2 -> g7_done
+    g7 -> f37 -> f37_1 -> f37_2 -> f37_3 -> g7_done
 
     g7_done -> end
     
-    g8 -> f38_1 -> f38_2 -> f38_3 -> f38_4 -> end
+    g8 -> f38 -> f38_1 -> f38_2 -> f38_3 -> end
 }

@@ -44,232 +44,232 @@ arrow {
 ** G1 - Home Page
 *** FR1 - Generate.Room.Form
 **** Design
-***** Design generate room button UI for homepage
+***** FR1_1 Design generate room button UI for homepage
 **** Implementation
-***** Push generate room button on homepage UI
+***** FR1_2 Push generate room button on homepage UI
 *** FR5 - Join.Room.Form
 **** Design
-***** Design join room button for homepage
+***** FR5_1 Design join room button for homepage
 **** Implementation
-***** Push join room button to hompepage UI
+***** FR5_2 Push join room button to hompepage UI
 
 ** G2 - Generate Room
 *** FR2 - Generate.Game.Session
 **** Design
-***** Design the system so that the server generates a game room ID
-***** Design the system so that the server opens up its sockets to other clients to connect
+***** FR2_1 Design the system so that the server generates a game room ID
+***** FR2_2 Design the system so that the server opens up its sockets to other clients to connect
 **** Implementation
-***** Open up the server socket connection to other clients
+***** FR2_3 Open up the server socket connection to other clients
 ' ***** Capture the information from UI form
 ' ***** Verify the information on the UI form
 ' ****** Notify the user of any field was empty
-***** Generate a link for joining room
+***** FR2_4 Generate a link for joining room
 *** FR3 - Start.WebRTC.Session
 **** Design
-***** Design the system so that the server listens for incoming requests for a WebRTC Session
+***** FR3_1 Design the system so that the server listens for incoming requests for a WebRTC Session
 **** Implementation
-***** Listen for all clients who are trying to connect to the room host via WebRTC
+***** FR3_2 Listen for all clients who are trying to connect to the room host via WebRTC
 *** FR4 - Start.Text.Chat.Session
 **** Design
-***** Design the system so that the server opens up its sockets to other clients
+***** FR4_1 Design the system so that the server opens up its sockets to other clients
 **** Implementation
-***** Establish a Websocket API for bidirectional communication between the client and server
+***** FR4_2 Establish a Websocket API for bidirectional communication between the client and server
 
 ** G3 - Join Room
 *** FR6 - Connect.Game.Session
 **** Design
-***** Design sock
+***** FR6_1 Design server to connect to the socket
 **** Implementation
-***** Verify that the room link belongs a to a valid existing room
-***** Implement scoketio endpoint logic to connect to the existing session
+***** FR6_2 Verify that the room link belongs a to a valid existing room
+***** FR6_3 Implement scoketio endpoint logic to connect to the existing session
 *** FR7 - Connect.WebRTC.Session
 **** Design
-***** Design the server in a way that it would verify connections between users, and upon verification, give permission to let the users connect
+***** FR7_1 Design the server in a way that it would verify connections between users, and upon verification, give permission to let the users connect
 **** Implementation
-***** Create a request to the server indicating that the user wishes to connect to the room host via WebRTC
-***** The server should that the correct user is trying to connect with the correct room host
-***** Establish peer-to-peer connection between the user and the room host using WebRTC 
+***** FR7_2 Create a request to the server indicating that the user wishes to connect to the room host via WebRTC
+***** FR7_3 The server should that the correct user is trying to connect with the correct room host
+***** FR7_4 Establish peer-to-peer connection between the user and the room host using WebRTC 
 *** FR8 - Connect.Chat.Session
 **** Design
-***** Design the system so that the client sends a request to the server to connect to its open socket
+***** FR8_1 Design the system so that the client sends a request to the server to connect to its open socket
 **** Implementation
-***** The client connects to the socket on the server for the corresponding room
+***** FR8_2 The client connects to the socket on the server for the corresponding room
 
 ** G4 - Room Status Page
 *** FR9 - Host.Edit.Game.Settings
 **** Design
-***** Design UI for game settings which is available before the game start
+***** FR9_1 Design UI for game settings which is available before the game start
 **** Implementation
-***** Capture the settings information entered by the host
-***** Sends the settings information to the server 
+***** FR9_2 Capture the settings information entered by the host
+***** FR9_3 Sends the settings information to the server 
 *** FR10 - Host.Start.Game
 **** Design
-***** Design UI button for starting the game
+***** FR10_1 Design UI button for starting the game
 **** Implementation
-***** Push the UI button for starting the game to the page
+***** FR10_2 Push the UI button for starting the game to the page
 *** FR11 - Player.Edit.Self.Settings
 **** Design
-***** Design UI for game settings with limited options than the host to players
+***** FR11_1 Design UI for game settings with limited options than the host to players
 **** Implementation
-***** Capture the settings information from UI
-***** Send players' setting information to the server 
+***** FR11_2 Capture the settings information from UI
+***** FR11_3 Send players' setting information to the server 
 *** FR12 - Display.Chatbox
 **** Design
-***** Design a UI for Chat box
+***** FR12_1 Design a UI for Chat box
 **** Implementation
-***** Enable chat box for all players in a game room
-***** Broadcast messages from each client (players) to all players in the room
+***** FR12_2 Enable chat box for all players in a game room
+***** FR12_3 Broadcast messages from each client (players) to all players in the room
 *** FR13 - Display.Game.Settings
 **** Design
-***** Design Settings display in a game room
+***** FR13_1 Design Settings display in a game room
 **** Implementation
-***** Send request to the server to capture the last settings update for a game session
-***** Display the updated settings to all players
+***** FR13_2 Send request to the server to capture the last settings update for a game session
+***** FR13_3 Display the updated settings to all players
 *** FR14 - Display.Player.Connection.Status
 **** Design
-***** Design simple icons for indicating player connection status
+***** FR14_1 Design simple icons for indicating player connection status
 **** Implementation
-***** For each player in the room, check their connection status
-***** Push the icon UI to the game game room page depending on the player's connection status
+***** FR14_2 For each player in the room, check their connection status
+***** FR14_3 Push the icon UI to the game game room page depending on the player's connection status
 *** FR15 - Display.Players.Information
 **** Design
-***** Design UI for player information, such as username, and block color
-**** Implementation
-***** Push the player information UI to the game room page
+***** FR15_1 Design UI for player information, such as username, and block color
+**** Implemendtation
+***** FR15_2 Push the player information UI to the game room page
 *** FR16 - Display.Game.Canvas
 **** Design
-***** Design the game canvas using p5.js
+***** FR16_1 Design the game canvas using p5.js
 **** Implementation
-***** Push the game canvas to the game room page
+***** FR16_2 Push the game canvas to the game room page
 *** FR17 - Display.Emergency.Buttons
 **** Design
-***** Design UI for an Emergency button
+***** FR17_1 Design UI for an Emergency button
 **** Implementation
-***** Push Emergency button to game room page
-***** Display the button to all players in a game room
+***** FR17_2 Push Emergency button to game room page
+***** FR17_3 Display the button to all players in a game room
 *** FR18 - Display.Voting.Modal
 **** Design
-***** Design UI for displaying the voting modal
+***** FR18_1 Design UI for displaying the voting modal
 **** Implementation
-***** Push the voting modal UI to the game room page
+***** FR18_2 Push the voting modal UI to the game room page
 *** FR19 - Display.Sabotage.Button
 **** Design
-***** Design a button UI for sabotaging
+***** FR19_1 Design a button UI for sabotaging
 **** Implementation
-***** Push sabotage button to the game room page
-***** Display the button to all players in the game room page
+***** FR19_2 Push sabotage button to the game room page
+***** FR19_3 Display the button to all players in the game room page
 *** FR20 - Send.Inputs.Server
 **** Design
-***** Design key mapping and other button press listeners for collecting client input
+***** FR20_1 Design key mapping and other button press listeners for collecting client input
 **** Implementation
-***** Add logic to send input events to game server for each key/button map
+***** FR20_2 Add logic to send input events to game server for each key/button map
 *** FR21 - Display.Room.Full.Message
 **** Design
-***** Design a UI for Room Full Error message
+***** FR21_1 Design a UI for Room Full Error message
 **** Implementation
-***** Get the information about the number of players in a room from the server
-***** Display the error message when a join room request is received for a full game room 
+***** FR21_2 Get the information about the number of players in a room from the server
+***** FR21_3 Display the error message when a join room request is received for a full game room 
 
 ** G5 - Game Canvas
 *** FR22 - Display.Canvas
 **** Design
-***** Design UI of the game canvas including styles of the tetris blocks
+***** FR22_1 Design UI of the game canvas including styles of the tetris blocks
 **** Implementation
-***** Push tetris block display logic to the UI Canvas layer
-***** Add logic to make the Canvas respond to server updates
+***** FR22_2 Push tetris block display logic to the UI Canvas layer
+***** FR22_3 Add logic to make the Canvas respond to server updates
 *** FR23 - Display.ProgressBar
 **** Design
-***** Design UI of the Game Progress Bar
+***** FR23_1 Design UI of the Game Progress Bar
 **** Implementation
-***** Push ProgressBar display logic to the UI Canvas layer
+***** FR23_2 Push ProgressBar display logic to the UI Canvas layer
 *** FR24 - Display.GameBoard
 **** Design
-***** Design UI of the game board within the Canvas
+***** FR24_1 Design UI of the game board within the Canvas
 **** Implementation
-***** Push game board display logic to UI Canvas Layer
-***** Add logic to adjust gameboard size according to number of players at game start
+***** FR24_2 Push game board display logic to UI Canvas Layer
+***** FR24_3 Add logic to adjust gameboard size according to number of players at game start
 
 ** G6 - Game Server
 *** FR25 - Start.Game
 **** Design
-***** Design Socket.io Start Game event
+***** FR25_1 Design Socket.io Start Game event
 **** Implementation
-***** Add server logic to start a game instance given event arguments
+***** FR25_2 Add server logic to start a game instance given event arguments
 *** FR26 - Update.Player.Input
 **** Design
-***** Design Socket.io Input events for a game instance
+***** FR26_1 Design Socket.io Input events for a game instance
 **** Implementation
-***** Add server logic to apply user inputs from input event to a game instance
+***** FR26_2 Add server logic to apply user inputs from input event to a game instance
 *** FR27 - Update.Frame
 **** Design
-***** Design game instance stimulus response sequences
+***** FR27_1 Design game instance stimulus response sequences
 **** Implementation
-***** Add server logic to increment game state periodically and after player input
+***** FR27_2 Add server logic to increment game state periodically and after player input
 *** FR28 - Send.Game.State
 **** Design
-***** Design a socket.io event to broadcast game updates and format of the update packet
+***** FR28_1 Design a socket.io event to broadcast game updates and format of the update packet
 **** Implementation
-***** Add server logic to broadcast game updates to connected clients
+***** FR28_2 Add server logic to broadcast game updates to connected clients
 *** FR29 - Send.Voting.State
 **** Design
-***** Design socket.io event to broadcast voting state and format of the voting state packet
+***** FR29_1 Design socket.io event to broadcast voting state and format of the voting state packet
 **** Implementation
-***** Add server logic to broadcast voting updates to connected clients
+***** FR29_2 Add server logic to broadcast voting updates to connected clients
 *** FR30 - Send.Voting.Button
 **** Design
-***** Design UI for Voting button
+***** FR30_1 Design UI for Voting button
 **** Implementation
-***** Push the voting button to the game room
+***** FR30_2 Push the voting button to the game room
 *** FR31 - Handle.Voting.Results
 **** Design
-***** Design socket.io event to broadcast end result to all connected clients
+***** FR31_1 Design socket.io event to broadcast end result to all connected clients
 **** Implementation
-***** Add server game logic to determine the end result of the game 
+***** FR31_2 Add server game logic to determine the end result of the game 
 *** FR32 - Send.Results
 **** Design
-***** Design UI for showing End game message
-***** Design logic for determining the game end
+***** FR32_1 Design UI for showing End game message
+***** FR32_2 Design logic for determining the game end
 **** Implementation
-***** Get information about the game state from the server
-***** Display the end game message to all players
+***** FR32_3 Get information about the game state from the server
+***** FR32_4 Display the end game message to all players
 
 ** G7 - Voting System
 *** FR33 - Initialize.Timer
 **** Design
-***** Design a timer that counts down from 30 seconds
+***** FR33_1 Design a timer that counts down from 30 seconds
 **** Implementation
-***** Begin count down of the timer
-***** Notify the server upon timer value at 0
+***** FR33_2 Begin count down of the timer
+***** FR33_3 Notify the server upon timer value at 0
 *** FR34 - Count.Votes
 **** Design
-***** Design Socket.io Input endpoints for voting endpoint
+***** FR34_1 Design Socket.io Input endpoints for voting endpoint
 **** Implementation
-***** Upon receiving votes from each player, count the votes on the server
+***** FR34_2 Upon receiving votes from each player, count the votes on the server
 *** FR35 - Handle.Ties
 **** Design
-***** Design logic so that the server recognizes a tie when voting is complete
+***** FR35_1 Design logic so that the server recognizes a tie when voting is complete
 **** Implementation
-***** Add server logic to recognize ties in a vote, and update the state accordingly
+***** FR35_2 Add server logic to recognize ties in a vote, and update the state accordingly
 *** FR36 - Send.VoteData
 **** Design
-***** Design Socket.io to send back the vote data to all players in a game room
+***** FR36_1 Design Socket.io to send back the vote data to all players in a game room
 **** Implementation
-***** Send voting results to all connected clients in the game room
+***** FR36_2 Send voting results to all connected clients in the game room
 *** FR37 - Return.VoteData
 **** Design
-***** Design logic for displaying voting results to all players in a game room
+***** FR37_1 Design logic for displaying voting results to all players in a game room
 **** Implementation
-***** Get information about the voting result from the server
-****** Display the players ID who received the majority of votes
-****** Display tie status if two players had the same number of votes 
+***** FR37_2 Get information about the voting result from the server
+****** FR37_3 Display the players ID who received the majority of votes
+****** FR37_4 Display tie status if two players had the same number of votes 
 
 ** G8 - User Help Page
 *** FR38 - View.Help.Page
 **** Design
-***** Design a UI for Help page
+***** FR38_1 Design a UI for Help page
 **** Implementation
-***** Add the information about the game rules and features in the help page in HTML format
-***** Make the help page accessible to all visitors
+***** FR38_2 Add the information about the game rules and features in the help page in HTML format
+***** FR38_3 Make the help page accessible to all visitors
 
 
 @endwbs

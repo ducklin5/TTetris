@@ -1,14 +1,16 @@
 @startuml
+skinparam linetype ortho
 left to right direction
 skinparam usecase {
     BackgroundColor<< FR >> YellowGreen
     BorderColor<< FR >> YellowGreen
+    NodeSep 15 ' horizontal spacing
+    RankSep 15 ' vertical spacing
 }
-
 
 actor Host as h
 actor Player as p
-actor Civilian as c
+actor Civilian as cv
 actor Imposter as i
 actor Exiled as e
 actor Server as s
@@ -18,165 +20,184 @@ c <|-- p
 p <|-- h
 p <|-- i
 p <|-- e
-
-rectangle {
+p <|-- cv
+package {
     usecase "Generate Room, FR1" as UC1
     usecase "Generate game link" as UC1.1
     
+    together {
     usecase "Start Game Session, FR2" as UC2
     usecase "Initiate a WebSocket connection" as UC2.1
-
-    usecase "Start WebRTC Session, FR3" as UC3
-    usecase "Initiate a UDP connection" as UC3.1
-    
-    usecase "Start Text Chat Session, FR4" as UC4
-    usecase "Initiate a WebSocket connection" as UC4.1
-    
-    usecase "Join Room, FR5" as UC5
-    usecase "Verify room link" as UC5.1
-    
     usecase "Connect Game Session, FR6" as UC6
     usecase "Capture user information" as UC6.1
     usecase "Verify user information" as UC6.2
-    
+    }
+
+    together {
+    usecase "Start WebRTC Session, FR3" as UC3
+    usecase "Initiate a UDP connection" as UC3.1
+    }
+
+    together {
+    usecase "Initiate a WebSocket connection" as UC4.1
+    usecase "Start Text Chat Session, FR4" as UC4
+    }
+
+    together { 
+    usecase "Join Room, FR5" as UC5
+    usecase "Verify room link" as UC5.1
+    }
+
+    together {
     usecase "Connect WebRTC Session, FR7" as UC7
     usecase "Enable voice chat session" as UC7.1
+    }
     
+    together {
     usecase "Connect Chat Session, FR8" as UC8
     usecase "Iniatiate chat via Websocket protocol" as UC8.1
-    
+    }
+
     usecase "Edit Game Settings, FR9" as UC9
     
+    together {
     usecase "Host Start Game, FR10" as UC10
     usecase "Apply game settings" as UC10.1
-    
+    }
+
+    together {
     usecase "Player Edit Self Settings, FR11" as UC11
+    usecase "Display Players Information, FR15" as UC15
+    }
     
     usecase "Display Chatbox, FR12" as UC12
     
     usecase "Display Game Settings, FR13" as UC13
     
     usecase "Display Player Connection Status, FR14" as UC14
-    
-    usecase "Display Players Information, FR15" as UC15
-    
-    usecase "Display Game Canvas, FR16" as UC16
-    
-    usecase "Display Emergency Buttons, FR17" as UC17
-    
+
     usecase "Display Voting Modal, FR18" as UC18
     
     usecase "Display Sabotage Button, FR19" as UC19
     
-    usecase "Send Inputs Server, FR20" as UC20
+    usecase "Send Inputs to Server, FR20" as UC20
     
     usecase "Display Room Full Message, FR21" as UC21
     
-    usecase "Display Canvas, FR22" as UC22
+    together {
+    usecase "Display Game Canvas, FR16" as UC16
+    usecase "Update Canvas, FR22" as UC22
+
+    }
     
     usecase "Display Progress Bar, FR23" as UC23
     
     usecase "Display gameboard, FR24" as UC24
     
+    together {
     usecase "Start game state, FR25" as UC25
     usecase "Receive game settings value" as UC25.1
-    
+    }
+
+    together {
     usecase "Update player input, FR26" as UC26
     usecase "Change position of blocks" as UC26.1
     usecase "Drop blocks quickly" as UC26.2
-    
-    usecase "Update frame, FR27" as UC27
+    }
+
+    together {
+    usecase "Update Game State by frame, FR27" as UC27
     usecase "Set the speed of falling blocks" as UC27.1
     usecase "Change the position of blocks" as UC27.2
-    
+    }
+     
     usecase "Send Game state, FR28" as UC28
     
-    usecase "Initiate automatic voting, FR29" as UC29 
     
+    together {
+    usecase "Display Emergency Buttons, FR17" as UC17
     usecase "Initiate emergency voting, FR30" as UC30
     usecase "Capture the state of emergency button" as UC30.1
-    
+    }
+
+    together {
     usecase "Handle voting result, FR31" as UC31
     usecase "Decide the exiled player" as UC31.1
-    
+    }
+
+    together {
+    usecase "Initiate automatic voting, FR29" as UC29 
     usecase "Send result, FR32" as UC32
     usecase "Notify end state of the game" as UC32.1
     usecase "Notify the result of voting phase" as UC32.2
-    
+    }
+
     usecase "Initialize Timer, FR33" as UC33
     
-    usecase "Count votes, FR34" as UC34
+    together {
     usecase "Capture user votes" as UC34.1
-    
+    usecase "Count votes, FR34" as UC34
+    }
+
+    together {
     usecase "Handle Ties, FR35" as UC35
     usecase "Keep players for tie result" as UC35.1
-
+    }
+    
     usecase "Send vote data, FR36" as UC36
     
+    together {
     usecase "Return Vote Data, FR37" as UC37
     usecase "Display the player ID" as UC37.1
     usecase "Display tie status" as UC37.2
+    } 
 
     usecase "Display Help Page, FR38" as UC38
 }
-
+i --> UC19
 h --> UC1
-s --> UC2
-s --> UC3
-s --> UC4
 p --> UC5
-p --> UC6
-c --> UC7
-c --> UC8
-h --> UC9
-h --> UC10
-p --> UC11
+p ---> UC6
+c ----> UC7
+c -----> UC8
+h ------> UC9
+h -------> UC10
+p --------> UC11
 
-c --> UC12
+c -> UC12
 c --> UC13
-c --> UC14
-c --> UC15
-c --> UC16
-c --> UC17
-c --> UC18
-c --> UC19
-c --> UC20
+c ---> UC14
+c -----> UC15
+c ------> UC16
+c -------> UC17
+' c --------> UC18
+c --------> UC20
 ' c --> UC21
-c --> UC22
-c --> UC23
-c --> UC24
+' c -> UC22
+c -> UC23
+'c -> UC24
 
-s --> UC25
-s --> UC26
-s --> UC27
-s --> UC28
 
-s --> UC29
-p --> UC30
-s --> UC31
-s --> UC32
-s --> UC33
-s --> UC34
-s --> UC35
-s --> UC36
-s --> UC37
+cv -right-> UC30
+i -right-> UC30
+
 
 c --> UC38
 
 
 UC1 ..> UC1.1 : <<includes>>
 
-UC2 ..> UC2.1 : <<includes>>
+UC2 .up.> UC2.1 : <<includes>>
 
-UC3 ..> UC3.1 : <<includes>>
+UC3 .up..> UC3.1 : <<includes>>
 
-UC4 ..> UC4.1 : <<includes>>
+UC4 .up..> UC4.1 : <<includes>>
 
-UC5 ..> UC5.1 : <<includes>>
-UC5 <.. UC21 : <<extends>>
+UC5 .down.> UC5.1 : <<includes>>
+UC5 <.down. UC21 : <<extends>>
 
-UC6 ..> UC6.1 : <<includes>>
-UC6 ..> UC6.2 : <<includes>>
+UC6 .down.> UC6.1 : <<includes>>
+UC6 .down.> UC6.2 : <<includes>>
 
 UC7 ..> UC7.1 : <<includes>>
 
@@ -185,27 +206,72 @@ UC8 ..> UC8.1 : <<includes>>
 UC10 ..> UC10.1 : <<includes>>
 
 
-UC25 ..> UC25.1 : <<includes>>
+UC25 .up.> UC25.1 : <<includes>>
 
-UC26 ..> UC26.1 : <<includes>>
-UC26 ..> UC26.2 : <<includes>>
+UC26 .left...> UC26.1 : <<includes>>
+UC26 .left...> UC26.2 : <<includes>>
 
-UC27 ..> UC27.1 : <<includes>>
-UC27 ..> UC27.2 : <<includes>>
+UC27 ..> UC28 : <<includes>>
+UC27 .up..> UC27.1 : <<includes>>
+UC27 .up..> UC27.2 : <<includes>>
 
 UC30 ..> UC30.1 : <<includes>>
 
-UC31 ..> UC31.1 : <<includes>>
+UC31 .left.> UC31.1 : <<includes>>
+UC31 .left..> UC32 : <<includes>>
+UC31 .left.....> UC36 : <<includes>>
 
-UC32 ..> UC32.1 : <<includes>>
-UC32 ..> UC32.2 : <<includes>>
+UC32 <.up.... UC32.1 : <<extends>>
+UC32 .up..> UC32.2 : <<includes>>
 
 UC34 ..> UC34.1 : <<includes>>
 
-UC35 ..> UC31 : <<extends>>
-UC35 ..> UC35.1 : <<includes>>
+UC35 .left.> UC31 : <<extends>>
+UC35 .left.> UC35.1 : <<includes>>
 
-UC37 ..> UC37.1 : <<includes>>
-UC37 ..> UC37.2 : <<includes>>
+UC37 .left.> UC37.1 : <<includes>>
+UC37 <.left. UC37.2 : <<extends>>
+
+UC12 .left.> UC8 : <<includes>>
+UC8 .down...> UC4 : <<includes>>
+
+UC2 .up...> UC6 : <<includes>>
+UC7 ...> UC3 : <<includes>>
+
+UC9 ...> UC13 : <<includes>>
+UC11 ...> UC15 : <<includes>>
+
+UC16 ...> UC22 : <<includes>>
+UC16 ...> UC24 : <<includes>>
+
+UC20 ...> UC28 : <<includes>>
+
+' UC19 ...> UC23 : <<includes>>
+
+UC32 <... UC29 : <<extends>>
+
+UC17 ...> UC18 : <<includes>>
+UC17 ...> UC30 : <<includes>>
+
+UC30 ...> UC33 : <<includes>>
+UC36 .up..> UC37 : <<includes>>
+
+together {
+    UC2 <- s
+    UC3 <- s
+    UC4 <- s
+    UC31 <- s
+    'UC32 <--- s
+    ' UC33 <-- s
+    UC34 <--- s
+    'UC35 <--- s
+    ' UC36 <---- s
+    'UC37 <--- s
+    UC25 <----- s
+    UC26 <------ s
+    UC27 <------- s
+    'UC28 <--- s
+}
+
 
 @enduml
