@@ -1,0 +1,199 @@
+@startuml
+
+class GameData {
+    + fallingPieces: Map(PlayerId, GamePiece)
+    + progressState: int
+    + timer: double
+    + gameBoard: int[]
+}
+
+    note right of GameData
+        Object broadcasted from server to client
+    end note
+
+package Client {
+  class HomePage {
+      + onCreateButtonClicked() : void
+      + onJoinButtonClicked() : void
+      + onHelpButtonClicked() : void
+  }
+
+  class HelpPage {
+      + tetrisRulesText: string
+      + helpChatBoxText: string
+      + helpVoiceChatText: string
+      + helpSettingsText: string
+  }
+
+  class RoomPage{
+    + onHelpButtonClicked() : void
+  }
+
+  class GameBoardSketch {
+      + draw() : void
+  }
+  class GameCanvasComponent {
+      + onGameDataReceived(gameData: Object): void
+  }
+  class GameButtonsComponent{
+        + isImposter() : bool
+        + onEmergencyButtonClicked() : void
+        + onSabotageButtonClicked() : void
+  }
+
+  class ChatBoxComponent{
+      + onSendButtonClicked() : void
+  }
+
+  class GameSettingsComponent {
+      + isHost(): bool
+  }
+
+  class HostSettingsComponent {
+      + onSpeedChanged() : void
+      + onStartGamePressed() : void
+  }
+  
+  class PlayerSettingsComponent {
+      + onNickNameChanged() : void
+      + onColorChanged() : void
+  }
+  
+  class GameViewComponent {
+      + onKeyPressed(direction) : void
+      + sendInputEvent(playerID, eventType): void
+  }
+
+  class PlayerInfoComponent
+  
+  RoomPage *-- PlayerInfoComponent
+  RoomPage *-- ChatBoxComponent
+  RoomPage o-- GameSettingsComponent
+  RoomPage o-- GameViewComponent
+
+  GameSettingsComponent *-- HostSettingsComponent
+  GameSettingsComponent *-- PlayerSettingsComponent
+
+  GameViewComponent *-- GameCanvasComponent
+  GameViewComponent *-- GameButtonsComponent
+  
+  GameCanvasComponent *-- GameBoardSketch
+  
+  HomePage -- RoomPage: navigate
+  HomePage -- HelpPage: navigate
+  RoomPage -- HelpPage: navigate
+
+}
+
+package Server {
+  class RoomSession {
+      + isFull: bool
+      + code: string
+      + startGame(): void
+  }
+
+  class GameSession {
+      + players: Player[]
+      + gameState: GameState
+      + phase: GamePhase
+      + getFallingPieces(): Map(PlayerId, GamePiece)
+      + isValid(GamePiece): bool   
+      + run(): void  
+      + updateFrame(): void
+      + sendGameData(): void
+      + generateRandomValidPiece(): GamePiece
+      + inputEvent(PlayerId, eventType): void
+  }
+
+    note right of GameSession::run
+        main game loop
+    end note
+    
+    note right of GameSession::update
+        updates the game state given time passed
+    end note
+    
+    note right of GameSession::inputEvent
+        updates the game state given player input
+    end note
+
+  enum GamePhase {
+    STARTING
+    PLAYING
+    VOTING 
+    PAUSED
+    FINISHED
+  }
+
+  class ChatSession {
+      + chatHistory: string[]
+  }
+
+  class WebRTCSession
+
+  class VoteSession{
+      + voteCount: object
+      + isTie: bool
+      + timer: double
+  }
+
+  enum PlayerType {
+      IMPOSTER
+      CIVILIAN
+      EXILED
+  }
+
+  class Player {
+      + id: int
+      + type: PlayerType
+      + playerName: string
+      + playerColor: string
+      + isHost: bool
+      + hasEmergency: bool
+      + isConnect: bool
+      + currentPiece: GamePiece
+      + nextPiece: GamePiece
+  }
+
+  class GameState {
+      + progressState: int
+      + timer: double
+      + speed: double
+      + gameBoard: int[[]]
+      + checkRowComplete(): void
+      + addFixedPiece(GamePiece, PlayerId): bool
+      + isValid(GamePiece): bool
+  }
+  
+  class GamePiece {
+      + type: GamePieceType
+      + orientation: int
+      + getCells() : arr[[]]
+      + ofx: int
+      + ofy: int
+  }
+
+  enum GamePieceType {
+      O
+      J
+      L
+      T
+      S
+      Z
+      I
+  }
+  
+  RoomSession o-- GameSession
+  RoomSession o-- ChatSession
+  RoomSession o-- WebRTCSession
+  
+  GameSession o-- VoteSession
+
+  GameSession *-- GameState
+  GameSession *-- Player
+
+  Player *-- GamePiece
+
+}
+
+@enduml
