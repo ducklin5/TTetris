@@ -1,0 +1,30 @@
+@startuml GenerateRoom
+skinparam ParticipantPadding 5
+skinparam BoxPadding 5
+
+
+actor Player
+
+box Client
+    participant HomePage as Home
+    participant RoomPage as RP
+    participant HelpPage as HP
+    
+end box
+
+alt Starting from HomePage 
+    Player -> Home : Enter Home Page
+    activate Home
+    Home -> HP: onHelpButtonClicked()
+    deactivate Home
+    
+    activate HP
+
+else Starting from RoomPage
+    Player -> RP: Enter Room Page
+    activate RP
+    RP -> HP: onHelpButtonClicked()
+    deactivate RP
+end 
+
+@enduml

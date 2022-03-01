@@ -1,0 +1,42 @@
+@startuml GenerateRoom
+skinparam ParticipantPadding 5
+skinparam BoxPadding 5
+
+
+actor Player
+participant SocketIOService as SS
+
+box Client
+    participant Roompage as RP
+    participant ChatBoxComponent as CBC
+end box
+
+box Server
+    participant SocketService as SS
+    participant ChatSession as CS
+end Box
+
+activate SS
+activate CS
+
+Player -> RP: Enter Room
+activate RP
+
+RP -> CBC: render()
+activate CBC
+CBC -> SS: socket{getChatHistory(roomCode)}
+SS --> SS: getChatHistory(roomCode)
+SS -> CS: getChatHistory()
+CS --> SS: json[chatHistory]
+SS --> CBC: json[chatHistory]
+
+Player -> CBC: Input message
+Player -> CBC: Press send
+CBC --> CBC: onSendButtonClicked()
+CBC -> SS: socket{sendChatMessage(roomCode, userID, msg)}
+SS --> SS: sendChatMessage(roomCode,userID, msg)
+SS -> CS: addChatMessage(userID, msg)
+CS -> SS: broadcastNewMessage(userID, msg)
+SS -> CBC: socket{sendNewMessage(userID, msg)}
+
+@enduml

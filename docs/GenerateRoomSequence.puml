@@ -1,0 +1,46 @@
+@startuml GenerateRoom
+skinparam ParticipantPadding 20
+skinparam BoxPadding 20
+
+
+actor Host
+participant SocketIOService as SS
+participant RoomSession as RS
+
+box Client
+    participant Homepage as HP
+    participant Roompage as RP
+end box
+
+box Server
+    participant SocketService as SS
+    participant RoomSession as RS
+    participant ChatSession as CS
+    participant WebRTCSession as WS
+end Box
+
+Host -> HP: Open Home page by Url
+activate HP
+Host -> HP: Click Create Button
+HP --> HP: onCreateClicked()
+HP -> SS: socket{generateRoom()}
+activate SS
+SS --> SS: generateRoom()
+SS -> RS: construct(code)
+activate RS
+RS -> CS: construct()
+activate CS
+CS --> RS
+RS -> WS: construct()
+activate WS
+WS --> RS : construction success
+RS --> SS : construction success
+SS --> HP: json(succ, roomCode)
+
+
+HP -> RP: Display room page
+deactivate HP
+activate RP
+
+
+@enduml

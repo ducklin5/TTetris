@@ -1,0 +1,55 @@
+
+@startuml GenerateRoom
+skinparam ParticipantPadding 5
+skinparam BoxPadding 5
+
+
+actor Player
+participant SocketIOService as SS
+
+box Client
+    participant Roompage as RP
+    participant GameSettingsComponent as GSC
+    participant HostSettingsComponent as HSC
+    participant PlayerSettingsComponent as PSC
+end box
+
+box Server
+    participant SocketService as SS
+end Box
+
+activate SS
+
+Player -> RP: Enter Roompage
+activate RP
+
+RP -> GSC: render()
+activate GSC
+
+GSC -> HSC: render()
+activate HSC
+
+alt not isHost()
+    HSC --> HSC: disableForm()
+end
+
+GSC -> PSC: render()
+activate PSC
+
+Player -> HSC: Increase/Decrease Speed Button pressed
+HSC --> HSC: onSpeedChanged()
+HSC -> SS: socket{changeSpeed(roomCode, speed)}
+
+Player -> HSC: Press Start Game
+HSC --> HSC: onStartGamePressed()
+HSC -> SS: socket{startGame(roomCode)}
+
+Player -> PSC: Change Nickname
+PSC --> PSC: onNickNameChanged()
+PSC -> SS: socket{changeNickName(roomCode, pID, nickName)}
+
+Player -> PSC: Change Color
+PSC --> PSC: onColorChanged()
+PSC -> SS: socket{changeColor(roomCode, pID, color)}
+
+@enduml

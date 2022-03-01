@@ -1,0 +1,79 @@
+
+@startuml GenerateRoom
+skinparam ParticipantPadding 5
+skinparam BoxPadding 5
+
+
+actor Player
+participant SocketIOService as SS
+
+box Client
+    participant Roompage as RP
+    participant GameViewComponent as GVC
+    participant GameButtonsComponent as GBC
+    participant GameCanvasComponent as GCC
+end box
+
+box Server
+    participant SocketIOService as SS
+    participant GameSession as GS
+    participant GameState as GState
+
+end Box
+
+activate SS
+activate GS
+
+Player -> RP: Enter Roompage
+activate RP
+
+RP -> GVC: render()
+activate GVC
+
+GVC -> GBC: render()
+activate GBC
+
+GVC -> GCC: render()
+activate GCC
+
+
+GCC -> SS: socket{getGameData(roomId)}
+
+SS -> GS: getGameData()
+GS --> SS: sendGameData()
+SS --> GCC: json[GameData]
+
+GCC --> GCC: draw()
+activate GState
+alt Player isImposter()
+    GBC -> GBC: showSabotageButton()
+    Player -> GBC: Press Sabotage Button
+    GBC --> GBC: onSabotageButtonClicked()
+    GBC -> SS: socket{sabotage(roomId)}
+    SS -> GS: sabotage()
+    GS -> GState: changeProgress()
+    GState --> GS: notifyChange()
+    GS --> SS: sendGameData()
+    SS --> GCC: json[GameData]
+    GCC --> GCC: draw()
+end
+
+group key pressed
+Player -> GVC: press arrow/space key
+GVC -> GCC: onKeyPressed(direction)
+GCC -> SS: socket{applyGameInput(roomCode, userId)}
+SS -> GS: applyGameInput(userID)
+alt piece has stopped falling 
+GS -> GState: addFixedPiece(GamePiece, PlayerId)
+GState -> GState: checkRowComplete()
+alt checkRowComplete()
+    GState -> GState: deleteRow()
+end
+GState --> GS: success
+GS --> SS: sendGameData()
+SS --> GCC: json[GameData]
+GCC --> GCC: draw()
+end
+end
+
+@enduml

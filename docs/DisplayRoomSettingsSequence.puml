@@ -1,0 +1,40 @@
+
+@startuml GenerateRoom
+skinparam ParticipantPadding 5
+skinparam BoxPadding 5
+
+
+actor Player
+participant SocketIOService as SS
+
+box Client
+    participant Roompage as RP
+    participant ChatBoxComponent as CBC
+    participant PlayerInfoComponent as PIC
+    participant GameSettingsComponent as GSC
+    participant GameViewComponent as GVC
+end box
+
+Player -> RP: Enter Room
+activate RP
+
+RP -> CBC: render()
+activate CBC
+
+RP -> PIC: render()
+activate PIC
+
+alt Game not started
+    RP -> GSC: render()
+    activate GSC
+    deactivate GSC
+else Else
+    RP -> GVC: render()
+    activate GVC
+    deactivate GVC
+end
+
+
+
+
+@enduml

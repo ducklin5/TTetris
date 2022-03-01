@@ -1,0 +1,42 @@
+
+@startuml GenerateRoom
+skinparam ParticipantPadding 20
+skinparam BoxPadding 20
+
+
+actor Player
+participant SocketIOService as SS
+participant RoomSession as RS
+
+box Client
+    participant Roompage as RP
+    participant ChatBoxComponent
+    participant PlayerInfoComponent
+    participant HostSettingsComponent
+    participant PlayerSettingsComponent
+end box
+
+box Server
+    participant SocketService as SS
+    participant RoomSession as RS
+    participant ChatSession as CS
+    participant WebRTCSession as WS
+end Box
+
+activate SS
+activate RS
+activate CS
+activate WS
+
+Player -> RP: Enter Room
+activate RP
+SS --> SS: joinRoom()
+RS -> CS: getChatHistory()
+CS --> RS
+RS --> SS : construction success
+SS --> HP: json[succ, roomCode]
+
+
+
+
+@enduml
