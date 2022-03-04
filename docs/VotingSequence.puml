@@ -1,0 +1,57 @@
+@startuml Voting
+skinparam ParticipantPadding 5
+skinparam BoxPadding 5
+
+actor Player
+
+box Client
+    participant GameViewComponent as GVC
+    participant GameButtonsComponent as GBC
+    participant VoteComponent as VC
+end box
+
+box Server
+    participant SocketIOService as SS
+    participant GameSession as GS
+    participant VoteSession as VS
+    participant "Player\n:MostVotedPlayer" as P 
+end Box
+
+activate SS
+activate GS
+activate GBC
+activate GVC
+Player -> GBC: Press emergency button
+GBC -> SS: socket{tryStartVoting(room, playerID)}
+SS -> GS: startVoting()
+GS -> VS: Construct()
+activate VS
+SS -> GVC: socket{broadcastGameData()}
+note over of GVC
+    GameData indicates
+    voting phase
+end note
+GVC --> GVC: disableInput()
+GVC --> VC: showVoteComponent()
+activate VC
+Player -> VC: vote on player
+VC --> VC: onPlayerSelected()
+VC -> SS: socket{captureVote(room, playerID, targetPlayerID)}
+SS -> VS: captureVote(playerID, targetPlayerID)
+VS -> VS: onTimerComplete()
+VS --> GS: onVoteComplete(results:obj)
+deactivate VS
+
+activate P
+alt !result.isTie
+    GS -> P: changePlayerType(Exiled)
+end
+deactivate P
+GS -> GS: resumeGame()
+
+GS -> SS: broadcastGameData()
+SS -> GVC: socket{broadcastGameData()}
+GVC --> VC: hideVoteComponent()
+GVC --> GVC: enableInput()
+
+@enduml

@@ -41,7 +41,7 @@ GCC -> SS: socket{getGameData(roomId)}
 
 SS -> GS: getGameData()
 GS --> SS: sendGameData()
-SS --> GCC: json[GameData]
+SS --> GCC: socket{broadcastGameData()}
 
 GCC --> GCC: draw()
 activate GState
@@ -54,7 +54,7 @@ alt Player isImposter()
     GS -> GState: changeProgress()
     GState --> GS: notifyChange()
     GS --> SS: sendGameData()
-    SS --> GCC: json[GameData]
+    SS --> GCC: socket{broadcastGameData()}
     GCC --> GCC: draw()
 end
 
@@ -71,7 +71,7 @@ alt checkRowComplete()
 end
 GState --> GS: success
 GS --> SS: sendGameData()
-SS --> GCC: json[GameData]
+SS --> GCC: socket{broadcastGameData()}
 GCC --> GCC: draw()
 end
 end

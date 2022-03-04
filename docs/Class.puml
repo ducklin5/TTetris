@@ -5,6 +5,8 @@ class GameData {
     + progressState: int
     + timer: double
     + gameBoard: int[]
+    + playerData: Player[]
+    + gamePhase: GamePhase
 }
 
     note right of GameData
@@ -34,11 +36,18 @@ package Client {
   class GameCanvasComponent {
       + onGameDataReceived(gameData: Object): void
       + draw() : void
+      + disableKeyInput(): void
   }
   class GameButtonsComponent{
         + isImposter() : bool
         + onEmergencyButtonClicked() : void
         + onSabotageButtonClicked() : void
+        + disableButtons(): void
+  }
+
+  class VoteComponent{
+        + remainingTime: int
+        + onPlayerSelected()
   }
 
   class ChatBoxComponent{
@@ -63,6 +72,10 @@ package Client {
   class GameViewComponent {
       + onKeyPressed(direction) : void
       + sendInputEvent(playerID, eventType): void
+      + showVoteComponent(): void
+      + hideVoteComponent(): void
+      + disableInputs(): void
+      + enableInputs(): void
   }
 
   class PlayerInfoComponent
@@ -77,6 +90,7 @@ package Client {
 
   GameViewComponent *-- GameCanvasComponent
   GameViewComponent *-- GameButtonsComponent
+  GameViewComponent *-- VoteComponent
   
   
   HomePage -- RoomPage: navigate
@@ -94,6 +108,7 @@ package Server {
       + changeSpeed(room, speed): void
       + changeNickName(room, pID, nickName) : void
       + changeColor(room, pID, color) : void
+      + broadcastGameData(): json
   } 
 
   class RoomSession {
@@ -112,9 +127,11 @@ package Server {
       + isValid(GamePiece): bool   
       + run(): void  
       + updateFrame(): void
+      + startVoting(): void
       + sendGameData(): void
       + generateRandomValidPiece(): GamePiece
       + inputEvent(PlayerId, eventType): void
+      + resumeGame(): void
   }
 
     note right of GameSession::run
@@ -147,6 +164,8 @@ package Server {
       + voteCount: object
       + isTie: bool
       + timer: double
+      + onTimerComplete(): void
+      + onVoteComplete(results: object)
   }
 
   enum PlayerType {
