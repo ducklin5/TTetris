@@ -1,0 +1,40 @@
+@startuml JoinRoom
+skinparam linetype ortho
+
+|ui| UI
+|cd| Client/Domain
+|sd| Server
+
+|ui|
+start
+
+|ui|
+:Player change their nickname;
+
+|cd| 
+:onNickNameChanged();
+
+|sd|
+:socket{changeNickName(roomCode, pID, nickName)};
+|ui|
+:Display nick name;
+stop
+
+|ui|
+start
+:Player change their piece color;
+
+|cd|
+:onColorChanged();
+
+|sd|
+:socket{changeColor(roomCode, pID, color)};
+
+|ui|
+:Display color changed;
+
+|ui|
+stop
+
+
+@enduml

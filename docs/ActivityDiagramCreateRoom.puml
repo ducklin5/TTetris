@@ -1,0 +1,35 @@
+@startuml CreateRoom
+skinparam linetype ortho
+
+|ui| UI
+start
+
+:Host press Create button;
+
+|cd| Client/Domain
+:onCreateButtonClicked();
+
+|sd| Server
+:socket{generateRoom()};
+:JSON:generateRoom();
+:Construct a RoomSession;
+fork
+    :Construct a ChatSession;
+fork again
+    :Construct WebRTCSession;
+end fork
+: json(succ, roomCode)|
+
+|cd|
+if (json.success?) is (true) then
+|ui| UI
+:Display RoomPage;
+else (false)
+|ui| UI
+:Display Error Message;
+|ui| UI
+endif
+
+|cd|
+stop
+@enduml

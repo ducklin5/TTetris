@@ -1,0 +1,38 @@
+@startuml JoinRoom
+skinparam linetype ortho
+
+|ui| UI
+|cd| Client/Domain
+|sd| Server
+
+|ui|
+start
+
+|ui|
+:Imposter Presses Sabotage Button;
+|cd| 
+:GameButtonsComponent
+.onSabotageButtonClicked();
+
+|sd|
+:socket{sabotage(roomId)};
+:GameSession
+.sabotage();
+:GameState
+.changeProgress();
+
+:GameSession
+.notifyChange();
+
+:GameSession
+.sendGameData();
+:socket{broadcastGameData()};
+|cd|
+:GameCanvasComponent
+.draw();
+
+|ui|
+:Display updated progress bar;
+stop
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml JoinRoom
+skinparam linetype ortho
+
+|ui| UI
+
+|ui|
+start
+
+|ui|
+:Host increase/decreases speed;
+
+|cd| Client/Domain
+:GameSettingCompoent
+.onSpeedChanged();
+
+|sd| Server
+:socket{changeSpeed(roomCode, speed)};
+
+|ui|
+:Host presses start game button;
+
+|cd|
+:GameSettingCompoent
+.onstartGamePressed();
+
+|sd|
+:socket{startGame(roomCode)};
+
+|cd|
+:RoomPage
+.displayGameViewComponent();
+
+|ui|
+:GameSettingsComponent is hidden;
+:GameViewComponent is shown;
+
+|ui|
+stop
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+skinparam linetype ortho
+
+|ui| UI
+start
+
+:User press Help button;
+
+:HelpPage;
+
+
+|cd| Client/Domain
+
+:getHelpInfo();
+
+
+
+stop
+@enduml

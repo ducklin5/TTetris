@@ -22,6 +22,7 @@ activate GS
 activate GBC
 activate GVC
 Player -> GBC: Press emergency button
+GBC --> GBC: onEmeregencyButtonClicked();
 GBC -> SS: socket{tryStartVoting(room, playerID)}
 SS -> GS: startVoting()
 GS -> VS: Construct()

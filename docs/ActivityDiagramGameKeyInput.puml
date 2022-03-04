@@ -1,0 +1,42 @@
+@startuml JoinRoom
+skinparam linetype ortho
+
+|ui| UI
+|cd| Client/Domain
+|sd| Server
+
+|ui|
+start
+
+|ui|
+:Player presses arrow or space key;
+|cd|
+:GameViewComponent 
+.onKeyPressed(direction);
+
+|sd|
+:socket{applyGameInput(roomCode, userId)};
+:GameSession
+.applyGameInput(userID, direction);
+if (piece has stopped falling) is (true) then
+:GameState
+.addFixedPiece(GamePiece, PlayerId);
+:Gamestate
+.checkRowComplete();
+    if (row is completed) is (true) then
+    :GameState
+    .deleteRow();
+    endif
+endif
+:GameSession
+.sendGameData();
+:socket{broadcastGameData()};
+|cd|
+:GameCanvasComponent
+.draw();
+
+|ui|
+:Update Game Canvas Component;
+stop
+
+@enduml

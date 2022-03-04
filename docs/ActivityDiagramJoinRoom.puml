@@ -1,0 +1,35 @@
+@startuml JoinRoom
+skinparam linetype ortho
+
+|ui| UI
+start
+
+:Player press Join button;
+
+|cd| Client/Domain
+:onJoinButtonClicked();
+
+|sd| Server
+:socket{joinRoom(code)};
+:JSON:joinRoom();
+:RoomSession.addPlayer();
+fork
+    :ChatSession.addPlayer();
+fork again
+    :WebRTCSession.addPlayer();
+    :WebRTCSession.connectToHost();
+end fork
+: json(succ, playerId)|
+
+|cd|
+if (json.success?) is (true) then
+|ui| UI
+:Display RoomPage;
+else (false)
+|ui| UI
+:Display Error Message;
+|ui| UI
+endif
+|cd|
+stop
+@enduml

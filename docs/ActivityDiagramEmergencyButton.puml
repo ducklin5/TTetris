@@ -1,0 +1,66 @@
+@startuml JoinRoom
+skinparam linetype ortho
+
+|ui| UI
+|cd| Client/Domain
+|sd| Server
+
+|ui|
+start
+
+|ui|
+:Player Presses Emergency Button;
+|cd| 
+:GameButtonsComponent
+.onEmergencyButtonClicked();
+
+|sd|
+:socket{tryStartVoting(roomId, playerID)};
+:GameSession
+.startVoting();
+:Construct VotingSession;
+:start timer;
+:socket{broadcastGameData()};
+
+
+|cd|
+:GameViewComponent
+.disableInput();
+:GameViewComponent
+.showVoteComponent();
+
+|ui|
+:Show voting component to players;
+:Show timer;
+:Player selects target player;
+
+|cd|
+:VoteComponent
+.onPlayerSelected();
+|sd|
+:socket{captureVote(room, playerID, targetPlayerID)};
+:VoteSession
+.captureVote(playerID, targetPlayerID);
+:VoteSession
+.onTimerComplete();
+:VoteSession
+.onVoteComplete(results:obj);
+if (!isTie) is (true) then
+:Player
+.changePlayerType(Exiled);
+endif
+:GameSession
+.resumeGame();
+:GameSession
+.broadcastGameData();
+:socket{broadcastGameData()};
+|cd|
+:GameViewComponent
+.hideVoteComponent();
+:GameViewComponent
+.enableInput();
+|ui|
+:Display updated Game Canvas;
+stop
+
+@enduml

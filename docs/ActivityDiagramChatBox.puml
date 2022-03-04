@@ -1,0 +1,34 @@
+@startuml JoinRoom
+skinparam linetype ortho
+
+|ui| UI
+|cd| Client/Domain
+|sd| Server
+
+|ui|
+start
+
+|ui|
+:Player inputs message into chat box;
+:Player press send;
+|cd| 
+:ChatBoxComponent
+.onSendButtonClicked();
+
+|sd|
+:socket{sendChatMessage(roomCode, userID, msg)};
+:ChatSession
+.addChatMessage(userID, msg);
+:ChatSession
+.broadcastNewMessage(userID, msg);
+:socket{sendNewMessage(userID, msg)};
+
+|cd|
+:ChatBoxComponent
+.onMessageRecieved();
+
+|ui|
+:Display new message;
+stop
+
+@enduml
