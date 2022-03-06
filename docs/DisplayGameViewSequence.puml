@@ -1,5 +1,5 @@
 
-@startuml GenerateRoom
+@startuml DisplayGameViewSequence
 skinparam ParticipantPadding 5
 skinparam BoxPadding 5
 

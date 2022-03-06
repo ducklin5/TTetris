@@ -1,4 +1,4 @@
-@startuml JoinRoom
+@startuml ActivityDiagramEmergencyButton
 skinparam linetype ortho
 
 |ui| UI
@@ -15,7 +15,7 @@ start
 .onEmergencyButtonClicked();
 
 |sd|
-:socket{tryStartVoting(roomId, playerID)};
+:socket{tryStartVoting(roomID, playerID)};
 :GameSession
 .startVoting();
 :Construct VotingSession;
@@ -25,7 +25,7 @@ start
 
 |cd|
 :GameViewComponent
-.disableInput();
+.disableInputs();
 :GameViewComponent
 .showVoteComponent();
 
@@ -47,7 +47,7 @@ start
 .onVoteComplete(results:obj);
 if (!isTie) is (true) then
 :Player
-.changePlayerType(Exiled);
+.changePlayerType(PlayerType=Exiled);
 endif
 :GameSession
 .resumeGame();
@@ -58,7 +58,7 @@ endif
 :GameViewComponent
 .hideVoteComponent();
 :GameViewComponent
-.enableInput();
+.enableInputs();
 |ui|
 :Display updated Game Canvas;
 stop

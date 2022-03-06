@@ -1,4 +1,4 @@
-@startuml JoinRoom
+@startuml ActivityDiagramJoinRoom
 skinparam linetype ortho
 
 |ui| UI
@@ -7,7 +7,8 @@ start
 :Player press Join button;
 
 |cd| Client/Domain
-:onJoinButtonClicked();
+:Homepage
+.onJoinButtonClicked();
 
 |sd| Server
 :socket{joinRoom(code)};

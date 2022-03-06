@@ -1,4 +1,4 @@
-@startuml JoinRoom
+@startuml ActivityDiagramHostSettings
 skinparam linetype ortho
 
 |ui| UI
@@ -10,7 +10,7 @@ start
 :Host increase/decreases speed;
 
 |cd| Client/Domain
-:GameSettingCompoent
+:GameSettingsComponent
 .onSpeedChanged();
 
 |sd| Server
@@ -20,8 +20,8 @@ start
 :Host presses start game button;
 
 |cd|
-:GameSettingCompoent
-.onstartGamePressed();
+:GameSettingsComponent
+.onStartGamePressed();
 
 |sd|
 :socket{startGame(roomCode)};

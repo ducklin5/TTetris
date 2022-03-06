@@ -1,4 +1,4 @@
-@startuml JoinRoom
+@startuml ActivityDiagramChatBox
 skinparam linetype ortho
 
 |ui| UI

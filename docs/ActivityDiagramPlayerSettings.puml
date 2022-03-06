@@ -1,4 +1,4 @@
-@startuml JoinRoom
+@startuml ActivityDiagramPlayerSettings
 skinparam linetype ortho
 
 |ui| UI
@@ -12,7 +12,8 @@ start
 :Player change their nickname;
 
 |cd| 
-:onNickNameChanged();
+:PlayerSettingsComponent
+.onNickNameChanged();
 
 |sd|
 :socket{changeNickName(roomCode, pID, nickName)};
@@ -25,7 +26,8 @@ start
 :Player change their piece color;
 
 |cd|
-:onColorChanged();
+:PlayerSettingsComponent
+.onColorChanged();
 
 |sd|
 :socket{changeColor(roomCode, pID, color)};

@@ -1,5 +1,5 @@
 
-@startuml GenerateRoom
+@startuml DisplayJoinRoomSequence
 skinparam ParticipantPadding 20
 skinparam BoxPadding 20
 
@@ -27,7 +27,7 @@ activate CS
 activate WS
 Player -> HP: Open Home page by Url
 Player -> HP: Click Join Button
-HP --> HP: onJoinClicked()
+HP --> HP: onJoinButtonClicked()
 HP -> SS: socket{joinRoom(code)}
 SS --> SS: joinRoom()
 SS -> RS: connect(code)

@@ -1,4 +1,4 @@
-@startuml Voting
+@startuml VotingSequence
 skinparam ParticipantPadding 5
 skinparam BoxPadding 5
 

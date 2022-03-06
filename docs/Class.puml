@@ -1,4 +1,4 @@
-@startuml
+@startuml Class
 
 class GameData {
     + fallingPieces: Map[PlayerId, GamePiece]
@@ -22,6 +22,7 @@ package Client {
   }
 
   class HelpPage {
+      + getHelpInfo(): string
       + tetrisRulesText: string
       + helpChatBoxText: string
       + helpVoiceChatText: string
@@ -30,43 +31,56 @@ package Client {
 
   class RoomPage{
     + onHelpButtonClicked() : void
+    + displayGameViewComponent(): void
   }
 
 
   class GameCanvasComponent {
       + onGameDataReceived(gameData: Object): void
-      + draw() : void
+      + draw(): void
       + disableKeyInput(): void
+      + render(): void
+      + onKeyPressed(direction): void
   }
   class GameButtonsComponent{
-        + isImposter() : bool
-        + onEmergencyButtonClicked() : void
-        + onSabotageButtonClicked() : void
-        + disableButtons(): void
+    + isImposter() : bool
+    + onEmergencyButtonClicked() : void
+    + onSabotageButtonClicked() : void
+    + disableButtons(): void
+    + showSabotageButton(): void
+    + render(): void
   }
 
   class VoteComponent{
-        + remainingTime: int
-        + onPlayerSelected()
+    + remainingTime: int
+    + onPlayerSelected(): void
+    + render(): void
   }
 
   class ChatBoxComponent{
-      + onSendButtonClicked() : void
+    + onSendButtonClicked() : void
+    + onMessageRecieved(): void
+    + render(): void
   }
 
   class GameSettingsComponent {
       + isHost(): bool
+      + onSpeedChanged(): void
+      + onStartGamePressed(): void
+      + render(): void
   }
 
   class HostSettingsComponent {
       + disableForm(): void
       + onSpeedChanged() : void
       + onStartGamePressed() : void
+      + render(): void
   }
   
   class PlayerSettingsComponent {
       + onNickNameChanged() : void
       + onColorChanged() : void
+      + render(): void
   }
   
   class GameViewComponent {
@@ -76,21 +90,24 @@ package Client {
       + hideVoteComponent(): void
       + disableInputs(): void
       + enableInputs(): void
+      + render(): void
   }
 
-  class PlayerInfoComponent
+  class PlayerInfoComponent {
+    + render(): void
+  }
   
-  RoomPage *-- PlayerInfoComponent
-  RoomPage *-- ChatBoxComponent
-  RoomPage o-- GameSettingsComponent
-  RoomPage o-- GameViewComponent
+  RoomPage "1" *-- "1" PlayerInfoComponent: displays
+  RoomPage "1" *-- "1" ChatBoxComponent: displays
+  RoomPage "1" o-- "0..1" GameSettingsComponent: displays
+  RoomPage "1" o-- "0..1" GameViewComponent: displays
+    
+  GameSettingsComponent "1" *--"1" HostSettingsComponent: displays
+  GameSettingsComponent "1" *-- "1" PlayerSettingsComponent: displays
 
-  GameSettingsComponent *-- HostSettingsComponent
-  GameSettingsComponent *-- PlayerSettingsComponent
-
-  GameViewComponent *-- GameCanvasComponent
-  GameViewComponent *-- GameButtonsComponent
-  GameViewComponent *-- VoteComponent
+  GameViewComponent "1" *-- "1" GameCanvasComponent : displays
+  GameViewComponent "1" *-- "1" GameButtonsComponent : displays
+  GameViewComponent "1" o-- "0..1" VoteComponent: displays
   
   
   HomePage -- RoomPage: navigate
@@ -102,19 +119,27 @@ package Client {
 package Server {
   class SocketIOService {
       + generateRoom(): json
-      + connect(): 
+      + connect(): void
       + joinRoom(): json
+      + getChatHistory(roomCode): json
+      + sendChatMessage(roomCode,userID, msg): json
+      + broadcastNewMessage(userID, msg): json
       + startGame(room): json
       + changeSpeed(room, speed): void
       + changeNickName(room, pID, nickName) : void
       + changeColor(room, pID, color) : void
+      + getGameData(room): json 
       + broadcastGameData(): json
+      + applyGameInput(room, userID): void
+      + tryStartVoting(room, playerID): void
+      + captureVote(room, playerID, targetPlayerID): void
   } 
 
   class RoomSession {
       + isFull: bool
       + code: string
       + startGame(): void
+      + addPlayer(): void
       + generateRoomCode(): void
       + getChatHistory(): json
   }
@@ -128,10 +153,14 @@ package Server {
       + run(): void  
       + updateFrame(): void
       + startVoting(): void
+      + sabotage(): void
       + sendGameData(): void
+      + getGameData(): void
       + generateRandomValidPiece(): GamePiece
       + inputEvent(PlayerId, eventType): void
       + resumeGame(): void
+      + notifyChange(): void
+      + applyGameInput(userID, direction): void
   }
 
     note right of GameSession::run
@@ -156,16 +185,21 @@ package Server {
 
   class ChatSession {
       + chatHistory: string[]
+      + addChatMessage(userID, msg): void
+      + getChatHistory(): void
   }
 
-  class WebRTCSession
+  class WebRTCSession{
+      + connectToHost(): void
+  }
 
   class VoteSession{
       + voteCount: object
       + isTie: bool
       + timer: double
       + onTimerComplete(): void
-      + onVoteComplete(results: object)
+      + onVoteComplete(results: object): void
+      + captureVote(playerID, targetPlayerID): void
   }
 
   enum PlayerType {
@@ -184,6 +218,7 @@ package Server {
       + isConnect: bool
       + currentPiece: GamePiece
       + nextPiece: GamePiece
+      + changePlayerType(PlayerType): void
   }
 
   class GameState {
@@ -193,7 +228,9 @@ package Server {
       + gameBoard: int[[]]
       + checkRowComplete(): void
       + addFixedPiece(GamePiece, PlayerId): bool
+      + deleteRow(): void
       + isValid(GamePiece): bool
+      + changeProgress(): void
   }
   
   class GamePiece {
@@ -214,16 +251,18 @@ package Server {
       I
   }
   
-  RoomSession o-- GameSession
-  RoomSession o-- ChatSession
-  RoomSession o-- WebRTCSession
+  SocketIOService "1" -- "0..*" RoomSession: uses
+
+  RoomSession "1" o-- "0..1" GameSession : contains
+  RoomSession "1" o-- "0..1" ChatSession : contains
+  RoomSession "1" o-- "0..1" WebRTCSession :contains
   
-  GameSession o-- VoteSession
+  GameSession "1" o-- "0..1" VoteSession : contains
 
-  GameSession *-- GameState
-  GameSession *-- Player
+  GameSession "1" *-- "1" GameState: owns
+  GameSession "1" *-- "0..5" Player: owns
 
-  Player *-- GamePiece
+  Player "1" *-- "0..2" GamePiece: owns
 
 }
 

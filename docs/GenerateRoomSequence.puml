@@ -1,4 +1,4 @@
-@startuml GenerateRoom
+@startuml DisplayGenerateRoomSequence
 skinparam ParticipantPadding 20
 skinparam BoxPadding 20
 
@@ -22,7 +22,7 @@ end Box
 Host -> HP: Open Home page by Url
 activate HP
 Host -> HP: Click Create Button
-HP --> HP: onCreateClicked()
+HP --> HP: onCreateButtonClicked()
 HP -> SS: socket{generateRoom()}
 activate SS
 SS --> SS: generateRoom()

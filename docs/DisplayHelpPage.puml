@@ -1,4 +1,4 @@
-@startuml GenerateRoom
+@startuml DisplayHelpPage
 skinparam ParticipantPadding 5
 skinparam BoxPadding 5
 

@@ -1,4 +1,4 @@
-@startuml GenerateRoom
+@startuml DisplayChatboxSequence
 skinparam ParticipantPadding 5
 skinparam BoxPadding 5
 
@@ -37,6 +37,6 @@ CBC -> SS: socket{sendChatMessage(roomCode, userID, msg)}
 SS --> SS: sendChatMessage(roomCode,userID, msg)
 SS -> CS: addChatMessage(userID, msg)
 CS -> SS: broadcastNewMessage(userID, msg)
-SS -> CBC: socket{sendNewMessage(userID, msg)}
+SS -> CBC: socket{broadcastNewMessage(userID, msg)}
 
 @enduml

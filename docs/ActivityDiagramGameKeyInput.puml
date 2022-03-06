@@ -1,4 +1,4 @@
-@startuml JoinRoom
+@startuml ActivityDiagramGameKeyInput
 skinparam linetype ortho
 
 |ui| UI
@@ -15,12 +15,12 @@ start
 .onKeyPressed(direction);
 
 |sd|
-:socket{applyGameInput(roomCode, userId)};
+:socket{applyGameInput(roomCode, userID)};
 :GameSession
 .applyGameInput(userID, direction);
 if (piece has stopped falling) is (true) then
 :GameState
-.addFixedPiece(GamePiece, PlayerId);
+.addFixedPiece(GamePiece, PlayerID);
 :Gamestate
 .checkRowComplete();
     if (row is completed) is (true) then

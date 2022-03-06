@@ -1,4 +1,4 @@
-@startuml CreateRoom
+@startuml ActivityDiagramCreateRoom
 skinparam linetype ortho
 
 |ui| UI
@@ -7,7 +7,8 @@ start
 :Host press Create button;
 
 |cd| Client/Domain
-:onCreateButtonClicked();
+:HomePage
+.onCreateButtonClicked();
 
 |sd| Server
 :socket{generateRoom()};
