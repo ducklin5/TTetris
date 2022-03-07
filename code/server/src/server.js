@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import http from 'http';
-import SocketIO from 'socket.io';
+import { Server } from 'socket.io';
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.get('/version', (_, res) => {
 });
 
 const server = http.createServer(app);
-const wsServer = SocketIO(server);
+const wsServer = new Server(server);
 
 wsServer.on("connection", (socket) => {
   socket.on("generate_room", (done) => {
@@ -34,3 +34,5 @@ wsServer.on("connection", (socket) => {
     socket.rooms.forEach(room => socket.to(roon).emit("end_session"));
   });
 })
+
+export default server;
