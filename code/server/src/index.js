@@ -1,8 +1,8 @@
-import api from "./api.js";
+import server from "./server.js";
 
 async function main() {
-  api.listen(PORT, () =>
-    console.log('QuickFileSytem server listening on port %d!', PORT),
+  server.listen(8080, () =>
+    console.log('Server listening on port %d!', 8080),
   );
 }
 
