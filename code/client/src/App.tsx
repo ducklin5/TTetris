@@ -4,13 +4,13 @@ import {GameCanvasComponent} from './components/game_canvas_component';
 import { io, Socket } from "socket.io-client";
 import './App.css';
 import { useRefDimensions } from './util.js/react_util';
+import { ResponsiveGameCanvasComponent } from './components/responsive_game_canvas_component';
+import { generateMockGameData } from './util.js/mock';
 
 const App = () => {
 	console.log("App: Draw");
 	const [socket, setSocket] = useState<null | Socket>(null);
 	const [connected, setConnected] = useState(false);
-
-	const gameData = {};
 
 	useEffect(() => {
 			console.log("App: useEffect");
@@ -26,8 +26,11 @@ const App = () => {
 		}, [setSocket]
 	);
 	
-	const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
-	const [refHeight, refWidth] = useRefDimensions(ref, 100, 100);
+	
+
+	const mockGameData = generateMockGameData();
+	console.log(mockGameData);
+	
 
 	return (
 		<div className="App">
@@ -36,15 +39,7 @@ const App = () => {
 					This is a Proof of Concept App for ECE493W22G7 Capstone Project
 				</p>
 			</header>
-			<div
-				ref={ref}
-				className='GameCanvas'>
-				<GameCanvasComponent
-					gameData={gameData}
-					height={refHeight}
-					width={refWidth}
-					/>
-			</div>
+			<ResponsiveGameCanvasComponent gameData={mockGameData} />
 		</div>
 	);
 };

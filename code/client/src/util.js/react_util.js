@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 
-const useRefDimensions = (ref, defaultWidth, defaultHeight) => {
-    const [width, setWidth] = useState(defaultWidth);
-    const [height, setHeight] = useState(defaultHeight);
+const useRefDimensions = (ref) => {
+    const [width, setWidth] = useState(10);
+    const [height, setHeight] = useState(10);
 
     const updateDim = () => {
         console.log("size changed");
@@ -12,8 +12,9 @@ const useRefDimensions = (ref, defaultWidth, defaultHeight) => {
         }
     }
 
+    useEffect(updateDim, [ref])
     window.addEventListener("resize", updateDim)
-
+    
     return [height, width];
 }
 

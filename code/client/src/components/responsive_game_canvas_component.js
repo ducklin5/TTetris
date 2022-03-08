@@ -1,11 +1,8 @@
-
 import {useRef} from 'react';
 import { useRefDimensions } from '../util.js/react_util';
 import { GameCanvasComponent } from './game_canvas_component';
 
-
-
-const SizedGameCanvasComponent = ({ gameData }) => {
+const ResponsiveGameCanvasComponent = ({ gameData }) => {
     const ref = useRef();
     const [refHeight, refWidth] = useRefDimensions(ref);
 
@@ -14,15 +11,9 @@ const SizedGameCanvasComponent = ({ gameData }) => {
         className='GameCanvas'>
         <GameCanvasComponent
             gameData={gameData}
-            height={refHeight}
-            width={refWidth}
+            height={refHeight-30}
+            width={refWidth-30}
         />
-        <div className='GameCanvasSizeSelect'>
-            {
-                // Size setting go here??
-                // only if the responsive version doesnt work
-            }
-        </div>
     </div>)
 }
 

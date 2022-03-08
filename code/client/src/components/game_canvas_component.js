@@ -3,34 +3,48 @@ import { io, Socket } from "socket.io-client";
 import Sketch from 'react-p5'
 
 const GameCanvasComponent = ({ height, width, gameData }) => {
-    let [GCCp5, setGCCp5] = useState();
     let size = Math.min(width, height);
 
-    const setup = (p5, canvasParentRef) => {
-        setGCCp5(p5);
-        p5.createCanvas(width, height).parent(canvasParentRef)
-    }
-
     useEffect(() => {
-        console.log(`GCC: change size. GCCp5 = ${GCCp5}`);
-        if (GCCp5) {
-            GCCp5.resizeCanvas(width, height);
-            console.log("canvas resized");
-        }
         size = Math.min(width, height);
     }, [width, height])
 
+    const setup = (p5, canvasParentRef) => {
+        p5.createCanvas(width, height).parent(canvasParentRef)
+    }
+
     const u = (value) => {
-        return value * size/100.0;
+        let boardSize = Math.max(gameData.board.height,
+            gameData.board.width); 
+        return value * (size/boardSize);
+    }
+
+    const getPlayerColor = playerId => {
+        return gameData.players[playerId].color;
     }
 
     const draw = p5 => {
-        p5.background(255, 130, 20);
-        p5.ellipse(u(10), u(10), u(10));
-        p5.ellipse(u(20), u(20), u(10));
+        p5.background(10, 10, 10);
+
+        let board = gameData.board;
+
+        for(let y = 0; y < board.height; y++) {
+            for(let x = 0; x < board.width; x++) {
+                let playerID = board.grid[y][x];
+                if (playerID != null) {
+                    p5.fill(getPlayerColor(playerID));
+                    p5.rect( x * u(1), y * u(1), u(1));
+                }
+            }
+        }
+
     }
 
-    return <Sketch setup={setup} draw={draw} />
+    const windowResized = p5 => {
+        p5.resizeCanvas(width, height);
+    }
+
+    return <Sketch setup={setup} draw={draw} windowResized={windowResized} />
 }
 
 export {
