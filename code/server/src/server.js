@@ -17,21 +17,26 @@ app.get('/version', (_, res) => {
 });
 
 const server = http.createServer(app);
-const wsServer = new Server(server);
+const wsServer = new Server(server, {
+  cors: "*"
+});
 
 wsServer.on("connection", (socket) => {
-  socket.on("generate_room", (done) => {
-    // TODO: generate room id, playerid, etc.
+  socket.on("create_room", (roomID, done) => {
+  // TODO: generate room id, playerid, etc.
+    socket.join(roomID);
+    done("mesageawe");
   })
 
-  socket.on("enter_room", (roomName, done) => {
-    socket.join(roomName);
+  socket.on("join_room", (roomID, done) => {
+    console.log(roomID)
+    socket.join(roomID);
     done("Joined room");
-    socket.to(roomName).emit("welcome");
+    socket.to(roomID).emit("welcome");
   });
 
   socket.on("disconnecting", () => {
-    socket.rooms.forEach(room => socket.to(roon).emit("end_session"));
+    socket.rooms.forEach(room => socket.to(room).emit("end_session"));
   });
 })
 
