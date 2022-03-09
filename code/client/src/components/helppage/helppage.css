@@ -1,0 +1,50 @@
+/* Reference: https://www.youtube.com/watch?v=WVOmmc0UTiM */
+
+html, body, #root {
+  height: 100%
+}
+
+.help-page {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height:100%;
+    border: 100px solid #424242;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+
+.help-col{
+    display: flex;
+    flex-direction: row;
+}
+
+.help-box{
+    width: 650px;
+    height: 320px;
+    background-color: #B3F2FF;
+    margin: 10px;
+}
+
+.help-text{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.help-box-title{
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #5c6164;
+}
+
+.help-box-paragraph{
+    color: #3e3d41;
+    font-size: 1.0rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 5px 0px;
+}
