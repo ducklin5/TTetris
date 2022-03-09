@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { io, Socket } from "socket.io-client";
 import Sketch from 'react-p5'
 
-// FIXME: the progress bar currently assumes 20 rows must be completed
 
 const GameCanvasComponent = ({ width, height, gameData }) => {
     let vUnits, hUnits, pxPerUnit;
