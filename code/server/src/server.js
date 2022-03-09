@@ -21,11 +21,9 @@ const wsServer = new Server(server, {
   cors: "*"
 });
 
-let count;
 wsServer.on("connection", (socket) => {
   socket.on("create_room", (roomID, done) => {
   // TODO: generate room id, playerid, etc.
-    count = 0;
     socket.join(roomID);
   })
 
@@ -33,18 +31,7 @@ wsServer.on("connection", (socket) => {
     console.log(roomID)
     socket.join(roomID);
     done("Joined room");
-    socket.to(roomID).emit("count", count);
-    console.log("emited")
   });
-
-  socket.on("count", (cnt, roomID, done) => {
-    cnt += 1;
-    count = cnt;
-    console.log(count)
-    console.log(roomID);
-    socket.to(roomID).emit("count", count);
-    done()
-  })
 
   socket.on("disconnecting", () => {
     console.log("disconnecting")
