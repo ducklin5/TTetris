@@ -27,5 +27,5 @@ const SizedGameCanvasComponent = ({ gameData }) => {
 }
 
 export {
-    ResponsiveGameCanvasComponent
+    SizedGameCanvasComponent
 }
