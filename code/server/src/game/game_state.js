@@ -62,7 +62,7 @@ class GameState {
         } while (isColliding && piece.ofy >= 0);
          
         if (isColliding) {
-            return true;
+            return false;
         }
         
         this._addPieceMatrix(pieceMatrix, piece.ofx, piece.ofy, playerId);

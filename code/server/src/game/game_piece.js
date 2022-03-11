@@ -99,7 +99,7 @@ class GamePiece {
 
 function generateRandomPiece(ofx) {
     let randTypeId = Math.floor(Math.random() * 7);
-    let randRotation = Math.floor(Math.random() * 10) - 5;
+    let randRotation = Math.floor(Math.random() * 8) - 4;
     
     let pieceType = pieceTypes[randTypeId];
     let ofy = -pieceMatrices[pieceType].length;
@@ -108,7 +108,6 @@ function generateRandomPiece(ofx) {
 }
 
 export {
-    pieceMatrices,
     generateRandomPiece,
     rotatePieceMatrix,
     GamePiece
