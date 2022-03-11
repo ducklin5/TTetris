@@ -12,21 +12,38 @@ html, body, #root {
     border: 100px solid #424242;
     border-top: 0px;
     border-bottom: 0px;
+    display: flex;
+    flex-direction: column;
 }
 
-.help-col{
+.help-col {
     display: flex;
     flex-direction: row;
+    flex: 1;
+    overflow: auto;
 }
 
-.help-box{
-    width: 650px;
-    height: 320px;
+.help-sections {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.help-box-left {
+    word-wrap: break-all;
     background-color: #B3F2FF;
     margin: 10px;
+    flex: 1;
 }
 
-.help-text{
+.help-box-right {
+    word-wrap: break-all;
+    background-color: #B3F2FF;
+    margin: 10px;
+    flex: 1;
+}
+
+.help-text {
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -40,9 +57,8 @@ html, body, #root {
 
 .help-box-paragraph{
     color: #3e3d41;
-    font-size: 1.0rem;
+    font-size: 0.9rem;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;

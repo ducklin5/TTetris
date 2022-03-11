@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './homepage.css';
 import PropTypes from "prop-types";
 
@@ -9,6 +10,7 @@ const HomePagePropTypes = {
 const HomePage = (props) => {
     const [roomID, setRoomID] = useState("");
     const {socket} = props;
+    console.log(socket)
 
     const onCreateButtonClicked = () => {
         const roomID = "abcd";
@@ -20,10 +22,6 @@ const HomePage = (props) => {
 
     const onJoinButtonClicked = () => {
         requestJoinRoom(roomID);
-    }
-
-    const onHelpButtonClicked = () => {
-
     }
 
     const requestJoinRoom = (roomID) => {
@@ -49,9 +47,9 @@ const HomePage = (props) => {
                     </button>
                 </div>
                 <div className="d-flex justify-content-center align-items-start">
-                    <button onClick={onHelpButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space">
+                    <Link to={"/help"} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space">
                         Help
-                    </button>
+                    </Link>
                 </div>
             </div>
     );
