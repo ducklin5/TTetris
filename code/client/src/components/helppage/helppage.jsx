@@ -12,7 +12,7 @@ class HelpPage extends Component {
                         <div class="help-box-left">
                             <div class="help-text">
                                 <span class="help-box-title font-italic">TTetris Rules</span>
-                                <p class="help-box-paragraph"> There are </p>
+                                <p class="help-box-paragraph"> Below is a summary of TTetris game for new players:</p>
                                 <ul class="help-box-paragraph">
                                     <li><strong>Rules:</strong> Active players can move Tetris pieces as they collaborate with each other to complete/remove 20 rows to win the game session. </li>
                                     <li><strong>Voting:</strong> voting session can be started by pressing the emergency button to find the imposter.
