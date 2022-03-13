@@ -39,12 +39,21 @@ const HomePage = (props) => {
                     </Link>
                 </div>
                 <div className="d-flex justify-content-center align-items-start">
-                    <input onChange={(event) => {
-                        setRoomID(event.target.value)
-                    }} type="text" placeholder='Enter RoomID'></input>
-                    <Link to={`/room/${roomID}`} onClick={onJoinButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space">
-                        Join Room
-                    </Link>
+                    <div className='input-group mb-3 text-center btn-space'>
+                        <input onChange={(event) => {
+                            setRoomID(event.target.value)
+                        }} type="text" 
+                        className='form-control'
+                        placeholder='Enter RoomID'
+                        aria-label='Room ID'
+                        aria-describedby='basic-addon2'></input>
+                        
+                        <div className='input-group-append'>
+                            <Link to={`/room/${roomID}`} onClick={onJoinButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic">
+                                Join Room
+                            </Link>
+                        </div>
+                    </div>
                 </div>
                 <div className="d-flex justify-content-center align-items-start">
                     <Link to={"/help"} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space">
