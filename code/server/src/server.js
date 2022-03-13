@@ -25,17 +25,16 @@ wsServer.on("connection", (socket) => {
   socket.on("create_room", (roomID, done) => {
   // TODO: generate room id, playerid, etc.
     socket.join(roomID);
-    done("mesageawe");
   })
 
   socket.on("join_room", (roomID, done) => {
     console.log(roomID)
     socket.join(roomID);
     done("Joined room");
-    socket.to(roomID).emit("welcome");
   });
 
   socket.on("disconnecting", () => {
+    console.log("disconnecting")
     socket.rooms.forEach(room => socket.to(room).emit("end_session"));
   });
 })
