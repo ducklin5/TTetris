@@ -1,0 +1,66 @@
+/* Reference: https://www.youtube.com/watch?v=WVOmmc0UTiM */
+
+html, body, #root {
+  height: 100%
+}
+
+.help-page {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height:100%;
+    border: 100px solid #424242;
+    border-top: 0px;
+    border-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.help-col {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: auto;
+}
+
+.help-sections {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.help-box-left {
+    word-wrap: break-all;
+    background-color: #B3F2FF;
+    margin: 10px;
+    flex: 1;
+}
+
+.help-box-right {
+    word-wrap: break-all;
+    background-color: #B3F2FF;
+    margin: 10px;
+    flex: 1;
+}
+
+.help-text {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.help-box-title{
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #5c6164;
+}
+
+.help-box-paragraph{
+    color: #3e3d41;
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 5px 0px;
+}

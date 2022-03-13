@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './homepage.css';
 import PropTypes from "prop-types";
