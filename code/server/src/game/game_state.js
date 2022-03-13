@@ -28,7 +28,7 @@ class GameState {
 
                     if (gridY >= 0) {
                         if (gridY >= this.height || gridX >= this.width ||
-                            this.grid[gridY][gridX] != null )
+                            this.grid[gridY][gridX] != null)
                             return true;
 
                     }
@@ -46,25 +46,25 @@ class GameState {
         let pieceMatrix = piece.getMatrix();
 
         let isColliding = this.isPieceMatrixColliding(pieceMatrix, piece.ofx, piece.ofy);
-        
-        if(!isColliding) {
+
+        if (!isColliding) {
             // move it down untill it is
             do {
                 piece.ofy += 1;
                 isColliding = this.isPieceMatrixColliding(pieceMatrix, piece.ofx, piece.ofy);
             } while (!isColliding)
         }
-        
+
         // now it must be colliding so move it up untill it isnt/ or it is past the top
         do {
             piece.ofy -= 1;
             isColliding = this.isPieceMatrixColliding(pieceMatrix, piece.ofx, piece.ofy);
         } while (isColliding && piece.ofy >= 0);
-         
+
         if (isColliding) {
             return false;
         }
-        
+
         this._addPieceMatrix(pieceMatrix, piece.ofx, piece.ofy, playerId);
         return true;
     }
@@ -79,8 +79,21 @@ class GameState {
 
                     this.grid[gridY][gridX] = playerId;
                 }
-
             }
+        }
+        this._eliminateRows();
+    }
+
+    _eliminateRows() {
+        for (let row = this.rows - 1; row >= 0; row--) {
+            // if this row is full
+            if (!this.grid[row].includes(null)) {
+                // remove the row
+                this.grid.splice(row, 1)
+                // and add an empty row to the top
+                this.grid.unshift(new Array(this.width).fill(null));
+            }
+
         }
     }
 }

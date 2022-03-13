@@ -6,6 +6,7 @@ class Player {
         this.color = color;
         this.currentPiece = null;
         this.isImposter = false;
+        this.hasEmergency = true;
     }
 
     setImposter() {
