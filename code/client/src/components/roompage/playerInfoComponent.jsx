@@ -1,8 +1,9 @@
+import './playerInfoComponent.css';
 
 const PlayerInfoComponent = (props) => {
     return (
         <>
-            <h2>Player Info Component</h2>
+            <span class="player-title font-italic text-center">Players Info</span>
         </>
     );
 }

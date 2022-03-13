@@ -1,3 +1,5 @@
+/* Reference: https://www.w3schools.com/howto/howto_css_round_buttons.asp */
+
 html, body, #root {
   height: 100%
 }
@@ -12,6 +14,18 @@ html, body, #root {
     border-bottom: 0px;
     display: flex;
     flex-direction: column;
+}
+
+.help-button {
+  background-color: #cdd0d1;
+  border: none;
+  color: black;
+  padding: 30px;
+  display: inline-block;
+  margin: 4px 4px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 }
 
 
@@ -30,7 +44,7 @@ html, body, #root {
 
 .room-box-left {
     word-wrap: break-all;
-    background-color: #434546;
+    background-color: #cdd0d1;
     margin: 10px;
     flex: 1;
 }
@@ -46,20 +60,4 @@ html, body, #root {
     padding: 20px;
     display: flex;
     flex-direction: column;
-}
-
-.room-box-title{
-    font-size: 1.4rem;
-    font-weight: 500;
-    color: #031825;
-}
-
-.room-box-paragraph{
-    color: #3e3d41;
-    font-size: 0.9rem;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 5px 0px;
 }

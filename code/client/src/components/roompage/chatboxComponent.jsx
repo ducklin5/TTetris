@@ -1,8 +1,9 @@
+import './chatboxComponent.css';
 
 const ChatboxComponent = (props) => {
     return (
         <>
-            <h2>Chatbox Component</h2>
+            <span class="chatbox-title font-italic text-center">Chat Box</span>
         </>
     );
 }

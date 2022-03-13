@@ -1,0 +1,12 @@
+.chat-box{
+    word-wrap: break-all;
+    background-color: #B3F2FF;
+    margin: 10px;
+    flex: 1;
+}
+
+.chatbox-title{
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #5c6164;
+}

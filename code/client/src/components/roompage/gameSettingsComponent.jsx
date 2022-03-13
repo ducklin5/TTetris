@@ -1,8 +1,10 @@
+import './gameSettingsComponent.css';
 
 const GameSettingsComponent = (props) => {
     return (
         <>
-            <h2>Game Settings Component</h2>
+            <span class="game-title font-italic text-center">Host Settings</span>
+            <span class="game-title font-italic text-center">Player Settings</span>
         </>
     );
 }
