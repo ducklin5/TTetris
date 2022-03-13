@@ -5,6 +5,7 @@ import {Container, Row, Col} from "react-bootstrap"
 import PlayerInfoComponent from "./playerInfoComponent";
 import ChatboxComponent from "./chatboxComponent";
 import GameSettingsComponent from "./gameSettingsComponent";
+import './roompage.css';
 
 const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
@@ -28,21 +29,47 @@ const RoomPage = (props) => {
     }
 
     return (
-        <Container>
-            <Row>
-                <Col style={{"border": "1px solid"}} xs={4}>
-                    <Row style={{"border": "1px solid"}}>
-                        <PlayerInfoComponent />
-                    </Row>
-                    <Row style={{"border": "1px solid"}}>
-                        <ChatboxComponent />
-                    </Row>
-                </Col>
-                <Col style={{"border": "1px solid"}} xs={8}>
-                    <ShowComponent />
-                </Col>
-            </Row>
-        </Container>
+        <div class="room-page">
+            <div><p class="h1 text-danger font-weight-bold font-italic text-center ">Treacherous Tetris</p></div>
+            <div><p class="h1 text-dark font-weight-bold text-center ">Room: 1234</p></div>
+            <div class="room-components">
+                <div class="room-sections">
+                    <div class="room-box-left">
+                        <div class="box-align">
+                            <PlayerInfoComponent />
+                        </div>
+                    </div>
+                    <div class="room-box-left">
+                        <div class="box-align">
+                            <ChatboxComponent />
+                        </div>
+                    </div>
+                </div>
+                <div class="room-sections">
+                    <div class="room-box-right">
+                        <div class="box-align">
+                            <ShowComponent />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        // <Container>
+        //     <Row>
+        //         <Col style={{"border": "1px solid"}} xs={4}>
+        //             <Row style={{"border": "1px solid"}}>
+        //                 <PlayerInfoComponent />
+        //             </Row>
+        //             <Row style={{"border": "1px solid"}}>
+        //                 <ChatboxComponent />
+        //             </Row>
+        //         </Col>
+        //         <Col style={{"border": "1px solid"}} xs={8}>
+        //             <ShowComponent />
+        //         </Col>
+        //     </Row>
+        // </Container>
     )
 }
 

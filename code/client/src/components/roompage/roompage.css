@@ -1,0 +1,65 @@
+html, body, #root {
+  height: 100%
+}
+
+.room-page {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height:100%;
+    border: 100px solid #424242;
+    border-top: 0px;
+    border-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.room-components {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: auto;
+}
+
+.room-sections {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.room-box-left {
+    word-wrap: break-all;
+    background-color: #434546;
+    margin: 10px;
+    flex: 1;
+}
+
+.room-box-right {
+    word-wrap: break-all;
+    background-color: #B3F2FF;
+    margin: 10px;
+    flex: 1;
+}
+
+.box-align {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-box-title{
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #031825;
+}
+
+.room-box-paragraph{
+    color: #3e3d41;
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 5px 0px;
+}
