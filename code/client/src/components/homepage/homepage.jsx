@@ -62,6 +62,7 @@ const HomePage = (props) => {
                             <button onClick={onJoinButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic">
                                 Join Room
                             </button>
+
                         </div>
                     </div>
                 </div>
