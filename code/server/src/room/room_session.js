@@ -1,20 +1,21 @@
-import { Player } from "../game/player.js";
 import { v4 as uuidv4 } from "uuid";
+import { Client } from "./client.js";
 
 class RoomSession {
     constructor(roomID) {
-        this.players = [];
-        this.chatSession = [];
+        this.clients = []; // list of Client object
+        // TODO: Create a chat session later on
+        // this.chatSession = [];
         this.roomID = roomID;
     }
 
-    addPlayer() {
+    addClient(isHost) {
         // ref: https://css-tricks.com/snippets/javascript/random-hex-color/
-        let randomColor = Math.floor(Math.random()*16777215).toString(16);
-        let playerID = uuidv4();
-        let playerName = `Player${this.players.length+1}`; 
-        let player = new Player(playerID, playerName, randomColor);
-        this.players.push(player)
+        let clientColor = Math.floor(Math.random()*16777215).toString(16);
+        let clientID = uuidv4();
+        let clientName = `Player${this.clients.length+1}`; 
+        let client = new Client(clientID, clientName, clientColor, isHost);
+        this.clients.push(client)
     }
 }
 

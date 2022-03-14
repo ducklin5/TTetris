@@ -29,7 +29,7 @@ wsServer.on("connection", (socket) => {
   // TODO: generate room id, playerid, etc.
     console.log(roomID)
     roomSessions[roomID] = new RoomSession(roomID);
-    roomSessions[roomID].addPlayer();
+    roomSessions[roomID].addClient(true);
     socket.join(roomID);
     done();
   })
@@ -37,7 +37,7 @@ wsServer.on("connection", (socket) => {
   socket.on("join_room", (roomID, done) => {
     let roomExists = true;
     try {
-      roomSessions[roomID].addPlayer();
+      roomSessions[roomID].addClient(false);
       socket.join(roomID);
       console.log(roomSessions)
       done(roomExists); 
