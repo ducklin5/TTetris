@@ -6,6 +6,12 @@ class HelpPage extends Component {
     render() { 
         return ( 
             <div class="help-page">
+                <div class="piece piece-1"></div>
+                <div class="piece piece-2"></div>
+                <div class="piece piece-3"></div>
+                <div class="piece piece-4"></div>
+                <div class="piece piece-5"></div>
+                <div class="piece piece-6"></div>
                 <div><p class="h1 text-danger font-weight-bold font-italic text-center ">Treacherous Tetris</p></div>
                 <div class="help-col">
                     <div class="help-sections">

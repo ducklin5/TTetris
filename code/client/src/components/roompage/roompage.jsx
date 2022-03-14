@@ -30,7 +30,15 @@ const RoomPage = (props) => {
 
     return (
         <div class="room-page">
+            <div class="piece piece-1"></div>
+            <div class="piece piece-2"></div>
+            <div class="piece piece-3"></div>
+            <div class="piece piece-4"></div>
+            <div class="piece piece-5"></div>
+            <div class="piece piece-6"></div>
             <div><p class="h1 text-danger font-weight-bold font-italic text-center ">Treacherous Tetris</p>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+            {/* <button class="btn help-button"><i class="fa fa-home"></i></button> */}
             <button class="help-button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 20 15">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>

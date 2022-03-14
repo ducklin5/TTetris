@@ -23,8 +23,8 @@ html, body, #root {
   padding: 30px;
   display: inline-block;
   margin: 4px 4px;
-  height: 40px;
-  width: 40px;
+  /* height: 40px;
+  width: 40px; */
   border-radius: 50%;
 }
 
@@ -61,3 +61,57 @@ html, body, #root {
     display: flex;
     flex-direction: column;
 }
+
+/* Reference: https://codepen.io/oridr22/pen/mOGddj */
+
+.piece {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  animation-name: falling;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+
+@keyframes falling{
+    0% {top: -10vh;}   
+    100% {top: 90vh;}   
+}
+
+.piece-1{
+  background-color: lightblue;
+  left: 1.4vw;
+  animation-duration: 8s;
+}
+
+.piece-2{
+  background-color: lightblue;
+  right: 1.4vw;
+  animation-duration: 8s;
+}
+
+.piece-3{
+  background-color: rgb(235, 53, 53);
+  left: 1.4vw;
+  animation-duration: 10s;
+}
+
+.piece-4{
+  background-color: rgb(235, 53, 53);
+  right: 1.4vw;
+  animation-duration: 10s;
+}
+
+.piece-5{
+  background-color: rgb(53, 235, 77);
+  left: 1.4vw;
+  animation-duration: 12s;
+}
+
+.piece-6{
+  background-color: rgb(53, 235, 77);
+  right: 1.4vw;
+  animation-duration: 12s;
+}
+
