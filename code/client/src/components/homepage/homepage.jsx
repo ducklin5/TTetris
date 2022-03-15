@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import './homepage.css';
 import PropTypes from "prop-types";
+import { ResponsiveGameCanvasComponent } from '../responsive_game_canvas_component';
 
 const HomePagePropTypes = {
     socket: PropTypes.object.isRequired,
