@@ -1,17 +1,14 @@
 {
   "folders": [
     {
-      // Source code
       "name": "ClientCode",
       "path": "code/client"
     },
     {
-      // Docs and release notes
       "name": "ServerCode",
       "path": "code/server"
     },
     {
-      // Yeoman extension generator
       "name": "Documentation",
       "path": "docs"
     }
