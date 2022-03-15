@@ -17,7 +17,7 @@ html, body, #root {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     height:100%;
-    border: 20px solid #424242;
+    border: 100px solid #424242;
     border-top: 0px;
     border-bottom: 0px;
 }
