@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import {Container, Row, Col} from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap"
 import PlayerInfoComponent from "./components/playerInfoComponent";
 import ChatboxComponent from "./components/chatboxComponent";
 import GameSettingsComponent from "./components/gameSettingsComponent";
+import GameViewComponent from "./components/gameViewComponent";
 
 const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
@@ -12,17 +13,30 @@ const RoomPagePropTypes = {
 
 const RoomPage = (props) => {
     const [gameStarted, setGameStarted] = useState(false);
-    const {socket} = props;
+    const [gameData, setGameData] = useState(null);
+    const { socket } = props;
     const roomID = useParams().roomID;
+
+    let onGameStarted = () => {
+        setGameStarted(true);
+        socket.on("gameDataUpdated", (arg1, arg2, arg3) => {
+            console.log(arg1); // 1
+            console.log(arg2); // "2"
+            console.log(arg3); // { 3: '4', 5: ArrayBuffer (1) [ 6 ] }
+        });
+    }
 
     const ShowComponent = () => {
         if (gameStarted) {
             return (
-                <GameSettingsComponent />
+                <GameViewComponent gameData={gameData} />
             )
         } else {
             return (
-                <GameSettingsComponent />
+                <GameSettingsComponent
+                    socket={socket}
+                    roomID={roomID}
+                    onGameStarted={onGameStarted} />
             )
         }
     }
@@ -30,15 +44,15 @@ const RoomPage = (props) => {
     return (
         <Container>
             <Row>
-                <Col style={{"border": "1px solid"}} xs={4}>
-                    <Row style={{"border": "1px solid"}}>
-                        <PlayerInfoComponent />
+                <Col style={{ "border": "1px solid" }} xs={4}>
+                    <Row style={{ "border": "1px solid" }}>
+                        <PlayerInfoComponent gameData={gameData} />
                     </Row>
-                    <Row style={{"border": "1px solid"}}>
+                    <Row style={{ "border": "1px solid" }}>
                         <ChatboxComponent />
                     </Row>
                 </Col>
-                <Col style={{"border": "1px solid"}} xs={8}>
+                <Col style={{ "border": "1px solid" }} xs={8}>
                     <ShowComponent />
                 </Col>
             </Row>
