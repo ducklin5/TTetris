@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "name": "ClientCode",
+      "path": "code/client"
+    },
+    {
+      "name": "ServerCode",
+      "path": "code/server"
+    },
+    {
+      "name": "Documentation",
+      "path": "docs"
+    }
+  ]
+}
