@@ -1,3 +1,4 @@
+import { Socket } from "socket.io";
 import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
@@ -11,8 +12,10 @@ class MockClient {
 }
 
 class GameSession {
-    constructor(clients, settings) {
+    constructor(clients, socket, settings) {
         this.players = {}; // dictionary of id to player objects
+        this.onGameUpdated = () => {};
+        this.socket = socket;
 
         let i = 0;
         for (let client of clients) {
@@ -61,6 +64,7 @@ class GameSession {
                 player.nextPiece = generateRandomPiece(player.init_ofx);
             }
         }
+        this.sendGameData();
     }
 
     endGame() {
@@ -126,6 +130,10 @@ class GameSession {
             board: this.gameState.grid,
         };
         return gameData;
+    }
+
+    sendGameData() {
+        this.socket.emit("gameDataUpdate", this.getGameData());
     }
 
     //TODO: remove this debugging function

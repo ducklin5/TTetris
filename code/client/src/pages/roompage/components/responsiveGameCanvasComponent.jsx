@@ -1,6 +1,6 @@
 import {useRef} from 'react';
-import { useRefDimensions } from '../util/react_util';
-import { GameCanvasComponent } from './game_canvas_component';
+import { useRefDimensions } from 'util/react_util';
+import { GameCanvasComponent } from './gameCanvasComponent';
 
 const ResponsiveGameCanvasComponent = ({ gameData }) => {
     const ref = useRef();
