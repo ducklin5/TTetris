@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {Container, Row, Col} from "react-bootstrap"
-import PlayerInfoComponent from "./playerInfoComponent";
-import ChatboxComponent from "./chatboxComponent";
-import GameSettingsComponent from "./gameSettingsComponent";
+import PlayerInfoComponent from "./components/playerInfoComponent";
+import ChatboxComponent from "./components/chatboxComponent";
+import GameSettingsComponent from "./components/gameSettingsComponent";
 
 const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
