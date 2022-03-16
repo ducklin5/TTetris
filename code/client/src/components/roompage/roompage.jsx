@@ -40,43 +40,42 @@ const RoomPage = (props) => {
 
     return (
         <div class="room-page">
-            <div class="piece piece-1"></div>
-            <div class="piece piece-2"></div>
-            <div class="piece piece-3"></div>
-            <div class="piece piece-4"></div>
-            <div class="piece piece-5"></div>
-            <div class="piece piece-6"></div>
+            <div className="piece piece-1"></div>
+            <div className="piece piece-2"></div>
+            <div className="piece piece-3"></div>
+            <div className="piece piece-4"></div>
+            <div className="piece piece-5"></div>
+            <div className="piece piece-6"></div>
             <div>
-                <p class="h1 text-danger font-weight-bold font-italic text-center ">Treacherous Tetris</p>
+                <p className="h1 text-danger font-weight-bold font-italic text-center ">Treacherous Tetris</p>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                <button class=" help-button"><i class="bi bi-question-circle fa-lg"></i></button>          
+                <button className=" help-button"><i className="bi bi-question-circle fa-lg"></i></button>          
             </div>
             <div className="room-code">
                 <span class="h2 text-dark font-weight-bold text-center ">Room:</span>
-                <span type="text" value="room code" id="roomCode" class="h2 text-dark font-weight-bold text-center">1234</span>
+                <span type="text" value="room code" id="roomCode" className="h2 text-dark font-weight-bold text-center">1234</span>
                 <button onclick={copyRoomCode} className="copy-button"><i class="bi bi-clipboard"></i></button>
             </div>
                 
-            <div class="room-components">
-                <div class="room-sections">
-                    <div class="room-box-left">
-                        <div class="box-align">
+            <div className="room-components">
+                <div className="room-sections">
+                    <div className="room-box-left">
+                        <div className="box-align">
                             <PlayerInfoComponent />
                         </div>
                     </div>
-                    <div class="room-box-left">
-                        <div class="box-align">
+                    <div className="room-box-left">
+                        <div className="box-align">
                             <ChatboxComponent />
                         </div>
                     </div>
                 </div>
-                <div class="room-sections">
-                    <div class="room-box-right">
-                        <div class="box-align">
+                <div className="room-sections">
+                    <div className="room-box-right">
+                        <div className="box-align">
                             <ShowComponent />
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
