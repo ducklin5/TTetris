@@ -13,7 +13,7 @@ const GameSettingsComponent = (props) => {
                                 </div>
                                 <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                             </div>
-                            <button class="button-71" role="button">Start Game</button>
+                            <button class="button-34" role="button">Start Game</button>
                         </div>
                 </div>
                 

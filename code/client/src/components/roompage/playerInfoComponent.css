@@ -10,3 +10,39 @@
     font-weight: 500;
     color: #5c6164;
 }
+
+.players-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.name-icon{
+    flex-direction: row;
+    display: flex;
+}
+
+.piece-container {
+    padding: 20px;
+    display: flex;
+    background-color: black;
+}
+
+.player-piece{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    background-color: rgb(206, 15, 15);
+}
+
+.player-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.player-name-button{
+    justify-content: left;
+    align-items: center;
+    display:flex;
+    flex-direction: row;
+}

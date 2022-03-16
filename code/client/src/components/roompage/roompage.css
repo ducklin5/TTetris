@@ -1,4 +1,4 @@
-/* Reference: https://www.w3schools.com/howto/howto_css_round_buttons.asp */
+/* Reference for page layout: https://www.youtube.com/watch?v=WVOmmc0UTiM */
 
 html, body, #root {
   height: 100%
@@ -16,18 +16,37 @@ html, body, #root {
     flex-direction: column;
 }
 
+/* Reference for help button: https://www.w3schools.com/howto/howto_css_round_buttons.asp */
 .help-button {
   background-color: #cdd0d1;
   border: none;
-  color: black;
-  padding: 30px;
+  color: red;
+  padding: 20px;
   display: inline-block;
   margin: 4px 4px;
   /* height: 40px;
   width: 40px; */
-  border-radius: 50%;
+  border-radius: 100%;
+  outline: none;
 }
 
+.room-code{
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  flex-direction: row;
+}
+
+.copy-button {
+  background-color: #cdd0d1;
+  border: none;
+  color: black;
+  margin: 10px;
+  padding: 15px 20px;
+  display: inline-block;
+  border-radius: 5%;
+  outline: none;
+}
 
 .room-components {
     display: flex;
@@ -62,8 +81,7 @@ html, body, #root {
     flex-direction: column;
 }
 
-/* Reference: https://codepen.io/oridr22/pen/mOGddj */
-
+/* Reference for falling pieces: https://codepen.io/oridr22/pen/mOGddj */
 .piece {
   width: 50px;
   height: 50px;
@@ -72,7 +90,6 @@ html, body, #root {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
-
 
 @keyframes falling{
     0% {top: -10vh;}   
@@ -115,3 +132,4 @@ html, body, #root {
   animation-duration: 12s;
 }
 
+/* end of falling pieces */

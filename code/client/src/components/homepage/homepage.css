@@ -22,8 +22,7 @@ html, body, #root {
     border-bottom: 0px;
 }
 
-/* Reference: https://codepen.io/oridr22/pen/mOGddj */
-
+/* Reference for falling pieces: https://codepen.io/oridr22/pen/mOGddj */
 .piece {
   width: 50px;
   height: 50px;
