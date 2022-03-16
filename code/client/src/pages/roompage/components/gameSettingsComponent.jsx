@@ -3,13 +3,13 @@ const GameSettingsComponent = (props) => {
     const {socket, roomID, onGameStarted} = props;
 
     const onStartButtonClicked = () => {
-        socket.emit("start_game", roomID, (gameStarted, reason) => {
-            if (!gameStarted) {
+        socket.emit("start_game", roomID, (gameData, reason) => {
+            if (gameData == null) {
                 alert(`The game could not be started because: ${reason}`)
                 return;
             }
             alert(`Game Started`);
-            onGameStarted();
+            onGameStarted(gameData);
         })
     }
 

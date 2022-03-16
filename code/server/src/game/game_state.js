@@ -3,6 +3,7 @@ class GameState {
         this.height = height;
         this.width = width;
         this.grid = [];
+        this.rowsCompleted = 0;
         for (var y = 0; y < height; y++) {
             this.grid.push([]);
             for (var x = 0; x < width; x++) {
@@ -102,6 +103,7 @@ class GameState {
                 this.grid.splice(row, 1)
                 // and add an empty row to the top
                 this.grid.unshift(new Array(this.width).fill(null));
+                this.rowsCompleted++
             }
 
         }

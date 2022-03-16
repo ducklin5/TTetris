@@ -7,29 +7,32 @@ import ChatboxComponent from "./components/chatboxComponent";
 import GameSettingsComponent from "./components/gameSettingsComponent";
 import GameViewComponent from "./components/gameViewComponent";
 
+window.gameData = {};
+
 const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
 }
 
-const RoomPage = (props) => {
+const RoomPage = ({socket}) => {
     const [gameStarted, setGameStarted] = useState(false);
-    const [gameData, setGameData] = useState(null);
-    const { socket } = props;
     const roomID = useParams().roomID;
 
-    let onGameStarted = () => {
+    let onGameStarted = (gameData) => {
+        console.log(`GameStarted gameData:`);
+        console.log(gameData);
+        window.gameData = gameData;
         setGameStarted(true);
-        socket.on("gameDataUpdated", (arg1, arg2, arg3) => {
-            console.log(arg1); // 1
-            console.log(arg2); // "2"
-            console.log(arg3); // { 3: '4', 5: ArrayBuffer (1) [ 6 ] }
-        });
     }
+    socket.on("gameDataUpdated", (gameData) => {
+        console.log(`Received GameData: ${gameData}`);
+        window.gameData = gameData;
+    });
+    
 
     const ShowComponent = () => {
         if (gameStarted) {
             return (
-                <GameViewComponent gameData={gameData} />
+                <GameViewComponent />
             )
         } else {
             return (
@@ -42,11 +45,11 @@ const RoomPage = (props) => {
     }
 
     return (
-        <Container>
-            <Row>
+        <Container style={{"height": "100%"}}>
+            <Row style={{"height": "100%"}}>
                 <Col style={{ "border": "1px solid" }} xs={4}>
                     <Row style={{ "border": "1px solid" }}>
-                        <PlayerInfoComponent gameData={gameData} />
+                        <PlayerInfoComponent gameData={window.gameData} />
                     </Row>
                     <Row style={{ "border": "1px solid" }}>
                         <ChatboxComponent />

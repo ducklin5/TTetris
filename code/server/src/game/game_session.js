@@ -3,6 +3,8 @@ import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
 
+const UPDATE_DELAY = 1000;
+
 class MockClient {
     constructor(id, nickName, color) {
         this.id = id;
@@ -41,7 +43,7 @@ class GameSession {
 
     run() {
         let self = this;
-        this.updateIntervalId = setInterval(() => self._update(), 50);
+        this.updateIntervalId = setInterval(() => self._update(), UPDATE_DELAY);
     }
 
     pause() {
@@ -53,7 +55,8 @@ class GameSession {
         for (let playerId in this.players) {
             let player = this.players[playerId];
             player.currentPiece.ofy += 1;
-            if (this.gameState.checkPieceCollision(player.currentPiece)) {
+            let collision = this.gameState.checkPieceCollision(player.currentPiece);
+            if (collision == "bottom" || collision == "block") {
                 let success = this.gameState.dropPiece(player.currentPiece, player.id);
                 
                 if(!success) {
@@ -64,6 +67,7 @@ class GameSession {
                 player.nextPiece = generateRandomPiece(player.init_ofx);
             }
         }
+        console.log("game update is sending gameData");
         this.sendGameData();
     }
 
@@ -125,15 +129,17 @@ class GameSession {
     }
 
     getGameData() {
+        console.log("getting game data");
         let gameData = {
             players: this.players,
-            board: this.gameState.grid,
+            board: this.gameState,
         };
         return gameData;
     }
 
     sendGameData() {
-        this.socket.emit("gameDataUpdate", this.getGameData());
+        console.log('sendGameData')
+        this.socket.emit("gameDataUpdated", this.getGameData());
     }
 
     //TODO: remove this debugging function
