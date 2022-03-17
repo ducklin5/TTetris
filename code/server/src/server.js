@@ -26,7 +26,7 @@ let roomSessions = {};
 
 wsServer.on("connection", (socket) => {
   socket.on("create_room", (roomID, done) => {
-  // TODO: generate room id, playerid, etc.
+    // TODO: generate room id, playerid, etc.
     console.log(roomID)
     roomSessions[roomID] = new RoomSession(roomID, socket);
     roomSessions[roomID].addClient(true);
@@ -40,18 +40,19 @@ wsServer.on("connection", (socket) => {
       roomSessions[roomID].addClient(false);
       socket.join(roomID);
       console.log(roomSessions)
-      done(roomExists); 
-    } catch(err) {
+      done(roomExists);
+    } catch (err) {
       done(!roomExists);
     }
   });
 
   socket.on("start_game", (roomID, done) => {
     try {
-      roomSessions[roomID].startGame(); 
-      done(true);
+      roomSessions[roomID].startGame();
+      let gameData = roomSessions[roomID].gameSession.getGameData();
+      done(gameData);
     } catch (err) {
-      done(false);
+      done(null);
     }
   })
 
