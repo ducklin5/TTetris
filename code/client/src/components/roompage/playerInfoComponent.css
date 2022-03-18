@@ -24,6 +24,7 @@
 
 .piece-container {
     padding: 20px;
+    /* width:70%; */
     display: flex;
     background-color: black;
 }
@@ -35,10 +36,14 @@
     background-color: rgb(206, 15, 15);
 }
 
+.player-list{
+    overflow-y: scroll;
+}
+
 .player-info{
     display: flex;
+    padding: 20px;
     flex-direction: column;
-    overflow-y: scroll;
 }
 
 .player-name-button{

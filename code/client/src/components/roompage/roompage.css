@@ -59,6 +59,7 @@ html, body, #root {
     display: flex;
     flex-direction: column;
     overflow: auto;
+    flex: 1;
     /* width:100%; */
 }
 
@@ -66,6 +67,7 @@ html, body, #root {
     display: flex;
     flex-direction: column;
     overflow: auto;
+    flex: 1;
     
 }
 
@@ -83,11 +85,11 @@ html, body, #root {
     flex: 1;
 }
 
-.box-align {
-    padding: 10px;
+/* TODO: check removing affects the UI view */
+/* .box-align {
     display: flex;
     flex-direction: column;
-}
+} */
 
 /* Reference for falling pieces: https://codepen.io/oridr22/pen/mOGddj */
 .piece {

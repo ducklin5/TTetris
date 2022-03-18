@@ -21,7 +21,7 @@ const GameSettingsComponent = (props) => {
             <div className="game-settings-component">
                 <div className="settings-content">
                     <span className="game-title font-italic text-center">Player Settings</span>
-                    <div className='row'>
+                    <div className='player-input'>
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Nickname:</span>
@@ -29,8 +29,8 @@ const GameSettingsComponent = (props) => {
                             <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                         </div>
                     </div>
-                    <div className='row'>
-                        <div className="input-group mb-3">
+                    <div className='player-input'>
+                        <div className="input-group">
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Piece Color:</span>
                             </div>

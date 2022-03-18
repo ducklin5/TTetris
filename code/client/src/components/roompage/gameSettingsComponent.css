@@ -41,6 +41,12 @@
     justify-content: center;
 }
 
+.player-input{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
 /* Reference for game start button: https://getcssscan.com/css-buttons-examples */
 
 /* CSS */

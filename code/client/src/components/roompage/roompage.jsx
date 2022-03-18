@@ -61,21 +61,15 @@ const RoomPage = (props) => {
             <div className="room-components">
                 <div className="room-sections-left">
                     <div className="room-box-left">
-                        <div className="box-align">
                             <PlayerInfoComponent />
-                        </div>
                     </div>
                     <div className="room-box-left">
-                        <div className="box-align">
                             <ChatboxComponent />
-                        </div>
                     </div>
                 </div>
                 <div className="room-sections-right">
-                    <div className="room-box-right">
-                        <div className="box-align">
+                    <div className="room-box-right">      
                             <ShowComponent />
-                        </div>
                     </div>
                 </div>
             </div>
