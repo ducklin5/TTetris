@@ -1,26 +1,146 @@
-.GameViewComponent {
-    height: 100%;
-    width: 100%;
+/* Reference for page layout: https://www.youtube.com/watch?v=WVOmmc0UTiM */
+
+html, body, #root {
+  height: 100%
+}
+
+.room-page {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height:100%;
+    border: 100px solid #424242;
+    border-top: 0px;
+    border-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Reference for help button: https://www.w3schools.com/howto/howto_css_round_buttons.asp */
+.help-button {
+  background-color: #eceff1;
+  border: none;
+  color: red;
+  padding: 20px;
+  display: inline-block;
+  margin: 4px 4px;
+  /* height: 40px;
+  width: 40px; */
+  border-radius: 100%;
+  outline: none;
+}
+
+.room-code{
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  flex-direction: row;
+}
+
+.copy-button {
+  background-color: #eceff1;
+  border: none;
+  color: black;
+  margin: 10px;
+  padding: 15px 20px;
+  display: inline-block;
+  border-radius: 5%;
+  outline: none;
+}
+
+.room-components {
     display: flex;
     flex-direction: row;
+    flex: 1;
+    overflow: auto;
 }
 
-.GameViewCol1 {
-    flex: 2;
-    height: 100%;
-    background-color: aquamarine;
+.room-sections-right {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex: 1;
+    /* width:100%; */
 }
 
-.GameViewCol2 {
-    flex: 8;
-    height: 100%;
-    background-color: yellow;
+.room-sections-left {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex: 1;
+    
 }
 
-
-.GameCanvas {
-    background-color: blueviolet;
-    padding: 10px;
-    height: 100%;
-    width: 100%;
+.room-box-left {
+    /* word-wrap: break-all; */
+    background-color: #eceff1;
+    margin: 10px;
+    flex: 1;
 }
+
+.room-box-right {
+    /* word-wrap: break-all; */
+    background-color: #B3F2FF;
+    margin: 10px;
+    flex: 1;
+    display: flex;
+}
+
+/* TODO: check removing affects the UI view */
+/* .box-align {
+    display: flex;
+    flex-direction: column;
+} */
+
+/* Reference for falling pieces: https://codepen.io/oridr22/pen/mOGddj */
+.piece {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  animation-name: falling;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes falling{
+    0% {top: -10vh;}   
+    100% {top: 90vh;}   
+}
+
+.piece-1{
+  background-color: lightblue;
+  left: 1.4vw;
+  animation-duration: 8s;
+}
+
+.piece-2{
+  background-color: lightblue;
+  right: 1.4vw;
+  animation-duration: 8s;
+}
+
+.piece-3{
+  background-color: rgb(235, 53, 53);
+  left: 1.4vw;
+  animation-duration: 10s;
+}
+
+.piece-4{
+  background-color: rgb(235, 53, 53);
+  right: 1.4vw;
+  animation-duration: 10s;
+}
+
+.piece-5{
+  background-color: rgb(53, 235, 77);
+  left: 1.4vw;
+  animation-duration: 12s;
+}
+
+.piece-6{
+  background-color: rgb(53, 235, 77);
+  right: 1.4vw;
+  animation-duration: 12s;
+}
+
+/* end of falling pieces */

@@ -3,7 +3,7 @@ import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
 
-const UPDATE_DELAY = 300;
+const UPDATE_DELAY = 1000;
 
 class GameSession {
     constructor(clients, channel, settings) {
