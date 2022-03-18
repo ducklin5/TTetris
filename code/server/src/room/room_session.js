@@ -21,6 +21,10 @@ class RoomSession {
         this.clients.push(client)
     }
 
+    getMostRecentClient() {
+        return this.clients[this.clients.length-1];
+    }
+
     startGame() {
         this.gameSession = new GameSession(this.clients, this.socket);
         this.gameSession.run();
