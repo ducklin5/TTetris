@@ -48,11 +48,11 @@ wsServer.on("connection", (socket) => {
 
   socket.on("start_game", (roomID, done) => {
     try {
-      roomSessions[roomID].startGame();
-      let gameData = roomSessions[roomID].gameSession.getGameData();
-      done(gameData);
+      let gameData = roomSessions[roomID].startGame();
+      wsServer.to(roomID).emit("gameStarted", gameData)
+      done(true);
     } catch (err) {
-      done(null);
+      done(false);
     }
   })
 

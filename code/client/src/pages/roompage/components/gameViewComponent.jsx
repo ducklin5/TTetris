@@ -3,13 +3,13 @@ import GameInfoComponent from "./gameView/gameInfoComponent";
 import { ResponsiveGameCanvasComponent } from "./gameView/responsiveGameCanvasComponent";
 
 
-const GameViewComponent = () => {
+const GameViewComponent = ({gameData}) => {
 
     return (
         <div className="GameViewComponent">
             <div className="GameViewCol1">
-                <GameInfoComponent />
-                <GameButtonsComponent />
+                <GameInfoComponent gameData={gameData}/>
+                <GameButtonsComponent gameData={gameData} />
                 {
 
                 }

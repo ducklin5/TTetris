@@ -4,6 +4,7 @@ class GameState {
         this.width = width;
         this.grid = [];
         this.rowsCompleted = 0;
+        this.requiredRows = 20;
         for (var y = 0; y < height; y++) {
             this.grid.push([]);
             for (var x = 0; x < width; x++) {

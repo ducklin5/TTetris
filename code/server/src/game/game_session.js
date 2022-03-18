@@ -3,15 +3,7 @@ import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
 
-const UPDATE_DELAY = 1000;
-
-class MockClient {
-    constructor(id, nickName, color) {
-        this.id = id;
-        this.nickName = nickName;
-        this.color = color;
-    }
-}
+const UPDATE_DELAY = 300;
 
 class GameSession {
     constructor(clients, socket, settings) {
@@ -74,7 +66,6 @@ class GameSession {
     endGame() {
         this.pause();
         console.log("The game has ended");
-        this.printGameData();
     }
 
     getPlayer(playerId) {
@@ -145,7 +136,7 @@ class GameSession {
     //TODO: remove this debugging function
     printGameData() {
         let gameData = this.getGameData();
-        let grid = JSON.parse(JSON.stringify(gameData.board))
+        let grid = JSON.parse(JSON.stringify(gameData.board.grid))
 
         for (let playerId in this.players) {
             let player = this.players[playerId];
@@ -156,7 +147,7 @@ class GameSession {
                 for (let x = 0; x < size; x++) {
                     let gridY = piece.ofy + y;
                     let gridX = piece.ofx + x;
-                    if (pieceMatrix[y][x] && gridY > 0 && gridY > 0) {
+                    if (pieceMatrix[y][x] && gridY >= 0 && gridX >= 0) {
                         grid[gridY][gridX] = player.id;
                     }
                 }
@@ -177,5 +168,4 @@ class GameSession {
 
 export {
     GameSession,
-    MockClient
 }

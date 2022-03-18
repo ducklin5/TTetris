@@ -14,40 +14,46 @@ const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
 }
 
-const RoomPage = ({socket}) => {
+const RoomPage = ({ socket }) => {
     const [gameStarted, setGameStarted] = useState(false);
+    const [gameData, setGameData] = useState({});
     const roomID = useParams().roomID;
 
-    let onGameStarted = (gameData) => {
+    socket.on("gameStarted", (gameData) => {
         console.log(`GameStarted gameData:`);
         console.log(gameData);
+        setGameData(gameData);
         window.gameData = gameData;
         setGameStarted(true);
-    }
+    })
+
     socket.on("gameDataUpdated", (gameData) => {
         console.log(`Received GameData: ${gameData}`);
         window.gameData = gameData;
+        setGameData(gameData);
     });
-    
+
 
     const ShowComponent = () => {
         if (gameStarted) {
             return (
-                <GameViewComponent />
+                <GameViewComponent
+                    gameData={gameData}
+                />
             )
         } else {
             return (
                 <GameSettingsComponent
                     socket={socket}
                     roomID={roomID}
-                    onGameStarted={onGameStarted} />
+                />
             )
         }
     }
 
     return (
-        <Container style={{"height": "100%"}}>
-            <Row style={{"height": "100%"}}>
+        <Container style={{ "height": "100%" }}>
+            <Row style={{ "height": "100%" }}>
                 <Col style={{ "border": "1px solid" }} xs={4}>
                     <Row style={{ "border": "1px solid" }}>
                         <PlayerInfoComponent gameData={window.gameData} />

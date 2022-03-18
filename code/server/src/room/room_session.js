@@ -24,6 +24,7 @@ class RoomSession {
     startGame() {
         this.gameSession = new GameSession(this.clients, this.socket);
         this.gameSession.run();
+        return this.gameSession.getGameData();
     }
 }
 
