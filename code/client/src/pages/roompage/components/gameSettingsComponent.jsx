@@ -8,7 +8,7 @@ const GameSettingsComponent = (props) => {
                 alert(`The game could not be started`)
                 return;
             }
-            alert(`Game Started`);
+            alert(`You started the game`);
         })
     }
 

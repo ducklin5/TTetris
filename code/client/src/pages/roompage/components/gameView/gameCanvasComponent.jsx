@@ -11,7 +11,6 @@ function sketch(p5) {
     let hUnits = 0;
 
     p5.setup = () => {
-        console.log(`setup p5 canvas with: ${width}:${height}`)
         return p5.createCanvas(width, height);
     }
 
@@ -112,9 +111,6 @@ function sketch(p5) {
 
 
 const GameCanvasComponent = ({ width, height }) => {
-
-    console.log(`draw GamCanvasComponent with: ${width}:${height}`);
-
     return <ReactP5Wrapper sketch={sketch} height={height} width={width} />
 }
 

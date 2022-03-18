@@ -28,7 +28,6 @@ const RoomPage = ({ socket }) => {
     })
 
     socket.on("gameDataUpdated", (gameData) => {
-        console.log(`Received GameData: ${gameData}`);
         window.gameData = gameData;
         setGameData(gameData);
     });
