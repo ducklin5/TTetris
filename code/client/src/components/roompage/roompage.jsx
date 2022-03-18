@@ -18,12 +18,12 @@ const RoomPage = (props) => {
     const {socket} = props;
     const roomID = useParams().roomID;
 
-    const copyRoomCode = () => {
-        var copyCode = document.getElementById("roomCode");
+    const copyRoomId = () => {
+        var copyCode = document.getElementById("roomId");
         copyCode.select();
         navigator.clipboard.writeText(copyCode.value);
 
-        alert("Copied Room Code: " + copyCode.value);
+        alert("Copied Room Id: " + copyCode.value);
     }
 
     const ShowComponent = () => {
@@ -53,8 +53,8 @@ const RoomPage = (props) => {
             </div>
             <div className="room-code">
                 <span class="h2 text-dark font-weight-bold text-center ">Room:</span>
-                <span type="text" value="room code" id="roomCode" className="h2 text-dark font-weight-bold text-center">1234</span>
-                <button onclick={copyRoomCode} className="copy-button"><i class="bi bi-clipboard"></i></button>
+                <span type="text" value="room id" id="roomId" className="h2 text-dark font-weight-bold text-center">1234</span>
+                <button onclick={copyRoomId} className="copy-button"><i class="bi bi-clipboard fa-lg"></i></button>
             </div>
                 
             <div className="room-components">

@@ -21,7 +21,7 @@
 }
 
 .settings-content {
-    padding: 20px;
+    padding: 1px;
     display: flex;
     flex-direction: column;
 }
@@ -32,11 +32,24 @@
     color: #5c6164;
 }
 
+.send-box{
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  flex-direction: row;
+}
+
+.send-button{
+  background-color:dodgerblue;
+  color:white;
+  font-weight:bold;
+}
+
 /* Reference for chat box: https://www.w3schools.com/howto/howto_css_chat.asp */
 /* Chat containers */
 .container {
   border: 2px solid #dedede;
-  background-color: #f1f1f1;
+  background-color: rgb(224, 250, 255);
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
@@ -45,7 +58,7 @@
 /* Darker chat container */
 .darker {
   border-color: #ccc;
-  background-color: #ddd;
+  background-color: white;
 }
 
 /* Clear floats */
@@ -56,20 +69,24 @@
 }
 
 /* Style images */
-.container-name{
+.container-name-left{
   float: left;
-  max-width: 60px;
+  max-width: 30px;
   width: 100%;
-  margin-right: 20px;
+  margin-left: 10px;
+  font-weight: bold;
   border-radius: 50%;
 }
 
-/* Style the right image */
-.container img.right {
+.container-name-right{
   float: right;
-  margin-left: 20px;
-  margin-right:0;
+  max-width: 30px;
+  width: 100%;
+  margin-right: 10px;
+  font-weight: bold;
+  border-radius: 50%;
 }
+
 
 /* Style time text */
 .time-right {
