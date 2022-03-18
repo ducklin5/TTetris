@@ -1,25 +1,54 @@
+import './gameSettingsComponent.css';
 
 const GameSettingsComponent = (props) => {
-    const {socket, roomID, onGameStarted} = props;
-
-    const onStartButtonClicked = () => {
-        socket.emit("start_game", roomID, (gameData, reason) => {
-            if (gameData == null) {
-                alert(`The game could not be started because: ${reason}`)
-                return;
-            }
-            alert(`Game Started`);
-            onGameStarted(gameData);
-        })
-    }
-
     return (
-        <>
-            <h2>Game Settings Component</h2>
-            <button onClick={onStartButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic">
-                Start Game
-            </button>
-        </>
+        <div className="game-sections">
+            <div className="game-settings-component">
+                <div className="settings-content">
+                    <span className="game-title font-italic text-center">Host Settings</span>
+                        <div className='host-input'>
+                            <div className="input-group">
+                                <div className="input-group-prepend">
+                                <span className="input-group-text" id="inputGroup-sizing-default">Set Speed:</span>
+                                </div>
+                                <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                            </div>
+                            <button className="start-button" role="button">Start Game</button>
+                        </div>
+                </div>
+                
+            </div>
+            <div className="game-settings-component">
+                <div className="settings-content">
+                    <span className="game-title font-italic text-center">Player Settings</span>
+                    <div className='player-input'>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="inputGroup-sizing-default">Nickname:</span>
+                            </div>
+                            <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                        </div>
+                    </div>
+                    <div className='player-input'>
+                        <div className="input-group">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="inputGroup-sizing-default">Piece Color:</span>
+                            </div>
+                            <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                        </div>
+                    </div>
+                    {/* <div className="dropdown">
+                            <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">Piece Color
+                            </button>
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button className="dropdown-item" type="button">Action</button>
+                            <button className="dropdown-item" type="button">Another action</button>
+                            <button className="dropdown-item" type="button">Something else here</button>
+                        </div>
+                        </div> */}
+                </div>
+            </div>
+        </div>
     );
 }
 
