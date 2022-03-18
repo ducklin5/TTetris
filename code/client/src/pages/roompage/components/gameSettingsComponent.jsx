@@ -5,11 +5,11 @@ const GameSettingsComponent = (props) => {
 
     const onStartButtonClicked = () => {
         socket.emit("start_game", roomID, (gameStarted) => {
-            if (gameStarted == false) {
+            if (!gameStarted) {
                 alert(`The game could not be started`)
                 return;
             }
-            alert(`Game Started`);
+            alert(`You started the game`);
         })
     }
 

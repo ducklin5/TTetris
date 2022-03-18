@@ -1,4 +1,5 @@
-import { GameSession, MockClient } from 'src/game/game_session';
+import { GameSession } from 'src/game/game_session';
+import { Client } from 'src/room/client';
 import MockedSocket from 'socket.io-mock';
 import {describe, expect, test} from '@jest/globals';
 
@@ -11,7 +12,7 @@ describe("GameSession", () => {
     let socket;
 
     beforeEach(() => {
-        c1 = new MockClient(7, "test", "#ff0");
+        c1 = new Client(7, "test", "#ff0");
         socket = new MockedSocket();
     });
 

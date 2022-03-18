@@ -1,27 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { io, Socket } from "socket.io-client";
-import Sketch from 'react-p5';
+import { ReactP5Wrapper } from "react-p5-wrapper";
 import { getPieceMatrix } from 'util/game_util';
 
-let vUnits = 1;
-let hUnits = 1;
-let pxPerUnit = 1;
+function sketch(p5) {
+    let width = 0;
+    let height = 0;
+    let pxPerUnit = 0;
+    let vUnits = 0;
+    let hUnits = 0;
 
-const GameCanvasComponent = ({ width, height }) => {
-    const updatePxPerUnit = () => {
-        console.log("updating px resolution");
-        vUnits = window.gameData.board.height + 4;
-        hUnits = window.gameData.board.width + 2;
-        pxPerUnit = width < height ? width / hUnits : height / vUnits;
+    p5.setup = () => {
+        return p5.createCanvas(width, height);
+    }
+
+    p5.updateWithProps = props => {
+        if (props.height != height || props.width != width) {
+            height = props.height;
+            width = props.width;
+            p5.resizeCanvas(width, height);
+            vUnits = window.gameData.board.height + 4;
+            hUnits = window.gameData.board.width + 2;
+            pxPerUnit = height/width > vUnits/hUnits ? width / hUnits : height / vUnits;
+        }
     };
-
-    useEffect(updatePxPerUnit, [width, height])
-
-
-    const setup = (p5, canvasParentRef) => {
-        console.log("setup");
-        p5.createCanvas(500, 500).parent(canvasParentRef);
-        // updatePxPerUnit();
+    
+    p5.windowResized = () => {
+        p5.resizeCanvas(width, height);
     }
 
     const u = (value) => {
@@ -32,7 +37,7 @@ const GameCanvasComponent = ({ width, height }) => {
         return window.gameData.players[playerId].color;
     }
 
-    const drawGameBoard = p5 => {
+    const drawGameBoard = () => {
 
         let board = window.gameData.board;
 
@@ -49,7 +54,7 @@ const GameCanvasComponent = ({ width, height }) => {
         }
     }
 
-    const drawProgressBar = p5 => {
+    const drawProgressBar = () => {
 
         let barWidth = hUnits - 2;
 
@@ -64,7 +69,7 @@ const GameCanvasComponent = ({ width, height }) => {
         p5.rect(0, 0, u(completionWidth), u(1));
     }
 
-    const drawPieces = p5 => {
+    const drawPieces = () => {
         let players = window.gameData.players;
 
         for (let playerId in players) {
@@ -73,7 +78,7 @@ const GameCanvasComponent = ({ width, height }) => {
             let piece = player.currentPiece;
             let pieceMatrix = getPieceMatrix(piece);
             let size = pieceMatrix.length;
-            
+
 
             p5.fill(getPlayerColor(playerId));
 
@@ -90,23 +95,23 @@ const GameCanvasComponent = ({ width, height }) => {
         }
     }
 
-    const draw = p5 => {
+    p5.draw = () => {
         p5.background(10, 10, 10);
 
         p5.translate(u(1), u(1));
-        drawProgressBar(p5);
+        drawProgressBar();
 
         p5.translate(0, u(2));
-        drawGameBoard(p5);
+        drawGameBoard();
 
-        drawPieces(p5);
+        drawPieces();
     }
 
-    const windowResized = p5 => {
-        p5.resizeCanvas(width, height);
-    }
+}
 
-    return <Sketch setup={setup} draw={draw} windowResized={windowResized} />
+
+const GameCanvasComponent = ({ width, height }) => {
+    return <ReactP5Wrapper sketch={sketch} height={height} width={width} />
 }
 
 export {

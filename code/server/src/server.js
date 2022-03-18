@@ -30,7 +30,7 @@ wsServer.on("connection", (socket) => {
     // TODO: generate room id, playerid, etc.
     const roomID = uuidv4().substring(0,4);
     console.log(roomID)
-    roomSessions[roomID] = new RoomSession(roomID, socket);
+    roomSessions[roomID] = new RoomSession(roomID, wsServer.to(roomID));
     roomSessions[roomID].addClient(true);
     socket.join(roomID);
     const client = roomSessions[roomID].getMostRecentClient();
@@ -52,11 +52,11 @@ wsServer.on("connection", (socket) => {
 
   socket.on("start_game", (roomID, done) => {
     try {
-      roomSessions[roomID].startGame();
-      let gameData = roomSessions[roomID].gameSession.getGameData();
-      done(gameData);
+      let gameData = roomSessions[roomID].startGame();
+      wsServer.to(roomID).emit("gameStarted", gameData)
+      done(true);
     } catch (err) {
-      done(null);
+      done(false);
     }
   })
 

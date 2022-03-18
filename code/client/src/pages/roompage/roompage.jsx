@@ -6,7 +6,7 @@ import {Container, Row, Col} from "react-bootstrap"
 import PlayerInfoComponent from "./components/playerInfoComponent";
 import ChatboxComponent from "./components/chatboxComponent";
 import GameSettingsComponent from "./components/gameSettingsComponent";
-import GameViewComponent from "./components/gameViewComponent";
+import GameViewComponent from "./components/gameView/gameViewComponent";
 import "./roompage.css";
 
 window.gameData = {};
@@ -29,33 +29,22 @@ const RoomPage = ({ socket }) => {
         alert("Copied Room Id: " + copyCode.value);
     }
   
-     let onGameStarted = (gameData) => {
-        console.log(`GameStarted gameData:`);
-        console.log(gameData);
-        window.gameData = gameData;
-        setGameStarted(true);
-     }
     socket.on("gameStarted", (gameData) => {
         console.log(`GameStarted gameData:`);
         console.log(gameData);
-        setGameData(gameData);
         window.gameData = gameData;
         setGameStarted(true);
     })
 
     socket.on("gameDataUpdated", (gameData) => {
-        console.log(`Received GameData: ${gameData}`);
         window.gameData = gameData;
-        setGameData(gameData);
     });
 
 
     const ShowComponent = () => {
         if (gameStarted) {
             return (
-                <GameViewComponent
-                    gameData={gameData}
-                />
+                <GameViewComponent />
             )
         } else {
             return (

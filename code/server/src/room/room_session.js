@@ -3,13 +3,13 @@ import { v4 as uuidv4 } from "uuid";
 import { Client } from "./client.js";
 
 class RoomSession {
-    constructor(roomID, socket) {
+    constructor(roomID,  channel) {
         this.clients = []; // list of Client object
         // TODO: Create a chat session later on
         // this.chatSession = [];
         this.roomID = roomID;
         this.gameSession = null;
-        this.socket = socket;
+        this.channel = channel;
     }
 
     addClient(isHost) {
@@ -26,8 +26,9 @@ class RoomSession {
     }
 
     startGame() {
-        this.gameSession = new GameSession(this.clients, this.socket);
+        this.gameSession = new GameSession(this.clients, this.channel);
         this.gameSession.run();
+        return this.gameSession.getGameData();
     }
 }
 

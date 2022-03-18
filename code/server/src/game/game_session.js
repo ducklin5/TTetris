@@ -5,19 +5,11 @@ import { Player } from "./player.js";
 
 const UPDATE_DELAY = 1000;
 
-class MockClient {
-    constructor(id, nickName, color) {
-        this.id = id;
-        this.nickName = nickName;
-        this.color = color;
-    }
-}
-
 class GameSession {
-    constructor(clients, socket, settings) {
+    constructor(clients, channel, settings) {
         this.players = {}; // dictionary of id to player objects
         this.onGameUpdated = () => {};
-        this.socket = socket;
+        this.channel = channel;
 
         let i = 0;
         for (let client of clients) {
@@ -74,7 +66,6 @@ class GameSession {
     endGame() {
         this.pause();
         console.log("The game has ended");
-        this.printGameData();
     }
 
     getPlayer(playerId) {
@@ -129,7 +120,6 @@ class GameSession {
     }
 
     getGameData() {
-        console.log("getting game data");
         let gameData = {
             players: this.players,
             board: this.gameState,
@@ -138,14 +128,13 @@ class GameSession {
     }
 
     sendGameData() {
-        console.log('sendGameData')
-        this.socket.emit("gameDataUpdated", this.getGameData());
+        this.channel.emit("gameDataUpdated", this.getGameData());
     }
 
     //TODO: remove this debugging function
     printGameData() {
         let gameData = this.getGameData();
-        let grid = JSON.parse(JSON.stringify(gameData.board))
+        let grid = JSON.parse(JSON.stringify(gameData.board.grid))
 
         for (let playerId in this.players) {
             let player = this.players[playerId];
@@ -156,7 +145,7 @@ class GameSession {
                 for (let x = 0; x < size; x++) {
                     let gridY = piece.ofy + y;
                     let gridX = piece.ofx + x;
-                    if (pieceMatrix[y][x] && gridY > 0 && gridY > 0) {
+                    if (pieceMatrix[y][x] && gridY >= 0 && gridX >= 0) {
                         grid[gridY][gridX] = player.id;
                     }
                 }
@@ -177,5 +166,4 @@ class GameSession {
 
 export {
     GameSession,
-    MockClient
 }
