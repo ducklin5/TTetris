@@ -1,6 +1,18 @@
 import './gameSettingsComponent.css';
 
 const GameSettingsComponent = (props) => {
+    const {socket, roomID} = props;
+
+    const onStartButtonClicked = () => {
+        socket.emit("start_game", roomID, (gameStarted) => {
+            if (gameStarted == false) {
+                alert(`The game could not be started`)
+                return;
+            }
+            alert(`Game Started`);
+        })
+    }
+
     return (
         <div className="game-sections">
             <div className="game-settings-component">
@@ -13,7 +25,7 @@ const GameSettingsComponent = (props) => {
                                 </div>
                                 <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                             </div>
-                            <button className="start-button" role="button">Start Game</button>
+                            <button onClick={onStartButtonClicked} className="start-button" role="button">Start Game</button>
                         </div>
                 </div>
                 

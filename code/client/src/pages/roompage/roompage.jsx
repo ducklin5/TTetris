@@ -1,24 +1,26 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import {Container, Row, Col} from "react-bootstrap"
 import PlayerInfoComponent from "./components/playerInfoComponent";
 import ChatboxComponent from "./components/chatboxComponent";
 import GameSettingsComponent from "./components/gameSettingsComponent";
-import './roompage.css';
+import GameViewComponent from "./components/gameViewComponent";
+import "./roompage.css";
 
-// Reference: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+window.gameData = {};
 
 const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
 }
 
-const RoomPage = (props) => {
+const RoomPage = ({ socket }) => {
     const [gameStarted, setGameStarted] = useState(false);
-    const {socket} = props;
+    const [gameData, setGameData] = useState({});
     const roomID = useParams().roomID;
 
+    // Reference: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
     const copyRoomId = () => {
         var copyCode = document.getElementById("roomId");
         copyCode.select();
@@ -26,15 +28,41 @@ const RoomPage = (props) => {
 
         alert("Copied Room Id: " + copyCode.value);
     }
+  
+     let onGameStarted = (gameData) => {
+        console.log(`GameStarted gameData:`);
+        console.log(gameData);
+        window.gameData = gameData;
+        setGameStarted(true);
+     }
+    socket.on("gameStarted", (gameData) => {
+        console.log(`GameStarted gameData:`);
+        console.log(gameData);
+        setGameData(gameData);
+        window.gameData = gameData;
+        setGameStarted(true);
+    })
+
+    socket.on("gameDataUpdated", (gameData) => {
+        console.log(`Received GameData: ${gameData}`);
+        window.gameData = gameData;
+        setGameData(gameData);
+    });
+
 
     const ShowComponent = () => {
         if (gameStarted) {
             return (
-                <GameSettingsComponent />
+                <GameViewComponent
+                    gameData={gameData}
+                />
             )
         } else {
             return (
-                <GameSettingsComponent />
+                <GameSettingsComponent
+                    socket={socket}
+                    roomID={roomID}
+                />
             )
         }
     }
