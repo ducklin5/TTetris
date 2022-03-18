@@ -1,6 +1,8 @@
 /* Reference: https://www.youtube.com/watch?v=WVOmmc0UTiM */
 
 .chatbox-content {
+    max-height: 40vh;
+    height: 100%;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -9,9 +11,9 @@
 .messages-container {
     /* word-wrap: break-all; */
     background-color: #eceff1;
-    margin: 10px;
+    margin: 10px 0;
     flex: 1;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .chat-title{
