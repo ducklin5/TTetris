@@ -6,6 +6,7 @@ import PlayerInfoComponent from "./components/playerInfoComponent";
 import ChatboxComponent from "./components/chatboxComponent";
 import GameSettingsComponent from "./components/gameSettingsComponent";
 import GameViewComponent from "./components/gameViewComponent";
+import "./roompage.css";
 
 window.gameData = {};
 

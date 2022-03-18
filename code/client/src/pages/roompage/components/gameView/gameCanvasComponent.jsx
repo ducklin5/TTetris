@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { io, Socket } from "socket.io-client";
 import Sketch from 'react-p5';
+
 import { getPieceMatrix } from 'util/game_util';
 
-let vUnits = 1;
-let hUnits = 1;
-let pxPerUnit = 1;
-
 const GameCanvasComponent = ({ width, height }) => {
+    let [vUnits, setVUnits] = useState(0);
+    let [hUnits, setHUnits] = useState(0);
+    let [pxPerUnit, setPxPerUnit] = useState(0);
+
+    console.log(`draw GamCanvasComponent with: ${width}:${height}`);
+    
     const updatePxPerUnit = () => {
+
+        console.log(`GamCanvasComponent width/height changed to: ${width}:${height}`)
         console.log("updating px resolution");
-        vUnits = window.gameData.board.height + 4;
-        hUnits = window.gameData.board.width + 2;
-        pxPerUnit = width < height ? width / hUnits : height / vUnits;
+        setVUnits(window.gameData.board.height + 4);
+        setHUnits(window.gameData.board.width + 2);
+        setPxPerUnit(height/width > vUnits/hUnits ? width / hUnits : height / vUnits);
     };
 
     useEffect(updatePxPerUnit, [width, height])
 
 
     const setup = (p5, canvasParentRef) => {
-        console.log("setup");
-        p5.createCanvas(500, 500).parent(canvasParentRef);
-        // updatePxPerUnit();
+        console.log(`setup p5 canvas with: ${width}:${height}`)
+        p5.createCanvas(width, height).parent(canvasParentRef);
     }
 
     const u = (value) => {
@@ -106,7 +110,7 @@ const GameCanvasComponent = ({ width, height }) => {
         p5.resizeCanvas(width, height);
     }
 
-    return <Sketch setup={setup} draw={draw} windowResized={windowResized} />
+    return <Sketch setup={setup} draw={draw} windowResized={windowResized}/>
 }
 
 export {
