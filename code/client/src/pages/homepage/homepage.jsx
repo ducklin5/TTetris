@@ -42,6 +42,12 @@ const HomePage = (props) => {
 
     return (   
             <div className="home-page">
+                <div className="piece piece-1"></div>
+                <div className="piece piece-2"></div>
+                <div className="piece piece-3"></div>
+                <div className="piece piece-4"></div>
+                <div className="piece piece-5"></div>
+                <div className="piece piece-6"></div>
                 <p className="h1 text-danger font-weight-bold font-italic text-center title-margin ">Treacherous Tetris</p>
                 <div className="d-flex justify-content-center align-items-start">
                     <button onClick={onCreateButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space">

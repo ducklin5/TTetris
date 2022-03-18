@@ -1,0 +1,83 @@
+/* Reference: https://www.youtube.com/watch?v=WVOmmc0UTiM */
+
+.chatbox-content {
+    max-height: 40vh;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.messages-container {
+    /* word-wrap: break-all; */
+    background-color: #eceff1;
+    margin: 10px 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.chat-title{
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #5c6164;
+}
+
+.send-box{
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  flex-direction: row;
+}
+
+.send-button{
+  background-color:dodgerblue;
+  color:white;
+  font-weight:bold;
+}
+
+/* Reference for chat box: https://www.w3schools.com/howto/howto_css_chat.asp */
+
+.container {
+  border: 2px solid #dedede;
+  background-color: rgb(224, 250, 255);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 5px;
+}
+
+.darker {
+  border-color: #dedede;
+  background-color: white;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container-name-left{
+  float: left;
+  max-width: 30px;
+  width: 100%;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.container-name-right{
+  float: right;
+  max-width: 30px;
+  width: 100%;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
