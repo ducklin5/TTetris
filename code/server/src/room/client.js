@@ -5,6 +5,10 @@ class Client {
         this.color = color;
         this.isHost = isHost;
     }
+
+    getClientID() {
+        return this.id;
+    }
 }
 
 export { Client }
