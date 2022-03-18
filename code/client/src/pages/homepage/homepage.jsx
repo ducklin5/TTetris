@@ -2,7 +2,6 @@ import React, { Component, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './homepage.css';
 import PropTypes from "prop-types";
-import { v4 as uuidv4 } from "uuid";
 
 const HomePagePropTypes = {
     socket: PropTypes.object.isRequired,
@@ -14,11 +13,9 @@ const HomePage = (props) => {
     const navigate = useNavigate();
 
     const onCreateButtonClicked = () => {
-        const id = uuidv4();
-        console.log(id);
-        socket.emit("create_room", id, () => {
-            console.log("room created");
-            let path = `/room/${id}`;
+        socket.emit("create_room", (_roomID, clientID) => {
+            window.clientID = clientID;
+            let path = `/room/${_roomID}`;
             navigate(path)
         })
     }
@@ -28,13 +25,12 @@ const HomePage = (props) => {
     }
 
     const requestJoinRoom = (roomID) => {
-        socket.emit("join_room", roomID, (roomExists) => {
+        socket.emit("join_room", roomID, (roomExists, clientID) => {
             if (!roomExists) {
                 alert("The room does not exist")
                 return;
             }
-            console.log(roomID)
-            console.log("room joined");
+            window.clientID = clientID;
             let path = `/room/${roomID}`;
             navigate(path);
         })

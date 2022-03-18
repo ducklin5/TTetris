@@ -3,6 +3,7 @@ import cors from 'cors';
 import http from 'http';
 import { Server as IOServer } from 'socket.io';
 import { RoomSession } from './room/room_session.js';
+import { v4 as uuidv4 } from "uuid";
 
 const app = express();
 
@@ -25,13 +26,15 @@ const wsServer = new IOServer(httpServer, {
 let roomSessions = {};
 
 wsServer.on("connection", (socket) => {
-  socket.on("create_room", (roomID, done) => {
+  socket.on("create_room", (done) => {
     // TODO: generate room id, playerid, etc.
+    const roomID = uuidv4().substring(0,4);
     console.log(roomID)
     roomSessions[roomID] = new RoomSession(roomID, wsServer.to(roomID));
     roomSessions[roomID].addClient(true);
     socket.join(roomID);
-    done();
+    const client = roomSessions[roomID].getMostRecentClient();
+    done(roomID, client.getClientID());
   })
 
   socket.on("join_room", (roomID, done) => {
@@ -40,7 +43,8 @@ wsServer.on("connection", (socket) => {
       roomSessions[roomID].addClient(false);
       socket.join(roomID);
       console.log(roomSessions)
-      done(roomExists);
+      const client = roomSessions[roomID].getMostRecentClient();
+      done(roomExists, client.getClientID());
     } catch (err) {
       done(!roomExists);
     }
