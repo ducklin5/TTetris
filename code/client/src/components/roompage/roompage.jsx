@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {Container, Row, Col} from "react-bootstrap"
 import PlayerInfoComponent from "./playerInfoComponent";
 import ChatboxComponent from "./chatboxComponent";
@@ -49,7 +50,7 @@ const RoomPage = (props) => {
             <div>
                 <p className="h1 text-danger font-weight-bold font-italic text-center ">Treacherous Tetris</p>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                <button className=" help-button"><i className="bi bi-question-circle fa-lg"></i></button>          
+                <Link to={"/help"} type="button" className=" help-button"><i className="bi bi-question-circle fa-lg"></i></Link>          
             </div>
             <div className="room-code">
                 <span class="h2 text-dark font-weight-bold text-center ">Room:</span>
@@ -58,7 +59,7 @@ const RoomPage = (props) => {
             </div>
                 
             <div className="room-components">
-                <div className="room-sections">
+                <div className="room-sections-left">
                     <div className="room-box-left">
                         <div className="box-align">
                             <PlayerInfoComponent />
@@ -70,7 +71,7 @@ const RoomPage = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="room-sections">
+                <div className="room-sections-right">
                     <div className="room-box-right">
                         <div className="box-align">
                             <ShowComponent />

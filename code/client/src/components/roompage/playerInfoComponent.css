@@ -12,7 +12,7 @@
 }
 
 .players-content {
-    padding: 20px;
+    padding: 2px;
     display: flex;
     flex-direction: column;
 }
@@ -38,6 +38,7 @@
 .player-info{
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
 
 .player-name-button{

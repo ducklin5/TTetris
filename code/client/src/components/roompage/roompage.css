@@ -55,21 +55,29 @@ html, body, #root {
     overflow: auto;
 }
 
-.room-sections {
+.room-sections-right {
     display: flex;
     flex-direction: column;
     overflow: auto;
+    /* width:100%; */
+}
+
+.room-sections-left {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    
 }
 
 .room-box-left {
-    word-wrap: break-all;
+    /* word-wrap: break-all; */
     background-color: #cdd0d1;
     margin: 10px;
     flex: 1;
 }
 
 .room-box-right {
-    word-wrap: break-all;
+    /* word-wrap: break-all; */
     background-color: #B3F2FF;
     margin: 10px;
     flex: 1;

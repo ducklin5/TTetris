@@ -1,29 +1,17 @@
 /* Reference: https://www.youtube.com/watch?v=WVOmmc0UTiM */
 
-.chat-box{
-    word-wrap: break-all;
-    background-color: #B3F2FF;
-    margin: 10px;
-    flex: 1;
+.chatbox-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
-.chatbox-title{
-    font-size: 1.4rem;
-    font-weight: 500;
-    color: #5c6164;
-}
-
-.settings-vertical {
-    word-wrap: break-all;
+.messages-container {
+    /* word-wrap: break-all; */
     background-color: #eceff1;
     margin: 10px;
     flex: 1;
-}
-
-.settings-content {
-    padding: 1px;
-    display: flex;
-    flex-direction: column;
+    overflow-y: scroll;
 }
 
 .chat-title{
@@ -46,55 +34,47 @@
 }
 
 /* Reference for chat box: https://www.w3schools.com/howto/howto_css_chat.asp */
-/* Chat containers */
+
 .container {
   border: 2px solid #dedede;
   background-color: rgb(224, 250, 255);
   border-radius: 5px;
   padding: 10px;
-  margin: 10px 0;
+  margin: 5px 5px;
 }
 
-/* Darker chat container */
 .darker {
-  border-color: #ccc;
+  border-color: #dedede;
   background-color: white;
 }
 
-/* Clear floats */
 .container::after {
   content: "";
   clear: both;
   display: table;
 }
 
-/* Style images */
 .container-name-left{
   float: left;
   max-width: 30px;
   width: 100%;
-  margin-left: 10px;
+  margin-left: 5px;
   font-weight: bold;
-  border-radius: 50%;
 }
 
 .container-name-right{
   float: right;
   max-width: 30px;
   width: 100%;
-  margin-right: 10px;
+  margin-right: 5px;
   font-weight: bold;
-  border-radius: 50%;
 }
 
-
-/* Style time text */
 .time-right {
   float: right;
   color: #aaa;
 }
 
-/* Style time text */
 .time-left {
   float: left;
   color: #999;

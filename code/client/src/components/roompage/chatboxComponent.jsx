@@ -2,9 +2,9 @@ import './chatboxComponent.css';
 
 const ChatboxComponent = (props) => {
     return (
-        <div className="settings-content">
+        <div className="chatbox-content">
             <span className="chat-title font-italic text-center">Chat Box</span>
-            <div className="settings-vertical">
+            <div className="messages-container">
                 <div className="container">
                     <span className="container-name-left">P1</span>
                     <p>Hello. How are you ?</p>

@@ -3,22 +3,22 @@ import './gameSettingsComponent.css';
 const GameSettingsComponent = (props) => {
     return (
         <div className="game-sections">
-            <div className="settings-vertical">
+            <div className="game-settings-component">
                 <div className="settings-content">
                     <span className="game-title font-italic text-center">Host Settings</span>
-                        <div className='row'>
-                            <div className="input-group mb-3">
+                        <div className='host-input'>
+                            <div className="input-group">
                                 <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Set Speed:</span>
                                 </div>
                                 <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                             </div>
-                            <button className="button-34" role="button">Start Game</button>
+                            <button className="start-button" role="button">Start Game</button>
                         </div>
                 </div>
                 
             </div>
-            <div className="settings-vertical">
+            <div className="game-settings-component">
                 <div className="settings-content">
                     <span className="game-title font-italic text-center">Player Settings</span>
                     <div className='row'>
