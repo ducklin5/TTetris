@@ -28,7 +28,7 @@ wsServer.on("connection", (socket) => {
   socket.on("create_room", (roomID, done) => {
     // TODO: generate room id, playerid, etc.
     console.log(roomID)
-    roomSessions[roomID] = new RoomSession(roomID, socket);
+    roomSessions[roomID] = new RoomSession(roomID, wsServer.to(roomID));
     roomSessions[roomID].addClient(true);
     socket.join(roomID);
     done();
