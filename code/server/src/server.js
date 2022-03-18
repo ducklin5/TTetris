@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import http from 'http';
-import { Server } from 'socket.io';
+import { Server as IOServer } from 'socket.io';
+import { RoomSession } from './room/room_session.js';
 
 const app = express();
 
@@ -16,22 +17,44 @@ app.get('/version', (_, res) => {
   res.status(200).send("0.1.0");
 });
 
-const server = http.createServer(app);
-const wsServer = new Server(server, {
+const httpServer = http.createServer(app);
+const wsServer = new IOServer(httpServer, {
   cors: "*"
 });
 
+let roomSessions = {};
+
 wsServer.on("connection", (socket) => {
   socket.on("create_room", (roomID, done) => {
-  // TODO: generate room id, playerid, etc.
+    // TODO: generate room id, playerid, etc.
+    console.log(roomID)
+    roomSessions[roomID] = new RoomSession(roomID, socket);
+    roomSessions[roomID].addClient(true);
     socket.join(roomID);
+    done();
   })
 
   socket.on("join_room", (roomID, done) => {
-    console.log(roomID)
-    socket.join(roomID);
-    done("Joined room");
+    let roomExists = true;
+    try {
+      roomSessions[roomID].addClient(false);
+      socket.join(roomID);
+      console.log(roomSessions)
+      done(roomExists);
+    } catch (err) {
+      done(!roomExists);
+    }
   });
+
+  socket.on("start_game", (roomID, done) => {
+    try {
+      roomSessions[roomID].startGame();
+      let gameData = roomSessions[roomID].gameSession.getGameData();
+      done(gameData);
+    } catch (err) {
+      done(null);
+    }
+  })
 
   socket.on("disconnecting", () => {
     console.log("disconnecting")
@@ -39,4 +62,4 @@ wsServer.on("connection", (socket) => {
   });
 })
 
-export default server;
+export default httpServer;

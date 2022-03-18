@@ -1,8 +1,8 @@
 import {useRef} from 'react';
-import { useRefDimensions } from '../util.js/react_util';
-import { GameCanvasComponent } from './game_canvas_component';
+import { useRefDimensions } from 'util/react_util';
+import { GameCanvasComponent } from './gameCanvasComponent';
 
-const ResponsiveGameCanvasComponent = ({ gameData }) => {
+const ResponsiveGameCanvasComponent = () => {
     const ref = useRef();
     const [refHeight, refWidth] = useRefDimensions(ref);
 
@@ -10,7 +10,6 @@ const ResponsiveGameCanvasComponent = ({ gameData }) => {
         ref={ref}
         className='GameCanvas'>
         <GameCanvasComponent
-            gameData={gameData}
             height={refHeight-30}
             width={refWidth-30}
         />

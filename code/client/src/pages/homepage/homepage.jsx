@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './homepage.css';
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
@@ -9,14 +9,17 @@ const HomePagePropTypes = {
 }
 
 const HomePage = (props) => {
-    const [roomID, setRoomID] = useState(uuidv4());
+    const [roomID, setRoomID] = useState();
     const {socket} = props;
-    console.log(socket)
+    const navigate = useNavigate();
 
     const onCreateButtonClicked = () => {
-        socket.emit("create_room", roomID, (msg) => {
-            console.log(msg);
+        const id = uuidv4();
+        console.log(id);
+        socket.emit("create_room", id, () => {
             console.log("room created");
+            let path = `/room/${id}`;
+            navigate(path)
         })
     }
 
@@ -25,8 +28,15 @@ const HomePage = (props) => {
     }
 
     const requestJoinRoom = (roomID) => {
-        socket.emit("join_room", roomID, () => {
+        socket.emit("join_room", roomID, (roomExists) => {
+            if (!roomExists) {
+                alert("The room does not exist")
+                return;
+            }
+            console.log(roomID)
             console.log("room joined");
+            let path = `/room/${roomID}`;
+            navigate(path);
         })
     }
 
@@ -40,9 +50,9 @@ const HomePage = (props) => {
                 <div className="piece piece-6"></div>
                 <p className="h1 text-danger font-weight-bold font-italic text-center title-margin ">Treacherous Tetris</p>
                 <div className="d-flex justify-content-center align-items-start">
-                    <Link to={`/room/${roomID}`} onClick={onCreateButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space">
+                    <button onClick={onCreateButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space">
                         Create Room
-                    </Link>
+                    </button>
                 </div>
                 <div className="d-flex justify-content-center align-items-start">
                     <div className='input-group mb-3 text-center btn-space'>
@@ -55,9 +65,9 @@ const HomePage = (props) => {
                         aria-describedby='basic-addon2'></input>
                         
                         <div className='input-group-append'>
-                            <Link to={`/room/${roomID}`} onClick={onJoinButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic">
+                            <button onClick={onJoinButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic">
                                 Join Room
-                            </Link>
+                            </button>
                         </div>
                     </div>
                 </div>

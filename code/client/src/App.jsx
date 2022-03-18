@@ -1,9 +1,9 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import HomePage from './components/homepage/homepage';
-import RoomPage from './components/roompage/roompage';
-import HelpPage from './components/helppage/helppage';
+import HomePage from './pages/homepage/homepage';
+import RoomPage from './pages/roompage/roompage';
+import HelpPage from './pages/helppage/helppage';
 import { io } from "socket.io-client";
 
 const socket = io.connect('http://127.0.0.1:8080');
