@@ -24,8 +24,6 @@ html, body, #root {
   padding: 20px;
   display: inline-block;
   margin: 4px 4px;
-  /* height: 40px;
-  width: 40px; */
   border-radius: 100%;
   outline: none;
 }
@@ -59,38 +57,30 @@ html, body, #root {
     display: flex;
     flex-direction: column;
     overflow: auto;
-    flex: 1;
-    /* width:100%; */
+    flex:3;
+    width:100%;
 }
 
 .room-sections-left {
     display: flex;
     flex-direction: column;
     overflow: auto;
-    flex: 1;
-    
+    flex:1;
+    width:100%;
 }
 
 .room-box-left {
-    /* word-wrap: break-all; */
     background-color: #eceff1;
     margin: 10px;
     flex: 1;
 }
 
 .room-box-right {
-    /* word-wrap: break-all; */
     background-color: #B3F2FF;
     margin: 10px;
     flex: 1;
     display: flex;
 }
-
-/* TODO: check removing affects the UI view */
-/* .box-align {
-    display: flex;
-    flex-direction: column;
-} */
 
 /* Reference for falling pieces: https://codepen.io/oridr22/pen/mOGddj */
 .piece {
