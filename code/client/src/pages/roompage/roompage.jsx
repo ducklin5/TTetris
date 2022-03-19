@@ -44,7 +44,9 @@ const RoomPage = ({ socket }) => {
     const ShowComponent = () => {
         if (gameStarted) {
             return (
-                <GameViewComponent />
+                <GameViewComponent
+                    socket={socket}
+                />
             )
         } else {
             return (

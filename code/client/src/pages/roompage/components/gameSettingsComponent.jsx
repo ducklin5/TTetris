@@ -1,10 +1,10 @@
 import './gameSettingsComponent.css';
 
 const GameSettingsComponent = (props) => {
-    const {socket, roomID} = props;
+    const {socket} = props;
 
     const onStartButtonClicked = () => {
-        socket.emit("start_game", roomID, (gameStarted) => {
+        socket.emit("start_game", (gameStarted) => {
             if (!gameStarted) {
                 alert(`The game could not be started`)
                 return;

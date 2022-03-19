@@ -6,10 +6,9 @@ import { Player } from "./player.js";
 const UPDATE_DELAY = 1000;
 
 class GameSession {
-    constructor(clients, channel, settings) {
+    constructor(clients, settings) {
         this.players = {}; // dictionary of id to player objects
         this.onGameUpdated = () => {};
-        this.channel = channel;
 
         let i = 0;
         for (let client of clients) {
@@ -33,16 +32,16 @@ class GameSession {
         }
     }
 
-    run() {
+    run(onGameUpdated) {
         let self = this;
-        this.updateIntervalId = setInterval(() => self._update(), UPDATE_DELAY);
+        this.updateIntervalId = setInterval(() => self._update(onGameUpdated), UPDATE_DELAY);
     }
 
     pause() {
         clearInterval(this.updateIntervalId);
     }
 
-    _update() {
+    _update(onGameUpdated) {
         //let playerIds = this.players
         for (let playerId in this.players) {
             let player = this.players[playerId];
@@ -59,8 +58,7 @@ class GameSession {
                 player.nextPiece = generateRandomPiece(player.init_ofx);
             }
         }
-        console.log("game update is sending gameData");
-        this.sendGameData();
+        onGameUpdated();
     }
 
     endGame() {
@@ -78,20 +76,17 @@ class GameSession {
     inputEvent(playerId, event) {
         switch (event) {
             case "left":
-                this.tryMovePiece(playerId, -1, 0);
-                break;
+                return this.tryMovePiece(playerId, -1, 0);
             case "right":
-                this.tryMovePiece(playerId, 1, 0);
-                break;
+                return this.tryMovePiece(playerId, 1, 0);
             case "down":
-                this.tryMovePiece(playerId, 0, 1);
-                break;
+                return this.tryMovePiece(playerId, 0, 1);
             case "drop":
-                let player = this.getPlayer(playerId);
-                if (player) this.gameState.dropPiece(player.currentPiece);
-                break;
+                return this.tryDropPiece(playerId);
+            case "rotate":
+                return this.tryRotatePiece(playerId);
             case "emergency":
-                this.tryStartVoting(playerId);
+                return this.tryStartVoting(playerId);
         }
     }
 
@@ -107,6 +102,27 @@ class GameSession {
             return true;
         }
 
+        return false;
+    }
+
+    tryRotatePiece(playerId) {
+        let player = this.getPlayer(playerId);
+        if (player) {
+            player.currentPiece.rotation += 1;
+            if (this.gameState.checkPieceCollision(player.currentPiece)) {
+                player.currentPiece.rotation -= 1;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    tryDropPiece(playerId) {
+        let player = this.getPlayer(playerId);
+        if (player) {
+            this.gameState.dropPiece(player.currentPiece);
+            return true;
+        }
         return false;
     }
 
@@ -128,7 +144,6 @@ class GameSession {
     }
 
     sendGameData() {
-        this.channel.emit("gameDataUpdated", this.getGameData());
     }
 
     //TODO: remove this debugging function

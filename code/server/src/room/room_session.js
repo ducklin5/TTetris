@@ -26,9 +26,19 @@ class RoomSession {
     }
 
     startGame() {
-        this.gameSession = new GameSession(this.clients, this.channel);
-        this.gameSession.run();
-        return this.gameSession.getGameData();
+        this.gameSession = new GameSession(this.clients);
+        this.gameSession.run(() => this.sendGameDataUpdate());
+        this.channel.emit("gameStarted", this.gameSession.getGameData());
+    }
+
+    sendGameDataUpdate() {
+        this.channel.emit("gameDataUpdated", this.gameSession.getGameData());
+    }
+
+    gameInput(clientId, event) {
+        if (this.gameSession.inputEvent(clientId, event)) {
+            this.sendGameDataUpdate();
+        }
     }
 }
 

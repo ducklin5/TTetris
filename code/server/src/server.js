@@ -26,6 +26,9 @@ const wsServer = new IOServer(httpServer, {
 let roomSessions = {};
 
 wsServer.on("connection", (socket) => {
+  let clientId = null;
+  let clientRoomId = null;
+
   socket.on("create_room", (done) => {
     // TODO: generate room id, playerid, etc.
     const roomID = uuidv4().substring(0,4);
@@ -34,7 +37,9 @@ wsServer.on("connection", (socket) => {
     roomSessions[roomID].addClient(true);
     socket.join(roomID);
     const client = roomSessions[roomID].getMostRecentClient();
-    done(roomID, client.getClientID());
+    clientId = client.getClientID();
+    clientRoomId = roomID;
+    done(roomID, clientId);
   })
 
   socket.on("join_room", (roomID, done) => {
@@ -44,20 +49,26 @@ wsServer.on("connection", (socket) => {
       socket.join(roomID);
       console.log(roomSessions)
       const client = roomSessions[roomID].getMostRecentClient();
-      done(roomExists, client.getClientID());
+      clientId = client.getClientID();
+      clientRoomId = roomID;
+      done(roomExists, clientId);
     } catch (err) {
       done(!roomExists);
     }
   });
 
-  socket.on("start_game", (roomID, done) => {
+  socket.on("start_game", (done) => {
     try {
-      let gameData = roomSessions[roomID].startGame();
-      wsServer.to(roomID).emit("gameStarted", gameData)
+      roomSessions[clientRoomId].startGame();
       done(true);
     } catch (err) {
+      console.log(err);
       done(false);
     }
+  })
+
+  socket.on("game_input", (event) => {
+    roomSessions[clientRoomId].gameInput(clientId, event);
   })
 
   socket.on("disconnecting", () => {
