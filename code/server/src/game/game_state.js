@@ -75,7 +75,6 @@ class GameState {
             return false;
         }
 
-        console.log("adding piece to board");
         this._addPiece(piece, playerId);
         return true;
     }
@@ -84,14 +83,12 @@ class GameState {
         let pieceMatrix = piece.getMatrix();
         let size = pieceMatrix.length;
 
-        console.log(`adding ${playerId} piece`);
         for (let y = 0; y < size; y++) {
             for (let x = 0; x < size; x++) {
                 if (pieceMatrix[y][x]) {
                     let gridY = piece.ofy + y;
                     let gridX = piece.ofx + x;
                     
-                    console.log(`Block [${gridY}][${gridX}] added`);
                     this.grid[gridY][gridX] = playerId;
                 }
             }
