@@ -16,11 +16,10 @@
 .game-sections {
     display: flex;
     flex-direction: column;
-    /* overflow: auto; */
+    width:100%;
 }
 
 .game-settings-component {
-    /* word-wrap: break-all; */
     background-color: #eceff1;
     margin: 10px;
     flex: 1;
@@ -30,7 +29,6 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    /* width:100%; */
 }
 
 .host-input {
@@ -49,7 +47,6 @@
 
 /* Reference for game start button: https://getcssscan.com/css-buttons-examples */
 
-/* CSS */
 .start-button {
   background: dodgerblue;
   border-radius: 999px;
@@ -67,9 +64,9 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  /* word-break:keep-all; */
-  /* width: 100%; */
   border: 0;
+  width:100%;
+  max-width: 150px;
   margin-left: 10px;
 }
 /* game start button end */
