@@ -54,8 +54,7 @@ class GameSession {
                     this.endGame();
                     return;
                 }
-                player.currentPiece = player.nextPiece;
-                player.nextPiece = generateRandomPiece(player.init_ofx);
+                this.consumePlayerPiece(playerId);
             }
         }
         onGameUpdated();
@@ -95,11 +94,12 @@ class GameSession {
         if (player) {
             player.currentPiece.ofx += x;
             player.currentPiece.ofy += y;
-            if (this.gameState.checkPieceCollision(player.currentPiece)) {
-                player.currentPiece.ofx -= x;
-                player.currentPiece.ofy -= y;
+            let collision = this.gameState.checkPieceCollision(player.currentPiece);
+            if (collision == null || collision == "top") {
+                return true;
             }
-            return true;
+            player.currentPiece.ofx -= x;
+            player.currentPiece.ofy -= y;
         }
 
         return false;
@@ -109,10 +109,11 @@ class GameSession {
         let player = this.getPlayer(playerId);
         if (player) {
             player.currentPiece.rotation += 1;
-            if (this.gameState.checkPieceCollision(player.currentPiece)) {
-                player.currentPiece.rotation -= 1;
+            let collision = this.gameState.checkPieceCollision(player.currentPiece);
+            if (collision == null || collision == "top") {
+                return true;
             }
-            return true;
+            player.currentPiece.rotation -= 1;
         }
         return false;
     }
@@ -120,7 +121,18 @@ class GameSession {
     tryDropPiece(playerId) {
         let player = this.getPlayer(playerId);
         if (player) {
-            this.gameState.dropPiece(player.currentPiece);
+            this.gameState.dropPiece(player.currentPiece, playerId);
+            this.consumePlayerPiece(playerId);
+            return true;
+        }
+        return false;
+    }
+
+    consumePlayerPiece(playerId) {
+        let player = this.getPlayer(playerId);
+        if (player) {
+            player.currentPiece = player.nextPiece;
+            player.nextPiece = generateRandomPiece(player.init_ofx);
             return true;
         }
         return false;

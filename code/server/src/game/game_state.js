@@ -23,6 +23,14 @@ class GameState {
                 if (pieceMatrix[y][x] === 1) {
                     let gridY = piece.ofy + y;
                     let gridX = piece.ofx + x;
+                    
+                    if (gridX < 0){
+                        return "left";
+                    }
+
+                    if (gridX >= this.width) {
+                        return "right";
+                    }
 
                     if (gridY < 0) {
                         return "top"
@@ -32,14 +40,6 @@ class GameState {
                         return "bottom"
                     }
                     
-                    if (gridX < 0){
-                        return "left";
-                    }
-
-                    if (gridX >= this.width) {
-                        return "right";
-                    }
-                    
                     if (this.grid[gridY][gridX] != null){
                         return "block";
                     }
@@ -47,7 +47,7 @@ class GameState {
             }
         }
 
-        return false;
+        return null;
     }
 
     // This function is super expensive to ensure the grid is always valid.
@@ -75,6 +75,7 @@ class GameState {
             return false;
         }
 
+        console.log("adding piece to board");
         this._addPiece(piece, playerId);
         return true;
     }
@@ -83,12 +84,14 @@ class GameState {
         let pieceMatrix = piece.getMatrix();
         let size = pieceMatrix.length;
 
+        console.log(`adding ${playerId} piece`);
         for (let y = 0; y < size; y++) {
             for (let x = 0; x < size; x++) {
                 if (pieceMatrix[y][x]) {
                     let gridY = piece.ofy + y;
                     let gridX = piece.ofx + x;
-
+                    
+                    console.log(`Block [${gridY}][${gridX}] added`);
                     this.grid[gridY][gridX] = playerId;
                 }
             }
@@ -97,7 +100,7 @@ class GameState {
     }
 
     _eliminateRows() {
-        for (let row = this.rows - 1; row >= 0; row--) {
+        for (let row = this.height - 1; row >= 0; row--) {
             // if this row is full
             if (!this.grid[row].includes(null)) {
                 // remove the row
