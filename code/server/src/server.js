@@ -71,6 +71,14 @@ wsServer.on("connection", (socket) => {
     roomSessions[clientRoomId].gameInput(clientId, event);
   })
 
+  socket.on("getClientInfo", (roomID, clientID, done) => {
+    let client;
+    roomSessions[roomID].clients.forEach(_client => {
+      if (_client.id == clientID) client = _client
+    })
+    done(client);
+  })
+
   socket.on("disconnecting", () => {
     console.log("disconnecting")
     socket.rooms.forEach(room => socket.to(room).emit("end_session"));
