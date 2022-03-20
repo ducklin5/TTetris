@@ -1,8 +1,8 @@
-import './playerStatusComponent.css';
+import './PlayerStatusComponent.css';
 
 // Reference for wifi button: https://fontawesomeicons.com/bootstrap/icons/wifi-off
 
-const playerStatusComponent = (props) => {
+const PlayerStatusComponent = (props) => {
     return (
         <div className='player-info'>
             <div className='player-name-button'>                  
@@ -17,4 +17,4 @@ const playerStatusComponent = (props) => {
     );
 }
 
-export default playerStatusComponent;
+export default PlayerStatusComponent;
