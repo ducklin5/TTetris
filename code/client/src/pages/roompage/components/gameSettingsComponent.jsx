@@ -1,8 +1,23 @@
+import { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import './gameSettingsComponent.css';
 
 const GameSettingsComponent = (props) => {
     const {socket} = props;
+    const [gameSpeed, setGameSpeed] = useState(1);
+    const [nickname, setNickname] = useState("");
+    const [pieceColor, setPieceColor] = useState("");
+    const [isHost, setIsHost] = useState(false);
+    const roomID = useParams().roomID;
 
+    useEffect(() => {
+        socket.emit("getClientInfo", roomID, window.clientID, (clientData) => {
+            setNickname(clientData.nickname);
+            setPieceColor(clientData.color);
+            setIsHost(clientData.isHost);
+        })
+    },[])
+    
     const onStartButtonClicked = () => {
         socket.emit("start_game", (gameStarted) => {
             if (!gameStarted) {
@@ -11,6 +26,18 @@ const GameSettingsComponent = (props) => {
             }
             alert(`You started the game`);
         })
+    }
+
+    const onGameSpeedChanged = (event) => {
+        setGameSpeed(event.target.value);
+    }
+
+    const onNicknameChanged = (event) => {
+        setNickname(event.target.value);
+    }
+
+    const onPieceColorChanged = (event) => {
+        setPieceColor(event.target.value);
     }
 
     return (
@@ -23,12 +50,11 @@ const GameSettingsComponent = (props) => {
                                 <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Set Speed:</span>
                                 </div>
-                                <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                                <input type="text" onChange={onGameSpeedChanged} value={gameSpeed} disabled={isHost} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                             </div>
-                            <button onClick={onStartButtonClicked} className="start-button" role="button">Start Game</button>
+                            <button onClick={onStartButtonClicked} disabled={isHost} className="start-button" role="button">Start Game</button>
                         </div>
                 </div>
-                
             </div>
             <div className="game-settings-component">
                 <div className="settings-content">
@@ -38,7 +64,7 @@ const GameSettingsComponent = (props) => {
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Nickname:</span>
                             </div>
-                            <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                            <input type="text" onChange={onNicknameChanged} value={nickname} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                         </div>
                     </div>
                     <div className='player-input'>
@@ -46,7 +72,7 @@ const GameSettingsComponent = (props) => {
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Piece Color:</span>
                             </div>
-                            <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                            <input type="text" onChange={onPieceColorChanged} value={pieceColor} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                         </div>
                     </div>
                     {/* <div className="dropdown">
