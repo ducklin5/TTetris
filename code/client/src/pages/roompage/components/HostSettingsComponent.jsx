@@ -14,7 +14,7 @@ const HostSettingsComponent = (props) => {
                                 <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Set Speed:</span>
                                 </div>
-                                <input type="text" onChange={onGameSpeedChanged} value={gameSpeed} disabled={isHost} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                                <input type="text" onChange={onGameSpeedChanged} value={gameSpeed} disabled={!isHost} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                         </div>
                         <button onClick={onStartButtonClicked} disabled={!isHost} className="start-button" role="button">Start Game</button>
                     </div>
