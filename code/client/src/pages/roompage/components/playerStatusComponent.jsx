@@ -1,4 +1,4 @@
-import './PlayerStatusComponent.css';
+import './playerStatusComponent.css';
 
 // Reference for wifi button: https://fontawesomeicons.com/bootstrap/icons/wifi-off
 

@@ -17,10 +17,10 @@ const ChatboxComponent = (props) => {
                 </div>
             </div>
             <div className='send-box'>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Type..." aria-label="Type" aria-describedby="basic-addon2"></input>
-                    <div class="input-group-append">
-                        <button class="btn send-button" type="button">Send</button>
+                <div className="input-group mb-3">
+                    <input type="text" className="form-control" placeholder="Type..." aria-label="Type" aria-describedby="basic-addon2"></input>
+                    <div className="input-group-append">
+                        <button className="btn send-button" type="button">Send</button>
                     </div>
                 </div>
             </div>

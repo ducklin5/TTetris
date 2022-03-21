@@ -16,7 +16,7 @@ const HostSettingsComponent = (props) => {
                                 </div>
                                 <input type="text" onChange={onGameSpeedChanged} value={gameSpeed} disabled={isHost} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                         </div>
-                        <button onClick={onStartButtonClicked} disabled={isHost} className="start-button" role="button">Start Game</button>
+                        <button onClick={onStartButtonClicked} disabled={!isHost} className="start-button" role="button">Start Game</button>
                     </div>
             </div>
         </div>

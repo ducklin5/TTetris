@@ -1,5 +1,5 @@
-import './PlayerInfoComponent.css';
-import PlayerStatusComponent from "./PlayerStatusComponent";
+import './playerInfoComponent.css';
+import PlayerStatusComponent from "./playerStatusComponent";
 
 const PlayerInfoComponent = (props) => {
     return (
