@@ -17,5 +17,3 @@ const GameButtonsComponent = (props) => {
 }
 
 export default GameButtonsComponent;
-
-<i class="em em-smiling_imp" aria-role="presentation" aria-label="SMILING FACE WITH HORNS"></i>
