@@ -59,7 +59,7 @@ const RoomPage = ({ socket }) => {
     }
 
     return (
-        <div class="room-page">
+        <div className="room-page">
             <div className="piece piece-1"></div>
             <div className="piece piece-2"></div>
             <div className="piece piece-3"></div>
@@ -72,9 +72,9 @@ const RoomPage = ({ socket }) => {
                 <Link to={"/help"} type="button" className=" help-button"><i className="bi bi-question-circle fa-lg"></i></Link>          
             </div>
             <div className="room-code">
-                <span class="h2 text-dark font-weight-bold text-center ">Room:</span>
+                <span className="h2 text-dark font-weight-bold text-center ">Room:</span>
                 <span type="text" value="room id" id="roomId" className="h2 text-dark font-weight-bold text-center">1234</span>
-                <button onclick={copyRoomId} className="copy-button"><i class="bi bi-clipboard fa-lg"></i></button>
+                <button onClick={copyRoomId} className="copy-button"><i className="bi bi-clipboard fa-lg"></i></button>
             </div>
                 
             <div className="room-components">
