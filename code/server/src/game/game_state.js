@@ -23,8 +23,8 @@ class GameState {
                 if (pieceMatrix[y][x] === 1) {
                     let gridY = piece.ofy + y;
                     let gridX = piece.ofx + x;
-                    
-                    if (gridX < 0){
+
+                    if (gridX < 0) {
                         return "left";
                     }
 
@@ -39,8 +39,8 @@ class GameState {
                     if (gridY >= this.height) {
                         return "bottom"
                     }
-                    
-                    if (this.grid[gridY][gridX] != null){
+
+                    if (this.grid[gridY][gridX] != null) {
                         return "block";
                     }
                 }
@@ -88,7 +88,7 @@ class GameState {
                 if (pieceMatrix[y][x]) {
                     let gridY = piece.ofy + y;
                     let gridX = piece.ofx + x;
-                    
+
                     this.grid[gridY][gridX] = playerId;
                 }
             }
@@ -97,18 +97,35 @@ class GameState {
     }
 
     _eliminateRows() {
-        for (let row = this.height - 1; row >= 0; row--) {
+        let rowsEliminated = 0;
+        let rowsChecked = 0
+        for (let row = 0; row < this.height; row++) {
             // if this row is full
             if (!this.grid[row].includes(null)) {
+                rowsEliminated++;
                 // remove the row
-                this.grid.splice(row, 1)
+                this.grid.splice(row, 1);
                 // and add an empty row to the top
                 this.grid.unshift(new Array(this.width).fill(null));
-                this.rowsCompleted++
+                this.rowsCompleted++;
+                this.printGrid();
             }
-
+            rowsChecked++;
         }
+        console.log(rowsEliminated + ":" + rowsChecked);
+    }
+
+    printGrid() {
+        let gridStr = "";
+        for (let j = 0; j < this.grid.length; j++) {
+            for (let i = 0; i < this.grid[j].length; i++) {
+                let cell = this.grid[j][i] == null ? " " : 1;
+                gridStr += cell + " "
+            }
+            gridStr += "\n";
+        }
+        console.log(gridStr);
     }
 }
 
-export {GameState}
+export { GameState }
