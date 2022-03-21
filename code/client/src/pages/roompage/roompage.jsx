@@ -73,7 +73,7 @@ const RoomPage = ({ socket }) => {
             </div>
             <div className="room-code">
                 <span className="h2 text-dark font-weight-bold text-center ">Room:</span>
-                <span type="text" value="room id" id="roomId" className="h2 text-dark font-weight-bold text-center">1234</span>
+                <span type="text" value="room id" id="roomId" className="h2 text-dark font-weight-bold text-center">{roomID}</span>
                 <button onClick={copyRoomId} className="copy-button"><i className="bi bi-clipboard fa-lg"></i></button>
             </div>
                 
@@ -83,7 +83,7 @@ const RoomPage = ({ socket }) => {
                             <PlayerInfoComponent />
                     </div>
                     <div className="room-box-left">
-                            <ChatboxComponent />
+                            <ChatboxComponent socket={socket}/>
                     </div>
                 </div>
                 <div className="room-sections-right">

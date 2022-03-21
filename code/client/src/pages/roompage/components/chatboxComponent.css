@@ -55,29 +55,3 @@
   clear: both;
   display: table;
 }
-
-.container-name-left{
-  float: left;
-  max-width: 30px;
-  width: 100%;
-  margin-left: 5px;
-  font-weight: bold;
-}
-
-.container-name-right{
-  float: right;
-  max-width: 30px;
-  width: 100%;
-  margin-right: 5px;
-  font-weight: bold;
-}
-
-.time-right {
-  float: right;
-  color: #aaa;
-}
-
-.time-left {
-  float: left;
-  color: #999;
-}
