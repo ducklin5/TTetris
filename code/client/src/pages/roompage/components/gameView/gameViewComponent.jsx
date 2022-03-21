@@ -43,6 +43,7 @@ const GameViewComponent = ({socket}) => {
             <div className="GameViewCol1">
                     <GameButtonsComponent />
                     {/* <GameVotingComponent /> */}
+                    <div className="game-level">Level 1</div>
             </div>
             <div className="GameViewCol2">
                 <ResponsiveGameCanvasComponent />

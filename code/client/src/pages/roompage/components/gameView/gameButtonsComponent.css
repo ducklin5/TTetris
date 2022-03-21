@@ -33,9 +33,12 @@
     font-family: sans-serif;
     font-weight: bold;
     font-size: large;
+    color: rgb(139, 137, 137);
     text-align: center;
     vertical-align: middle;
     padding-left: 20px;
+    padding-top: 5px;
+    
 }
 
 .sabotage-button{
