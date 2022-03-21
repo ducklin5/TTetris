@@ -182,7 +182,7 @@ class GameSession {
         let gridStr = "";
         for (let j = 0; j < grid.length; j++) {
             for (let i = 0; i < grid[j].length; i++) {
-                let cell = grid[j][i] == null ? " " : grid[j][i];
+                let cell = grid[j][i] == null ? " " : 1;
                 gridStr += cell + " "
             }
             gridStr += "\n";
