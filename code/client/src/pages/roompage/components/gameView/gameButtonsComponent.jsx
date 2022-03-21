@@ -1,4 +1,4 @@
-
+import './gameButtonsComponent.css';
 
 const GameButtonsComponent = (props) => {
     return (
