@@ -18,10 +18,9 @@ class GameState {
         let pieceMatrix = piece.getMatrix();
         let size = pieceMatrix.length;
 
-        for (let y = size - 1; y >= 0; y--) {
+        for (let y = 0; y < size; y++) {
             for (let x = 0; x < size; x++) {
                 if (pieceMatrix[y][x] === 1) {
-                    let gridY = piece.ofy + y;
                     let gridX = piece.ofx + x;
 
                     if (gridX < 0) {
@@ -31,6 +30,15 @@ class GameState {
                     if (gridX >= this.width) {
                         return "right";
                     }
+                }
+            }
+        }
+        
+        for (let y = 0; y < size; y++) {
+            for (let x = 0; x < size; x++) {
+                if (pieceMatrix[y][x] === 1) {
+                    let gridY = piece.ofy + y;
+                    let gridX = piece.ofx + x;
 
                     if (gridY < 0) {
                         return "top"
