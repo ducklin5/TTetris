@@ -15,3 +15,23 @@
   border-radius: 80%;
   outline: none;
 }
+
+.timer-frame {
+    background-color: rgba(240, 231, 231, 0.685);
+    border-color:rgb(139, 137, 137);
+    border-width:medium;
+    padding: 10px;
+    display: inline-block;
+    margin: 20px 20px;
+    border-radius: 20%;
+    border-style: solid;
+    width: 100px;
+    height: 60px;
+}
+
+.time-countdown {
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
