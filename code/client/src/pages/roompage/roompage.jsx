@@ -9,14 +9,14 @@ import GameSettingsComponent from "./components/gameSettingsComponent";
 import GameViewComponent from "./components/gameView/gameViewComponent";
 import "./roompage.css";
 
-window.gameData = {};
+window.gameData = null;
 
 const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
 }
 
 const RoomPage = ({ socket }) => {
-    const [gameStarted, setGameStarted] = useState(false);
+    const [gameStarted, setGameStarted] = useState(!!window.gameData);
     const [gameData, setGameData] = useState({});
     const roomID = useParams().roomID;
 

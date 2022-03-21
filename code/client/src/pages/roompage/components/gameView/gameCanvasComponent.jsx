@@ -20,7 +20,7 @@ function sketch(p5) {
             width = props.width;
             p5.resizeCanvas(width, height);
             vUnits = window.gameData.board.height + 4;
-            hUnits = window.gameData.board.width + 2;
+            hUnits = window.gameData.board.width + 7;
             pxPerUnit = height/width > vUnits/hUnits ? width / hUnits : height / vUnits;
         }
     };
@@ -37,10 +37,7 @@ function sketch(p5) {
         return window.gameData.players[playerId].color;
     }
 
-    const drawGameBoard = () => {
-
-        let board = window.gameData.board;
-
+    const drawGameBoard = (board) => {
         for (let y = 0; y < board.height; y++) {
             for (let x = 0; x < board.width; x++) {
                 let playerID = board.grid[y][x];
@@ -54,15 +51,15 @@ function sketch(p5) {
         }
     }
 
-    const drawProgressBar = () => {
+    const drawProgressBar = (board) => {
 
-        let barWidth = hUnits - 2;
+        let barWidth = board.width;
 
         p5.fill("#fff");
         p5.rect(0, 0, u(barWidth), u(1));
 
         let completionRatio =
-            window.gameData.rowsCompleted / window.gameData.requiredRows;
+            window.gameData.board.rowsCompleted / window.gameData.board.requiredRows;
         let completionWidth = barWidth * completionRatio;
 
         p5.fill("#ff0");
@@ -95,16 +92,44 @@ function sketch(p5) {
         }
     }
 
+    const drawPlayerNextPiece = (board) => {
+        let players = window.gameData.players;
+        let player = players[window.clientID];
+        let piece = player.nextPiece;
+        let pieceMatrix = getPieceMatrix(piece);
+        let size = pieceMatrix.length;
+        
+        p5.fill(getPlayerColor(window.clientID));
+
+        for (let y = 0; y < size; y++) {
+            for (let x = 0; x < size; x++) {
+                if (pieceMatrix[y][x]) {
+                    p5.rect(u(x), u(y), u(1));
+                }
+            }
+        } 
+
+    }
+
     p5.draw = () => {
+        let board = window.gameData.board;
+
         p5.background(10, 10, 10);
 
         p5.translate(u(1), u(1));
-        drawProgressBar();
+        drawProgressBar(board);
 
         p5.translate(0, u(2));
-        drawGameBoard();
-
+        drawGameBoard(board);
         drawPieces();
+        
+        p5.translate(u(board.width+1), 0);
+        p5.textSize(u(0.5));
+        p5.fill(getPlayerColor(window.clientID));
+        p5.text('Next piece:', 0, 0, u(5), u(1));
+
+        p5.translate(0, u(1));
+        drawPlayerNextPiece();
     }
 
 }
