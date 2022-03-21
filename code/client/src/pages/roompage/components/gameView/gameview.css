@@ -8,7 +8,7 @@
 .GameViewCol1 {
     flex: 2;
     height: 100%;
-    background-color: aquamarine;
+    background-color: #B3F2FF;
 }
 
 .GameViewCol2 {
@@ -18,7 +18,7 @@
 }
 
 .GameCanvas {
-    background-color: blueviolet;
+    background-color: rgb(139, 137, 137);
     padding: 10px;
     height: 100%;
     width: 100%;
