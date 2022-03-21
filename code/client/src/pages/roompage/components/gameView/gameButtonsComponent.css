@@ -1,0 +1,50 @@
+.emergency-timer{
+  /* justify-content: center; */
+  align-items: center;
+  display:flex;
+  flex-direction: row;
+}
+
+.emergency-button{
+  background-color: red;
+  border: none;
+  color:white;
+  padding: 20px;
+  display: flex;
+  margin: 20px 20px;
+  border-radius: 80%;
+  outline: none;
+}
+
+.timer-frame {
+    background-color: rgba(240, 231, 231, 0.685);
+    border-color:rgb(139, 137, 137);
+    border-width:medium;
+    padding: 10px;
+    display: flex;
+    margin: 20px 20px;
+    border-radius: 20%;
+    border-style: solid;
+    width: 100px;
+    height: 60px;
+}
+
+.time-countdown {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+    vertical-align: middle;
+    padding-left: 20px;
+}
+
+.sabotage-button{
+  background-color: rgb(32, 98, 241);
+  border: none;
+  color:white;
+  padding: 20px;
+  display: inline-block;
+  margin: 5px 20px;
+  border-radius: 80%;
+  outline: none;
+}

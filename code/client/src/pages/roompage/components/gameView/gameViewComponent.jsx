@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import GameButtonsComponent from "./gameButtonsComponent";
 import GameInfoComponent from "./gameInfoComponent";
+import GameVotingComponent from "./gameVotingComponent";
 import { ResponsiveGameCanvasComponent } from "./responsiveGameCanvasComponent";
 import "./gameview.css";
 
@@ -40,11 +41,8 @@ const GameViewComponent = ({socket}) => {
     return (
         <div className="GameViewComponent" ref={innerRef}>
             <div className="GameViewCol1">
-                <GameInfoComponent />
-                <GameButtonsComponent />
-                {
-
-                }
+                    <GameButtonsComponent />
+                    {/* <GameVotingComponent /> */}
             </div>
             <div className="GameViewCol2">
                 <ResponsiveGameCanvasComponent />
