@@ -16,25 +16,20 @@ describe("GameSession", () => {
         socket = new MockedSocket();
     });
 
-    test("should send game updates to the socket", async () => {
-        let gameUpdatesRecieved = 0;
-        socket.socketClient.on("gameDataUpdated", (gameData) => {
-            if (gameData) {
-                gameUpdatesRecieved++
-            }
-        })
+    test("should run updates", async () => {
+        let updatesCompleted = 0;
         
         let gs = new GameSession([c1],socket);
-        gs.run();
+        gs.run(() => {updatesCompleted++});
         await sleep(3000);
         gs.pause();
-        expect(gameUpdatesRecieved).toBeGreaterThan(0);
+        expect(updatesCompleted).toBeGreaterThan(0);
     });
 
     test("should not drop pieces to quickly", async () => {
         
         let gs = new GameSession([c1],socket);
-        gs.run();
+        gs.run(() => {});
         await sleep(2000);
         gs.pause();
 
