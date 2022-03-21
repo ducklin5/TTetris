@@ -41,9 +41,8 @@ const GameViewComponent = ({socket}) => {
     return (
         <div className="GameViewComponent" ref={innerRef}>
             <div className="GameViewCol1">
-                <GameInfoComponent />               
                     <GameButtonsComponent />
-                    <GameVotingComponent />
+                    {/* <GameVotingComponent /> */}
             </div>
             <div className="GameViewCol2">
                 <ResponsiveGameCanvasComponent />

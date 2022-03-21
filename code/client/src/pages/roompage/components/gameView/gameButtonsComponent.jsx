@@ -2,9 +2,9 @@ import './gameButtonsComponent.css';
 
 const GameButtonsComponent = (props) => {
     return (
-        <>
-            <h2>Game Buttons Component</h2>
-        </>
+        <div className='emergency-timer'>
+            <button className='emergency-button'><i class="fa fa-exclamation-circle fa-lg"></i></button>
+        </div>
     );
 }
 
