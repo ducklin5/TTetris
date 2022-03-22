@@ -1,12 +1,13 @@
 import { GameSession } from "src/game/game_session";
 import { v4 as uuidv4 } from "uuid";
 import { Client } from "./client.js";
+import ChatSession  from "./chat_session.js";
 
 class RoomSession {
     constructor(roomID,  channel) {
         this.clients = []; // list of Client object
         // TODO: Create a chat session later on
-        // this.chatSession = [];
+        this.chatSession = new ChatSession();
         this.roomID = roomID;
         this.gameSession = null;
         this.channel = channel;
@@ -19,6 +20,14 @@ class RoomSession {
         let clientName = `Player${this.clients.length+1}`; 
         let client = new Client(clientID, clientName, clientColor, isHost);
         this.clients.push(client)
+    }
+
+    getClientByID(clientID) {
+        for (let client of this.clients) {
+            if (client.id == clientID) {
+                return client;
+            }
+        }
     }
 
     getMostRecentClient() {

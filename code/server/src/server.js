@@ -72,11 +72,19 @@ wsServer.on("connection", (socket) => {
   })
 
   socket.on("getClientInfo", (roomID, clientID, done) => {
-    let client;
-    roomSessions[roomID].clients.forEach(_client => {
-      if (_client.id == clientID) client = _client
-    })
+    let client = roomSessions[roomID].getClientByID(clientID);
     done(client);
+  })
+
+  socket.on("getMessage", (roomID, done) => {
+    done(roomSessions[roomID].chatSession.chatHistory);
+  })
+
+  socket.on("sendMessage", (roomID, message, clientID, done) => {
+    let nickname = roomSessions[roomID].getClientByID(clientID).nickname;
+    roomSessions[roomID].chatSession.addChat(message, nickname, "11:11");
+    done(roomSessions[roomID].chatSession.chatHistory);
+    roomSessions[roomID].channel.emit("sendMessageAll", roomSessions[roomID].chatSession.chatHistory);
   })
 
   socket.on("disconnecting", () => {
