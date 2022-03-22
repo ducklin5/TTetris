@@ -5,7 +5,8 @@ import RoomPage from './pages/roompage/roompage';
 import HelpPage from './pages/helppage/helppage';
 import { io } from "socket.io-client";
 
-const socket = io.connect('http://127.0.0.1:8080');
+const port = process.env.PORT || 8080;
+const socket = io.connect('http://127.0.0.1:'+port);
 
 function App() {
   return (

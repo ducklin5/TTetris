@@ -4,18 +4,19 @@ import http from 'http';
 import { Server as IOServer } from 'socket.io';
 import { RoomSession } from './room/room_session.js';
 import { v4 as uuidv4 } from "uuid";
+import path from 'path';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json())
 
-app.get('/', (_, res) => {
-  res.status(200).send('');
-});
+let clientPath = path.join(__dirname, '../../client');
 
-app.get('/version', (_, res) => {
-  res.status(200).send("0.1.0");
+app.use(express.static(path.join(clientPath, 'build')));
+
+app.use((req, res, next) => {
+  res.sendFile(path.join(clientPath, 'build/index.html'));
 });
 
 const httpServer = http.createServer(app);
