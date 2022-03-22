@@ -7,6 +7,7 @@ import { io } from "socket.io-client";
 
 const port = process.env.PORT || 8080;
 const wsAddress = window.location.protocol + '//' + window.location.hostname + ':' +port
+console.log(wsAddress);
 const socket = io.connect(wsAddress);
 
 function App() {
