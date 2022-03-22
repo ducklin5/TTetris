@@ -1,6 +1,10 @@
 {
   "folders": [
     {
+      "name": "Root",
+      "path": "."
+    },
+    {
       "name": "ClientCode",
       "path": "code/client"
     },
@@ -11,6 +15,6 @@
     {
       "name": "Documentation",
       "path": "docs"
-    }
+    },
   ]
 }
