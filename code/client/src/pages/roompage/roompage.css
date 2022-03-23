@@ -98,37 +98,44 @@ html, body, #root {
 }
 
 .piece-1{
-  background-color: lightblue;
+  /* opacity: 0.7; */
+  background-size:contain;
+  background-image: url("T-Piece.png");
   left: 1.4vw;
   animation-duration: 8s;
 }
 
 .piece-2{
-  background-color: lightblue;
+  background-size:contain;
+  background-image: url("T-Piece.png");
   right: 1.4vw;
   animation-duration: 8s;
 }
 
 .piece-3{
-  background-color: rgb(235, 53, 53);
+  background-size:contain;
+  background-image: url("S-Piece.png");
   left: 1.4vw;
   animation-duration: 10s;
 }
 
 .piece-4{
-  background-color: rgb(235, 53, 53);
+  background-size:contain;
+  background-image: url("S-Piece.png");
   right: 1.4vw;
   animation-duration: 10s;
 }
 
 .piece-5{
-  background-color: rgb(53, 235, 77);
+  background-size:contain;
+  background-image: url("J-Piece.png");
   left: 1.4vw;
   animation-duration: 12s;
 }
 
 .piece-6{
-  background-color: rgb(53, 235, 77);
+  background-size:contain;
+  background-image: url("J-Piece.png");
   right: 1.4vw;
   animation-duration: 12s;
 }
