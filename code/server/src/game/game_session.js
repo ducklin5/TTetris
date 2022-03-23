@@ -9,6 +9,8 @@ class GameSession {
     constructor(clients, settings) {
         this.players = {}; // dictionary of id to player objects
         this.onGameUpdated = () => {};
+        this.running = false;
+        this.done = true
 
         let i = 0;
         for (let client of clients) {
@@ -21,8 +23,8 @@ class GameSession {
         let randPlayerId = playerIds[randPlayerIdIndex]
         this.players[randPlayerId].setImposter();
 
-        const boardWidth = 15 + Math.max(0, playerIds.length - 3) * 5;
-        this.gameState = new GameState(20, boardWidth);
+        const boardWidth = 15 + Math.max(0, playerIds.length - 3) * 5; 
+        this.gameState = new GameState(20, boardWidth, 10);
 
         // TODO: maybe put this in run() as well?
         for (let playerId in this.players) {
@@ -34,10 +36,12 @@ class GameSession {
 
     run(onGameUpdated) {
         let self = this;
+        this.running = true;
         this.updateIntervalId = setInterval(() => self._update(onGameUpdated), UPDATE_DELAY);
     }
 
     pause() {
+        this.running = false;
         clearInterval(this.updateIntervalId);
     }
 
@@ -61,6 +65,8 @@ class GameSession {
     }
 
     endGame() {
+        this.running = false;
+        this.done = true;
         this.pause();
         console.log("The game has ended");
     }
@@ -73,6 +79,8 @@ class GameSession {
     }
 
     inputEvent(playerId, event) {
+        if (done || !this.running)
+            return false;
         switch (event) {
             case "left":
                 return this.tryMovePiece(playerId, -1, 0);
