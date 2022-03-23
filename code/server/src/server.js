@@ -84,7 +84,7 @@ wsServer.on("connection", (socket) => {
   socket.on("sendMessage", (roomID, message, clientID, done) => {
     let nickname = roomSessions[roomID].getClientByID(clientID).nickname;
     roomSessions[roomID].chatSession.addChat(message, nickname, "11:11");
-    done(roomSessions[roomID].chatSession.chatHistory);
+    done()
     roomSessions[roomID].channel.emit("sendMessageAll", roomSessions[roomID].chatSession.chatHistory);
   })
 
