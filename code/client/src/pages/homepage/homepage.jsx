@@ -29,7 +29,10 @@ const HomePage = (props) => {
             if (!roomExists) {
                 alert("The room does not exist")
                 return;
-            }
+            } else if (roomExists == "full") {
+                alert("The room is full");
+                return;
+            } 
             window.clientID = clientID;
             let path = `/room/${roomID}`;
             navigate(path);
