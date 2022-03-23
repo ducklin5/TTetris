@@ -71,28 +71,46 @@ wsServer.on("connection", (socket) => {
     }
   })
 
-  socket.on("game_input", (event) => {
-    console.log(event);
-    roomSessions[clientRoomId].gameInput(clientId, event);
+  socket.on("game_input", (event, done = ()=>{}) => {
+    try {
+      let succ = roomSessions[clientRoomId].gameInput(clientId, event);
+      done(succ);
+    } catch (err) {
+      done(false);
+    }
   })
 
   // get a single client's information by ID
   socket.on("getClientInfo", (roomID, clientID, done) => {
-    let client = roomSessions[roomID].getClientByID(clientID);
-    done(client);
+    try {
+      let client = roomSessions[roomID].getClientByID(clientID);
+      done(client);
+    } catch (err) {
+      console.log(err);
+      done(null);
+    }
   })
 
   // get chat messages
   socket.on("getMessage", (roomID, done) => {
-    done(roomSessions[roomID].chatSession.chatHistory);
+    try {
+      done(roomSessions[roomID].chatSession.chatHistory);
+    } catch (err) {
+      console.log(err);
+      done(null);
+    }
   })
 
   // send chat message, and return the message to all clients
   socket.on("sendMessage", (roomID, message, clientID, done) => {
-    let nickname = roomSessions[roomID].getClientByID(clientID).nickname;
-    roomSessions[roomID].chatSession.addChat(message, nickname, "11:11");
-    done()
-    roomSessions[roomID].channel.emit("sendMessageAll", roomSessions[roomID].chatSession.chatHistory);
+    try {
+      let nickname = roomSessions[roomID].getClientByID(clientID).nickname;
+      roomSessions[roomID].chatSession.addChat(message, nickname, "11:11");
+      done()
+      roomSessions[roomID].channel.emit("sendMessageAll", roomSessions[roomID].chatSession.chatHistory);
+    } catch {
+      console.log(err);
+    }
   })
 
   // get all clients that are connected

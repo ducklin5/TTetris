@@ -84,8 +84,8 @@ html, body, #root {
 
 /* Reference for falling pieces: https://codepen.io/oridr22/pen/mOGddj */
 .piece {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   position: absolute;
   animation-name: falling;
   animation-iteration-count: infinite;
@@ -100,14 +100,14 @@ html, body, #root {
 .piece-1{
   background-size:contain;
   background-image: url("image/T-Piece.png");
-  left: 1.4vw;
+  left: 1.3vw;
   animation-duration: 10s;
 }
 
 .piece-2{
   background-size:contain;
   background-image: url("image/T-Piece.png");
-  right: 1.4vw;
+  right: 1.3vw;
   animation-duration: 10s;
 }
 
@@ -128,7 +128,7 @@ html, body, #root {
 .piece-5{
   background-size:contain;
   background-image: url("image/J-Piece.png");
-  left: 1.0vw;
+  left: 0.6vw;
   animation-duration: 14s;
 }
 
@@ -142,7 +142,7 @@ html, body, #root {
 .piece-7{
   background-size:contain;
   background-image: url("image/O-Piece.png");
-  right: 1.0vw;
+  right: 0.7vw;
   animation-duration: 16s;
 }
 
@@ -163,7 +163,7 @@ html, body, #root {
 .piece-10{
   background-size:contain;
   background-image: url("image/L-Piece.png");
-  left: 1.0vw;
+  left: 0.6vw;
   animation-duration: 18s;
 }
 /* end of falling pieces */
