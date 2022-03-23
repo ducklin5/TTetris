@@ -1,4 +1,5 @@
 import { Socket } from "socket.io";
+import { eqSet } from "src/util.js";
 import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
@@ -50,8 +51,8 @@ class GameSession {
         for (let playerId in this.players) {
             let player = this.players[playerId];
             player.currentPiece.ofy += 1;
-            let collision = this.gameState.checkPieceCollision(player.currentPiece);
-            if (collision == "bottom" || collision == "block") {
+            let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
+            if (collisions.has("bottom") || collisions.has("block")) {
                 let success = this.gameState.dropPiece(player.currentPiece, player.id);
                 
                 if(!success) {
@@ -102,8 +103,8 @@ class GameSession {
         if (player) {
             player.currentPiece.ofx += x;
             player.currentPiece.ofy += y;
-            let collision = this.gameState.checkPieceCollision(player.currentPiece);
-            if (collision == null || collision == "top") {
+            let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
+            if (collisions.size == 0 || eqSet(collisions, new Set("top"))) {
                 return true;
             }
             player.currentPiece.ofx -= x;
@@ -117,8 +118,8 @@ class GameSession {
         let player = this.getPlayer(playerId);
         if (player) {
             player.currentPiece.rotation += 1;
-            let collision = this.gameState.checkPieceCollision(player.currentPiece);
-            if (collision == null || collision == "top") {
+            let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
+            if (collisions.size == 0 || eqSet(collisions, new Set("top"))) {
                 return true;
             }
             player.currentPiece.rotation -= 1;

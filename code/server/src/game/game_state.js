@@ -13,75 +13,70 @@ class GameState {
         }
     }
 
-    checkPieceCollision(piece) {
+    checkPieceCollisions(piece) {
         // checks if the piece matrix is colliding with the any part of the board 
         let pieceMatrix = piece.getMatrix();
         let size = pieceMatrix.length;
 
-        for (let y = 0; y < size; y++) {
-            for (let x = 0; x < size; x++) {
-                if (pieceMatrix[y][x] === 1) {
-                    let gridX = piece.ofx + x;
-
-                    if (gridX < 0) {
-                        return "left";
-                    }
-
-                    if (gridX >= this.width) {
-                        return "right";
-                    }
-                }
-            }
-        }
+        let collisions = new Set();
         
         for (let y = 0; y < size; y++) {
             for (let x = 0; x < size; x++) {
                 if (pieceMatrix[y][x] === 1) {
                     let gridY = piece.ofy + y;
                     let gridX = piece.ofx + x;
+                    let validGridPos = true;
+
+                    if (gridX < 0) {
+                        collisions.add("left");
+                        validGridPos = false;
+                    } else if (gridX >= this.width) {
+                        collisions.add("right");
+                        validGridPos = false;
+                    }
 
                     if (gridY < 0) {
-                        return "top"
+                        collisions.add("top");
+                        validGridPos = false;
+                    } else if (gridY >= this.height) {
+                        collisions.add("bottom");
+                        validGridPos = false;
                     }
 
-                    if (gridY >= this.height) {
-                        return "bottom"
-                    }
-
-                    if (this.grid[gridY][gridX] != null) {
-                        return "block";
+                    if (validGridPos && this.grid[gridY][gridX] != null) {
+                        collisions.add("block");
                     }
                 }
             }
         }
 
-        return null;
+        return collisions;
     }
 
     // This function is super expensive to ensure the grid is always valid.
     // only call this if you're sure the piece will fit 
     // use `isPieceColliding` before using this. 
     dropPiece(piece, playerId) {
-        let collision = this.checkPieceCollision(piece);
-        let isBlockBottom = (value) => value == "block" || value == "bottom";
+        let collisions = this.checkPieceCollisions(piece);
+        let isBlockBottom = (collisions) => collisions.has("block") || collisions.has("bottom");
 
-        if (!isBlockBottom(collision)) {
+        if (!isBlockBottom(collisions)) {
             // move it down untill it is
             do {
                 piece.ofy += 1;
-                collision = this.checkPieceCollision(piece);
-            } while (!isBlockBottom(collision))
+                collisions = this.checkPieceCollisions(piece);
+            } while (!isBlockBottom(collisions))
         }
 
         // now it must be colliding so move it up untill it isnt/ or it is past the top
         do {
             piece.ofy -= 1;
-            collision = this.checkPieceCollision(piece);
-        } while (isBlockBottom(collision));
+            collisions = this.checkPieceCollisions(piece);
+        } while (isBlockBottom(collisions));
 
         this._addPiece(piece, playerId);
         
-        if (collision == "top") {
+        if (collisions.has("top")) {
             return false;
         }
 
