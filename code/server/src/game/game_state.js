@@ -79,11 +79,12 @@ class GameState {
             collision = this.checkPieceCollision(piece);
         } while (isBlockBottom(collision));
 
+        this._addPiece(piece, playerId);
+        
         if (collision == "top") {
             return false;
         }
 
-        this._addPiece(piece, playerId);
         return true;
     }
 
