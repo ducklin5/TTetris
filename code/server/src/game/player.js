@@ -12,6 +12,11 @@ class Player {
 
     setImposter() {
         this.isImposter = true;
+        this.hasSabotage = {
+            drop: true,
+            pieces: true,
+            progress: true,
+        }
     }
 
 
