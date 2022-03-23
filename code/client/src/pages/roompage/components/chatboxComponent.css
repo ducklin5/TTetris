@@ -9,7 +9,6 @@
 }
 
 .messages-container {
-    /* word-wrap: break-all; */
     background-color: #eceff1;
     margin: 10px 0;
     flex: 1;
