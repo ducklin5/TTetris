@@ -1,10 +1,10 @@
 class GameState {
-    constructor(height, width) {
+    constructor(height, width, requiredRows) {
         this.height = height;
         this.width = width;
         this.grid = [];
         this.rowsCompleted = 0;
-        this.requiredRows = 20;
+        this.requiredRows = requiredRows;
         for (var y = 0; y < height; y++) {
             this.grid.push([]);
             for (var x = 0; x < width; x++) {
