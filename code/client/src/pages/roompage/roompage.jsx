@@ -63,7 +63,6 @@ const RoomPage = ({ socket }) => {
     })
 
     socket.on("gameDataUpdated", (gameData) => {
-        console.log("HERE")
         window.gameData = gameData;
     });
 
