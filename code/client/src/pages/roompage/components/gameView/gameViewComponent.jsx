@@ -7,13 +7,13 @@ import "./gameview.css";
 
 
 const GameViewComponent = ({socket}) => {
-    const innerRef = useRef(null);
+    const gameDivRef = useRef(null);
 
     useEffect(() => {
-        const div = innerRef.current;
-        window.addEventListener("keydown", handleKeyDown);
+        const gameDiv = gameDivRef.current;
+        window.addEventListener("keydown", handleKeyDown, false);
         return () => {
-            window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("keydown", handleKeyDown, false);
         };
     }, []);
 
@@ -33,19 +33,20 @@ const GameViewComponent = ({socket}) => {
                 break;
             case " ":
                 socket.emit("game_input", "drop");
+                e.preventDefault();
                 break
         }
     };
     
 
     return (
-        <div className="GameViewComponent" ref={innerRef}>
+        <div className="GameViewComponent">
             <div className="GameViewCol1">
                     <GameButtonsComponent socket={socket} />
                     <GameVotingComponent />
                     <div className="game-level">Level 1</div>
             </div>
-            <div className="GameViewCol2">
+            <div className="GameViewCol2" ref={gameDivRef} tabindex="0">
                 <ResponsiveGameCanvasComponent />
             </div>
         </div>
