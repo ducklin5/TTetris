@@ -42,7 +42,7 @@ const GameViewComponent = ({socket}) => {
         <div className="GameViewComponent" ref={innerRef}>
             <div className="GameViewCol1">
                     <GameButtonsComponent socket={socket} />
-                    {/* <GameVotingComponent /> */}
+                    <GameVotingComponent />
                     <div className="game-level">Level 1</div>
             </div>
             <div className="GameViewCol2">

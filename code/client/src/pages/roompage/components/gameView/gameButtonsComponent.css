@@ -19,7 +19,7 @@
 .timer-frame {
     background-color: rgba(240, 231, 231, 0.685);
     border-color:rgb(139, 137, 137);
-    border-width:medium;
+    border-width:thin;
     padding: 10px;
     display: flex;
     margin: 20px 30px;
