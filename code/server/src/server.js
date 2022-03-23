@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import http from 'http';
-import { Server as IOServer, io } from 'socket.io';
+import { Server as IOServer} from 'socket.io';
 import { RoomSession } from './room/room_session.js';
 import { v4 as uuidv4 } from "uuid";
 import path from 'path';
