@@ -4,7 +4,7 @@ import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
 
-const UPDATE_DELAY = 1000;
+const UPDATE_DELAY = 600;
 
 class GameSession {
     constructor(clients, settings) {
@@ -78,6 +78,16 @@ class GameSession {
         }
         return null;
     }
+    
+    consumePlayerPiece(playerId) {
+        let player = this.getPlayer(playerId);
+        if (player) {
+            player.currentPiece = player.nextPiece;
+            player.nextPiece = generateRandomPiece(player.init_ofx);
+            return true;
+        }
+        return false;
+    }
 
     inputEvent(playerId, event) {
         if (this.done || !this.running)
@@ -95,6 +105,12 @@ class GameSession {
                 return this.tryRotatePiece(playerId);
             case "emergency":
                 return this.tryStartVoting(playerId);
+            case "sabotage:Drop":
+                return this.trySabotageDrop(playerId);
+            case "sabotage:Progress":
+                return this.trySabotageProgress(playerId);
+            case "sabotage:Pieces":
+                return this.trySabotagePieces(playerId);
         }
     }
 
@@ -137,22 +153,42 @@ class GameSession {
         return false;
     }
 
-    consumePlayerPiece(playerId) {
-        let player = this.getPlayer(playerId);
-        if (player) {
-            player.currentPiece = player.nextPiece;
-            player.nextPiece = generateRandomPiece(player.init_ofx);
-            return true;
-        }
-        return false;
-    }
-
     tryStartVoting(playerId) {
         let player = this.getPlayer(playerId);
         if (player && player.hasEmergency) {
             player.hasEmergency = false;
             this.pause();
             // create a voting session
+        }
+    }
+
+    trySabotageDrop(playerId) {
+        let player = this.getPlayer(playerId);
+        if (player && player.isImposter && player.hasSabotage.drop) {
+            for (let targetPlayerId in this.players) {
+                this.tryDropPiece(targetPlayerId);
+            }
+            player.hasSabotage.drop = false;
+        }
+    }
+
+    trySabotageProgress(playerId) {
+        let player = this.getPlayer(playerId);
+        if (player && player.isImposter && player.hasSabotage.progress) {
+            if (this.gameState.rowsCompleted) {
+                this.gameState.rowsCompleted -= 1;
+            }
+            player.hasSabotage.progress = false;
+        }
+    }
+
+    trySabotagePieces(playerId) {
+        let player = this.getPlayer(playerId);
+        if (player && player.isImposter && player.hasSabotage.pieces) {
+            for (let targetPlayerId in this.players) {
+                this.consumePlayerPiece(targetPlayerId);
+            }
+            player.hasSabotage.pieces = false;
         }
     }
 
