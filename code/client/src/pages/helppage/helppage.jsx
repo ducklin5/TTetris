@@ -12,6 +12,10 @@ class HelpPage extends Component {
                 <div className="piece piece-4"></div>
                 <div className="piece piece-5"></div>
                 <div className="piece piece-6"></div>
+                <div className="piece piece-7"></div>
+                <div className="piece piece-8"></div>
+                <div className="piece piece-9"></div>
+                <div className="piece piece-10"></div>
                 <div><p className="h1 text-danger font-weight-bold font-italic text-center ">Treacherous Tetris</p></div>
                 <div className="help-col">
                     <div className="help-sections">

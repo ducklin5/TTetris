@@ -66,6 +66,10 @@ const RoomPage = ({ socket }) => {
             <div className="piece piece-4"></div>
             <div className="piece piece-5"></div>
             <div className="piece piece-6"></div>
+            <div className="piece piece-7"></div>
+            <div className="piece piece-8"></div>
+            <div className="piece piece-9"></div>
+            <div className="piece piece-10"></div>
             <div>
                 <p className="h1 text-danger font-weight-bold font-italic text-center ">Treacherous Tetris</p>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
