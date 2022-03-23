@@ -100,14 +100,14 @@ html, body, #root {
 .piece-1{
   background-size:contain;
   background-image: url("image/T-Piece.png");
-  left: 1.4vw;
+  left: 1.3vw;
   animation-duration: 10s;
 }
 
 .piece-2{
   background-size:contain;
   background-image: url("image/T-Piece.png");
-  right: 1.4vw;
+  right: 1.3vw;
   animation-duration: 10s;
 }
 
