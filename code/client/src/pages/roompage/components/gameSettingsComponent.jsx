@@ -39,6 +39,7 @@ const GameSettingsComponent = (props) => {
 
     const onPieceColorChanged = (event) => {
         setPieceColor(event.target.value);
+        socket.emit("changeClientColor", roomID, window.clientID, event.target.value);
     }
 
     return (
@@ -60,7 +61,7 @@ const GameSettingsComponent = (props) => {
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Piece Color:</span>
                             </div>
-                            <input type="text" onChange={onPieceColorChanged} value={pieceColor} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                            <input type="color" onChange={onPieceColorChanged} value={pieceColor} style={{"height":"40px"}} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                         </div>
                     </div>
                     {/* <div className="dropdown">

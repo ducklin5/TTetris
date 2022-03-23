@@ -4,6 +4,7 @@ class Client {
         this.nickname = nickname;
         this.color = color;
         this.isHost = isHost;
+        this.connected = true;
     }
 
     getClientID() {

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import {Container, Row, Col} from "react-bootstrap"
@@ -18,7 +18,33 @@ const RoomPagePropTypes = {
 const RoomPage = ({ socket }) => {
     const [gameStarted, setGameStarted] = useState(!!window.gameData);
     const [gameData, setGameData] = useState({});
+    const [playerInfo, setPlayerInfo] = useState({});
     const roomID = useParams().roomID;
+
+    const createTempPlayers = (clientInfo) => {
+        // create a temporary, "fake" player info
+        let tempPlayerInfo = {};
+        clientInfo.forEach(client => {
+            tempPlayerInfo[client.id] = {
+                id: client.id,
+                nickName: client.nickname,
+                color: client.color,
+                isImposter: false,
+                hasEmergency: true,
+            }
+        })
+        setPlayerInfo(tempPlayerInfo);
+    }
+
+    useEffect(() => {
+        if (window.gameData == null) {
+            socket.emit("getConnectedClients", roomID, createTempPlayers);
+        } else {
+            setPlayerInfo(window.gameData.players);
+        }
+    },[])
+
+    socket.on("connectClient", createTempPlayers);
 
     // Reference: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
     const copyRoomId = () => {
@@ -37,9 +63,9 @@ const RoomPage = ({ socket }) => {
     })
 
     socket.on("gameDataUpdated", (gameData) => {
+        console.log("HERE")
         window.gameData = gameData;
     });
-
 
     const ShowComponent = () => {
         if (gameStarted) {
@@ -84,7 +110,7 @@ const RoomPage = ({ socket }) => {
             <div className="room-components">
                 <div className="room-sections-left">
                     <div className="room-box-left">
-                            <PlayerInfoComponent />
+                            <PlayerInfoComponent playerInfo={playerInfo} />
                     </div>
                     <div className="room-box-left">
                             <ChatboxComponent socket={socket}/>

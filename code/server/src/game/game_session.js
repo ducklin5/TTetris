@@ -15,7 +15,7 @@ class GameSession {
         let i = 0;
         for (let client of clients) {
             this.players[client.id] =
-                new Player(client.id, client.nickName, client.color, 5 * i++);
+                new Player(client.id, client.nickname, client.color, 5 * i++);
         }
 
         let playerIds = Object.keys(this.players);
@@ -79,7 +79,7 @@ class GameSession {
     }
 
     inputEvent(playerId, event) {
-        if (done || !this.running)
+        if (this.done || !this.running)
             return false;
         switch (event) {
             case "left":

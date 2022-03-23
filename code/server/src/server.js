@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import http from 'http';
-import { Server as IOServer } from 'socket.io';
+import { Server as IOServer, io } from 'socket.io';
 import { RoomSession } from './room/room_session.js';
 import { v4 as uuidv4 } from "uuid";
 import path from 'path';
@@ -35,9 +35,8 @@ wsServer.on("connection", (socket) => {
     const roomID = uuidv4().substring(0,4);
     console.log(roomID)
     roomSessions[roomID] = new RoomSession(roomID, wsServer.to(roomID));
-    roomSessions[roomID].addClient(true);
+    const client = roomSessions[roomID].addClient(socket.id, true);
     socket.join(roomID);
-    const client = roomSessions[roomID].getMostRecentClient();
     clientId = client.getClientID();
     clientRoomId = roomID;
     done(roomID, clientId);
@@ -46,13 +45,17 @@ wsServer.on("connection", (socket) => {
   socket.on("join_room", (roomID, done) => {
     let roomExists = true;
     try {
-      roomSessions[roomID].addClient(false);
-      socket.join(roomID);
-      console.log(roomSessions)
-      const client = roomSessions[roomID].getMostRecentClient();
-      clientId = client.getClientID();
-      clientRoomId = roomID;
-      done(roomExists, clientId);
+      const connectedClients = roomSessions[roomID].getConnectedClients();
+      if (connectedClients.length >= 5) {
+        done("full");
+      } else {
+        const client = roomSessions[roomID].addClient(socket.id, false);
+        socket.join(roomID);
+        clientId = client.getClientID();
+        clientRoomId = roomID;
+        done(roomExists, clientId);
+        roomSessions[roomID].channel.emit("connectClient", roomSessions[roomID].getConnectedClients());
+      }
     } catch (err) {
       done(!roomExists);
     }
@@ -69,18 +72,22 @@ wsServer.on("connection", (socket) => {
   })
 
   socket.on("game_input", (event) => {
+    console.log(event);
     roomSessions[clientRoomId].gameInput(clientId, event);
   })
 
+  // get a single client's information by ID
   socket.on("getClientInfo", (roomID, clientID, done) => {
     let client = roomSessions[roomID].getClientByID(clientID);
     done(client);
   })
 
+  // get chat messages
   socket.on("getMessage", (roomID, done) => {
     done(roomSessions[roomID].chatSession.chatHistory);
   })
 
+  // send chat message, and return the message to all clients
   socket.on("sendMessage", (roomID, message, clientID, done) => {
     let nickname = roomSessions[roomID].getClientByID(clientID).nickname;
     roomSessions[roomID].chatSession.addChat(message, nickname, "11:11");
@@ -88,9 +95,27 @@ wsServer.on("connection", (socket) => {
     roomSessions[roomID].channel.emit("sendMessageAll", roomSessions[roomID].chatSession.chatHistory);
   })
 
+  // get all clients that are connected
+  socket.on("getConnectedClients", (roomID, done) => {
+    done(roomSessions[roomID].getConnectedClients());
+  })
+
+  // change client's color
+  socket.on("changeClientColor", (roomID, clientID, newColor) => {
+    roomSessions[roomID].changeClientColor(clientID, newColor);
+    roomSessions[roomID].channel.emit("connectClient", roomSessions[roomID].getConnectedClients());
+  })
+
   socket.on("disconnecting", () => {
     console.log("disconnecting")
-    socket.rooms.forEach(room => socket.to(room).emit("end_session"));
+    socket.rooms.forEach(room => {
+      // disconnect client in room session
+      if (roomSessions[room]) {
+        roomSessions[room].disconnectClient(socket.id);
+      }
+      // end socket session
+      socket.to(room).emit("end_session")
+    });
   });
 })
 

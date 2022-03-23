@@ -4,7 +4,7 @@ import './gameSettingsComponent.css';
 
 const HostSettingsComponent = (props) => {
     const {isHost, gameSpeed, onGameSpeedChanged, onStartButtonClicked} = props;
-    console.log(props);
+    // console.log(props);
     return (
         <div className="game-settings-component">
                 <div className="settings-content">
