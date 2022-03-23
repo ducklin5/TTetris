@@ -1,4 +1,4 @@
-.emergency-timer{
+.row-buttons{
   /* justify-content: center; */
   align-items: center;
   display:flex;
@@ -11,7 +11,7 @@
   color:white;
   padding: 20px;
   display: flex;
-  margin: 20px 20px;
+  margin: 20px 15px;
   border-radius: 80%;
   outline: none;
 }
@@ -22,7 +22,7 @@
     border-width:medium;
     padding: 10px;
     display: flex;
-    margin: 20px 20px;
+    margin: 20px 30px;
     border-radius: 20%;
     border-style: solid;
     width: 100px;
@@ -42,12 +42,24 @@
 }
 
 .sabotage-button{
-  background-color: rgb(32, 98, 241);
   border: none;
   color:white;
-  padding: 20px;
+  padding: 15px;
   display: inline-block;
-  margin: 5px 20px;
+  margin: 5px 15px;
   border-radius: 80%;
   outline: none;
 }
+
+.sabotage-color1{
+  background-color: rgb(29, 214, 122);
+}
+
+.sabotage-color2{
+  background-color: rgb(23, 93, 245);
+}
+
+.sabotage-color3{
+  background-color: rgb(241, 167, 83);
+}
+
