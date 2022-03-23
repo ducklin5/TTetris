@@ -10,7 +10,7 @@ class GameSession {
         this.players = {}; // dictionary of id to player objects
         this.onGameUpdated = () => {};
         this.running = false;
-        this.done = true
+        this.done = false;
 
         let i = 0;
         for (let client of clients) {
@@ -79,7 +79,7 @@ class GameSession {
     }
 
     inputEvent(playerId, event) {
-        if (done || !this.running)
+        if (this.done || !this.running)
             return false;
         switch (event) {
             case "left":

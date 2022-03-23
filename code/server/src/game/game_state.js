@@ -98,7 +98,9 @@ class GameState {
                     let gridY = piece.ofy + y;
                     let gridX = piece.ofx + x;
 
-                    this.grid[gridY][gridX] = playerId;
+                    if (gridY < this.height && gridY >= 0 && gridX >= 0 && gridX < this.width) {
+                        this.grid[gridY][gridX] = playerId;
+                    }
                 }
             }
         }
