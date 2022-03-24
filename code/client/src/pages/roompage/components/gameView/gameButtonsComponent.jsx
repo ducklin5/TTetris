@@ -29,7 +29,7 @@ const GameButtonsComponent = ({ socket }) => {
     return (
         <div>
             <div className='row-buttons'>
-                <button className='emergency-button'><i class="fa fa-exclamation-circle fa-lg"></i></button>
+                <button className='emergency-button'><i className="fa fa-exclamation-circle fa-lg"></i></button>
                 <div className='timer-frame'>
                     <div className='time-countdown'>1:15</div>
                 </div>
@@ -38,7 +38,6 @@ const GameButtonsComponent = ({ socket }) => {
                 isImposter ? <ImposterButtons socket={socket} /> : null
             }
         </div>
-
     );
 }
 

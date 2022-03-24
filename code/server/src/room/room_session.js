@@ -1,5 +1,4 @@
 import { GameSession } from "src/game/game_session";
-import { v4 as uuidv4 } from "uuid";
 import { Client } from "./client.js";
 import ChatSession  from "./chat_session.js";
 
@@ -11,15 +10,18 @@ class RoomSession {
         this.roomID = roomID;
         this.gameSession = null;
         this.channel = channel;
+        this.connectedClients = 0;
     }
 
-    addClient(isHost) {
+    addClient(clientID, isHost) {
         // ref: https://css-tricks.com/snippets/javascript/random-hex-color/
         let clientColor = "#"+Math.floor(Math.random()*16777215).toString(16);
-        let clientID = uuidv4();
         let clientName = `Player${this.clients.length+1}`; 
         let client = new Client(clientID, clientName, clientColor, isHost);
         this.clients.push(client)
+
+        this.connectedClients++;
+        return client;
     }
 
     getClientByID(clientID) {
@@ -28,10 +30,6 @@ class RoomSession {
                 return client;
             }
         }
-    }
-
-    getMostRecentClient() {
-        return this.clients[this.clients.length-1];
     }
 
     startGame() {
@@ -48,6 +46,31 @@ class RoomSession {
         if (this.gameSession.inputEvent(clientId, event)) {
             this.sendGameDataUpdate();
         }
+    }
+
+    changeClientColor(clientID, newColor) {
+        this.clients.forEach(client => {
+            if (client.id == clientID) {
+                client.color = newColor;
+            }
+        })
+    }
+
+    getConnectedClients() {
+        return this.clients.map(client => {
+            if (client.connected == true) {
+                return client;
+            }
+        })
+    }
+
+    disconnectClient(clientID) {
+        this.clients.forEach(client => {
+            if (client.id == clientID) {
+                client.connected = false;
+                this.connectedClients--;
+            }
+        })
     }
 }
 
