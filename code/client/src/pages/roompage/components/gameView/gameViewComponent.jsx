@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import GameButtonsComponent from "./gameButtonsComponent";
 import GameInfoComponent from "./gameInfoComponent";
 import GameVotingComponent from "./gameVotingComponent";
@@ -8,6 +8,8 @@ import "./gameview.css";
 
 const GameViewComponent = ({socket}) => {
     const gameDivRef = useRef(null);
+    const showVoting = useState(false);
+
 
     useEffect(() => {
         const gameDiv = gameDivRef.current;
@@ -43,7 +45,9 @@ const GameViewComponent = ({socket}) => {
         <div className="GameViewComponent">
             <div className="GameViewCol1">
                     <GameButtonsComponent socket={socket} />
-                    <GameVotingComponent />
+                    {
+                        showVoting ? <GameVotingComponent /> : null
+                    }
                     <div className="game-level">Level 1</div>
             </div>
             <div className="GameViewCol2" ref={gameDivRef} tabindex="0">
