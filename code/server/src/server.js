@@ -45,16 +45,16 @@ wsServer.on("connection", (socket) => {
   socket.on("join_room", (roomID, done) => {
     let roomExists = true;
     try {
-      const connectedClients = roomSessions[roomID].getConnectedClients();
+      const connectedClients = roomSessions[roomID]?.getConnectedClients();
       if (connectedClients.length >= 5) {
         done("full");
       } else {
-        const client = roomSessions[roomID].addClient(socket.id, false);
+        const client = roomSessions[roomID]?.addClient(socket.id, false);
         socket.join(roomID);
         clientId = client.getClientID();
         clientRoomId = roomID;
         done(roomExists, clientId);
-        roomSessions[roomID].channel.emit("connectClient", roomSessions[roomID].getConnectedClients());
+        roomSessions[roomID]?.channel.emit("connectClient", roomSessions[roomID].getConnectedClients());
       }
     } catch (err) {
       done(!roomExists);
@@ -63,7 +63,7 @@ wsServer.on("connection", (socket) => {
 
   socket.on("start_game", (done) => {
     try {
-      roomSessions[clientRoomId].startGame();
+      roomSessions[clientRoomId]?.startGame();
       done(true);
     } catch (err) {
       console.log(err);
@@ -73,7 +73,7 @@ wsServer.on("connection", (socket) => {
 
   socket.on("game_input", (event, done = ()=>{}) => {
     try {
-      let succ = roomSessions[clientRoomId].gameInput(clientId, event);
+      let succ = roomSessions[clientRoomId]?.gameInput(clientId, event);
       done(succ);
     } catch (err) {
       done(false);
@@ -83,7 +83,7 @@ wsServer.on("connection", (socket) => {
   // get a single client's information by ID
   socket.on("getClientInfo", (roomID, clientID, done) => {
     try {
-      let client = roomSessions[roomID].getClientByID(clientID);
+      let client = roomSessions[roomID]?.getClientByID(clientID);
       done(client);
     } catch (err) {
       console.log(err);
@@ -94,7 +94,7 @@ wsServer.on("connection", (socket) => {
   // get chat messages
   socket.on("getMessage", (roomID, done) => {
     try {
-      done(roomSessions[roomID].chatSession.chatHistory);
+      done(roomSessions[roomID]?.chatSession?.chatHistory);
     } catch (err) {
       console.log(err);
       done(null);
@@ -104,10 +104,10 @@ wsServer.on("connection", (socket) => {
   // send chat message, and return the message to all clients
   socket.on("sendMessage", (roomID, message, clientID, done) => {
     try {
-      let nickname = roomSessions[roomID].getClientByID(clientID).nickname;
-      roomSessions[roomID].chatSession.addChat(message, nickname, "11:11");
+      let nickname = roomSessions[roomID]?.getClientByID(clientID).nickname;
+      roomSessions[roomID]?.chatSession.addChat(message, nickname, "11:11");
       done()
-      roomSessions[roomID].channel.emit("sendMessageAll", roomSessions[roomID].chatSession.chatHistory);
+      roomSessions[roomID]?.channel.emit("sendMessageAll", roomSessions[roomID].chatSession.chatHistory);
     } catch {
       console.log(err);
     }
@@ -115,13 +115,13 @@ wsServer.on("connection", (socket) => {
 
   // get all clients that are connected
   socket.on("getConnectedClients", (roomID, done) => {
-    done(roomSessions[roomID].getConnectedClients());
+    done(roomSessions[roomID]?.getConnectedClients());
   })
 
   // change client's color
   socket.on("changeClientColor", (roomID, clientID, newColor) => {
-    roomSessions[roomID].changeClientColor(clientID, newColor);
-    roomSessions[roomID].channel.emit("connectClient", roomSessions[roomID].getConnectedClients());
+    roomSessions[roomID]?.changeClientColor(clientID, newColor);
+    roomSessions[roomID]?.channel.emit("connectClient", roomSessions[roomID].getConnectedClients());
   })
 
   socket.on("disconnecting", () => {
@@ -129,7 +129,7 @@ wsServer.on("connection", (socket) => {
     socket.rooms.forEach(room => {
       // disconnect client in room session
       if (roomSessions[room]) {
-        roomSessions[room].disconnectClient(socket.id);
+        roomSessions[room]?.disconnectClient(socket.id);
       }
       // end socket session
       socket.to(room).emit("end_session")
