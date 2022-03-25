@@ -37,8 +37,6 @@ const GameSettingsComponent = (props) => {
     const onNicknameChanged = (event) => {
         setNickname(event.target.value);
         setIsNicknameChanged(true);
-        
-
     }
 
     const onNicknameConfirmed= (event) =>{
