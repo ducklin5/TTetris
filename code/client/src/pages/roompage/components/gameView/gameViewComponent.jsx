@@ -50,7 +50,7 @@ const GameViewComponent = ({socket}) => {
             <div className="GameViewCol1">
                     <GameButtonsComponent socket={socket} />
                     {
-                        (!!votes) ? <GameVotingComponent votes={votes} /> : null
+                        votes ? <GameVotingComponent votes={votes} /> : null
                     }
                     <div className="game-level">Level 1</div>
             </div>
