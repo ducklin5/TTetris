@@ -114,11 +114,9 @@ class GameState {
                 // and add an empty row to the top
                 this.grid.unshift(new Array(this.width).fill(null));
                 this.rowsCompleted++;
-                this.printGrid();
             }
             rowsChecked++;
         }
-        console.log(rowsEliminated + ":" + rowsChecked);
     }
 
     printGrid() {
