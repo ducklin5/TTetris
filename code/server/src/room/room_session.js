@@ -33,7 +33,7 @@ class RoomSession {
     }
 
     startGame(settings) {
-        this.gameSession = new GameSession(this.clients);
+        this.gameSession = new GameSession(this.clients, settings);
         this.gameSession.setOnGameUpdated(() =>
             this.channel.emit("gameDataUpdated", this.gameSession.getGameData())
         );
