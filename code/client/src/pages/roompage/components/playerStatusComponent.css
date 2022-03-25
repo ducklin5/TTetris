@@ -23,3 +23,12 @@
     height: 20px;
     position: relative;
 }
+
+.player-emergency{
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    position: relative;
+    background-color: rgb(206, 15, 15);
+    border-radius: 80%;
+}
