@@ -34,7 +34,7 @@ class RoomSession {
 
     startGame() {
         this.gameSession = new GameSession(this.clients);
-        this.gameSession.run(() => this.sendGameDataUpdate());
+        this.gameSession.start(() => this.sendGameDataUpdate());
         this.channel.emit("gameStarted", this.gameSession.getGameData());
     }
 

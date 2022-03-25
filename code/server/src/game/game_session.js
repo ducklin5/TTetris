@@ -3,6 +3,7 @@ import { eqSet } from "src/util.js";
 import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
+import { VoteSession } from "./vote_session.js";
 
 const UPDATE_DELAY = 600;
 
@@ -12,6 +13,8 @@ class GameSession {
         this.onGameUpdated = () => {};
         this.running = false;
         this.done = false;
+        this.voteDuration = 15;
+        this.votingPhase = false;
 
         let i = 0;
         for (let client of clients) {
@@ -35,10 +38,15 @@ class GameSession {
         }
     }
 
-    run(onGameUpdated) {
+    start(onGameUpdated) {
+        this.onGameUpdated = onGameUpdated;
+        this.run();
+    }
+
+    run() {
         let self = this;
         this.running = true;
-        this.updateIntervalId = setInterval(() => self._update(onGameUpdated), UPDATE_DELAY);
+        this.updateIntervalId = setInterval(() => self._update(self.onGameUpdated), UPDATE_DELAY);
     }
 
     pause() {
@@ -112,6 +120,11 @@ class GameSession {
             case "sabotage:Pieces":
                 return this.trySabotagePieces(playerId);
         }
+
+        switch (event.name) {
+            case "captureVote":
+                return this.tryCaptureVote(playerId, event.args?.targetPlayerId);
+        }
     }
 
     tryMovePiece(playerId, x, y) {
@@ -155,11 +168,19 @@ class GameSession {
 
     tryStartVoting(playerId) {
         let player = this.getPlayer(playerId);
-        if (player && player.hasEmergency) {
+        if (player && player.hasEmergency && !this.votingPhase) {
             player.hasEmergency = false;
+            this.votingPhase = true;
             this.pause();
             // create a voting session
+            this.voteSession = new VoteSession(Object.keys(this.players), this.voteDuration);
+            this.voteSession.start(this.onVoteSessionDone);
         }
+    }
+
+    onVoteSessionDone(results) {
+        this.votingPhase = false;
+        this.run();
     }
 
     trySabotageDrop(playerId) {
@@ -189,6 +210,14 @@ class GameSession {
                 this.consumePlayerPiece(targetPlayerId);
             }
             player.hasSabotage.pieces = false;
+        }
+    }
+
+    tryCaptureVote(playerId, targetPlayerId) {
+        if (this.votingPhase && this.voteSession) {
+            this.voteSession.captureVote(playerId, targetPlayerId);
+        } else {
+            console.log("Gamesession is not in votingPhase or it has no voting session.");
         }
     }
 
