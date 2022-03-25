@@ -1,30 +1,38 @@
-import { Socket } from "socket.io";
 import { eqSet } from "src/util.js";
 import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
+import { VoteSession } from "./vote_session.js";
 
-const UPDATE_DELAY = 600;
 
 class GameSession {
     constructor(clients, settings) {
         this.players = {}; // dictionary of id to player objects
-        this.onGameUpdated = () => {};
         this.running = false;
         this.done = false;
+        this.onGameUpdated = () => { }; 
+        this.voteDuration = 15000;
+        this.votingPhase = false;
+        this.onVotesUpdated = () => { };
+        let speed = settings?.speed || 1
+        this.update_delay = 1200 - 60 * speed;
 
         let i = 0;
         for (let client of clients) {
-            this.players[client.id] =
-                new Player(client.id, client.nickname, client.color, 5 * i++);
+            this.players[client.id] = new Player(
+                client.id,
+                client.nickname,
+                client.color,
+                5 * i++
+            );
         }
 
         let playerIds = Object.keys(this.players);
         let randPlayerIdIndex = Math.floor(Math.random() * playerIds.length);
-        let randPlayerId = playerIds[randPlayerIdIndex]
+        let randPlayerId = playerIds[randPlayerIdIndex];
         this.players[randPlayerId].setImposter();
 
-        const boardWidth = 15 + Math.max(0, playerIds.length - 3) * 5; 
+        const boardWidth = 15 + Math.max(0, playerIds.length - 3) * 5;
         this.gameState = new GameState(20, boardWidth, 10);
 
         // TODO: maybe put this in run() as well?
@@ -35,10 +43,20 @@ class GameSession {
         }
     }
 
-    run(onGameUpdated) {
-        let self = this;
+    setOnGameUpdated(cbk) {
+        this.onGameUpdated = cbk
+    }
+    
+    setOnVotesUpdated(cbk) {
+        this.onVotesUpdated = cbk;
+    }
+
+    run() {
         this.running = true;
-        this.updateIntervalId = setInterval(() => self._update(onGameUpdated), UPDATE_DELAY);
+        this.updateIntervalId = setInterval(
+            () => this._update(),
+            this.update_delay
+        );
     }
 
     pause() {
@@ -46,7 +64,7 @@ class GameSession {
         clearInterval(this.updateIntervalId);
     }
 
-    _update(onGameUpdated) {
+    _update() {
         //let playerIds = this.players
         for (let playerId in this.players) {
             let player = this.players[playerId];
@@ -54,15 +72,15 @@ class GameSession {
             let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
             if (collisions.has("bottom") || collisions.has("block")) {
                 let success = this.gameState.dropPiece(player.currentPiece, player.id);
-                
-                if(!success) {
+
+                if (!success) {
                     this.endGame();
                     return;
                 }
                 this.consumePlayerPiece(playerId);
             }
         }
-        onGameUpdated();
+        this.onGameUpdated();
     }
 
     endGame() {
@@ -78,7 +96,7 @@ class GameSession {
         }
         return null;
     }
-    
+
     consumePlayerPiece(playerId) {
         let player = this.getPlayer(playerId);
         if (player) {
@@ -90,8 +108,15 @@ class GameSession {
     }
 
     inputEvent(playerId, event) {
-        if (this.done || !this.running)
-            return false;
+        if (this.done || !this.running) return false;
+        let result = this._inputEvent(playerId, event);
+        if (result) {
+            this.onGameUpdated();
+        }
+        return result
+    }
+
+    _inputEvent(playerId, event) {
         switch (event) {
             case "left":
                 return this.tryMovePiece(playerId, -1, 0);
@@ -111,6 +136,11 @@ class GameSession {
                 return this.trySabotageProgress(playerId);
             case "sabotage:Pieces":
                 return this.trySabotagePieces(playerId);
+        }
+
+        switch (event.name) {
+            case "captureVote":
+                return this.tryCaptureVote(playerId, event.args?.targetPlayerId);
         }
     }
 
@@ -155,11 +185,24 @@ class GameSession {
 
     tryStartVoting(playerId) {
         let player = this.getPlayer(playerId);
-        if (player && player.hasEmergency) {
+        if (player && player.hasEmergency && !this.votingPhase) {
             player.hasEmergency = false;
+            this.votingPhase = true;
             this.pause();
             // create a voting session
+            this.voteSession = new VoteSession(
+                Object.keys(this.players),
+                this.voteDuration,
+                this.onVotesUpdated,
+                (results) => this.onVoteSessionDone(results)
+            );
+            this.voteSession.start();
         }
+    }
+
+    onVoteSessionDone(results) {
+        this.votingPhase = false;
+        this.run();
     }
 
     trySabotageDrop(playerId) {
@@ -192,6 +235,16 @@ class GameSession {
         }
     }
 
+    tryCaptureVote(playerId, targetPlayerId) {
+        if (this.votingPhase && this.voteSession) {
+            this.voteSession.captureVote(playerId, targetPlayerId);
+        } else {
+            console.log(
+                "Gamesession is not in votingPhase or it has no voting session."
+            );
+        }
+    }
+
     getGameData() {
         let gameData = {
             players: this.players,
@@ -200,13 +253,10 @@ class GameSession {
         return gameData;
     }
 
-    sendGameData() {
-    }
-
     //TODO: remove this debugging function
     printGameData() {
         let gameData = this.getGameData();
-        let grid = JSON.parse(JSON.stringify(gameData.board.grid))
+        let grid = JSON.parse(JSON.stringify(gameData.board.grid));
 
         for (let playerId in this.players) {
             let player = this.players[playerId];
@@ -228,7 +278,7 @@ class GameSession {
         for (let j = 0; j < grid.length; j++) {
             for (let i = 0; i < grid[j].length; i++) {
                 let cell = grid[j][i] == null ? " " : 1;
-                gridStr += cell + " "
+                gridStr += cell + " ";
             }
             gridStr += "\n";
         }
@@ -236,6 +286,4 @@ class GameSession {
     }
 }
 
-export {
-    GameSession,
-}
+export { GameSession };

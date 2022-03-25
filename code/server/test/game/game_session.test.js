@@ -19,18 +19,21 @@ describe("GameSession", () => {
     test("should run updates", async () => {
         let updatesCompleted = 0;
         
-        let gs = new GameSession([c1],socket);
-        gs.run(() => {updatesCompleted++});
+        let gs = new GameSession([c1]);
+        gs.setOnGameUpdated(() => {updatesCompleted++});
+        gs.run();
         await sleep(3000);
         gs.pause();
         expect(updatesCompleted).toBeGreaterThan(0);
     });
 
     test("should not drop pieces to quickly", async () => {
-        
-        let gs = new GameSession([c1],socket);
+        let settings = {
+            speed: 1,
+        }
+        let gs = new GameSession([c1], settings);
         gs.run(() => {});
-        await sleep(2000);
+        await sleep(50);
         gs.pause();
 
 

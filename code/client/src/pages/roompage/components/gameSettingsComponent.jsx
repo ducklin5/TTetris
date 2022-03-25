@@ -21,7 +21,10 @@ const GameSettingsComponent = (props) => {
     },[])
     
     const onStartButtonClicked = () => {
-        socket.emit("start_game", (gameStarted) => {
+        let settings = {};
+        // TODO: accumulate settings here
+
+        socket.emit("start_game", settings, (gameStarted) => {
             if (!gameStarted) {
                 alert(`The game could not be started`)
                 return;
