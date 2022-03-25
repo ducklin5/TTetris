@@ -45,6 +45,12 @@
     flex-direction: row;
 }
 
+.enter-indicator{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Reference for game start button: https://getcssscan.com/css-buttons-examples */
 
 .start-button {

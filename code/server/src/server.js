@@ -124,6 +124,12 @@ wsServer.on("connection", (socket) => {
     roomSessions[roomID]?.channel.emit("connectClient", roomSessions[roomID].getConnectedClients());
   })
 
+  // change client's nickname
+  socket.on("changeClientName", (roomID, clientID, newNickName) => {
+    roomSessions[roomID]?.changeClientName(clientID, newNickName);
+    roomSessions[roomID]?.channel.emit("connectClient", roomSessions[roomID].getConnectedClients());
+  })
+
   socket.on("disconnecting", () => {
     console.log("disconnecting")
     socket.rooms.forEach(room => {
