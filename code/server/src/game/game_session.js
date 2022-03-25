@@ -1,5 +1,3 @@
-import { throws } from "assert";
-import { Socket } from "socket.io";
 import { eqSet } from "src/util.js";
 import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
@@ -57,7 +55,7 @@ class GameSession {
         this.running = true;
         this.updateIntervalId = setInterval(
             () => this._update(),
-            UPDATE_DELAY
+            this.update_delay
         );
     }
 
