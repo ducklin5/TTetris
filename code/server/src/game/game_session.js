@@ -247,8 +247,6 @@ class GameSession {
         return gameData;
     }
 
-    sendGameData() { }
-
     //TODO: remove this debugging function
     printGameData() {
         let gameData = this.getGameData();
