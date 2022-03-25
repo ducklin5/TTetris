@@ -1,26 +1,29 @@
 import { throws } from "assert";
 
 class VoteSession {
-    constructor(playerIds, totalTime) {
+    constructor(playerIds, totalTime, onVotesUpdated, onVoteSessionDone) {
         this.votes = {};
         for (let playerId of playerIds) {
             this.votes[playerId] = null;
         };
-        this.totalTime = totalTime
+        this.totalTime = totalTime;
+        this.onVotesUpdated = onVotesUpdated;
+        this.onVoteSessionDone = onVoteSessionDone;
     }
 
     captureVote(playerId, targetPlayerId) {
         if (playerId in this.votes && targetPlayerId in this.votes) {
             this.votes[playerId] = targetPlayerId;
+            this.onVotesUpdated(this.votes);
         }
     }
 
-    start(onVoteSessionDone) {
-        let self = this;
-        this.timer = setTimeout(() => self.onTimerDone(onVoteSessionDone), this.totalTime);
+    start() {
+        this.timer = setTimeout(() => this.onTimerDone(), this.totalTime);
+        this.onVotesUpdated(this.votes);
     }
 
-    onTimerDone(onVoteSessionDone) {
+    onTimerDone() {
         let results = {}
         // calculate results
         for (let playerId in this.votes) {
@@ -33,8 +36,8 @@ class VoteSession {
                 this.votes[targetPlayerId] += 1;
             }
         }
-
-        onVoteSessionDone(results);
+        this.onVotesUpdated(null);
+        this.onVoteSessionDone(results);
     }
 }
 

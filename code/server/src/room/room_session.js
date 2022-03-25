@@ -32,25 +32,20 @@ class RoomSession {
         }
     }
 
-    startGame() {
+    startGame(settings) {
         this.gameSession = new GameSession(this.clients);
+        this.gameSession.setOnGameUpdated(() =>
+            this.channel.emit("gameDataUpdated", this.gameSession.getGameData())
+        );
         this.gameSession.setOnVotesUpdated((votes) =>
             this.channel.emit("votesUpdated", votes)
         );
-        this.gameSession.start(() => this.sendGameDataUpdate());
+        this.gameSession.run();
         this.channel.emit("gameStarted", this.gameSession.getGameData());
     }
 
-    onnVotingStarted(votes) { }
-
-    sendGameDataUpdate() {
-        this.channel.emit("gameDataUpdated", this.gameSession.getGameData());
-    }
-
     gameInput(clientId, event) {
-        if (this.gameSession.inputEvent(clientId, event)) {
-            this.sendGameDataUpdate();
-        }
+        this.gameSession.inputEvent(clientId, event);
     }
 
     changeClientColor(clientID, newColor) {

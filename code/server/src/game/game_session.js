@@ -6,17 +6,18 @@ import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
 import { VoteSession } from "./vote_session.js";
 
-const UPDATE_DELAY = 600;
 
 class GameSession {
     constructor(clients, settings) {
         this.players = {}; // dictionary of id to player objects
-        this.onGameUpdated = () => { };
         this.running = false;
         this.done = false;
+        this.onGameUpdated = () => { }; 
         this.voteDuration = 15000;
         this.votingPhase = false;
         this.onVotesUpdated = () => { };
+        let speed = settings?.speed || 1
+        this.update_delay = 120 - 60 * speed;
 
         let i = 0;
         for (let client of clients) {
@@ -44,20 +45,18 @@ class GameSession {
         }
     }
 
+    setOnGameUpdated(cbk) {
+        this.onGameUpdated = cbk
+    }
+    
     setOnVotesUpdated(cbk) {
         this.onVotesUpdated = cbk;
     }
 
-    start(onGameUpdated) {
-        this.onGameUpdated = onGameUpdated;
-        this.run();
-    }
-
     run() {
-        let self = this;
         this.running = true;
         this.updateIntervalId = setInterval(
-            () => self._update(self.onGameUpdated),
+            () => this._update(),
             UPDATE_DELAY
         );
     }
@@ -67,7 +66,7 @@ class GameSession {
         clearInterval(this.updateIntervalId);
     }
 
-    _update(onGameUpdated) {
+    _update() {
         //let playerIds = this.players
         for (let playerId in this.players) {
             let player = this.players[playerId];
@@ -83,7 +82,7 @@ class GameSession {
                 this.consumePlayerPiece(playerId);
             }
         }
-        onGameUpdated();
+        this.onGameUpdated();
     }
 
     endGame() {
@@ -137,6 +136,8 @@ class GameSession {
             case "captureVote":
                 return this.tryCaptureVote(playerId, event.args?.targetPlayerId);
         }
+        
+        this.onGameUpdated();
     }
 
     tryMovePiece(playerId, x, y) {
@@ -187,16 +188,16 @@ class GameSession {
             // create a voting session
             this.voteSession = new VoteSession(
                 Object.keys(this.players),
-                this.voteDuration
+                this.voteDuration,
+                this.onVotesUpdated,
+                (results) => this.onVoteSessionDone(results)
             );
-            this.voteSession.start((results) => this.onVoteSessionDone(results));
-            this.onVotesUpdated(this.voteSession.votes);
+            this.voteSession.start();
         }
     }
 
     onVoteSessionDone(results) {
         this.votingPhase = false;
-        this.onVotesUpdated(null);
         this.run();
     }
 

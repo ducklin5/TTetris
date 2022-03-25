@@ -61,9 +61,9 @@ wsServer.on("connection", (socket) => {
     }
   });
 
-  socket.on("start_game", (done) => {
+  socket.on("start_game", (settings, done) => {
     try {
-      roomSessions[clientRoomId].startGame();
+      roomSessions[clientRoomId].startGame(settings);
       done(true);
     } catch (err) {
       console.log(err);
