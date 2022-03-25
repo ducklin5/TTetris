@@ -1,3 +1,4 @@
+import { throws } from "assert";
 import { Socket } from "socket.io";
 import { eqSet } from "src/util.js";
 import { generateRandomPiece } from "./game_piece.js";
@@ -10,24 +11,29 @@ const UPDATE_DELAY = 600;
 class GameSession {
     constructor(clients, settings) {
         this.players = {}; // dictionary of id to player objects
-        this.onGameUpdated = () => {};
+        this.onGameUpdated = () => { };
         this.running = false;
         this.done = false;
-        this.voteDuration = 15;
+        this.voteDuration = 15000;
         this.votingPhase = false;
+        this.onVotesUpdated = () => { };
 
         let i = 0;
         for (let client of clients) {
-            this.players[client.id] =
-                new Player(client.id, client.nickname, client.color, 5 * i++);
+            this.players[client.id] = new Player(
+                client.id,
+                client.nickname,
+                client.color,
+                5 * i++
+            );
         }
 
         let playerIds = Object.keys(this.players);
         let randPlayerIdIndex = Math.floor(Math.random() * playerIds.length);
-        let randPlayerId = playerIds[randPlayerIdIndex]
+        let randPlayerId = playerIds[randPlayerIdIndex];
         this.players[randPlayerId].setImposter();
 
-        const boardWidth = 15 + Math.max(0, playerIds.length - 3) * 5; 
+        const boardWidth = 15 + Math.max(0, playerIds.length - 3) * 5;
         this.gameState = new GameState(20, boardWidth, 10);
 
         // TODO: maybe put this in run() as well?
@@ -38,6 +44,10 @@ class GameSession {
         }
     }
 
+    setOnVotesUpdated(cbk) {
+        this.onVotesUpdated = cbk;
+    }
+
     start(onGameUpdated) {
         this.onGameUpdated = onGameUpdated;
         this.run();
@@ -46,7 +56,10 @@ class GameSession {
     run() {
         let self = this;
         this.running = true;
-        this.updateIntervalId = setInterval(() => self._update(self.onGameUpdated), UPDATE_DELAY);
+        this.updateIntervalId = setInterval(
+            () => self._update(self.onGameUpdated),
+            UPDATE_DELAY
+        );
     }
 
     pause() {
@@ -62,8 +75,8 @@ class GameSession {
             let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
             if (collisions.has("bottom") || collisions.has("block")) {
                 let success = this.gameState.dropPiece(player.currentPiece, player.id);
-                
-                if(!success) {
+
+                if (!success) {
                     this.endGame();
                     return;
                 }
@@ -86,7 +99,7 @@ class GameSession {
         }
         return null;
     }
-    
+
     consumePlayerPiece(playerId) {
         let player = this.getPlayer(playerId);
         if (player) {
@@ -98,8 +111,7 @@ class GameSession {
     }
 
     inputEvent(playerId, event) {
-        if (this.done || !this.running)
-            return false;
+        if (this.done || !this.running) return false;
         switch (event) {
             case "left":
                 return this.tryMovePiece(playerId, -1, 0);
@@ -173,13 +185,18 @@ class GameSession {
             this.votingPhase = true;
             this.pause();
             // create a voting session
-            this.voteSession = new VoteSession(Object.keys(this.players), this.voteDuration);
-            this.voteSession.start(this.onVoteSessionDone);
+            this.voteSession = new VoteSession(
+                Object.keys(this.players),
+                this.voteDuration
+            );
+            this.voteSession.start((results) => this.onVoteSessionDone(results));
+            this.onVotesUpdated(this.voteSession.votes);
         }
     }
 
     onVoteSessionDone(results) {
         this.votingPhase = false;
+        this.onVotesUpdated(null);
         this.run();
     }
 
@@ -217,7 +234,9 @@ class GameSession {
         if (this.votingPhase && this.voteSession) {
             this.voteSession.captureVote(playerId, targetPlayerId);
         } else {
-            console.log("Gamesession is not in votingPhase or it has no voting session.");
+            console.log(
+                "Gamesession is not in votingPhase or it has no voting session."
+            );
         }
     }
 
@@ -229,13 +248,12 @@ class GameSession {
         return gameData;
     }
 
-    sendGameData() {
-    }
+    sendGameData() { }
 
     //TODO: remove this debugging function
     printGameData() {
         let gameData = this.getGameData();
-        let grid = JSON.parse(JSON.stringify(gameData.board.grid))
+        let grid = JSON.parse(JSON.stringify(gameData.board.grid));
 
         for (let playerId in this.players) {
             let player = this.players[playerId];
@@ -257,7 +275,7 @@ class GameSession {
         for (let j = 0; j < grid.length; j++) {
             for (let i = 0; i < grid[j].length; i++) {
                 let cell = grid[j][i] == null ? " " : 1;
-                gridStr += cell + " "
+                gridStr += cell + " ";
             }
             gridStr += "\n";
         }
@@ -265,6 +283,4 @@ class GameSession {
     }
 }
 
-export {
-    GameSession,
-}
+export { GameSession };

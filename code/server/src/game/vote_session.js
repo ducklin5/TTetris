@@ -24,7 +24,7 @@ class VoteSession {
         let results = {}
         // calculate results
         for (let playerId in this.votes) {
-            this.result[playerId] = 0;
+            results[playerId] = 0;
         }
         
         for (let playerId in this.votes) {
