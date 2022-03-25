@@ -48,6 +48,14 @@ class RoomSession {
         }
     }
 
+    changeClientName(clientID, newNickName) {
+        this.clients.forEach(client => {
+            if (client.id == clientID) {
+                client.nickname = newNickName;
+            }
+        })
+    }
+
     changeClientColor(clientID, newColor) {
         this.clients.forEach(client => {
             if (client.id == clientID) {
