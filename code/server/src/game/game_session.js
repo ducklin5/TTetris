@@ -33,7 +33,7 @@ class GameSession {
         this.players[randPlayerId].setImposter();
 
         const boardWidth = 15 + Math.max(0, playerIds.length - 3) * 5;
-        this.gameState = new GameState(20, boardWidth, 10);
+        this.gameState = new GameState(20, boardWidth, 5);
 
         // TODO: maybe put this in run() as well?
         for (let playerId in this.players) {
