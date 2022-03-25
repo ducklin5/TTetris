@@ -65,10 +65,9 @@ const GameSettingsComponent = (props) => {
                                 <span className="input-group-text" id="inputGroup-sizing-default">Nickname:</span>
                             </div>
                             <input type="text" onChange={onNicknameChanged} onKeyDown={onNicknameConfirmed} value={nickname} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
-                            {
-                                isNicknameChanged? <div>Press Enter to set your nickname</div>: null
-                            }
-                            
+                                {
+                                    isNicknameChanged? <div className='enter-indicator'>Press Enter to set your nickname</div>: null
+                                }
                         </div>
                     </div>
                     <div className='player-input'>
