@@ -32,6 +32,7 @@ const GameSettingsComponent = (props) => {
 
     const onGameSpeedChanged = (event) => {
         setGameSpeed(event.target.value);
+        socket.emit("changeGameSpeed", roomID, window.clientID, event.target.value);
     }
 
     const onNicknameChanged = (event) => {
