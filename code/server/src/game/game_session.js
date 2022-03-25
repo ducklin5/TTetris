@@ -15,7 +15,7 @@ class GameSession {
         this.votingPhase = false;
         this.onVotesUpdated = () => { };
         let speed = settings?.speed || 1
-        this.update_delay = 120 - 60 * speed;
+        this.update_delay = 1200 - 60 * speed;
 
         let i = 0;
         for (let client of clients) {
@@ -109,6 +109,14 @@ class GameSession {
 
     inputEvent(playerId, event) {
         if (this.done || !this.running) return false;
+        let result = this._inputEvent(playerId, event);
+        if (result) {
+            this.onGameUpdated();
+        }
+        return result
+    }
+
+    _inputEvent(playerId, event) {
         switch (event) {
             case "left":
                 return this.tryMovePiece(playerId, -1, 0);
@@ -134,8 +142,6 @@ class GameSession {
             case "captureVote":
                 return this.tryCaptureVote(playerId, event.args?.targetPlayerId);
         }
-        
-        this.onGameUpdated();
     }
 
     tryMovePiece(playerId, x, y) {
