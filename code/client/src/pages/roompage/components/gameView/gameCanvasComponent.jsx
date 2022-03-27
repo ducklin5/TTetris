@@ -111,11 +111,9 @@ function sketch(p5) {
 
     }
 
-    p5.draw = () => {
+    const drawPlayingPhase = () => {
         let board = window.gameData.board;
-
-        p5.background(10, 10, 10);
-
+        p5.push();
         p5.translate(u(1), u(1));
         drawProgressBar(board);
 
@@ -130,6 +128,47 @@ function sketch(p5) {
 
         p5.translate(0, u(1));
         drawPlayerNextPiece();
+        p5.pop();
+    }
+
+    const drawEndPhase = () => {
+        let board = window.gameData.board;
+
+        p5.fill("#000b");
+        p5.rect(0, 0, p5.displayWidth, p5.displayHeight);
+
+
+        p5.fill("#fff");
+
+        p5.translate(u(1), u(5));
+        
+        p5.textSize(u(1));
+        p5.textAlign(p5.CENTER);
+
+        p5.text("Game Over!", 0, 0, u(board.width));
+
+        let winner = window.gameData.winner;
+        let winner_text = "The civilians won!";
+        if (winner == "imposter") {
+            winner_text = "The imposter won!";
+        }
+        p5.text(winner_text, 0, u(4), u(board.width));
+        
+        let imposterId = window.gameData.imposterId;
+        let imposterPlayer = window.gameData.players[imposterId];
+        let imposterName = imposterPlayer.nickName;
+
+
+        p5.text( imposterName + " was the imposter", 0, u(8), u(board.width));
+    }
+
+    p5.draw = () => {
+        p5.background(10, 10, 10);
+        
+        drawPlayingPhase()
+        if (window.gameData.winner) {
+            drawEndPhase()
+        }
     }
 
 }

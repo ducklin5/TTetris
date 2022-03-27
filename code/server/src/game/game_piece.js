@@ -1,3 +1,5 @@
+import { randomInt } from "crypto";
+
 let pieceTypes = ["O", "J", "L", "S", "Z", "T", "I"];
 const pieceMatrices = {
     O: [
@@ -98,8 +100,8 @@ class GamePiece {
 }
 
 function generateRandomPiece(ofx) {
-    let randTypeId = Math.floor(Math.random() * 7);
-    let randRotation = Math.floor(Math.random() * 8) - 4;
+    let randTypeId = randomInt(7);
+    let randRotation = randomInt(0, 4);
     
     let pieceType = pieceTypes[randTypeId];
     let ofy = -pieceMatrices[pieceType].length;
