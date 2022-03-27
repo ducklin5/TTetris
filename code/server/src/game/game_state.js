@@ -76,11 +76,13 @@ class GameState {
 
         this._addPiece(piece, playerId);
         
-        if (collisions.has("top")) {
-            return false;
-        }
+        if (collisions.has("top"))
+            return "imposter";
 
-        return true;
+        if (this.rowsCompleted == this.requiredRows) 
+            return "civilians";
+
+        return null;
     }
 
     _addPiece(piece, playerId) {
@@ -103,19 +105,15 @@ class GameState {
     }
 
     _eliminateRows() {
-        let rowsEliminated = 0;
-        let rowsChecked = 0
         for (let row = 0; row < this.height; row++) {
             // if this row is full
             if (!this.grid[row].includes(null)) {
-                rowsEliminated++;
                 // remove the row
                 this.grid.splice(row, 1);
                 // and add an empty row to the top
                 this.grid.unshift(new Array(this.width).fill(null));
                 this.rowsCompleted++;
             }
-            rowsChecked++;
         }
     }
 

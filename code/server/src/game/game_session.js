@@ -8,8 +8,7 @@ import { VoteSession } from "./vote_session.js";
 class GameSession {
     constructor(clients, settings) {
         this.players = {}; // dictionary of id to player objects
-        this.running = false;
-        this.done = false;
+        this.winner = null;
         this.onGameUpdated = () => { }; 
         this.voteDuration = 15000;
         this.votingPhase = false;
@@ -60,34 +59,16 @@ class GameSession {
     }
 
     pause() {
-        this.running = false;
-        clearInterval(this.updateIntervalId);
-    }
-
-    _update() {
-        //let playerIds = this.players
-        for (let playerId in this.players) {
-            let player = this.players[playerId];
-            player.currentPiece.ofy += 1;
-            let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
-            if (collisions.has("bottom") || collisions.has("block")) {
-                let success = this.gameState.dropPiece(player.currentPiece, player.id);
-
-                if (!success) {
-                    this.endGame();
-                    return;
-                }
-                this.consumePlayerPiece(playerId);
-            }
+        if (this.running) {
+            this.running = false;
+            clearInterval(this.updateIntervalId);
         }
-        this.onGameUpdated();
     }
 
-    endGame() {
-        this.running = false;
-        this.done = true;
+    endGame(winner) {
+        this.winner = winner;
         this.pause();
-        console.log("The game has ended");
+        console.log("The game has ended. The winner: " + winner);
     }
 
     getPlayer(playerId) {
@@ -107,8 +88,33 @@ class GameSession {
         return false;
     }
 
+    dropPlayerPiece(playerId) {
+        let player = this.getPlayer(playerId);
+        if (player) {
+            let winner = this.gameState.dropPiece(player.currentPiece, player.id);
+            if (winner) {
+                this.endGame(winner);
+            }
+            this.consumePlayerPiece(playerId);
+            return true;
+        }
+        return false
+    }
+
+    _update() {
+        for (let playerId in this.players) {
+            let player = this.players[playerId];
+            player.currentPiece.ofy += 1;
+            let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
+            if (collisions.has("bottom") || collisions.has("block")) {
+                this.dropPlayerPiece(playerId);
+            }
+        }
+        this.onGameUpdated();
+    }
+
     inputEvent(playerId, event) {
-        if (this.done || !this.running) return false;
+        if (this.winner) return false;
         let result = this._inputEvent(playerId, event);
         if (result) {
             this.onGameUpdated();
@@ -150,7 +156,8 @@ class GameSession {
             player.currentPiece.ofx += x;
             player.currentPiece.ofy += y;
             let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
-            if (collisions.size == 0 || eqSet(collisions, new Set("top"))) {
+            if (collisions.size == 0 || 
+                (collisions.size == 1 && collisions.has("top"))) {
                 return true;
             }
             player.currentPiece.ofx -= x;
@@ -165,7 +172,8 @@ class GameSession {
         if (player) {
             player.currentPiece.rotation += 1;
             let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
-            if (collisions.size == 0 || eqSet(collisions, new Set("top"))) {
+            if (collisions.size == 0 ||
+                collisions.size == 1 && collisions.has("top")) {
                 return true;
             }
             player.currentPiece.rotation -= 1;
@@ -174,13 +182,7 @@ class GameSession {
     }
 
     tryDropPiece(playerId) {
-        let player = this.getPlayer(playerId);
-        if (player) {
-            this.gameState.dropPiece(player.currentPiece, playerId);
-            this.consumePlayerPiece(playerId);
-            return true;
-        }
-        return false;
+        return this.dropPlayerPiece(playerId);
     }
 
     tryStartVoting(playerId) {
@@ -197,6 +199,7 @@ class GameSession {
                 (results) => this.onVoteSessionDone(results)
             );
             this.voteSession.start();
+            return true;
         }
     }
 
@@ -212,6 +215,7 @@ class GameSession {
                 this.tryDropPiece(targetPlayerId);
             }
             player.hasSabotage.drop = false;
+            return true;
         }
     }
 
@@ -222,6 +226,7 @@ class GameSession {
                 this.gameState.rowsCompleted -= 1;
             }
             player.hasSabotage.progress = false;
+            return true;
         }
     }
 
@@ -232,6 +237,7 @@ class GameSession {
                 this.consumePlayerPiece(targetPlayerId);
             }
             player.hasSabotage.pieces = false;
+            return true;
         }
     }
 
@@ -249,6 +255,7 @@ class GameSession {
         let gameData = {
             players: this.players,
             board: this.gameState,
+            winner: this.winner
         };
         return gameData;
     }
