@@ -79,7 +79,7 @@ class GameState {
         if (collisions.has("top"))
             return "imposter";
 
-        if (this.rowsCompleted == this.requiredRows) 
+        if (this.rowsCompleted >= this.requiredRows) 
             return "civilians";
 
         return null;

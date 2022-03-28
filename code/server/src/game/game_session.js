@@ -1,4 +1,4 @@
-import { eqSet } from "src/util.js";
+import { randomInt } from "crypto";
 import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
@@ -27,9 +27,9 @@ class GameSession {
         }
 
         let playerIds = Object.keys(this.players);
-        let randPlayerIdIndex = Math.floor(Math.random() * playerIds.length);
-        let randPlayerId = playerIds[randPlayerIdIndex];
-        this.players[randPlayerId].setImposter();
+        let randPlayerIdIndex = randomInt(playerIds.length);
+        this.imposterId = playerIds[randPlayerIdIndex];
+        this.players[this.imposterId].setImposter();
 
         const boardWidth = 15 + Math.max(0, playerIds.length - 3) * 5;
         this.gameState = new GameState(20, boardWidth, 5);
@@ -257,6 +257,11 @@ class GameSession {
             board: this.gameState,
             winner: this.winner
         };
+
+        if (this.winner) {
+            gameData["imposterId"] = this.imposterId; 
+        }
+
         return gameData;
     }
 
