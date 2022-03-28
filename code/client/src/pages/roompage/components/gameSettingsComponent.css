@@ -45,6 +45,11 @@
     flex-direction: row;
 }
 
+.set-speed{
+    display: flex;
+    margin-left: 5px;
+}
+
 .enter-indicator{
     padding: 10px;
     display: flex;
