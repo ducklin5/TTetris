@@ -13,8 +13,8 @@ class GameSession {
         this.voteDuration = 15000;
         this.votingPhase = false;
         this.onVotesUpdated = () => { };
-        let speed = settings?.speed || 1
-        this.update_delay = 1200 - 60 * speed;
+        this.speed = settings?.speed || 1
+        this.update_delay = 1200 - 60 * this.speed;
 
         let i = 0;
         for (let client of clients) {
@@ -255,7 +255,8 @@ class GameSession {
         let gameData = {
             players: this.players,
             board: this.gameState,
-            winner: this.winner
+            winner: this.winner,
+            speed: this.speed
         };
 
         if (this.winner) {

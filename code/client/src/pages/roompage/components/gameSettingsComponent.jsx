@@ -21,7 +21,7 @@ const GameSettingsComponent = (props) => {
     },[])
     
     const onStartButtonClicked = () => {
-        let settings = {};
+        let settings = {speed: gameSpeed};
         // TODO: accumulate settings here
 
         socket.emit("start_game", settings, (gameStarted) => {
@@ -35,7 +35,7 @@ const GameSettingsComponent = (props) => {
 
     const onGameSpeedChanged = (event) => {
         setGameSpeed(event.target.value);
-        socket.emit("changeGameSpeed", roomID, window.clientID, event.target.value);
+        socket.emit("changeGameSpeed", roomID, event.target.value);
     }
 
     const onNicknameChanged = (event) => {
