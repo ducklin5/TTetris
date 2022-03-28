@@ -24,6 +24,7 @@ html, body, #root {
   padding: 20px;
   display: inline-block;
   margin: 4px 4px;
+  margin-left:10px;
   border-radius: 100%;
   outline: none;
 }
