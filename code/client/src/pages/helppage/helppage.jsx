@@ -24,13 +24,13 @@ class HelpPage extends Component {
                                 <span className="help-box-title font-italic">TTetris Rules</span>
                                 <p className="help-box-paragraph"> Below is a summary of TTetris game for new players:</p>
                                 <ul className="help-box-paragraph">
-                                    <li><strong>Rules:</strong> Active players can move Tetris pieces as they collaborate with each other to complete/remove 20 rows to win the game session. </li>
-                                    <li><strong>Voting:</strong> voting session can be started by pressing the emergency button to find the imposter.
-                                    The player with the majority of votes will be exiled. In case of a tie, no player
-                                    will be exiled.</li>
-                                    <li><strong>Pieces:</strong> there are 7 Tetrominoes I, J, L, O, S, Z, T. They can be moved to left, right and down.</li>
+                                    <li><strong>Room Capacity:</strong>  TTetris support up to 5 players to join a game room session. </li>
+                                    <li><strong>Rules:</strong> active players can move Tetris pieces as they collaborate with each other to complete/remove 6 rows to win the game session. </li>
+                                    <li><strong>Voting System:</strong> a voting session can be started by pressing the emergency button to find the imposter. It can also be initiated if the game timer runs out which indicates the reason for the delay in the game progress can be because of the imposter player. The player with the majority of votes will be exiled. In case of a tie, no player will be exiled.</li>
+                                    <li><strong>Tetris Pieces:</strong> there are 7 Tetrominoes I, J, L, O, S, Z, T. They can be moved to left, right, rotated using the "Up" arrow key and hard dropped using the "Space" key.</li>
                                     <li><strong>Players:</strong> there are 3 types of players in TTetris: <em>Civilans</em> are regular players in the game who collaborate with each other to win.
-                                    <em> Imposter</em> tries to prevent civilains from winning by interfering with row completion and changing the progress bar. <em>Exiled</em> is the player who is voted out during Emergency voting session.</li>
+                                    <em> Imposter</em> tries to prevent civilains from winning by interfering with row completion. They are randomly selected when players join the game session and can use the functionality of each sabotage button once. <em>Exiled</em> is the player who is voted out during Emergency voting session.</li>
+                                    <li><strong>Sabotage Buttons:</strong>there are 3 sabotage buttons which are visible to a randomly selected Imposter player. <em>Progress</em> button enables the imposter to reduce the progress bar by one completed row, <em>Piece</em> button can change all the falling pieces to new randomly generated ones, and <em>Drop</em> button can hard drop all the falling pieces on the gameboard.</li>
                                 </ul>
                             </div>
                         </div>
