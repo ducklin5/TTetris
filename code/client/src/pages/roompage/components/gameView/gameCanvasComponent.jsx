@@ -60,6 +60,7 @@ function sketch(p5) {
 
         let completionRatio =
             window.gameData.board.rowsCompleted / window.gameData.board.requiredRows;
+        completionRatio = Math.min(completionRatio, 1.0);
         let completionWidth = barWidth * completionRatio;
 
         p5.fill("#ff0");
@@ -134,7 +135,7 @@ function sketch(p5) {
     const drawEndPhase = () => {
         let board = window.gameData.board;
 
-        p5.fill("#000b");
+        p5.fill("#0009");
         p5.rect(0, 0, p5.displayWidth, p5.displayHeight);
 
 

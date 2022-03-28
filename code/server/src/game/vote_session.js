@@ -1,4 +1,3 @@
-import { throws } from "assert";
 
 class VoteSession {
     constructor(playerIds, totalTime, onVotesUpdated, onVoteSessionDone) {
