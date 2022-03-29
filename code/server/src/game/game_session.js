@@ -68,6 +68,7 @@ class GameSession {
     endGame(winner) {
         this.winner = winner;
         this.pause();
+        this.onGameUpdated();
         console.log("The game has ended. The winner: " + winner);
     }
 
@@ -281,14 +282,8 @@ class GameSession {
         let gameData = {
             players: this.players,
             board: this.gameState,
-<<<<<<< HEAD
-            winner: this.winner,
-||||||| 456b86e
-            winner: this.winner
-=======
             winner: this.winner,
             speed: this.speed
->>>>>>> main
         };
 
         if (this.winner) {
