@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import {Container, Row, Col} from "react-bootstrap"
+import { Card, Alert } from "react-bootstrap"
 import PlayerInfoComponent from "./components/playerInfoComponent";
 import ChatboxComponent from "./components/chatboxComponent";
 import GameSettingsComponent from "./components/gameSettingsComponent";
@@ -18,6 +18,7 @@ const RoomPagePropTypes = {
 const RoomPage = ({ socket }) => {
     const [gameStarted, setGameStarted] = useState(!!window.gameData);
     const [gameData, setGameData] = useState({});
+    const [showAlert, setShowAlert] = useState(false);
     const [playerInfo, setPlayerInfo] = useState({});
     const roomID = useParams().roomID;
 
@@ -48,11 +49,8 @@ const RoomPage = ({ socket }) => {
 
     // Reference: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
     const copyRoomId = () => {
-        var copyCode = document.getElementById("roomId");
-        copyCode.select();
-        navigator.clipboard.writeText(copyCode.value);
-
-        alert("Copied Room Id: " + copyCode.value);
+        navigator.clipboard.writeText(roomID);
+        setShowAlert(true);
     }
   
     socket.on("gameStarted", (gameData) => {
@@ -103,15 +101,17 @@ const RoomPage = ({ socket }) => {
                 <span type="text" value="room id" id="roomId" className="h2 text-dark font-weight-bold text-center">{roomID}</span>
                 <button onClick={copyRoomId} className="copy-button"><i className="bi bi-clipboard fa-lg"></i></button>
             </div>
-                
+            <Alert className="mx-5" variant="success" show={showAlert} onClose={() => setShowAlert(false)} dismissible>
+                    You have successfully copied the room code!
+            </Alert>
             <div className="room-components">
                 <div className="room-sections-left">
-                    <div className="room-box-left">
+                    <Card className="room-box-left">
                             <PlayerInfoComponent playerInfo={playerInfo} />
-                    </div>
-                    <div className="room-box-left">
+                    </Card>
+                    <Card className="room-box-left">
                             <ChatboxComponent socket={socket}/>
-                    </div>
+                    </Card>
                 </div>
                 <div className="room-sections-right">
                     <div className="room-box-right">      

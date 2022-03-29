@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import { Card } from "react-bootstrap";
 import './helppage.css';
 
 class HelpPage extends Component {
@@ -19,7 +20,7 @@ class HelpPage extends Component {
                 <div><p className="h1 text-danger font-weight-bold font-italic text-center ">Treacherous Tetris</p></div>
                 <div className="help-col">
                     <div className="help-sections">
-                        <div className="help-box-left">
+                        <Card bg={"primary"} className="help-box-left">
                             <div className="help-text">
                                 <span className="help-box-title font-italic">TTetris Rules</span>
                                 <p className="help-box-paragraph"> Below is a summary of TTetris game for new players:</p>
@@ -33,11 +34,11 @@ class HelpPage extends Component {
                                     <li><strong>Sabotage Buttons:</strong>there are 3 sabotage buttons which are visible to a randomly selected Imposter player. <em>Progress</em> button enables the imposter to reduce the progress bar by one completed row, <em>Piece</em> button can change all the falling pieces to new randomly generated ones, and <em>Drop</em> button can hard drop all the falling pieces on the gameboard.</li>
                                 </ul>
                             </div>
-                        </div>
+                        </Card>
                     </div>
                     
                     <div className="help-sections">
-                        <div className="help-box-right">
+                        <Card bg={"primary"} className="help-box-right">
                             <div className="help-text">
                                 <span className="help-box-title font-italic">Settings Help</span>
                                 <p className="help-box-paragraph"> TTetris allows both hosts and players to modify their settings.</p>
@@ -48,21 +49,21 @@ class HelpPage extends Component {
                                     <li><strong>Player Settings:</strong> players can type a nickname for themselves and choose the color of their pieces.</li>
                                 </ul>
                             </div>
-                        </div>
-                        <div className="help-box-right">
+                        </Card>
+                        <Card bg={"primary"} className="help-box-right">
                             <div className="help-text">
                                 <span className="help-box-title font-italic">Chat Box</span>
                                 <p className="help-box-paragraph"> Players are able to send messages to each other during the game using the chat box.</p>
                             </div>
-                        </div>
+                        </Card>
 
-                        <div className="help-box-right">
+                        <Card bg={"primary"} className="help-box-right">
                             <div className="help-text">
                                 <span className="help-box-title font-italic">Voice Chat</span>
                                 <p className="help-box-paragraph"> Players are able to use the voice chat feature to communicate with
                                     each other during the game.</p>
                             </div>
-                        </div>
+                        </Card>
                     </div>             
                 </div>
             </div>
