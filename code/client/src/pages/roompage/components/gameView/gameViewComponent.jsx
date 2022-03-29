@@ -55,7 +55,7 @@ const GameViewComponent = ({socket}) => {
                     {
                         isVoting ? <GameVotingComponent socket={socket} /> : null
                     }
-                    <div className="game-level">Level 1</div>
+                    <div className="game-level">Speed:{window.gameData.speed}</div>
             </div>
             <div className="GameViewCol2" ref={gameDivRef} tabindex="0">
                 <ResponsiveGameCanvasComponent />
