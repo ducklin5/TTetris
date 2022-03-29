@@ -8,7 +8,7 @@ import "./gameview.css";
 
 const GameViewComponent = ({socket}) => {
     const gameDivRef = useRef(null);
-    const [votes, setVotes] = useState(null);
+    const [isVoting, setVoting] = useState(false);
 
 
     useEffect(() => {
@@ -19,8 +19,11 @@ const GameViewComponent = ({socket}) => {
         };
     }, []);
 
-    socket.on("votesUpdated", (_votes) => {
-        setVotes(_votes);
+    socket.on("votesUpdated", (votes) => {
+        let _isVoting = !!votes;
+        if (_isVoting != isVoting) {
+            setVoting(_isVoting);
+        }
     });
 
     const handleKeyDown = (e) => {
@@ -50,7 +53,7 @@ const GameViewComponent = ({socket}) => {
             <div className="GameViewCol1">
                     <GameButtonsComponent socket={socket} />
                     {
-                        votes ? <GameVotingComponent votes={votes} /> : null
+                        isVoting ? <GameVotingComponent socket={socket} /> : null
                     }
                     <div className="game-level">Speed:{window.gameData.speed}</div>
             </div>

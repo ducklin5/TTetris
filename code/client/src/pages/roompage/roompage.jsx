@@ -56,8 +56,6 @@ const RoomPage = ({ socket }) => {
     }
   
     socket.on("gameStarted", (gameData) => {
-        console.log(`GameStarted gameData:`);
-        console.log(gameData);
         window.gameData = gameData;
         setGameStarted(true);
     })

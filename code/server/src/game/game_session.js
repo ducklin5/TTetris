@@ -4,16 +4,15 @@ import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
 import { VoteSession } from "./vote_session.js";
 
-
 class GameSession {
     constructor(clients, settings) {
         this.players = {}; // dictionary of id to player objects
         this.winner = null;
-        this.onGameUpdated = () => { }; 
+        this.onGameUpdated = () => { };
         this.voteDuration = 15000;
         this.votingPhase = false;
         this.onVotesUpdated = () => { };
-        this.speed = settings?.speed || 1
+        this.speed = settings?.speed || 1;
         this.update_delay = 1200 - 60 * this.speed;
 
         let i = 0;
@@ -43,14 +42,15 @@ class GameSession {
     }
 
     setOnGameUpdated(cbk) {
-        this.onGameUpdated = cbk
+        this.onGameUpdated = cbk;
     }
-    
+
     setOnVotesUpdated(cbk) {
         this.onVotesUpdated = cbk;
     }
 
     run() {
+        if (this.winner) return;
         this.running = true;
         this.updateIntervalId = setInterval(
             () => this._update(),
@@ -68,6 +68,7 @@ class GameSession {
     endGame(winner) {
         this.winner = winner;
         this.pause();
+        this.onGameUpdated();
         console.log("The game has ended. The winner: " + winner);
     }
 
@@ -98,12 +99,14 @@ class GameSession {
             this.consumePlayerPiece(playerId);
             return true;
         }
-        return false
+        return false;
     }
 
     _update() {
         for (let playerId in this.players) {
             let player = this.players[playerId];
+            if (player.isExiled) continue;
+
             player.currentPiece.ofy += 1;
             let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
             if (collisions.has("bottom") || collisions.has("block")) {
@@ -115,11 +118,14 @@ class GameSession {
 
     inputEvent(playerId, event) {
         if (this.winner) return false;
+        let player = this.getPlayer(playerId);
+        if (!player || player.isExiled) return false;
+
         let result = this._inputEvent(playerId, event);
         if (result) {
             this.onGameUpdated();
         }
-        return result
+        return result;
     }
 
     _inputEvent(playerId, event) {
@@ -156,8 +162,10 @@ class GameSession {
             player.currentPiece.ofx += x;
             player.currentPiece.ofy += y;
             let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
-            if (collisions.size == 0 || 
-                (collisions.size == 1 && collisions.has("top"))) {
+            if (
+                collisions.size == 0 ||
+                (collisions.size == 1 && collisions.has("top"))
+            ) {
                 return true;
             }
             player.currentPiece.ofx -= x;
@@ -172,8 +180,10 @@ class GameSession {
         if (player) {
             player.currentPiece.rotation += 1;
             let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
-            if (collisions.size == 0 ||
-                collisions.size == 1 && collisions.has("top")) {
+            if (
+                collisions.size == 0 ||
+                (collisions.size == 1 && collisions.has("top"))
+            ) {
                 return true;
             }
             player.currentPiece.rotation -= 1;
@@ -204,8 +214,25 @@ class GameSession {
     }
 
     onVoteSessionDone(results) {
+        console.log(results);
+
+        this.eliminatePlayer(results.targetPlayerId);
+
         this.votingPhase = false;
+
         this.run();
+    }
+
+    eliminatePlayer(playerId) {
+        let player = this.getPlayer(playerId);
+        if (player) {
+            if (player.isImposter) {
+                this.endGame("civilians");
+                return;
+            }
+            console.log(`eliminating ${player.nickName}`)
+            player.isExiled = true;
+        }
     }
 
     trySabotageDrop(playerId) {
@@ -260,7 +287,7 @@ class GameSession {
         };
 
         if (this.winner) {
-            gameData["imposterId"] = this.imposterId; 
+            gameData["imposterId"] = this.imposterId;
         }
 
         return gameData;

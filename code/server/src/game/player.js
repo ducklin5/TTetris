@@ -8,6 +8,7 @@ class Player {
         this.currentPiece = null;
         this.isImposter = false;
         this.hasEmergency = true;
+        this.isExiled = false;
     }
 
     setImposter() {
