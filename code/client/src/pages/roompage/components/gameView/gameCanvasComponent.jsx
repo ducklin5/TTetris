@@ -71,8 +71,9 @@ function sketch(p5) {
         let players = window.gameData.players;
 
         for (let playerId in players) {
-
             let player = players[playerId];
+            if (player.isExiled) continue;
+
             let piece = player.currentPiece;
             let pieceMatrix = getPieceMatrix(piece);
             let size = pieceMatrix.length;
