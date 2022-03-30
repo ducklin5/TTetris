@@ -16,7 +16,7 @@ const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
 }
 
-const VideoComponent = (props) => {
+const AudioComponent = (props) => {
     const {peer} = props;
     const ref = useRef();
 
@@ -27,7 +27,7 @@ const VideoComponent = (props) => {
     },[]);
 
     return (
-        <video playsInline autoPlay ref={ref} style={{width:300, height:300}}/>
+        <audio playsInline autoPlay ref={ref} />
     );
 }
 
@@ -64,7 +64,7 @@ const RoomPage = ({ socket }) => {
         }
 
         navigator.mediaDevices.getUserMedia({
-            video: true,
+            video: false,
             audio: true,
         }).then(stream => {
             userVideo.current.srcObject = stream;
@@ -180,10 +180,10 @@ const RoomPage = ({ socket }) => {
                 <Link to={"/help"} type="button" className=" help-button"><i className="bi bi-question-circle fa-lg"></i></Link>          
             </div>
             <div>
-                <video muted ref={userVideo} autoPlay playsInline style={{width:300, height:300}} />
+                <audio muted ref={userVideo} autoPlay playsInline />
                 {peers.map((peer, index) => {
                     return (
-                        <VideoComponent key={index} peer={peer} />
+                        <AudioComponent key={index} peer={peer} />
                     )
                 })}
             </div>
