@@ -137,6 +137,13 @@ class GameSession {
     }
 
     _inputEvent(playerId, event) {
+        switch (event.name) {
+            case "captureVote":
+                return this.tryCaptureVote(playerId, event.args?.targetPlayerId);
+        }
+
+        if(this.votingPhase) return;
+
         switch (event) {
             case "left":
                 return this.tryMovePiece(playerId, -1, 0);
@@ -156,11 +163,6 @@ class GameSession {
                 return this.trySabotageProgress(playerId);
             case "sabotage:Pieces":
                 return this.trySabotagePieces(playerId);
-        }
-
-        switch (event.name) {
-            case "captureVote":
-                return this.tryCaptureVote(playerId, event.args?.targetPlayerId);
         }
     }
 
