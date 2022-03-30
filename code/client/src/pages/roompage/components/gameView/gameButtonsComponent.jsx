@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./gameButtonsComponent.css";
 
 const ImposterButtons = ({ socket }) => {
@@ -48,10 +49,20 @@ const GameButtonsComponent = ({ socket }) => {
     let playerId = window.clientID;
     let player = window.gameData.players[playerId];
     let isImposter = player.isImposter;
+    let [timeLeft, setTimeLeft] = useState(0);
 
     const onEmergencyPressed = () => {
         socket.emit("game_input", `emergency`);
     };
+
+    socket.on("gameDataUpdated", (gameData) => {
+        if (timeLeft != gameData.timeLeft) {
+            setTimeLeft(gameData.timeLeft);
+        }
+    });
+
+    let totalSeconds = ~~(timeLeft / 1000);
+    const fmtS2MS = s => ~~(s/60) + ((s%=60) < 10 ? ":0" : ":") + s;
 
     return (
         <div>
@@ -60,7 +71,9 @@ const GameButtonsComponent = ({ socket }) => {
                     <i className="fa fa-exclamation-circle fa-lg"></i>
                 </button>
                 <div className="timer-frame">
-                    <div className="time-countdown">1:15</div>
+                    <div className="time-countdown">
+                        <p>{fmtS2MS(totalSeconds)}</p>
+                    </div>
                 </div>
             </div>
             {isImposter ? <ImposterButtons socket={socket} /> : null}

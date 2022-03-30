@@ -3,6 +3,7 @@
   align-items: center;
   display:flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .emergency-button{
@@ -11,29 +12,29 @@
   color:white;
   padding: 20px;
   display: flex;
-  margin: 20px 15px;
+  margin: 20px 10px;
   border-radius: 80%;
   outline: none;
 }
 
 .timer-frame {
-    background-color: rgba(240, 231, 231, 0.685);
+    background-color: black;
     border-color:rgb(139, 137, 137);
     border-width:thin;
     padding: 10px;
     display: flex;
-    margin: 20px 30px;
-    border-radius: 20%;
+    border-radius: 20px;
     border-style: solid;
     width: 100px;
     height: 60px;
+    margin: 5px;
 }
 
 .time-countdown {
     font-family: sans-serif;
     font-weight: bold;
     font-size: large;
-    color: rgb(139, 137, 137);
+    color: white;
     text-align: center;
     vertical-align: middle;
     padding-left: 20px;
@@ -46,7 +47,7 @@
   color:white;
   padding: 15px;
   display: inline-block;
-  margin: 5px 15px;
+  margin: 5px 10px;
   border-radius: 80%;
   outline: none;
 }

@@ -1,3 +1,4 @@
+import { timeStamp } from "console";
 import { randomInt } from "crypto";
 import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
@@ -14,6 +15,7 @@ class GameSession {
         this.onVotesUpdated = () => { };
         this.speed = settings?.speed || 1;
         this.update_delay = 1200 - 60 * this.speed;
+        this.timeLeft = 10 * 60 * 1000;
 
         let i = 0;
         for (let client of clients) {
@@ -103,17 +105,23 @@ class GameSession {
     }
 
     _update() {
-        for (let playerId in this.players) {
-            let player = this.players[playerId];
-            if (player.isExiled) continue;
+        this.timeLeft -= this.update_delay;
 
-            player.currentPiece.ofy += 1;
-            let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
-            if (collisions.has("bottom") || collisions.has("block")) {
-                this.dropPlayerPiece(playerId);
+        if (this.timeLeft <= 0) {
+            this.endGame("imposter");
+        } else {
+            for (let playerId in this.players) {
+                let player = this.players[playerId];
+                if (player.isExiled) continue;
+
+                player.currentPiece.ofy += 1;
+                let collisions = this.gameState.checkPieceCollisions(player.currentPiece);
+                if (collisions.has("bottom") || collisions.has("block")) {
+                    this.dropPlayerPiece(playerId);
+                }
             }
+            this.onGameUpdated();
         }
-        this.onGameUpdated();
     }
 
     inputEvent(playerId, event) {
@@ -283,7 +291,8 @@ class GameSession {
             players: this.players,
             board: this.gameState,
             winner: this.winner,
-            speed: this.speed
+            speed: this.speed,
+            timeLeft: this.timeLeft
         };
 
         if (this.winner) {
