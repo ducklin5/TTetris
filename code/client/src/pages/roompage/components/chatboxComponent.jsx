@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Card } from "react-bootstrap"
 import "./chatboxComponent.css";
 import MessageBoxComponent from "./messageBoxComponent";
 
@@ -44,9 +45,9 @@ const ChatboxComponent = (props) => {
     }
 
     return (
-        <div className="chatbox-content">
-            <span className="chat-title font-italic text-center">Chat Box</span>
-            <div className="messages-container">
+        <Card className="chatbox-content">
+            <Card.Header className="chat-title font-italic text-center">Chat Box</Card.Header>
+            <Card className="messages-container">
                 {chatHistory.map((chat) => (
                     <MessageBoxComponent
                         message={chat.message}
@@ -54,7 +55,7 @@ const ChatboxComponent = (props) => {
                         time={chat.time}
                     />
                 ))}
-            </div>
+            </Card>
             <div className="send-box">
                 <div className="input-group mb-3">
                     <input
@@ -79,7 +80,7 @@ const ChatboxComponent = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Card>
     );
 };
 

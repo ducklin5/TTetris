@@ -105,7 +105,9 @@ wsServer.on("connection", (socket) => {
   socket.on("sendMessage", (roomID, message, clientID, done) => {
     try {
       let nickname = roomSessions[roomID]?.getClientByID(clientID).nickname;
-      roomSessions[roomID]?.chatSession.addChat(message, nickname, "11:11");
+      let date = new Date();
+      let time = date.getHours() + ":" + date.getMinutes();
+      roomSessions[roomID]?.chatSession.addChat(message, nickname, time);
       done()
       roomSessions[roomID]?.channel.emit("sendMessageAll", roomSessions[roomID].chatSession.chatHistory);
     } catch {

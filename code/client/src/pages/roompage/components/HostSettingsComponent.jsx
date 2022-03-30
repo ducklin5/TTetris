@@ -1,11 +1,12 @@
 import "./gameSettingsComponent.css";
+import { Button, Card } from "react-bootstrap"
 
 // Reference for wifi button: https://fontawesomeicons.com/bootstrap/icons/wifi-off
 
 const HostSettingsComponent = (props) => {
     const { isHost, gameSpeed, onGameSpeedChanged, onStartButtonClicked } = props;
     return (
-        <div className="game-settings-component">
+        <Card className="game-settings-component">
             <div className="settings-content">
                 <span className="game-title font-italic text-center">
                     Host Settings
@@ -26,17 +27,17 @@ const HostSettingsComponent = (props) => {
                                 step="1"
                             ></input>
                     </div>
-                    <button
+                    <Button
                         onClick={onStartButtonClicked}
                         disabled={!isHost}
                         className="start-button"
                         role="button"
                     >
                         Start Game
-                    </button>
+                    </Button>
                 </div>
             </div>
-        </div>
+        </Card>
     );
 };
 

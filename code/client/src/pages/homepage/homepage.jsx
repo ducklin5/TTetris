@@ -1,5 +1,6 @@
-import React, { Component, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Button } from "react-bootstrap";
 import './homepage.css';
 import PropTypes from "prop-types";
 
@@ -53,9 +54,9 @@ const HomePage = (props) => {
                 <div className="piece piece-10"></div>
                 <p className="h1 text-danger font-weight-bold font-italic text-center title-margin ">Treacherous Tetris</p>
                 <div className="d-flex justify-content-center align-items-start">
-                    <button onClick={onCreateButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space">
+                    <Button onClick={onCreateButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space">
                         Create Room
-                    </button>
+                    </Button>
                 </div>
                 <div className="d-flex justify-content-center align-items-start">
                     <div className='input-group mb-3 text-center btn-space'>
@@ -68,9 +69,9 @@ const HomePage = (props) => {
                         aria-describedby='basic-addon2'></input>
                         
                         <div className='input-group-append'>
-                            <button onClick={onJoinButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic">
+                            <Button onClick={onJoinButtonClicked} type="button" className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic">
                                 Join Room
-                            </button>
+                            </Button>
                         </div>
                     </div>
                 </div>
