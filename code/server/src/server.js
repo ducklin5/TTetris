@@ -132,6 +132,14 @@ wsServer.on("connection", (socket) => {
     roomSessions[roomID]?.channel.emit("connectClient", roomSessions[roomID].getConnectedClients());
   })
 
+  socket.on("sendSignal", payload => {
+    socket.to(payload.userToSignal).emit("userJoined", {signal: payload.signal, callerID: payload.callerID});
+  });
+
+  socket.on("returnSignal", payload => {
+    socket.to(payload.callerID).emit("receiveReturnSignal", {signal: payload.signal, id: socket.id})
+  });
+
   socket.on("disconnecting", () => {
     console.log("disconnecting")
     socket.rooms.forEach(room => {

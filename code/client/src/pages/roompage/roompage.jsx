@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { Card, Alert } from "react-bootstrap"
+import Peer from "simple-peer";
 import PlayerInfoComponent from "./components/playerInfoComponent";
 import ChatboxComponent from "./components/chatboxComponent";
 import GameSettingsComponent from "./components/gameSettingsComponent";
@@ -15,11 +16,29 @@ const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
 }
 
+const VideoComponent = (props) => {
+    const {peer} = props;
+    const ref = useRef();
+
+    useEffect(() => {
+        peer.on("stream", stream => {
+            ref.current.srcObject = stream;
+        })
+    },[]);
+
+    return (
+        <video playsInline autoPlay ref={ref} style={{width:300, height:300}}/>
+    );
+}
+
 const RoomPage = ({ socket }) => {
     const [gameStarted, setGameStarted] = useState(!!window.gameData);
     const [gameData, setGameData] = useState({});
     const [showAlert, setShowAlert] = useState(false);
     const [playerInfo, setPlayerInfo] = useState({});
+    const [peers, setPeers] = useState([]);
+    const userVideo = useRef();
+    const peersRef = useRef([]);
     const roomID = useParams().roomID;
 
     const createTempPlayers = (clientInfo) => {
@@ -43,7 +62,71 @@ const RoomPage = ({ socket }) => {
         } else {
             setPlayerInfo(window.gameData.players);
         }
+
+        navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true,
+        }).then(stream => {
+            userVideo.current.srcObject = stream;
+            socket.emit("getConnectedClients", roomID, (clientInfo) => {
+                const peers = [];
+                clientInfo.forEach(client => {
+                    const peer = createPeer(client.id, socket.id, stream);
+                    peersRef.current.push({
+                        peerID: client.id,
+                        peer,
+                    })
+                    peers.push(peer);
+                })
+                setPeers(peers);
+            })
+
+            socket.on("userJoined", payload => {
+                const peer = addPeer(payload.signal, payload.callerID, stream);
+                peersRef.current.push({
+                    peerID: payload.callerID,
+                    peer,
+                })
+
+                setPeers(users => [...users, peer]);
+            });
+
+            socket.on("receiveReturnSignal", payload => {
+                const item = peersRef.current.find(p => p.peerID === payload.id);
+                item.peer.signal(payload.signal);
+            });
+        })
     },[])
+
+    const createPeer = (userToSignal, callerID, stream) => {
+        const peer = new Peer({
+            initiator: true,
+            trickle: false,
+            stream,
+        });
+
+        peer.on("signal", signal => {
+            socket.emit("sendSignal", {userToSignal, callerID, signal})
+        })
+
+        return peer;
+    }
+
+    const addPeer = (incomingSignal, callerID, stream) => {
+        const peer = new Peer({
+            initiator: false,
+            trickle: false,
+            stream,
+        })
+
+        peer.on("signal", signal => {
+            socket.emit("returnSignal", {signal, callerID})
+        })
+
+        peer.signal(incomingSignal);
+
+        return peer;
+    }
 
     socket.on("connectClient", createTempPlayers);
 
@@ -95,6 +178,14 @@ const RoomPage = ({ socket }) => {
                 <p className="h1 text-danger font-weight-bold font-italic text-center ">Treacherous Tetris</p>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                 <Link to={"/help"} type="button" className=" help-button"><i className="bi bi-question-circle fa-lg"></i></Link>          
+            </div>
+            <div>
+                <video muted ref={userVideo} autoPlay playsInline style={{width:300, height:300}} />
+                {peers.map((peer, index) => {
+                    return (
+                        <VideoComponent key={index} peer={peer} />
+                    )
+                })}
             </div>
             <div className="room-code">
                 <span className="h2 text-dark font-weight-bold text-center ">Room:</span>
