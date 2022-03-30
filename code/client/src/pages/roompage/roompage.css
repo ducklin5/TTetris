@@ -27,6 +27,7 @@ html, body, #root {
   margin-left:10px;
   border-radius: 100%;
   outline: none;
+  cursor: pointer;
 }
 
 .room-code{
@@ -45,6 +46,7 @@ html, body, #root {
   display: inline-block;
   border-radius: 5%;
   outline: none;
+  cursor: pointer;
 }
 
 .room-components {
