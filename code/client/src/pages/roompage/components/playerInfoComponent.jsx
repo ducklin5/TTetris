@@ -8,9 +8,7 @@ const PlayerInfoComponent = (props) => {
     return (
         <Card className="players-content">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"></link>
-            <Card.Header>
-                <span className="player-title font-italic text-center">Players Info</span>
-            </Card.Header>
+            <Card.Header className="player-title font-italic text-center">Players Info</Card.Header>
             <div className='player-list'>
                 {
                     Object.keys(playerInfo).map((key, index) => <PlayerStatusComponent key={index} player={playerInfo[key]} />)

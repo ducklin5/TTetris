@@ -5,11 +5,9 @@ import GameVotingComponent from "./gameVotingComponent";
 import { ResponsiveGameCanvasComponent } from "./responsiveGameCanvasComponent";
 import "./gameview.css";
 
-
-const GameViewComponent = ({socket}) => {
+const GameViewComponent = ({ socket }) => {
     const gameDivRef = useRef(null);
     const [isVoting, setVoting] = useState(false);
-
 
     useEffect(() => {
         const gameDiv = gameDivRef.current;
@@ -27,7 +25,7 @@ const GameViewComponent = ({socket}) => {
     });
 
     const handleKeyDown = (e) => {
-        switch(e.key) {
+        switch (e.key) {
             case "ArrowRight":
                 socket.emit("game_input", "right");
                 break;
@@ -43,25 +41,24 @@ const GameViewComponent = ({socket}) => {
             case " ":
                 socket.emit("game_input", "drop");
                 e.preventDefault();
-                break
+                break;
         }
     };
-    
 
     return (
         <div className="GameViewComponent">
             <div className="GameViewCol1">
-                    <GameButtonsComponent socket={socket} />
-                    {
-                        isVoting ? <GameVotingComponent socket={socket} /> : null
-                    }
-                    <div className="game-level">Speed:{window.gameData.speed}</div>
+                <GameButtonsComponent socket={socket} />
+                <div className="game-level">
+                    <p>Speed:{window.gameData.speed}</p>
+                </div>
+                {isVoting ? <GameVotingComponent socket={socket} /> : null}
             </div>
             <div className="GameViewCol2" ref={gameDivRef} tabindex="0">
                 <ResponsiveGameCanvasComponent />
             </div>
         </div>
     );
-}
+};
 
 export default GameViewComponent;
