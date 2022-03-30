@@ -14,6 +14,7 @@
   margin: 20px 15px;
   border-radius: 80%;
   outline: none;
+  cursor: pointer;
 }
 
 .timer-frame {
@@ -49,6 +50,7 @@
   margin: 5px 15px;
   border-radius: 80%;
   outline: none;
+  cursor: pointer;
 }
 
 .sabotage-color1{
