@@ -16,7 +16,7 @@ const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
 }
 
-const VideoComponent = (props) => {
+const AudioComponent = (props) => {
     const {peer} = props;
     const ref = useRef();
 
@@ -183,7 +183,7 @@ const RoomPage = ({ socket }) => {
                 <audio muted ref={userVideo} autoPlay playsInline />
                 {peers.map((peer, index) => {
                     return (
-                        <VideoComponent key={index} peer={peer} />
+                        <AudioComponent key={index} peer={peer} />
                     )
                 })}
             </div>
