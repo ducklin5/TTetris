@@ -71,14 +71,17 @@ const AudioChatComponent = ({ socket, roomID }) => {
                 setPeers(peers);
             })
 
+            console.log("create userJoin Listeener");
+
             socket.on("userJoined", payload => {
                 const peer = addPeer(payload.signal, payload.callerID, stream);
+                console.log("peer joined!");
                 peersRef.current.push({
                     peerID: payload.callerID,
                     peer,
                 })
 
-                setPeers(users => [...users, peer]);
+                setPeers([...peers, peer]);
             });
 
             socket.on("receiveReturnSignal", payload => {
