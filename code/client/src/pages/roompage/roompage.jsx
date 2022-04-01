@@ -3,12 +3,12 @@ import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { Card, Alert } from "react-bootstrap"
-import Peer from "simple-peer";
 import PlayerInfoComponent from "./components/playerInfoComponent";
 import ChatboxComponent from "./components/chatboxComponent";
 import GameSettingsComponent from "./components/gameSettingsComponent";
 import GameViewComponent from "./components/gameView/gameViewComponent";
 import "./roompage.css";
+import { AudioChatComponent } from "./components/audioChatComponent";
 
 window.gameData = null;
 
@@ -16,120 +16,12 @@ const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
 }
 
-const AudioComponent = (props) => {
-    const {peer} = props;
-    const ref = useRef();
-
-    useEffect(() => {
-        peer.on("stream", stream => {
-            ref.current.srcObject = stream;
-        })
-    },[]);
-
-    return (
-        <audio playsInline autoPlay ref={ref} />
-    );
-}
 
 const RoomPage = ({ socket }) => {
     const [gameStarted, setGameStarted] = useState(!!window.gameData);
-    const [gameData, setGameData] = useState({});
     const [showAlert, setShowAlert] = useState(false);
-    const [playerInfo, setPlayerInfo] = useState({});
-    const [peers, setPeers] = useState([]);
-    const userVideo = useRef();
-    const peersRef = useRef([]);
     const roomID = useParams().roomID;
-
-    const createTempPlayers = (clientInfo) => {
-        // create a temporary, "fake" player info
-        let tempPlayerInfo = {};
-        clientInfo.forEach(client => {
-            tempPlayerInfo[client.id] = {
-                id: client.id,
-                nickName: client.nickname,
-                color: client.color,
-                isImposter: false,
-                hasEmergency: true,
-            }
-        })
-        setPlayerInfo(tempPlayerInfo);
-    }
-
-    useEffect(() => {
-        if (window.gameData == null) {
-            socket.emit("getConnectedClients", roomID, createTempPlayers);
-        } else {
-            setPlayerInfo(window.gameData.players);
-        }
-
-        navigator.mediaDevices.getUserMedia({
-            video: false,
-            audio: true,
-        }).then(stream => {
-            userVideo.current.srcObject = stream;
-            socket.emit("getConnectedClients", roomID, (clientInfo) => {
-                const peers = [];
-                clientInfo.forEach(client => {
-                    const peer = createPeer(client.id, socket.id, stream);
-                    peersRef.current.push({
-                        peerID: client.id,
-                        peer,
-                    })
-                    peers.push(peer);
-                })
-                setPeers(peers);
-            })
-
-            socket.on("userJoined", payload => {
-                const peer = addPeer(payload.signal, payload.callerID, stream);
-                peersRef.current.push({
-                    peerID: payload.callerID,
-                    peer,
-                })
-
-                setPeers(users => [...users, peer]);
-            });
-
-            socket.on("receiveReturnSignal", payload => {
-                const item = peersRef.current.find(p => p.peerID === payload.id);
-                item.peer.signal(payload.signal);
-            });
-        })
-    },[])
-
-    const createPeer = (userToSignal, callerID, stream) => {
-        const peer = new Peer({
-            initiator: true,
-            trickle: false,
-            stream,
-        });
-
-        peer.on("signal", signal => {
-            socket.emit("sendSignal", {userToSignal, callerID, signal})
-        })
-
-        return peer;
-    }
-
-    const addPeer = (incomingSignal, callerID, stream) => {
-        const peer = new Peer({
-            initiator: false,
-            trickle: false,
-            stream,
-        })
-
-        peer.on("signal", signal => {
-            socket.emit("returnSignal", {signal, callerID})
-        })
-
-        peer.signal(incomingSignal);
-
-        return peer;
-    }
-
-    socket.on("connectClient", createTempPlayers);
-
+ 
     // Reference: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
     const copyRoomId = () => {
         navigator.clipboard.writeText(roomID);
@@ -179,14 +71,7 @@ const RoomPage = ({ socket }) => {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                 <Link to={"/help"} type="button" className=" help-button"><i className="bi bi-question-circle fa-lg"></i></Link>          
             </div>
-            <div>
-                <audio muted ref={userVideo} autoPlay playsInline />
-                {peers.map((peer, index) => {
-                    return (
-                        <AudioComponent key={index} peer={peer} />
-                    )
-                })}
-            </div>
+            <AudioChatComponent socket={socket} />
             <div className="room-code">
                 <span className="h2 text-dark font-weight-bold text-center ">Room:</span>
                 <span type="text" value="room id" id="roomId" className="h2 text-dark font-weight-bold text-center">{roomID}</span>
@@ -198,10 +83,10 @@ const RoomPage = ({ socket }) => {
             <div className="room-components">
                 <div className="room-sections-left">
                     <Card className="room-box-left">
-                            <PlayerInfoComponent playerInfo={playerInfo} />
+                            <PlayerInfoComponent socket={socket} roomID={roomID}/>
                     </Card>
                     <Card className="room-box-left">
-                            <ChatboxComponent socket={socket}/>
+                            <ChatboxComponent socket={socket} roomID={roomID}/>
                     </Card>
                 </div>
                 <div className="room-sections-right">
