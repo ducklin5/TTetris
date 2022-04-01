@@ -71,7 +71,7 @@ const RoomPage = ({ socket }) => {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                 <Link to={"/help"} type="button" className=" help-button"><i className="bi bi-question-circle fa-lg"></i></Link>          
             </div>
-            <AudioChatComponent socket={socket} />
+            <AudioChatComponent socket={socket} roomID={roomID} />
             <div className="room-code">
                 <span className="h2 text-dark font-weight-bold text-center ">Room:</span>
                 <span type="text" value="room id" id="roomId" className="h2 text-dark font-weight-bold text-center">{roomID}</span>
