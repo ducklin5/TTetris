@@ -11,7 +11,6 @@ const GameSettingsComponent = (props) => {
     const [pieceColor, setPieceColor] = useState("");
     const [isHost, setIsHost] = useState(false);
     const roomID = useParams().roomID;
-    const [isNicknameChanged, setIsNicknameChanged] = useState(false);
 
     useEffect(() => {
         socket.emit("getClientInfo", roomID, window.clientID, (clientData) => {
@@ -41,14 +40,7 @@ const GameSettingsComponent = (props) => {
 
     const onNicknameChanged = (event) => {
         setNickname(event.target.value);
-        setIsNicknameChanged(true);
-    }
-
-    const onNicknameConfirmed= (event) =>{
-        if (event.key == "Enter" && isNicknameChanged) {
-            socket.emit("changeClientName", roomID, window.clientID, event.target.value);
-            setIsNicknameChanged(false);
-        }
+        socket.emit("changeClientName", roomID, window.clientID, event.target.value);
     }
 
     const onPieceColorChanged = (event) => {
@@ -67,13 +59,8 @@ const GameSettingsComponent = (props) => {
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Nickname:</span>
                             </div>
-                            <input type="text" onChange={onNicknameChanged} onKeyDown={onNicknameConfirmed} value={nickname} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                            <input type="text" onChange={onNicknameChanged} value={nickname} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                         </div>
-                    </div>
-                    <div>
-                    {
-                        isNicknameChanged? <div className='enter-indicator'>Press Enter to set your nickname</div>: null
-                    }
                     </div>
 
                     <div className='player-input'>

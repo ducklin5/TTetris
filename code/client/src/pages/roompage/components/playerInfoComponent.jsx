@@ -27,12 +27,13 @@ const PlayerInfoComponent = ({socket, roomID}) => {
             socket.emit("getConnectedClients", roomID, createTempPlayers);
         } else {
             setPlayerInfo(window.gameData.players);
-        } 
+        }
+
+        socket.on("connectClient", createTempPlayers);
     },[])
 
     
 
-    socket.on("connectClient", createTempPlayers);
 
 
     return (
