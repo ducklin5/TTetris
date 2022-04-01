@@ -59,7 +59,7 @@ const GameSettingsComponent = (props) => {
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Nickname:</span>
                             </div>
-                            <input type="text" onChange={onNicknameChanged} onKeyDown={onNicknameConfirmed} value={nickname} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                            <input type="text" onChange={onNicknameChanged} value={nickname} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                         </div>
                     </div>
 
