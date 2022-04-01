@@ -12,12 +12,14 @@ const GameSettingsComponent = (props) => {
     const [isHost, setIsHost] = useState(false);
     const roomID = useParams().roomID;
     const [isNicknameChanged, setIsNicknameChanged] = useState(false);
+    
 
     useEffect(() => {
         socket.emit("getClientInfo", roomID, window.clientID, (clientData) => {
             setNickname(clientData.nickname);
             setPieceColor(clientData.color);
             setIsHost(clientData.isHost);
+            setHasEmergency(clientData.hasEmergency); //TODO: check?
         })
     },[])
     
