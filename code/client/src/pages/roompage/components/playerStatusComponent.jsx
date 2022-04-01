@@ -16,9 +16,8 @@ const PlayerStatusComponent = (props) => {
             <div className="piece-container">
                 <div className="player-piece" style={{"backgroundColor":player.color}}></div>
                 {
-                    player.hasEmergency? <div className="player-emergency"></div>: null;
+                  player.hasEmergency? <div className="player-emergency"></div>: null
                 }
-                
             </div>
         </div>
     );
