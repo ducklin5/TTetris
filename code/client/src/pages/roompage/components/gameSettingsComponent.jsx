@@ -19,7 +19,6 @@ const GameSettingsComponent = (props) => {
             setNickname(clientData.nickname);
             setPieceColor(clientData.color);
             setIsHost(clientData.isHost);
-            setHasEmergency(clientData.hasEmergency); //TODO: check?
         })
     },[])
     

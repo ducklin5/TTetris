@@ -50,10 +50,8 @@ const GameButtonsComponent = ({ socket }) => {
     let player = window.gameData.players[playerId];
     let isImposter = player.isImposter;
     let [timeLeft, setTimeLeft] = useState(0);
-    let [hasEmergency, setHasEmergency] = useState(true); // TODO: check this
 
-    const onEmergencyPressed = (event) => { // TODO: check
-        setHasEmergency(event.target.value);
+    const onEmergencyPressed = () => {
         socket.emit("game_input", `emergency`);
     };
 
