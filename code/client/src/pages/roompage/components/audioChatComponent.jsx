@@ -18,7 +18,7 @@ const AudioComponent = (props) => {
 
 const AudioChatComponent = ({ socket, roomID }) => {
     const [peers, setPeers] = useState([]);
-    const userVideo = useRef();
+    const userAudio = useRef();
     const peersRef = useRef([]);
 
     const createPeer = (userToSignal, callerID, stream) => {
@@ -56,8 +56,9 @@ const AudioChatComponent = ({ socket, roomID }) => {
             video: false,
             audio: true,
         }).then(stream => {
-            userVideo.current.srcObject = stream;
+            userAudio.current.srcObject = stream;
             socket.emit("getConnectedClients", roomID, (clientInfo) => {
+                console.log(clientInfo);
                 const peers = [];
                 clientInfo.forEach(client => {
                     const peer = createPeer(client.id, socket.id, stream);
@@ -87,9 +88,15 @@ const AudioChatComponent = ({ socket, roomID }) => {
         })
     }, [])
 
+    const muteAudioClicked = (event) => {
+        console.log("here")
+        userAudio.current.muted = true;
+    }
+
     return (
         <div>
-            <audio muted ref={userVideo} autoPlay playsInline />
+            <audio muted ref={userAudio} autoPlay playsInline />
+            <button onClick={muteAudioClicked}>Mute</button>
             {peers.map((peer, index) => {
                 return (
                     <AudioComponent key={index} peer={peer} />
