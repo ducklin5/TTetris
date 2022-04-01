@@ -16,12 +16,24 @@ const AudioComponent = (props) => {
     );
 }
 
+const AudioPeersComponent = ({ peers }) => {
+    return (
+        <>
+            {peers.map((peer, index) => {
+                return (
+                    <AudioComponent key={index} peer={peer} />
+                )
+            })}
+        </>
+    );
+}
+
 const AudioChatComponent = ({ socket, roomID }) => {
     const [peers, setPeers] = useState([]);
     const userAudio = useRef();
     const peersRef = useRef([]);
 
-    const createPeer = (userToSignal, callerID, stream) => {
+    const createSendPeer = (userToSignal, callerID, stream) => {
         const peer = new Peer({
             initiator: true,
             trickle: false,
@@ -35,7 +47,7 @@ const AudioChatComponent = ({ socket, roomID }) => {
         return peer;
     }
 
-    const addPeer = (incomingSignal, callerID, stream) => {
+    const createReturnPeer = (incomingSignal, callerID, stream) => {
         const peer = new Peer({
             initiator: false,
             trickle: false,
@@ -58,30 +70,38 @@ const AudioChatComponent = ({ socket, roomID }) => {
         }).then(stream => {
             userAudio.current.srcObject = stream;
             socket.emit("getConnectedClients", roomID, (clientInfo) => {
-                console.log(clientInfo);
                 const peers = [];
                 clientInfo.forEach(client => {
-                    const peer = createPeer(client.id, socket.id, stream);
+                    const peer = createSendPeer(client.id, socket.id, stream);
                     peersRef.current.push({
                         peerID: client.id,
                         peer,
                     })
                     peers.push(peer);
                 })
+                console.log("Peers after getConnectedClients:");
+                console.log(peers);
                 setPeers(peers);
             })
 
-            console.log("create userJoin Listeener");
 
             socket.on("userJoined", payload => {
-                const peer = addPeer(payload.signal, payload.callerID, stream);
                 console.log("peer joined!");
+                console.log("Peers before userJoined:");
+                console.log(peers);
+                
+                const peer = createReturnPeer(payload.signal, payload.callerID, stream);
                 peersRef.current.push({
                     peerID: payload.callerID,
                     peer,
                 })
-
-                setPeers([...peers, peer]);
+                
+                console.log("userJoined: Adding a new peer...");
+                setPeers(oldPeers => {
+                    console.log("Peers before userJoined (setState):");
+                    console.log(peers);
+                    return [...oldPeers, peer]
+                });
             });
 
             socket.on("receiveReturnSignal", payload => {
@@ -96,15 +116,13 @@ const AudioChatComponent = ({ socket, roomID }) => {
         userAudio.current.muted = true;
     }
 
+    console.log("Current Peers: ")
+    console.log(peers);
     return (
         <div>
             <audio muted ref={userAudio} autoPlay playsInline />
             <button onClick={muteAudioClicked}>Mute</button>
-            {peers.map((peer, index) => {
-                return (
-                    <AudioComponent key={index} peer={peer} />
-                )
-            })}
+            <AudioPeersComponent peers={peers} />
         </div>
     );
 }
