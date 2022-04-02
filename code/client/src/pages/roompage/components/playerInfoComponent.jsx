@@ -1,9 +1,40 @@
 import './playerInfoComponent.css';
 import { Card } from "react-bootstrap";
+import { useState, useEffect, useRef } from "react";
 import PlayerStatusComponent from "./playerStatusComponent";
 
-const PlayerInfoComponent = (props) => {
-    const { playerInfo } = props;
+const PlayerInfoComponent = ({socket, roomID}) => {
+    const [playerInfo, setPlayerInfo] = useState({});
+
+
+    const createTempPlayers = (clientInfo) => {
+        // create a temporary, "fake" player info
+        let tempPlayerInfo = {};
+        clientInfo.forEach(client => {
+            tempPlayerInfo[client.id] = {
+                id: client.id,
+                nickName: client.nickname,
+                color: client.color,
+                isImposter: false,
+                hasEmergency: true,
+            }
+        })
+        setPlayerInfo(tempPlayerInfo);
+    }
+
+    useEffect(() => {
+        if (window.gameData == null) {
+            socket.emit("getConnectedClients", roomID, createTempPlayers);
+        } else {
+            setPlayerInfo(window.gameData.players);
+        }
+
+        socket.on("connectClient", createTempPlayers);
+    },[])
+
+    
+
+
 
     return (
         <Card className="players-content">
