@@ -22,6 +22,10 @@ const PlayerInfoComponent = ({socket, roomID}) => {
         setPlayerInfo(tempPlayerInfo);
     }
 
+    const onVotesUpdated = () =>{
+        setPlayerInfo(window.gameData.players);
+    }
+
     useEffect(() => {
         if (window.gameData == null) {
             socket.emit("getConnectedClients", roomID, createTempPlayers);
@@ -30,6 +34,7 @@ const PlayerInfoComponent = ({socket, roomID}) => {
         }
 
         socket.on("connectClient", createTempPlayers);
+        socket.on("votesUpdated", onVotesUpdated);
     },[])
 
     
