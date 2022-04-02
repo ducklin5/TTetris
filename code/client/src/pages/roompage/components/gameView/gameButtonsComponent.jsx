@@ -55,14 +55,17 @@ const GameButtonsComponent = ({ socket }) => {
         socket.emit("game_input", `emergency`);
     };
 
-    socket.on("gameDataUpdated", (gameData) => {
-        if (timeLeft != gameData.timeLeft) {
-            setTimeLeft(gameData.timeLeft);
-        }
-    });
+    useEffect(() => {
+        socket.on("gameDataUpdated", (gameData) => {
+            if (timeLeft != gameData.timeLeft) {
+                setTimeLeft(gameData.timeLeft);
+            }
+        });
+
+    }, []);
 
     let totalSeconds = ~~(timeLeft / 1000);
-    const fmtS2MS = s => ~~(s/60) + ((s%=60) < 10 ? ":0" : ":") + s;
+    const fmtS2MS = s => ~~(s / 60) + ((s %= 60) < 10 ? ":0" : ":") + s;
 
     return (
         <div>
