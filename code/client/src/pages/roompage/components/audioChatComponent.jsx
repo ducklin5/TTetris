@@ -28,6 +28,8 @@ const AudioPeersComponent = ({ peers }) => {
     );
 }
 
+// FRMARKER: FR03: Start.WebRTC.Session
+// FRMARKER: FR07: Connect.WebRTC.Session
 const AudioChatComponent = ({ socket, roomID }) => {
     const [peers, setPeers] = useState([]);
     const userAudio = useRef();
@@ -79,27 +81,18 @@ const AudioChatComponent = ({ socket, roomID }) => {
                     })
                     peers.push(peer);
                 })
-                console.log("Peers after getConnectedClients:");
-                console.log(peers);
                 setPeers(peers);
             })
 
 
             socket.on("userJoined", payload => {
-                console.log("peer joined!");
-                console.log("Peers before userJoined:");
-                console.log(peers);
-                
                 const peer = createReturnPeer(payload.signal, payload.callerID, stream);
                 peersRef.current.push({
                     peerID: payload.callerID,
                     peer,
                 })
                 
-                console.log("userJoined: Adding a new peer...");
                 setPeers(oldPeers => {
-                    console.log("Peers before userJoined (setState):");
-                    console.log(peers);
                     return [...oldPeers, peer]
                 });
             });

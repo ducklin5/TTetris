@@ -13,6 +13,7 @@ const HomePage = (props) => {
     const {socket} = props;
     const navigate = useNavigate();
 
+    // FRMARKER: FR01:Genera.Form
     const onCreateButtonClicked = () => {
         socket.emit("create_room", (_roomID, clientID) => {
             window.clientID = clientID;
@@ -21,19 +22,22 @@ const HomePage = (props) => {
         })
     }
 
+    // FRMARKER: FR05:Join.Room.Form
     const onJoinButtonClicked = () => {
         requestJoinRoom(roomID);
     }
-
     const requestJoinRoom = (roomID) => {
         socket.emit("join_room", roomID, (roomExists, clientID) => {
             if (!roomExists) {
                 alert("The room does not exist")
                 return;
             } else if (roomExists == "full") {
+                // FRMARKER: FR21:Display.RoomFullMessage
                 alert("The room is full");
                 return;
-            } 
+            }
+
+            // FRMARKER: FR06:Connect.Game.Session
             window.clientID = clientID;
             let path = `/room/${roomID}`;
             navigate(path);

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./gameButtonsComponent.css";
 
+// FRMARKER: FR19:Display.Sabotage.Button
 const ImposterButtons = ({ socket }) => {
     const onSabotagePressed = (type) => {
         return () => {
@@ -51,22 +52,27 @@ const GameButtonsComponent = ({ socket }) => {
     let isImposter = player.isImposter;
     let [timeLeft, setTimeLeft] = useState(0);
 
+    // FRMARKER: FR30: Send.VotingButton 
     const onEmergencyPressed = () => {
         socket.emit("game_input", `emergency`);
     };
 
-    socket.on("gameDataUpdated", (gameData) => {
-        if (timeLeft != gameData.timeLeft) {
-            setTimeLeft(gameData.timeLeft);
-        }
-    });
+    useEffect(() => {
+        socket.on("gameDataUpdated", (gameData) => {
+            if (timeLeft != gameData.timeLeft) {
+                setTimeLeft(gameData.timeLeft);
+            }
+        });
+
+    }, []);
 
     let totalSeconds = ~~(timeLeft / 1000);
-    const fmtS2MS = s => ~~(s/60) + ((s%=60) < 10 ? ":0" : ":") + s;
+    const fmtS2MS = s => ~~(s / 60) + ((s %= 60) < 10 ? ":0" : ":") + s;
 
     return (
         <div>
             <div className="row-buttons">
+                {/*/ FRMARKER: FR17:Display.Emergency.Buttons */}
                 <button className="emergency-button" onClick={onEmergencyPressed}>
                     <i className="fa fa-exclamation-circle fa-lg"></i>
                 </button>

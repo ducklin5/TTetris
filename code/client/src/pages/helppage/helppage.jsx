@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Card } from "react-bootstrap";
 import './helppage.css';
 
+// FRMARKER: FR38: View.HelpPage
 class HelpPage extends Component {
 
     render() { 

@@ -20,6 +20,8 @@ const GameSettingsComponent = (props) => {
         })
     },[])
     
+    // FRMARKER: FR02: Start.Game.Session
+    // FRMARKER: FR10: Host.Start.Game
     const onStartButtonClicked = () => {
         let settings = {speed: gameSpeed};
         // TODO: accumulate settings here
@@ -33,16 +35,19 @@ const GameSettingsComponent = (props) => {
         })
     }
 
+    // FRMARKER: FR09:Host.Edit.Game.Settings
     const onGameSpeedChanged = (event) => {
         setGameSpeed(event.target.value);
         socket.emit("changeGameSpeed", roomID, event.target.value);
     }
 
+    // FRMARKER: FR11:Player.Edit.Self.Settings
     const onNicknameChanged = (event) => {
         setNickname(event.target.value);
         socket.emit("changeClientName", roomID, window.clientID, event.target.value);
     }
 
+    // FRMARKER: FR11:Player.Edit.Self.Settings
     const onPieceColorChanged = (event) => {
         setPieceColor(event.target.value);
         socket.emit("changeClientColor", roomID, window.clientID, event.target.value);

@@ -61,6 +61,8 @@ wsServer.on("connection", (socket) => {
     }
   });
 
+
+  // FRMARKER: FR02: Start.Game.Session
   socket.on("start_game", (settings, done) => {
     try {
       roomSessions[clientRoomId].startGame(settings);
@@ -71,6 +73,7 @@ wsServer.on("connection", (socket) => {
     }
   })
 
+  // FRMARKER: FR28: Send.GameState 
   socket.on("game_input", (event, done = ()=>{}) => {
     try {
       let succ = roomSessions[clientRoomId]?.gameInput(clientId, event);
@@ -114,7 +117,8 @@ wsServer.on("connection", (socket) => {
       console.log(err);
     }
   })
-
+  
+  // FRMARKER: FR14:Display.Player.Connection.Status
   // get all clients that are connected
   socket.on("getConnectedClients", (roomID, done) => {
     done(roomSessions[roomID]?.getConnectedClients());
@@ -132,10 +136,14 @@ wsServer.on("connection", (socket) => {
     roomSessions[roomID]?.channel.emit("connectClient", roomSessions[roomID].getConnectedClients());
   })
 
+  // FRMARKER: FR07: Connect.WebRTC.Session
+  // signaling for WebRTC
   socket.on("sendSignal", payload => {
     socket.to(payload.userToSignal).emit("userJoined", {signal: payload.signal, callerID: payload.callerID});
   });
 
+  // FRMARKER: FR07: Connect.WebRTC.Session
+  // signaling for WebRTC
   socket.on("returnSignal", payload => {
     socket.to(payload.callerID).emit("receiveReturnSignal", {signal: payload.signal, id: socket.id})
   });

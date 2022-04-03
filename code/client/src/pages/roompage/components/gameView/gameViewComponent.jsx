@@ -24,6 +24,7 @@ const GameViewComponent = ({ socket }) => {
         }
     });
 
+    // FRMARKER: FR20:Send.Inputs.Server
     const handleKeyDown = (e) => {
         switch (e.key) {
             case "ArrowRight":
@@ -49,6 +50,7 @@ const GameViewComponent = ({ socket }) => {
         <div className="GameViewComponent">
             <div className="GameViewCol1">
                 <GameButtonsComponent socket={socket} />
+                { /* FRMARKER: FR13: Display.Game.Settings */ }
                 <div className="game-level">
                     <p>Speed:{window.gameData.speed}</p>
                 </div>

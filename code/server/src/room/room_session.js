@@ -5,7 +5,8 @@ import ChatSession from "./chat_session.js";
 class RoomSession {
     constructor(roomID, channel) {
         this.clients = []; // list of Client object
-        // TODO: Create a chat session later on
+        // FRMARKER: FR04: Start.Text.Chat.Session
+        // FRMARKER: FR08: Connect.Chat.Session
         this.chatSession = new ChatSession();
         this.roomID = roomID;
         this.gameSession = null;
@@ -33,6 +34,7 @@ class RoomSession {
     }
 
     startGame(settings) {
+        // FRMARKER: FR02:Start.Game.Session
         this.gameSession = new GameSession(this.clients, settings);
         this.gameSession.setOnGameUpdated(() =>
             this.channel.emit("gameDataUpdated", this.gameSession.getGameData())

@@ -2,6 +2,8 @@ import './playerStatusComponent.css';
 
 // Reference for wifi button: https://fontawesomeicons.com/bootstrap/icons/wifi-off
 
+// FRMARKER: FR15:Display.Players.Information
+// FRMARKER: FR14:Display.Player.Connection.Status
 const PlayerStatusComponent = (props) => {
     const {player} = props;
     return (
@@ -13,8 +15,10 @@ const PlayerStatusComponent = (props) => {
             <div className="piece-container">
                 <div className="player-piece" style={{"backgroundColor":player.color}}></div>
                 {
-                  player.hasEmergency? <div className="player-emergency"></div>: null
+                    // FRMARKER: FR17:Display.Emergency.Buttons
+                    player.hasEmergency? <div className="player-emergency"></div>: null
                 }
+                <div className="player-emergency"></div>
             </div>
         </div>
     );

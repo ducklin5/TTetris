@@ -4,7 +4,6 @@ import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
 import { VoteSession } from "./vote_session.js";
-
 class GameSession {
     constructor(clients, settings) {
         this.players = {}; // dictionary of id to player objects
@@ -124,6 +123,7 @@ class GameSession {
         }
     }
 
+    //FRMARKER: FR20:Send.Inputs.Server
     inputEvent(playerId, event) {
         if (this.winner) return false;
         let player = this.getPlayer(playerId);
@@ -136,6 +136,7 @@ class GameSession {
         return result;
     }
 
+    //FRMARKER: FR20:Send.Inputs.Server
     _inputEvent(playerId, event) {
         switch (event.name) {
             case "captureVote":
@@ -166,6 +167,7 @@ class GameSession {
         }
     }
 
+    //FRMARKER: FR20:Send.Inputs.Server
     tryMovePiece(playerId, x, y) {
         let player = this.getPlayer(playerId);
         if (player) {
@@ -185,6 +187,7 @@ class GameSession {
         return false;
     }
 
+    //FRMARKER: FR20:Send.Inputs.Server
     tryRotatePiece(playerId) {
         let player = this.getPlayer(playerId);
         if (player) {
@@ -205,6 +208,7 @@ class GameSession {
         return this.dropPlayerPiece(playerId);
     }
 
+    // FRMARKER: FR29: Send.VotingState 
     tryStartVoting(playerId) {
         let player = this.getPlayer(playerId);
         if (player && player.hasEmergency && !this.votingPhase) {
@@ -223,6 +227,7 @@ class GameSession {
         }
     }
 
+    // FRMARKER: FR36: Send.VoteData
     onVoteSessionDone(results) {
         console.log(results);
 
@@ -233,6 +238,7 @@ class GameSession {
         this.run();
     }
 
+    // FRMARKER: FR37: Return.VoteData
     eliminatePlayer(playerId) {
         let player = this.getPlayer(playerId);
         if (player) {
@@ -288,6 +294,7 @@ class GameSession {
         }
     }
 
+    //FRMARKER: FR20:Send.Inputs.Server
     getGameData() {
         let gameData = {
             players: this.players,
@@ -304,7 +311,7 @@ class GameSession {
         return gameData;
     }
 
-    //TODO: remove this debugging function
+    // DEBUG: printing game data on the gameboard
     printGameData() {
         let gameData = this.getGameData();
         let grid = JSON.parse(JSON.stringify(gameData.board.grid));

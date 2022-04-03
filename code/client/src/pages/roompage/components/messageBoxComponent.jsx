@@ -1,5 +1,6 @@
 import "./messageBoxComponent.css";
 
+// FRMARKER: FR12:Display.Chatbox
 const MessageBoxComponent = (props) => {
     const {nickname, message, time} = props;
 
