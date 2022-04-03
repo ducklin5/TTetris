@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from "react";
 import GameButtonsComponent from "./gameButtonsComponent";
-import GameInfoComponent from "./gameInfoComponent";
 import GameVotingComponent from "./gameVotingComponent";
 import { ResponsiveGameCanvasComponent } from "./responsiveGameCanvasComponent";
 import "./gameview.css";

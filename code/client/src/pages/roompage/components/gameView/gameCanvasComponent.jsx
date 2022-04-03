@@ -43,10 +43,14 @@ function sketch(p5) {
             for (let x = 0; x < board.width; x++) {
                 let playerID = board.grid[y][x];
                 if (playerID != null) {
-                    p5.fill(getPlayerColor(playerID));
+                    let playerColor = getPlayerColor(playerID);
+                    p5.stroke(playerColor);
+                    p5.fill(playerColor);
                 } else {
-                    p5.fill("#777")
+                    p5.stroke("#333");
+                    p5.fill("#000")
                 }
+                p5.strokeWeight(0.1*y*y/board.height);
                 p5.rect(x * u(1), y * u(1), u(1));
             }
         }
@@ -82,6 +86,7 @@ function sketch(p5) {
             let size = pieceMatrix.length;
 
 
+            p5.strokeWeight(1);
             p5.fill(getPlayerColor(playerId));
 
             for (let y = 0; y < size; y++) {
