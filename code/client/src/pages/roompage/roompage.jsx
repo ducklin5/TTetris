@@ -33,6 +33,7 @@ const RoomPage = ({ socket }) => {
         setGameStarted(true);
     })
 
+    // FRMARKER: FR28: Send.GameState 
     socket.on("gameDataUpdated", (gameData) => {
         window.gameData = gameData;
     });
@@ -45,6 +46,7 @@ const RoomPage = ({ socket }) => {
                 />
             )
         } else {
+            // FRMARKER: FR13: Display.Game.Settings
             return (
                 <GameSettingsComponent
                     socket={socket}
@@ -86,6 +88,7 @@ const RoomPage = ({ socket }) => {
                             <PlayerInfoComponent socket={socket} roomID={roomID}/>
                     </Card>
                     <Card className="room-box-left">
+                            { /* FRMARKER: FR12: Display.Chatbox */}
                             <ChatboxComponent socket={socket} roomID={roomID}/>
                     </Card>
                 </div>

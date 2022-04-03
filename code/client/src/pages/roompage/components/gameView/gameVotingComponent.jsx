@@ -10,6 +10,7 @@ const getPlayerName = (playerId) => {
     return getPlayer(playerId)?.nickName;
 };
 
+// FRMMARKER: FR18:Display.Voting.Modal
 const VoteResults = ({ socket }) => {
     let [votes, setVotes] = useState({});
 
@@ -46,7 +47,7 @@ const VoteResults = ({ socket }) => {
 
     return <div className="voteResults">{resultDivs}</div>;
 };
-
+// FRMARKER: FR18:Display.Voting.Modal
 const GameVotingComponent = ({ socket }) => {
     let onVotePressed = (playerId) => {
         return () => {

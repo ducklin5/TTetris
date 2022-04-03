@@ -37,6 +37,7 @@ function sketch(p5) {
         return window.gameData.players[playerId].color;
     }
 
+    // FRMARKER: FR24:Display.GameBoard
     const drawGameBoard = (board) => {
         for (let y = 0; y < board.height; y++) {
             for (let x = 0; x < board.width; x++) {
@@ -51,6 +52,7 @@ function sketch(p5) {
         }
     }
 
+    // FRMARKER: FR23:Display.ProgressBar
     const drawProgressBar = (board) => {
 
         let barWidth = board.width;
@@ -67,6 +69,7 @@ function sketch(p5) {
         p5.rect(0, 0, u(completionWidth), u(1));
     }
 
+    // FRMARKER: FR22:Display.Canvas
     const drawPieces = () => {
         let players = window.gameData.players;
 
@@ -94,6 +97,7 @@ function sketch(p5) {
         }
     }
 
+    // FRMARKER: FR22:Display.Canvas
     const drawPlayerNextPiece = (board) => {
         let players = window.gameData.players;
         let player = players[window.clientID];
@@ -113,6 +117,7 @@ function sketch(p5) {
 
     }
 
+    // FRMARKER: FR22:Display.Canvas
     const drawPlayingPhase = () => {
         let board = window.gameData.board;
         p5.push();
@@ -133,6 +138,7 @@ function sketch(p5) {
         p5.pop();
     }
 
+    // FRMARKER: FR32: Send.Result
     const drawEndPhase = () => {
         let board = window.gameData.board;
 
@@ -164,6 +170,7 @@ function sketch(p5) {
         p5.text( imposterName + " was the imposter", 0, u(8), u(board.width));
     }
 
+    // FRMARKER: FR27:Update.Frame
     p5.draw = () => {
         p5.background(10, 10, 10);
         
@@ -175,7 +182,7 @@ function sketch(p5) {
 
 }
 
-
+// FRMARKER: FR22:Display.Canvas
 const GameCanvasComponent = ({ width, height }) => {
     return <ReactP5Wrapper sketch={sketch} height={height} width={width} />
 }

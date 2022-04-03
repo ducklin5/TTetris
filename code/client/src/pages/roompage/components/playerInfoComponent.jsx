@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
 import PlayerStatusComponent from "./playerStatusComponent";
 
+// FRMARKER: FR15:Display.Players.Information
 const PlayerInfoComponent = ({socket, roomID}) => {
     const [playerInfo, setPlayerInfo] = useState({});
 
@@ -21,7 +22,7 @@ const PlayerInfoComponent = ({socket, roomID}) => {
         })
         setPlayerInfo(tempPlayerInfo);
     }
-
+    // FRMARKER: FR14:Display.Player.Connection.Status
     useEffect(() => {
         if (window.gameData == null) {
             socket.emit("getConnectedClients", roomID, createTempPlayers);

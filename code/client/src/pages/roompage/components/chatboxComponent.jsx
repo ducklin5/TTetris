@@ -4,6 +4,7 @@ import { Card } from "react-bootstrap"
 import "./chatboxComponent.css";
 import MessageBoxComponent from "./messageBoxComponent";
 
+// FRMARKER: FR12: Display.Chatbox
 const ChatboxComponent = (props) => {
     const { socket } = props;
     const [message, setMessage] = useState("");

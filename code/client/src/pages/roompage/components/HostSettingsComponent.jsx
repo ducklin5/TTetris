@@ -3,6 +3,8 @@ import { Button, Card } from "react-bootstrap"
 
 // Reference for wifi button: https://fontawesomeicons.com/bootstrap/icons/wifi-off
 
+// FRMARKER: FR09: Host.Edit.Game.Settings
+// FRMARKER: FR10: Host.Start.Game
 const HostSettingsComponent = (props) => {
     const { isHost, gameSpeed, onGameSpeedChanged, onStartButtonClicked } = props;
     return (

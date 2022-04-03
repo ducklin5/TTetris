@@ -18,6 +18,7 @@ class VoteSession {
     }
 
     start() {
+        // FRMARKER: FR33: Initialize.Timers
         this.timer = setTimeout(() => this.onTimerDone(), this.totalTime);
         this.onVotesUpdated(this.votes);
     }
@@ -28,6 +29,7 @@ class VoteSession {
         this.onVoteSessionDone(results);
     }
 
+    // FRMARKER: FR31: Handle.VotingResults
     buildResults() {
         let voteCounts = {};
 
@@ -36,6 +38,7 @@ class VoteSession {
             voteCounts[playerId] = 0;
         }
 
+        // FRMARKER: FR34: Count.Votes
         for (let playerId in this.votes) {
             let targetPlayerId = this.votes[playerId];
             if (targetPlayerId) {
@@ -55,6 +58,7 @@ class VoteSession {
             return results;
         }
 
+        // FRMARKER: FR35: Handle.Ties
         if ( playerIds.length > 1 
             && voteCounts[playerIds[0]] == voteCounts[playerIds[1]]) {
                 results.targetPlayerId = null;
