@@ -114,7 +114,6 @@ const AudioChatComponent = ({ socket, roomID }) => {
     return (
         <div>
             <audio muted ref={userAudio} autoPlay playsInline />
-            <button onClick={muteAudioClicked}>Mute</button>
             <AudioPeersComponent peers={peers} />
         </div>
     );
