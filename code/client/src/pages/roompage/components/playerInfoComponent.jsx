@@ -22,6 +22,10 @@ const PlayerInfoComponent = ({socket, roomID}) => {
         })
         setPlayerInfo(tempPlayerInfo);
     }
+    const onVotesUpdated = () =>{
+        setPlayerInfo(window.gameData.players);
+    }
+
     // FRMARKER: FR14:Display.Player.Connection.Status
     useEffect(() => {
         if (window.gameData == null) {
@@ -31,6 +35,7 @@ const PlayerInfoComponent = ({socket, roomID}) => {
         }
 
         socket.on("connectClient", createTempPlayers);
+        socket.on("votesUpdated", onVotesUpdated);
     },[])
 
     
