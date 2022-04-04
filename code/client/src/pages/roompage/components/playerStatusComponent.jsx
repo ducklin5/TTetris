@@ -18,7 +18,6 @@ const PlayerStatusComponent = (props) => {
                     // FRMARKER: FR17:Display.Emergency.Buttons
                     player.hasEmergency? <div className="player-emergency"></div>: null
                 }
-                <div className="player-emergency"></div>
             </div>
         </div>
     );

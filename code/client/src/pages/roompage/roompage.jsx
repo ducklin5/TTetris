@@ -16,7 +16,6 @@ const RoomPagePropTypes = {
     socket: PropTypes.object.isRequired,
 }
 
-
 const RoomPage = ({ socket }) => {
     const [gameStarted, setGameStarted] = useState(!!window.gameData);
     const [showAlert, setShowAlert] = useState(false);

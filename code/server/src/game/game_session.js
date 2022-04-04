@@ -15,6 +15,7 @@ class GameSession {
         this.speed = settings?.speed || 1;
         this.update_delay = 1200 - 60 * this.speed;
         this.timeLeft = 10 * 60 * 1000;
+        this.imposterId = null;
 
         let i = 0;
         for (let client of clients) {
@@ -24,11 +25,20 @@ class GameSession {
                 client.color,
                 5 * i++
             );
+            
+            // TODO: remove this
+            if (client.color == "#FF001") {
+                this.imposterId  = client.id;
+            }
+            console.log(client.color);
         }
 
         let playerIds = Object.keys(this.players);
-        let randPlayerIdIndex = randomInt(playerIds.length);
-        this.imposterId = playerIds[randPlayerIdIndex];
+        if (!this.imposterId) {
+            let randPlayerIdIndex = randomInt(playerIds.length);
+            this.imposterId = playerIds[randPlayerIdIndex];
+        }
+
         this.players[this.imposterId].setImposter();
 
         const boardWidth = 15 + Math.max(0, playerIds.length - 3) * 5;
