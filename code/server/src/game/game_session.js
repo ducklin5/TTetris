@@ -27,7 +27,7 @@ class GameSession {
             );
             
             // TODO: remove this
-            if (client.color == "#FF001") {
+            if (client.color == "#FF0001") {
                 this.imposterId  = client.id;
             }
             console.log(client.color);
