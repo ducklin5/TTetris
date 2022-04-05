@@ -85,8 +85,8 @@ function sketch(p5) {
             let pieceMatrix = getPieceMatrix(piece);
             let size = pieceMatrix.length;
 
-
-            p5.strokeWeight(1);
+            p5.stroke("#333");
+            p5.strokeWeight(2);
             p5.fill(getPlayerColor(playerId));
 
             for (let y = 0; y < size; y++) {
@@ -110,6 +110,8 @@ function sketch(p5) {
         let pieceMatrix = getPieceMatrix(piece);
         let size = pieceMatrix.length;
         
+        p5.stroke("#333");
+        p5.strokeWeight(2);
         p5.fill(getPlayerColor(window.clientID));
 
         for (let y = 0; y < size; y++) {
