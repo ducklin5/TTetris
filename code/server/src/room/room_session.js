@@ -36,7 +36,7 @@ class RoomSession {
     startGame(settings) {
         // FRMARKER: FR02:Start.Game.Session
         this.gameSession = new GameSession(this.clients, settings);
-        this.gameSession.setOnGameUpdated(() =>
+        this.gameSession.setOnGameUpdated(() => 
             this.channel.emit("gameDataUpdated", this.gameSession.getGameData())
         );
         this.gameSession.setOnVotesUpdated((votes) =>
@@ -67,10 +67,10 @@ class RoomSession {
     }
 
     getConnectedClients() {
-        return this.clients.map((client) => {
+        return this.clients.filter((client) => {
             if (client.connected == true) {
                 return client;
-            }
+            } 
         });
     }
 
