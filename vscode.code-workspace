@@ -16,5 +16,14 @@
       "name": "Documentation",
       "path": "docs"
     },
-  ]
+  ],
+  "settings": {
+    "jest.autoRun": "off",
+    "jest.jestCommandLine": "npm test --",
+    "jestrunner.jestCommand": "npm test --",
+    "jest.disabledWorkspaceFolders": [
+      "Root",
+      "Documentation"
+    ]
+  }
 }

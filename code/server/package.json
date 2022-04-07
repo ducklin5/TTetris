@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon -e ts,js --exec npx ts-node ./src/index.js",
     "prodStart": "npx ts-node ./src/index.js",
-    "test": "node --experimental-modules --experimental-vm-modules node_modules/jest/bin/jest.js --verbose false",
+    "test": "node --experimental-modules --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --verbose false",
     "jest:clearcache": "jest --clear-cache"
   },
   "dependencies": {
@@ -38,6 +38,8 @@
     "moduleDirectories": [
       "node_modules",
       "<rootDir>"
-    ]
+    ],
+    "collectCoverage": true,
+    "coverageReporters": ["json", "html"]
   }
 }
