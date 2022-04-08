@@ -1,0 +1,659 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Home Page Should send 'createRoom' to socket when the create button is clicked 1`] = `
+<div
+  className="home-page"
+>
+  <div
+    className="piece piece-1"
+  />
+  <div
+    className="piece piece-2"
+  />
+  <div
+    className="piece piece-3"
+  />
+  <div
+    className="piece piece-4"
+  />
+  <div
+    className="piece piece-5"
+  />
+  <div
+    className="piece piece-6"
+  />
+  <div
+    className="piece piece-7"
+  />
+  <div
+    className="piece piece-8"
+  />
+  <div
+    className="piece piece-9"
+  />
+  <div
+    className="piece piece-10"
+  />
+  <p
+    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
+  >
+    Treacherous Tetris
+  </p>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <button
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Create Room
+    </button>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <div
+      className="input-group mb-3 text-center btn-space"
+    >
+      <input
+        aria-describedby="basic-addon2"
+        aria-label="Room ID"
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Enter RoomID"
+        type="text"
+      />
+      <div
+        className="input-group-append"
+      >
+        <button
+          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Join Room
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <a
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
+      href="/help"
+      onClick={[Function]}
+      type="button"
+    >
+      Help
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Testing Home Page Should send 'createRoom' to socket when the create button is clicked 2`] = `
+<div
+  className="home-page"
+>
+  <div
+    className="piece piece-1"
+  />
+  <div
+    className="piece piece-2"
+  />
+  <div
+    className="piece piece-3"
+  />
+  <div
+    className="piece piece-4"
+  />
+  <div
+    className="piece piece-5"
+  />
+  <div
+    className="piece piece-6"
+  />
+  <div
+    className="piece piece-7"
+  />
+  <div
+    className="piece piece-8"
+  />
+  <div
+    className="piece piece-9"
+  />
+  <div
+    className="piece piece-10"
+  />
+  <p
+    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
+  >
+    Treacherous Tetris
+  </p>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <button
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Create Room
+    </button>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <div
+      className="input-group mb-3 text-center btn-space"
+    >
+      <input
+        aria-describedby="basic-addon2"
+        aria-label="Room ID"
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Enter RoomID"
+        type="text"
+      />
+      <div
+        className="input-group-append"
+      >
+        <button
+          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Join Room
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <a
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
+      href="/help"
+      onClick={[Function]}
+      type="button"
+    >
+      Help
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Testing Home Page Should send 'joinRoom' to socket with the inputed code when the join button is clicked 1`] = `
+<div
+  className="home-page"
+>
+  <div
+    className="piece piece-1"
+  />
+  <div
+    className="piece piece-2"
+  />
+  <div
+    className="piece piece-3"
+  />
+  <div
+    className="piece piece-4"
+  />
+  <div
+    className="piece piece-5"
+  />
+  <div
+    className="piece piece-6"
+  />
+  <div
+    className="piece piece-7"
+  />
+  <div
+    className="piece piece-8"
+  />
+  <div
+    className="piece piece-9"
+  />
+  <div
+    className="piece piece-10"
+  />
+  <p
+    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
+  >
+    Treacherous Tetris
+  </p>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <button
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Create Room
+    </button>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <div
+      className="input-group mb-3 text-center btn-space"
+    >
+      <input
+        aria-describedby="basic-addon2"
+        aria-label="Room ID"
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Enter RoomID"
+        type="text"
+      />
+      <div
+        className="input-group-append"
+      >
+        <button
+          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Join Room
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <a
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
+      href="/help"
+      onClick={[Function]}
+      type="button"
+    >
+      Help
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Testing Home Page Should send 'joinRoom' to socket with the inputed code when the join button is clicked 2`] = `
+<div
+  className="home-page"
+>
+  <div
+    className="piece piece-1"
+  />
+  <div
+    className="piece piece-2"
+  />
+  <div
+    className="piece piece-3"
+  />
+  <div
+    className="piece piece-4"
+  />
+  <div
+    className="piece piece-5"
+  />
+  <div
+    className="piece piece-6"
+  />
+  <div
+    className="piece piece-7"
+  />
+  <div
+    className="piece piece-8"
+  />
+  <div
+    className="piece piece-9"
+  />
+  <div
+    className="piece piece-10"
+  />
+  <p
+    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
+  >
+    Treacherous Tetris
+  </p>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <button
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Create Room
+    </button>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <div
+      className="input-group mb-3 text-center btn-space"
+    >
+      <input
+        aria-describedby="basic-addon2"
+        aria-label="Room ID"
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Enter RoomID"
+        type="text"
+      />
+      <div
+        className="input-group-append"
+      >
+        <button
+          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Join Room
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <a
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
+      href="/help"
+      onClick={[Function]}
+      type="button"
+    >
+      Help
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Testing Home Page Should send alert that the room is full on room join fail 1`] = `
+<div
+  className="home-page"
+>
+  <div
+    className="piece piece-1"
+  />
+  <div
+    className="piece piece-2"
+  />
+  <div
+    className="piece piece-3"
+  />
+  <div
+    className="piece piece-4"
+  />
+  <div
+    className="piece piece-5"
+  />
+  <div
+    className="piece piece-6"
+  />
+  <div
+    className="piece piece-7"
+  />
+  <div
+    className="piece piece-8"
+  />
+  <div
+    className="piece piece-9"
+  />
+  <div
+    className="piece piece-10"
+  />
+  <p
+    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
+  >
+    Treacherous Tetris
+  </p>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <button
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Create Room
+    </button>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <div
+      className="input-group mb-3 text-center btn-space"
+    >
+      <input
+        aria-describedby="basic-addon2"
+        aria-label="Room ID"
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Enter RoomID"
+        type="text"
+      />
+      <div
+        className="input-group-append"
+      >
+        <button
+          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Join Room
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <a
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
+      href="/help"
+      onClick={[Function]}
+      type="button"
+    >
+      Help
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Testing Home Page Should send alert that the room is full on room join fail 2`] = `
+<div
+  className="home-page"
+>
+  <div
+    className="piece piece-1"
+  />
+  <div
+    className="piece piece-2"
+  />
+  <div
+    className="piece piece-3"
+  />
+  <div
+    className="piece piece-4"
+  />
+  <div
+    className="piece piece-5"
+  />
+  <div
+    className="piece piece-6"
+  />
+  <div
+    className="piece piece-7"
+  />
+  <div
+    className="piece piece-8"
+  />
+  <div
+    className="piece piece-9"
+  />
+  <div
+    className="piece piece-10"
+  />
+  <p
+    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
+  >
+    Treacherous Tetris
+  </p>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <button
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Create Room
+    </button>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <div
+      className="input-group mb-3 text-center btn-space"
+    >
+      <input
+        aria-describedby="basic-addon2"
+        aria-label="Room ID"
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Enter RoomID"
+        type="text"
+      />
+      <div
+        className="input-group-append"
+      >
+        <button
+          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Join Room
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <a
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
+      href="/help"
+      onClick={[Function]}
+      type="button"
+    >
+      Help
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Testing Home Page Should show up 1`] = `
+<div
+  className="home-page"
+>
+  <div
+    className="piece piece-1"
+  />
+  <div
+    className="piece piece-2"
+  />
+  <div
+    className="piece piece-3"
+  />
+  <div
+    className="piece piece-4"
+  />
+  <div
+    className="piece piece-5"
+  />
+  <div
+    className="piece piece-6"
+  />
+  <div
+    className="piece piece-7"
+  />
+  <div
+    className="piece piece-8"
+  />
+  <div
+    className="piece piece-9"
+  />
+  <div
+    className="piece piece-10"
+  />
+  <p
+    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
+  >
+    Treacherous Tetris
+  </p>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <button
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Create Room
+    </button>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <div
+      className="input-group mb-3 text-center btn-space"
+    >
+      <input
+        aria-describedby="basic-addon2"
+        aria-label="Room ID"
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Enter RoomID"
+        type="text"
+      />
+      <div
+        className="input-group-append"
+      >
+        <button
+          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Join Room
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="d-flex justify-content-center align-items-start"
+  >
+    <a
+      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
+      href="/help"
+      onClick={[Function]}
+      type="button"
+    >
+      Help
+    </a>
+  </div>
+</div>
+`;
