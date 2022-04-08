@@ -11,20 +11,19 @@ class VoteSession {
 
     captureVote(playerId, targetPlayerId) {
         if (playerId in this.votes && targetPlayerId in this.votes) {
-            console.log(`capture vote: ${playerId} --> ${targetPlayerId}`);
             this.votes[playerId] = targetPlayerId;
-            this.onVotesUpdated(this.votes);
+            this.onVotesUpdated(this.votes, "voteCaptured");
         }
     }
 
     start() {
         // FRMARKER: FR33: Initialize.Timers
         this.timer = setTimeout(() => this.onTimerDone(), this.totalTime);
-        this.onVotesUpdated(this.votes);
+        this.onVotesUpdated(this.votes, "votingStarted");
     }
 
     onTimerDone() {
-        this.onVotesUpdated(null);
+        this.onVotesUpdated(null, "votingFinished");
         let results = this.buildResults();
         this.onVoteSessionDone(results);
     }

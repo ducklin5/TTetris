@@ -1,0 +1,808 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameSession should handle all player actions: Game ended 1`] = `
+- Diff A
++ Diff B
+
+@@ -60,13 +60,14 @@
+          "height": 25,
+          "width": 25,
+          "rowsCompleted": 1,
+          "requiredRows": 10
+      },
+-     "winner": null,
++     "winner": "civilians",
+      "speed": 50,
+-     "timeLeft": 652200
++     "timeLeft": 652200,
++     "imposterId": "1"
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+`;
+
+exports[`GameSession should handle all player actions: Initial 1`] = `
+{
+    "players": {
+        "0": {
+            "id": 0,
+            "nickName": "client0",
+            "init_ofx": 0,
+            "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-4,\\"ofx\\":0,\\"rotation\\":1}",
+            "isImposter": false,
+            "hasEmergency": true,
+            "isExiled": false,
+            "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
+        },
+        "1": {
+            "id": 1,
+            "nickName": "client1",
+            "init_ofx": 5,
+            "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":3}",
+            "isImposter": true,
+            "hasEmergency": true,
+            "isExiled": false,
+            "hasSabotage": {
+                "drop": true,
+                "pieces": true,
+                "progress": true
+            },
+            "nextPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":2}"
+        },
+        "2": {
+            "id": 2,
+            "nickName": "client2",
+            "init_ofx": 10,
+            "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":2}",
+            "isImposter": false,
+            "hasEmergency": true,
+            "isExiled": false,
+            "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}"
+        },
+        "3": {
+            "id": 3,
+            "nickName": "client3",
+            "init_ofx": 15,
+            "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":1}",
+            "isImposter": false,
+            "hasEmergency": true,
+            "isExiled": false,
+            "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":2}"
+        },
+        "4": {
+            "id": 4,
+            "nickName": "client4",
+            "init_ofx": 20,
+            "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-4,\\"ofx\\":20,\\"rotation\\":2}",
+            "isImposter": false,
+            "hasEmergency": true,
+            "isExiled": false,
+            "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":3}"
+        }
+    },
+    "board": {
+        "height": 25,
+        "width": 25,
+        "rowsCompleted": 2,
+        "requiredRows": 10
+    },
+    "winner": null,
+    "speed": 50,
+    "timeLeft": 600000
+}
+[pretty].board.grid:
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+
+`;
+
+exports[`GameSession should handle all player actions: p0 left x10 1`] = `
+- Diff A
++ Diff B
+
+@@ -2,21 +2,21 @@
+      "players": {
+          "0": {
+              "id": 0,
+              "nickName": "client0",
+              "init_ofx": 0,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-4,\\"ofx\\":0,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-3,\\"ofx\\":-2,\\"rotation\\":1}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
+          },
+          "1": {
+              "id": 1,
+              "nickName": "client1",
+              "init_ofx": 5,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":5,\\"rotation\\":3}",
+              "isImposter": true,
+              "hasEmergency": true,
+              "isExiled": false,
+              "hasSabotage": {
+                  "drop": true,
+@@ -27,31 +27,31 @@
+          },
+          "2": {
+              "id": 2,
+              "nickName": "client2",
+              "init_ofx": 10,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":10,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}"
+          },
+          "3": {
+              "id": 3,
+              "nickName": "client3",
+              "init_ofx": 15,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":15,\\"rotation\\":1}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":2}"
+          },
+          "4": {
+              "id": 4,
+              "nickName": "client4",
+              "init_ofx": 20,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-4,\\"ofx\\":20,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":3}"
+          }
+@@ -62,11 +62,11 @@
+          "rowsCompleted": 2,
+          "requiredRows": 10
+      },
+      "winner": null,
+      "speed": 50,
+-     "timeLeft": 600000
++     "timeLeft": 601800
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+`;
+
+exports[`GameSession should handle all player actions: p1 right x2 left; p2 rotate 1`] = `
+- Diff A
++ Diff B
+
+@@ -2,21 +2,21 @@
+      "players": {
+          "0": {
+              "id": 0,
+              "nickName": "client0",
+              "init_ofx": 0,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-3,\\"ofx\\":-2,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-2,\\"ofx\\":-2,\\"rotation\\":1}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
+          },
+          "1": {
+              "id": 1,
+              "nickName": "client1",
+              "init_ofx": 5,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":5,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":0,\\"ofx\\":6,\\"rotation\\":3}",
+              "isImposter": true,
+              "hasEmergency": true,
+              "isExiled": false,
+              "hasSabotage": {
+                  "drop": true,
+@@ -27,31 +27,31 @@
+          },
+          "2": {
+              "id": 2,
+              "nickName": "client2",
+              "init_ofx": 10,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":10,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":0,\\"ofx\\":10,\\"rotation\\":3}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}"
+          },
+          "3": {
+              "id": 3,
+              "nickName": "client3",
+              "init_ofx": 15,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":15,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-1,\\"ofx\\":15,\\"rotation\\":1}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":2}"
+          },
+          "4": {
+              "id": 4,
+              "nickName": "client4",
+              "init_ofx": 20,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":3}"
+          }
+@@ -62,11 +62,11 @@
+          "rowsCompleted": 2,
+          "requiredRows": 10
+      },
+      "winner": null,
+      "speed": 50,
+-     "timeLeft": 601800
++     "timeLeft": 603600
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+`;
+
+exports[`GameSession should handle all player actions: p1 sabotage:Drop 1`] = `
+- Diff A
++ Diff B
+
+@@ -2,71 +2,71 @@
+      "players": {
+          "0": {
+              "id": 0,
+              "nickName": "client0",
+              "init_ofx": 0,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":0,\\"ofx\\":-2,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+-             "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
++             "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
+          },
+          "1": {
+              "id": 1,
+              "nickName": "client1",
+              "init_ofx": 5,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":2,\\"ofx\\":6,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":5,\\"rotation\\":0}",
+              "isImposter": true,
+              "hasEmergency": true,
+              "isExiled": false,
+              "hasSabotage": {
+-                 "drop": true,
++                 "drop": false,
+                  "pieces": true,
+                  "progress": true
+              },
+-             "nextPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":2}"
++             "nextPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":5,\\"rotation\\":2}"
+          },
+          "2": {
+              "id": 2,
+              "nickName": "client2",
+              "init_ofx": 10,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":0}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+-             "nextPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":0}"
++             "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}"
+          },
+          "3": {
+              "id": 3,
+              "nickName": "client3",
+              "init_ofx": 15,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":2,\\"ofx\\":15,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":4,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+-             "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":2}"
++             "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}"
+          },
+          "4": {
+              "id": 4,
+              "nickName": "client4",
+              "init_ofx": 20,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":0,\\"ofx\\":21,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":3}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+-             "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":3}"
++             "nextPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":2}"
+          }
+      },
+      "board": {
+          "height": 25,
+          "width": 25,
+          "rowsCompleted": 2,
+          "requiredRows": 10
+      },
+      "winner": null,
+      "speed": 50,
+-     "timeLeft": 607200
++     "timeLeft": 646800
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+@@ -85,11 +85,11 @@
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+-                                                   
+-                                                   
+-                                                   
+-                     2 2                           
+-                     2 2                           
++ 0 0 0                           3 3               
++ 0   0     1 1       2 2 2     3 3                 
++ 0         1 1         2         3                 
++ 0           1 1     2 2         3 3               
++ 0           1 1     2 2         3         4 4 4 4 
+  
+`;
+
+exports[`GameSession should handle all player actions: p1 sabotage:Pieces 1`] = `
+- Diff A
++ Diff B
+
+@@ -2,71 +2,71 @@
+      "players": {
+          "0": {
+              "id": 0,
+              "nickName": "client0",
+              "init_ofx": 0,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":0,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+-             "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
++             "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":0}"
+          },
+          "1": {
+              "id": 1,
+              "nickName": "client1",
+              "init_ofx": 5,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":0}",
++             "currentPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":5,\\"rotation\\":2}",
+              "isImposter": true,
+              "hasEmergency": true,
+              "isExiled": false,
+              "hasSabotage": {
+                  "drop": false,
+-                 "pieces": true,
++                 "pieces": false,
+                  "progress": false
+              },
+-             "nextPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":5,\\"rotation\\":2}"
++             "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":5,\\"rotation\\":0}"
+          },
+          "2": {
+              "id": 2,
+              "nickName": "client2",
+              "init_ofx": 10,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":10,\\"rotation\\":0}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+-             "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}"
++             "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":3}"
+          },
+          "3": {
+              "id": 3,
+              "nickName": "client3",
+              "init_ofx": 15,
+-             "currentPiece": "{\\"_typeId\\":4,\\"ofy\\":-2,\\"ofx\\":15,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+-             "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}"
++             "nextPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}"
+          },
+          "4": {
+              "id": 4,
+              "nickName": "client4",
+              "init_ofx": 20,
+-             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+-             "nextPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":2}"
++             "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":1}"
+          }
+      },
+      "board": {
+          "height": 25,
+          "width": 25,
+          "rowsCompleted": 1,
+          "requiredRows": 10
+      },
+      "winner": null,
+      "speed": 50,
+-     "timeLeft": 648600
++     "timeLeft": 650400
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+`;
+
+exports[`GameSession should handle all player actions: p1 sabotage:Progress 1`] = `
+- Diff A
++ Diff B
+
+@@ -2,71 +2,71 @@
+      "players": {
+          "0": {
+              "id": 0,
+              "nickName": "client0",
+              "init_ofx": 0,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":0,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
+          },
+          "1": {
+              "id": 1,
+              "nickName": "client1",
+              "init_ofx": 5,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":5,\\"rotation\\":0}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":0}",
+              "isImposter": true,
+              "hasEmergency": true,
+              "isExiled": false,
+              "hasSabotage": {
+                  "drop": false,
+                  "pieces": true,
+-                 "progress": true
++                 "progress": false
+              },
+              "nextPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":5,\\"rotation\\":2}"
+          },
+          "2": {
+              "id": 2,
+              "nickName": "client2",
+              "init_ofx": 10,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":0}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":10,\\"rotation\\":0}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}"
+          },
+          "3": {
+              "id": 3,
+              "nickName": "client3",
+              "init_ofx": 15,
+-             "currentPiece": "{\\"_typeId\\":4,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":4,\\"ofy\\":-2,\\"ofx\\":15,\\"rotation\\":3}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}"
+          },
+          "4": {
+              "id": 4,
+              "nickName": "client4",
+              "init_ofx": 20,
+-             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":3}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":2}"
+          }
+      },
+      "board": {
+          "height": 25,
+          "width": 25,
+-         "rowsCompleted": 2,
++         "rowsCompleted": 1,
+          "requiredRows": 10
+      },
+      "winner": null,
+      "speed": 50,
+-     "timeLeft": 646800
++     "timeLeft": 648600
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+`;
+
+exports[`GameSession should handle all player actions: p2 drop; p3 down 1`] = `
+- Diff A
++ Diff B
+
+@@ -2,21 +2,21 @@
+      "players": {
+          "0": {
+              "id": 0,
+              "nickName": "client0",
+              "init_ofx": 0,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-2,\\"ofx\\":-2,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-1,\\"ofx\\":-2,\\"rotation\\":1}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
+          },
+          "1": {
+              "id": 1,
+              "nickName": "client1",
+              "init_ofx": 5,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":0,\\"ofx\\":6,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":1,\\"ofx\\":6,\\"rotation\\":3}",
+              "isImposter": true,
+              "hasEmergency": true,
+              "isExiled": false,
+              "hasSabotage": {
+                  "drop": true,
+@@ -27,31 +27,31 @@
+          },
+          "2": {
+              "id": 2,
+              "nickName": "client2",
+              "init_ofx": 10,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":0,\\"ofx\\":10,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+-             "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}"
++             "nextPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":0}"
+          },
+          "3": {
+              "id": 3,
+              "nickName": "client3",
+              "init_ofx": 15,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-1,\\"ofx\\":15,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":1,\\"ofx\\":15,\\"rotation\\":1}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":2}"
+          },
+          "4": {
+              "id": 4,
+              "nickName": "client4",
+              "init_ofx": 20,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-1,\\"ofx\\":20,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":3}"
+          }
+@@ -62,11 +62,11 @@
+          "rowsCompleted": 2,
+          "requiredRows": 10
+      },
+      "winner": null,
+      "speed": 50,
+-     "timeLeft": 603600
++     "timeLeft": 605400
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+@@ -88,8 +88,8 @@
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+-                                                   
+-                                                   
++                     2 2                           
++                     2 2                           
+  
+`;
+
+exports[`GameSession should handle all player actions: p2 emergency 1`] = `
+- Diff A
++ Diff B
+
+@@ -2,21 +2,21 @@
+      "players": {
+          "0": {
+              "id": 0,
+              "nickName": "client0",
+              "init_ofx": 0,
+-             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-2,\\"ofx\\":0,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":0}"
+          },
+          "1": {
+              "id": 1,
+              "nickName": "client1",
+              "init_ofx": 5,
+-             "currentPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":5,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":2,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":2}",
+              "isImposter": true,
+              "hasEmergency": true,
+              "isExiled": false,
+              "hasSabotage": {
+                  "drop": false,
+@@ -27,31 +27,31 @@
+          },
+          "2": {
+              "id": 2,
+              "nickName": "client2",
+              "init_ofx": 10,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":2}",
+              "isImposter": false,
+-             "hasEmergency": true,
++             "hasEmergency": false,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":3}"
+          },
+          "3": {
+              "id": 3,
+              "nickName": "client3",
+              "init_ofx": 15,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":15,\\"rotation\\":3}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}"
+          },
+          "4": {
+              "id": 4,
+              "nickName": "client4",
+              "init_ofx": 20,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":20,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":1}"
+          }
+@@ -62,11 +62,11 @@
+          "rowsCompleted": 1,
+          "requiredRows": 10
+      },
+      "winner": null,
+      "speed": 50,
+-     "timeLeft": 650400
++     "timeLeft": 652200
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+`;
+
+exports[`GameSession should handle all player actions: p4 right x10 1`] = `
+- Diff A
++ Diff B
+
+@@ -2,21 +2,21 @@
+      "players": {
+          "0": {
+              "id": 0,
+              "nickName": "client0",
+              "init_ofx": 0,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-1,\\"ofx\\":-2,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":0,\\"ofx\\":-2,\\"rotation\\":1}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
+          },
+          "1": {
+              "id": 1,
+              "nickName": "client1",
+              "init_ofx": 5,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":1,\\"ofx\\":6,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":2,\\"ofx\\":6,\\"rotation\\":3}",
+              "isImposter": true,
+              "hasEmergency": true,
+              "isExiled": false,
+              "hasSabotage": {
+                  "drop": true,
+@@ -27,31 +27,31 @@
+          },
+          "2": {
+              "id": 2,
+              "nickName": "client2",
+              "init_ofx": 10,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":0}"
+          },
+          "3": {
+              "id": 3,
+              "nickName": "client3",
+              "init_ofx": 15,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":1,\\"ofx\\":15,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":2,\\"ofx\\":15,\\"rotation\\":1}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":2}"
+          },
+          "4": {
+              "id": 4,
+              "nickName": "client4",
+              "init_ofx": 20,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-1,\\"ofx\\":20,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":0,\\"ofx\\":21,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":3}"
+          }
+@@ -62,11 +62,11 @@
+          "rowsCompleted": 2,
+          "requiredRows": 10
+      },
+      "winner": null,
+      "speed": 50,
+-     "timeLeft": 605400
++     "timeLeft": 607200
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+`;

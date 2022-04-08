@@ -71,9 +71,9 @@ function rotatePieceMatrix(pieceMatrix, rotation) {
 class GamePiece {
     constructor(typeId, rotation, ofx, ofy) {
         this._typeId = typeId;
-        this.rotation = rotation;
-        this.ofx = ofx;
         this.ofy = ofy;
+        this.ofx = ofx;
+        this.rotation = rotation;
         this.matrixCache = {};
     }
 
@@ -99,9 +99,9 @@ class GamePiece {
     }
 }
 
-function generateRandomPiece(ofx) {
-    let randTypeId = randomInt(7);
-    let randRotation = randomInt(0, 4);
+function generateRandomPiece(rng, ofx) {
+    let randTypeId = rng.intBetween(0,6);
+    let randRotation = rng.intBetween(0, 3);
     
     let pieceType = pieceTypes[randTypeId];
     let ofy = -pieceMatrices[pieceType].length;

@@ -118,16 +118,22 @@ class GameState {
     }
 
     printGrid() {
-        let gridStr = "";
-        for (let j = 0; j < this.grid.length; j++) {
-            for (let i = 0; i < this.grid[j].length; i++) {
-                let cell = this.grid[j][i] == null ? " " : 1;
-                gridStr += cell + " "
-            }
-            gridStr += "\n";
-        }
-        console.log(gridStr);
+        console.log(stringifyGrid(this.grid));
     }
 }
 
-export { GameState }
+let stringifyGrid = (grid, useId = false) => {
+    let gridStr = "";
+    for (let j = 0; j < grid.length; j++) {
+        for (let i = 0; i < grid[j].length; i++) {
+            let cellVal = grid[j][i];
+            let cell = cellVal == null ? " " : (useId ? cellVal : 1);
+            gridStr += cell + " "
+        }
+        gridStr += "\n";
+    }
+    return gridStr
+}
+
+
+export { GameState, stringifyGrid }
