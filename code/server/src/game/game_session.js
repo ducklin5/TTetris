@@ -1,5 +1,5 @@
 import { timeStamp } from "console";
-import { randomInt } from "crypto";
+import random from "random-seed";
 import { generateRandomPiece } from "./game_piece.js";
 import { GameState } from "./game_state.js";
 import { Player } from "./player.js";
@@ -16,6 +16,8 @@ class GameSession {
         this.update_delay = 1200 - 60 * this.speed;
         this.timeLeft = 10 * 60 * 1000;
         this.imposterId = null;
+        let seed = settings?.seed ?? Math.random();
+        this.rng = random.create(seed);
 
         let i = 0;
         for (let client of clients) {
@@ -30,12 +32,12 @@ class GameSession {
             if (client.color == "#ff0001") {
                 this.imposterId  = client.id;
             }
-            console.log(client.color);
         }
 
         let playerIds = Object.keys(this.players);
+        playerIds.sort();
         if (!this.imposterId) {
-            let randPlayerIdIndex = randomInt(playerIds.length);
+            let randPlayerIdIndex = this.rng.intBetween(0, playerIds.length-1);
             this.imposterId = playerIds[randPlayerIdIndex];
         }
 
@@ -47,8 +49,8 @@ class GameSession {
         // TODO: maybe put this in run() as well?
         for (let playerId in this.players) {
             let player = this.players[playerId];
-            player.currentPiece = generateRandomPiece(player.init_ofx);
-            player.nextPiece = generateRandomPiece(player.init_ofx);
+            player.currentPiece = generateRandomPiece(this.rng, player.init_ofx);
+            player.nextPiece = generateRandomPiece(this.rng, player.init_ofx);
         }
     }
 
@@ -79,8 +81,7 @@ class GameSession {
     endGame(winner) {
         this.winner = winner;
         this.pause();
-        this.onGameUpdated();
-        console.log("The game has ended. The winner: " + winner);
+        this.onGameUpdated("end");
     }
 
     getPlayer(playerId) {
@@ -94,7 +95,7 @@ class GameSession {
         let player = this.getPlayer(playerId);
         if (player) {
             player.currentPiece = player.nextPiece;
-            player.nextPiece = generateRandomPiece(player.init_ofx);
+            player.nextPiece = generateRandomPiece(this.rng, player.init_ofx);
             return true;
         }
         return false;
@@ -129,7 +130,7 @@ class GameSession {
                     this.dropPlayerPiece(playerId);
                 }
             }
-            this.onGameUpdated();
+            this.onGameUpdated("step");
         }
     }
 
@@ -141,7 +142,7 @@ class GameSession {
 
         let result = this._inputEvent(playerId, event);
         if (result) {
-            this.onGameUpdated();
+            this.onGameUpdated("input");
         }
         return result;
     }
@@ -239,13 +240,12 @@ class GameSession {
 
     // FRMARKER: FR36: Send.VoteData
     onVoteSessionDone(results) {
-        console.log(results);
 
         this.eliminatePlayer(results.targetPlayerId);
 
         this.votingPhase = false;
 
-        this.run();
+        if (!this.winner) this.run();
     }
 
     // FRMARKER: FR37: Return.VoteData
@@ -322,6 +322,7 @@ class GameSession {
     }
 
     // DEBUG: printing game data on the gameboard
+    /* istanbul ignore next */
     printGameData() {
         let gameData = this.getGameData();
         let grid = JSON.parse(JSON.stringify(gameData.board.grid));
