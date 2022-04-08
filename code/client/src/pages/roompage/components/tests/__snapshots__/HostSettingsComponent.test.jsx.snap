@@ -26,6 +26,7 @@ exports[`renders correctly 1`] = `
         </span>
         <input
           className="form-control set-speed"
+          data-testid="speed_input"
           disabled={true}
           max="15"
           min="1"

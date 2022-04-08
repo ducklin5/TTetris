@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`GameSettingsComponent renders correctly 1`] = `
 <div
   className="game-sections card"
 >
@@ -29,6 +29,7 @@ exports[`renders correctly 1`] = `
           </span>
           <input
             className="form-control set-speed"
+            data-testid="speed_input"
             disabled={true}
             max="15"
             min="1"
@@ -81,6 +82,7 @@ exports[`renders correctly 1`] = `
             aria-describedby="inputGroup-sizing-default"
             aria-label="Default"
             className="form-control"
+            data-testid="nickname_input"
             onChange={[Function]}
             type="text"
             value=""
@@ -107,6 +109,7 @@ exports[`renders correctly 1`] = `
             aria-describedby="inputGroup-sizing-default"
             aria-label="Default"
             className="form-control"
+            data-testid="color_input"
             onChange={[Function]}
             style={
               Object {
