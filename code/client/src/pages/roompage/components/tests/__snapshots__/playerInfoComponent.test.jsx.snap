@@ -92,6 +92,39 @@ exports[`PlayerInfoComponent renders correctly 1`] = `
 </div>
 `;
 
+exports[`PlayerInfoComponent should show player color when a socket event is received 1`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -38,11 +38,11 @@
+        >
+          <div
+            className=\\"player-piece\\"
+            style={
+              Object {
+-               \\"backgroundColor\\": \\"#000\\",
++               \\"backgroundColor\\": \\"#ff0\\",
+              }
+            }
+          />
+          <div
+            className=\\"player-emergency\\"
+@@ -74,11 +74,11 @@
+        >
+          <div
+            className=\\"player-piece\\"
+            style={
+              Object {
+-               \\"backgroundColor\\": \\"#f00\\",
++               \\"backgroundColor\\": \\"#000\\",
+              }
+            }
+          />
+          <div
+            className=\\"player-emergency\\""
+`;
+
 exports[`PlayerInfoComponent should show player nick name when a socket event is received 1`] = `
 "Snapshot Diff:
 - First value

@@ -66,5 +66,26 @@ describe("PlayerInfoComponent", () => {
         expect(oldTree).toMatchDiffSnapshot(newTree);
     })
 
+    test("should show player color when a socket event is received", async () => {
+        let component;
+        act(() => {
+            component = renderer.create(<PlayerInfoComponent socket={socket.socketClient} roomID={"34223"} />);
+
+        });
+        
+        let oldTree = component.toJSON();
+
+        // server informs us of player change
+        c1.color = "#ff0";
+        c2.color = "#000";
+
+        act(() => {
+            socket.emit("connectClient", [c1, c2]);
+        })
+        
+        let newTree = component.toJSON();
+        expect(oldTree).toMatchDiffSnapshot(newTree);
+    })
+
 })
 
