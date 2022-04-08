@@ -3,13 +3,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import PlayerInfoComponent from '../playerInfoComponent';
 import SocketMock  from 'socket.io-mock';
-import socketIOClient from 'socket.io-client';
 import { toMatchDiffSnapshot } from 'snapshot-diff';
 const {act} = renderer;
 
 expect.extend({ toMatchDiffSnapshot });
-
-jest.mock('socket.io-client');
 
 let createClient = (id, nick, color) => {
     return {
@@ -32,7 +29,6 @@ describe("PlayerInfoComponent", () => {
         c2 = createClient(2, "test2","#f00");
         socket = new SocketMock();
         socket.on("getConnectedClients", (roomId, done) => {
-            console.log("testasdfsf");
             done([c1, c2]);
         })
     })

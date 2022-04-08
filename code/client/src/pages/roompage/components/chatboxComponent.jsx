@@ -49,8 +49,9 @@ const ChatboxComponent = (props) => {
         <Card className="chatbox-content">
             <Card.Header className="chat-title font-italic text-center">Chat Box</Card.Header>
             <Card className="messages-container">
-                {chatHistory.map((chat) => (
+                {chatHistory.map((chat, index) => (
                     <MessageBoxComponent
+                        key={index}
                         message={chat.message}
                         nickname={chat.nickname}
                         time={chat.time}
@@ -60,6 +61,7 @@ const ChatboxComponent = (props) => {
             <div className="send-box">
                 <div className="input-group mb-3">
                     <input
+                        data-testid="send-box-input"
                         type="text"
                         value={message}
                         onKeyDownCapture={onInputKeyDown}

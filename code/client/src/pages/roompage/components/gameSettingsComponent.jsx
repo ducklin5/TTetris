@@ -64,7 +64,7 @@ const GameSettingsComponent = (props) => {
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Nickname:</span>
                             </div>
-                            <input type="text" onChange={onNicknameChanged} value={nickname} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                            <input data-testid="nickname_input" type="text" onChange={onNicknameChanged} value={nickname} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                         </div>
                     </div>
 
@@ -73,7 +73,7 @@ const GameSettingsComponent = (props) => {
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="inputGroup-sizing-default">Piece Color:</span>
                             </div>
-                            <input type="color" onChange={onPieceColorChanged} value={pieceColor} style={{"height":"40px"}} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                            <input data-testid="color_input" type="color" onChange={onPieceColorChanged} value={pieceColor} style={{"height":"40px"}} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
                         </div>
                     </div>
                 </div>

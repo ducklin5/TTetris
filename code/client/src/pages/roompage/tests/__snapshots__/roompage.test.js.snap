@@ -1,959 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Room Page Should copy roomid code on copy roomid button 1`] = `
-<div
-  className="room-page"
->
-  <div
-    className="piece piece-1"
-  />
-  <div
-    className="piece piece-2"
-  />
-  <div
-    className="piece piece-3"
-  />
-  <div
-    className="piece piece-4"
-  />
-  <div
-    className="piece piece-5"
-  />
-  <div
-    className="piece piece-6"
-  />
-  <div
-    className="piece piece-7"
-  />
-  <div
-    className="piece piece-8"
-  />
-  <div
-    className="piece piece-9"
-  />
-  <div
-    className="piece piece-10"
-  />
-  <div>
-    <p
-      className="h1 text-danger font-weight-bold font-italic text-center "
-    >
-      Treacherous Tetris
-    </p>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
-    <a
-      className=" help-button"
-      href="/help"
-      onClick={[Function]}
-      type="button"
-    >
-      <i
-        className="bi bi-question-circle fa-lg"
-      />
-    </a>
-  </div>
-  <div>
-    <audio
-      autoPlay={true}
-      muted={true}
-      playsInline={true}
-    />
-  </div>
-  <div
-    className="room-code"
-  >
-    <span
-      className="h2 text-dark font-weight-bold text-center "
-    >
-      Room:
-    </span>
-    <span
-      className="h2 text-dark font-weight-bold text-center"
-      id="roomId"
-      type="text"
-      value="room id"
-    />
-    <button
-      className="copy-button"
-      onClick={[Function]}
-    >
-      <i
-        className="bi bi-clipboard fa-lg"
-      />
-    </button>
-  </div>
-  <div
-    className="room-components"
-  >
-    <div
-      className="room-sections-left"
-    >
-      <div
-        className="room-box-left card"
-      >
-        <div
-          className="players-content card"
-        >
-          <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
-            rel="stylesheet"
-          />
-          <div
-            className="player-title font-italic text-center card-header"
-          >
-            Players Info
-          </div>
-          <div
-            className="player-list"
-          />
-        </div>
-      </div>
-      <div
-        className="room-box-left card"
-      >
-        <div
-          className="chatbox-content card"
-        >
-          <div
-            className="chat-title font-italic text-center card-header"
-          >
-            Chat Box
-          </div>
-          <div
-            className="messages-container card"
-          />
-          <div
-            className="send-box"
-          >
-            <div
-              className="input-group mb-3"
-            >
-              <input
-                aria-describedby="basic-addon2"
-                aria-label="Type"
-                className="form-control"
-                onChange={[Function]}
-                onKeyDownCapture={[Function]}
-                placeholder="Type..."
-                type="text"
-                value=""
-              />
-              <div
-                className="input-group-append"
-              >
-                <button
-                  className="btn send-button"
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Send
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="room-sections-right"
-    >
-      <div
-        className="room-box-right"
-      >
-        <div
-          className="game-sections card"
-        >
-          <div
-            className="game-settings-component card"
-          >
-            <div
-              className="settings-content"
-            >
-              <span
-                className="game-title font-italic text-center"
-              >
-                Host Settings
-              </span>
-              <div
-                className="host-input"
-              >
-                <div
-                  className="input-group"
-                >
-                  <span
-                    className="input-group-text"
-                    id="inputGroup-sizing-default"
-                  >
-                    Set Speed:
-                  </span>
-                  <input
-                    className="form-control set-speed"
-                    disabled={true}
-                    max="15"
-                    min="1"
-                    onChange={[Function]}
-                    step="1"
-                    type="range"
-                    value={1}
-                  />
-                </div>
-                <button
-                  className="start-button btn btn-primary"
-                  disabled={true}
-                  onClick={[Function]}
-                  role="button"
-                  type="button"
-                >
-                  Start Game
-                </button>
-              </div>
-            </div>
-          </div>
-          <div
-            className="game-settings-component card"
-          >
-            <div
-              className="settings-content"
-            >
-              <span
-                className="game-title font-italic text-center"
-              >
-                Player Settings
-              </span>
-              <div
-                className="player-input"
-              >
-                <div
-                  className="input-group mb-3"
-                >
-                  <div
-                    className="input-group-prepend"
-                  >
-                    <span
-                      className="input-group-text"
-                      id="inputGroup-sizing-default"
-                    >
-                      Nickname:
-                    </span>
-                  </div>
-                  <input
-                    aria-describedby="inputGroup-sizing-default"
-                    aria-label="Default"
-                    className="form-control"
-                    onChange={[Function]}
-                    type="text"
-                    value=""
-                  />
-                </div>
-              </div>
-              <div
-                className="player-input"
-              >
-                <div
-                  className="input-group"
-                >
-                  <div
-                    className="input-group-prepend"
-                  >
-                    <span
-                      className="input-group-text"
-                      id="inputGroup-sizing-default"
-                    >
-                      Piece Color:
-                    </span>
-                  </div>
-                  <input
-                    aria-describedby="inputGroup-sizing-default"
-                    aria-label="Default"
-                    className="form-control"
-                    onChange={[Function]}
-                    style={
-                      Object {
-                        "height": "40px",
-                      }
-                    }
-                    type="color"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Testing Room Page Should send 'createRoom' to socket when the create button is clicked 1`] = `
-<div
-  className="room-page"
->
-  <div
-    className="piece piece-1"
-  />
-  <div
-    className="piece piece-2"
-  />
-  <div
-    className="piece piece-3"
-  />
-  <div
-    className="piece piece-4"
-  />
-  <div
-    className="piece piece-5"
-  />
-  <div
-    className="piece piece-6"
-  />
-  <div
-    className="piece piece-7"
-  />
-  <div
-    className="piece piece-8"
-  />
-  <div
-    className="piece piece-9"
-  />
-  <div
-    className="piece piece-10"
-  />
-  <div>
-    <p
-      className="h1 text-danger font-weight-bold font-italic text-center "
-    >
-      Treacherous Tetris
-    </p>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
-    <a
-      className=" help-button"
-      href="/help"
-      onClick={[Function]}
-      type="button"
-    >
-      <i
-        className="bi bi-question-circle fa-lg"
-      />
-    </a>
-  </div>
-  <div>
-    <audio
-      autoPlay={true}
-      muted={true}
-      playsInline={true}
-    />
-  </div>
-  <div
-    className="room-code"
-  >
-    <span
-      className="h2 text-dark font-weight-bold text-center "
-    >
-      Room:
-    </span>
-    <span
-      className="h2 text-dark font-weight-bold text-center"
-      id="roomId"
-      type="text"
-      value="room id"
-    />
-    <button
-      className="copy-button"
-      onClick={[Function]}
-    >
-      <i
-        className="bi bi-clipboard fa-lg"
-      />
-    </button>
-  </div>
-  <div
-    className="room-components"
-  >
-    <div
-      className="room-sections-left"
-    >
-      <div
-        className="room-box-left card"
-      >
-        <div
-          className="players-content card"
-        >
-          <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
-            rel="stylesheet"
-          />
-          <div
-            className="player-title font-italic text-center card-header"
-          >
-            Players Info
-          </div>
-          <div
-            className="player-list"
-          />
-        </div>
-      </div>
-      <div
-        className="room-box-left card"
-      >
-        <div
-          className="chatbox-content card"
-        >
-          <div
-            className="chat-title font-italic text-center card-header"
-          >
-            Chat Box
-          </div>
-          <div
-            className="messages-container card"
-          />
-          <div
-            className="send-box"
-          >
-            <div
-              className="input-group mb-3"
-            >
-              <input
-                aria-describedby="basic-addon2"
-                aria-label="Type"
-                className="form-control"
-                onChange={[Function]}
-                onKeyDownCapture={[Function]}
-                placeholder="Type..."
-                type="text"
-                value=""
-              />
-              <div
-                className="input-group-append"
-              >
-                <button
-                  className="btn send-button"
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Send
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="room-sections-right"
-    >
-      <div
-        className="room-box-right"
-      >
-        <div
-          className="game-sections card"
-        >
-          <div
-            className="game-settings-component card"
-          >
-            <div
-              className="settings-content"
-            >
-              <span
-                className="game-title font-italic text-center"
-              >
-                Host Settings
-              </span>
-              <div
-                className="host-input"
-              >
-                <div
-                  className="input-group"
-                >
-                  <span
-                    className="input-group-text"
-                    id="inputGroup-sizing-default"
-                  >
-                    Set Speed:
-                  </span>
-                  <input
-                    className="form-control set-speed"
-                    disabled={true}
-                    max="15"
-                    min="1"
-                    onChange={[Function]}
-                    step="1"
-                    type="range"
-                    value={1}
-                  />
-                </div>
-                <button
-                  className="start-button btn btn-primary"
-                  disabled={true}
-                  onClick={[Function]}
-                  role="button"
-                  type="button"
-                >
-                  Start Game
-                </button>
-              </div>
-            </div>
-          </div>
-          <div
-            className="game-settings-component card"
-          >
-            <div
-              className="settings-content"
-            >
-              <span
-                className="game-title font-italic text-center"
-              >
-                Player Settings
-              </span>
-              <div
-                className="player-input"
-              >
-                <div
-                  className="input-group mb-3"
-                >
-                  <div
-                    className="input-group-prepend"
-                  >
-                    <span
-                      className="input-group-text"
-                      id="inputGroup-sizing-default"
-                    >
-                      Nickname:
-                    </span>
-                  </div>
-                  <input
-                    aria-describedby="inputGroup-sizing-default"
-                    aria-label="Default"
-                    className="form-control"
-                    onChange={[Function]}
-                    type="text"
-                    value=""
-                  />
-                </div>
-              </div>
-              <div
-                className="player-input"
-              >
-                <div
-                  className="input-group"
-                >
-                  <div
-                    className="input-group-prepend"
-                  >
-                    <span
-                      className="input-group-text"
-                      id="inputGroup-sizing-default"
-                    >
-                      Piece Color:
-                    </span>
-                  </div>
-                  <input
-                    aria-describedby="inputGroup-sizing-default"
-                    aria-label="Default"
-                    className="form-control"
-                    onChange={[Function]}
-                    style={
-                      Object {
-                        "height": "40px",
-                      }
-                    }
-                    type="color"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Testing Room Page Should send 'joinRoom' to socket with the inputed code when the join button is clicked 1`] = `
-<div
-  className="home-page"
->
-  <div
-    className="piece piece-1"
-  />
-  <div
-    className="piece piece-2"
-  />
-  <div
-    className="piece piece-3"
-  />
-  <div
-    className="piece piece-4"
-  />
-  <div
-    className="piece piece-5"
-  />
-  <div
-    className="piece piece-6"
-  />
-  <div
-    className="piece piece-7"
-  />
-  <div
-    className="piece piece-8"
-  />
-  <div
-    className="piece piece-9"
-  />
-  <div
-    className="piece piece-10"
-  />
-  <p
-    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
-  >
-    Treacherous Tetris
-  </p>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <button
-      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Create Room
-    </button>
-  </div>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <div
-      className="input-group mb-3 text-center btn-space"
-    >
-      <input
-        aria-describedby="basic-addon2"
-        aria-label="Room ID"
-        className="form-control"
-        onChange={[Function]}
-        placeholder="Enter RoomID"
-        type="text"
-      />
-      <div
-        className="input-group-append"
-      >
-        <button
-          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Join Room
-        </button>
-      </div>
-    </div>
-  </div>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <a
-      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
-      href="/help"
-      onClick={[Function]}
-      type="button"
-    >
-      Help
-    </a>
-  </div>
-</div>
-`;
-
-exports[`Testing Room Page Should send 'joinRoom' to socket with the inputed code when the join button is clicked 2`] = `
-<div
-  className="home-page"
->
-  <div
-    className="piece piece-1"
-  />
-  <div
-    className="piece piece-2"
-  />
-  <div
-    className="piece piece-3"
-  />
-  <div
-    className="piece piece-4"
-  />
-  <div
-    className="piece piece-5"
-  />
-  <div
-    className="piece piece-6"
-  />
-  <div
-    className="piece piece-7"
-  />
-  <div
-    className="piece piece-8"
-  />
-  <div
-    className="piece piece-9"
-  />
-  <div
-    className="piece piece-10"
-  />
-  <p
-    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
-  >
-    Treacherous Tetris
-  </p>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <button
-      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Create Room
-    </button>
-  </div>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <div
-      className="input-group mb-3 text-center btn-space"
-    >
-      <input
-        aria-describedby="basic-addon2"
-        aria-label="Room ID"
-        className="form-control"
-        onChange={[Function]}
-        placeholder="Enter RoomID"
-        type="text"
-      />
-      <div
-        className="input-group-append"
-      >
-        <button
-          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Join Room
-        </button>
-      </div>
-    </div>
-  </div>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <a
-      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
-      href="/help"
-      onClick={[Function]}
-      type="button"
-    >
-      Help
-    </a>
-  </div>
-</div>
-`;
-
-exports[`Testing Room Page Should send alert that the room is full on room join fail 1`] = `
-<div
-  className="home-page"
->
-  <div
-    className="piece piece-1"
-  />
-  <div
-    className="piece piece-2"
-  />
-  <div
-    className="piece piece-3"
-  />
-  <div
-    className="piece piece-4"
-  />
-  <div
-    className="piece piece-5"
-  />
-  <div
-    className="piece piece-6"
-  />
-  <div
-    className="piece piece-7"
-  />
-  <div
-    className="piece piece-8"
-  />
-  <div
-    className="piece piece-9"
-  />
-  <div
-    className="piece piece-10"
-  />
-  <p
-    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
-  >
-    Treacherous Tetris
-  </p>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <button
-      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Create Room
-    </button>
-  </div>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <div
-      className="input-group mb-3 text-center btn-space"
-    >
-      <input
-        aria-describedby="basic-addon2"
-        aria-label="Room ID"
-        className="form-control"
-        onChange={[Function]}
-        placeholder="Enter RoomID"
-        type="text"
-      />
-      <div
-        className="input-group-append"
-      >
-        <button
-          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Join Room
-        </button>
-      </div>
-    </div>
-  </div>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <a
-      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
-      href="/help"
-      onClick={[Function]}
-      type="button"
-    >
-      Help
-    </a>
-  </div>
-</div>
-`;
-
-exports[`Testing Room Page Should send alert that the room is full on room join fail 2`] = `
-<div
-  className="home-page"
->
-  <div
-    className="piece piece-1"
-  />
-  <div
-    className="piece piece-2"
-  />
-  <div
-    className="piece piece-3"
-  />
-  <div
-    className="piece piece-4"
-  />
-  <div
-    className="piece piece-5"
-  />
-  <div
-    className="piece piece-6"
-  />
-  <div
-    className="piece piece-7"
-  />
-  <div
-    className="piece piece-8"
-  />
-  <div
-    className="piece piece-9"
-  />
-  <div
-    className="piece piece-10"
-  />
-  <p
-    className="h1 text-danger font-weight-bold font-italic text-center title-margin "
-  >
-    Treacherous Tetris
-  </p>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <button
-      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space btn btn-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Create Room
-    </button>
-  </div>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <div
-      className="input-group mb-3 text-center btn-space"
-    >
-      <input
-        aria-describedby="basic-addon2"
-        aria-label="Room ID"
-        className="form-control"
-        onChange={[Function]}
-        placeholder="Enter RoomID"
-        type="text"
-      />
-      <div
-        className="input-group-append"
-      >
-        <button
-          className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic btn btn-primary"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Join Room
-        </button>
-      </div>
-    </div>
-  </div>
-  <div
-    className="d-flex justify-content-center align-items-start"
-  >
-    <a
-      className="btn btn-secondary btn-lg btn-block text-dark font-weight-bold font-italic text-center btn-space"
-      href="/help"
-      onClick={[Function]}
-      type="button"
-    >
-      Help
-    </a>
-  </div>
-</div>
-`;
-
 exports[`Testing Room Page Should show game view component 1`] = `
 <div
   className="room-page"
@@ -1062,7 +108,42 @@ exports[`Testing Room Page Should show game view component 1`] = `
           </div>
           <div
             className="player-list"
-          />
+          >
+            <div
+              className="player-info"
+            >
+              <div
+                className="player-name-button"
+              >
+                <span
+                  className=" text-left font-weight-bold"
+                />
+                <button
+                  className="btn btn-link"
+                  type="button"
+                >
+                  <span
+                    className="bi bi-mic fa-lg"
+                  />
+                </button>
+              </div>
+              <div
+                className="piece-container"
+              >
+                <div
+                  className="player-piece"
+                  style={
+                    Object {
+                      "backgroundColor": "#FFF",
+                    }
+                  }
+                />
+                <div
+                  className="player-emergency"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -1089,6 +170,7 @@ exports[`Testing Room Page Should show game view component 1`] = `
                 aria-describedby="basic-addon2"
                 aria-label="Type"
                 className="form-control"
+                data-testid="send-box-input"
                 onChange={[Function]}
                 onKeyDownCapture={[Function]}
                 placeholder="Type..."
@@ -1308,6 +390,7 @@ exports[`Testing Room Page Should show settings component 1`] = `
                 aria-describedby="basic-addon2"
                 aria-label="Type"
                 className="form-control"
+                data-testid="send-box-input"
                 onChange={[Function]}
                 onKeyDownCapture={[Function]}
                 placeholder="Type..."
@@ -1364,6 +447,7 @@ exports[`Testing Room Page Should show settings component 1`] = `
                   </span>
                   <input
                     className="form-control set-speed"
+                    data-testid="speed_input"
                     disabled={true}
                     max="15"
                     min="1"
@@ -1416,6 +500,7 @@ exports[`Testing Room Page Should show settings component 1`] = `
                     aria-describedby="inputGroup-sizing-default"
                     aria-label="Default"
                     className="form-control"
+                    data-testid="nickname_input"
                     onChange={[Function]}
                     type="text"
                     value=""
@@ -1442,6 +527,7 @@ exports[`Testing Room Page Should show settings component 1`] = `
                     aria-describedby="inputGroup-sizing-default"
                     aria-label="Default"
                     className="form-control"
+                    data-testid="color_input"
                     onChange={[Function]}
                     style={
                       Object {
@@ -1597,6 +683,7 @@ exports[`Testing Room Page Should show up 1`] = `
                 aria-describedby="basic-addon2"
                 aria-label="Type"
                 className="form-control"
+                data-testid="send-box-input"
                 onChange={[Function]}
                 onKeyDownCapture={[Function]}
                 placeholder="Type..."
@@ -1653,6 +740,7 @@ exports[`Testing Room Page Should show up 1`] = `
                   </span>
                   <input
                     className="form-control set-speed"
+                    data-testid="speed_input"
                     disabled={true}
                     max="15"
                     min="1"
@@ -1705,6 +793,7 @@ exports[`Testing Room Page Should show up 1`] = `
                     aria-describedby="inputGroup-sizing-default"
                     aria-label="Default"
                     className="form-control"
+                    data-testid="nickname_input"
                     onChange={[Function]}
                     type="text"
                     value=""
@@ -1731,6 +820,7 @@ exports[`Testing Room Page Should show up 1`] = `
                     aria-describedby="inputGroup-sizing-default"
                     aria-label="Default"
                     className="form-control"
+                    data-testid="color_input"
                     onChange={[Function]}
                     style={
                       Object {
