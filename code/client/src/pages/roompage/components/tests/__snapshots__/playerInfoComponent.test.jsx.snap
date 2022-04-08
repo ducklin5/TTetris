@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`PlayerInfoComponent renders correctly 1`] = `
 <div
   className="players-content card"
 >
@@ -15,6 +15,99 @@ exports[`renders correctly 1`] = `
   </div>
   <div
     className="player-list"
-  />
+  >
+    <div
+      className="player-info"
+    >
+      <div
+        className="player-name-button"
+      >
+        <span
+          className=" text-left font-weight-bold"
+        >
+          test
+        </span>
+        <button
+          className="btn btn-link"
+          type="button"
+        >
+          <span
+            className="bi bi-mic fa-lg"
+          />
+        </button>
+      </div>
+      <div
+        className="piece-container"
+      >
+        <div
+          className="player-piece"
+          style={
+            Object {
+              "backgroundColor": "#000",
+            }
+          }
+        />
+        <div
+          className="player-emergency"
+        />
+      </div>
+    </div>
+    <div
+      className="player-info"
+    >
+      <div
+        className="player-name-button"
+      >
+        <span
+          className=" text-left font-weight-bold"
+        >
+          test2
+        </span>
+        <button
+          className="btn btn-link"
+          type="button"
+        >
+          <span
+            className="bi bi-mic fa-lg"
+          />
+        </button>
+      </div>
+      <div
+        className="piece-container"
+      >
+        <div
+          className="player-piece"
+          style={
+            Object {
+              "backgroundColor": "#f00",
+            }
+          }
+        />
+        <div
+          className="player-emergency"
+        />
+      </div>
+    </div>
+  </div>
 </div>
+`;
+
+exports[`PlayerInfoComponent should show player nick name when a socket event is received 1`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -20,11 +20,11 @@
+          className=\\"player-name-button\\"
+        >
+          <span
+            className=\\" text-left font-weight-bold\\"
+          >
+-           test
++           newName
+          </span>
+          <button
+            className=\\"btn btn-link\\"
+            type=\\"button\\"
+          >"
 `;
