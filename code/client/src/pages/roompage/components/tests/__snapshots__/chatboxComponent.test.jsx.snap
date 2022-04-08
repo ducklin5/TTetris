@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatboxComponent renders correctly 1`] = `
+<div
+  className="chatbox-content card"
+>
+  <div
+    className="chat-title font-italic text-center card-header"
+  >
+    Chat Box
+  </div>
+  <div
+    className="messages-container card"
+  >
+    <div
+      className="container"
+    >
+      <span
+        className="container-name-left"
+      >
+        player1
+      </span>
+      <p
+        style={
+          Object {
+            "color": "#fff",
+          }
+        }
+      >
+        Lorem
+      </p>
+      <span
+        className="time-right"
+      >
+        1649451049840
+      </span>
+    </div>
+    <div
+      className="container"
+    >
+      <span
+        className="container-name-left"
+      >
+        player2
+      </span>
+      <p
+        style={
+          Object {
+            "color": "#fff",
+          }
+        }
+      >
+        Ipsum
+      </p>
+      <span
+        className="time-right"
+      >
+        1649451050840
+      </span>
+    </div>
+    <div
+      className="container"
+    >
+      <span
+        className="container-name-left"
+      >
+        player3
+      </span>
+      <p
+        style={
+          Object {
+            "color": "#fff",
+          }
+        }
+      >
+        Dolor
+      </p>
+      <span
+        className="time-right"
+      >
+        1649451110840
+      </span>
+    </div>
+  </div>
+  <div
+    className="send-box"
+  >
+    <div
+      className="input-group mb-3"
+    >
+      <input
+        aria-describedby="basic-addon2"
+        aria-label="Type"
+        className="form-control"
+        data-testid="send-box-input"
+        onChange={[Function]}
+        onKeyDownCapture={[Function]}
+        placeholder="Type..."
+        type="text"
+        value=""
+      />
+      <div
+        className="input-group-append"
+      >
+        <button
+          className="btn send-button"
+          onClick={[Function]}
+          type="button"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChatboxComponent should show message when a socket event is recieved 1`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -76,10 +76,33 @@
+          className=\\"time-right\\"
+        >
+          1649451232840
+        </span>
+      </div>
++     <div
++       className=\\"container\\"
++     >
++       <span
++         className=\\"container-name-left\\"
++       >
++         player2
++       </span>
++       <p
++         style={
++           Object {
++             \\"color\\": \\"#fff\\",
++           }
++         }
++       >
++         Amet
++       </p>
++       <span
++         className=\\"time-right\\"
++       >
++         1649451292840
++       </span>
++     </div>
+    </div>
+    <div
+      className=\\"send-box\\"
+    >
+      <div"
+`;
