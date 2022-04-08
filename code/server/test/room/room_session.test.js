@@ -41,7 +41,7 @@ describe("RoomSession", () => {
         roomSession.addClient("abcd", true);
         roomSession.startGame(settings);
 
-        // await sleep(4000);
+        await sleep(8000);
         
         let gameSession = roomSession.gameSession;
         expect(gameSession).toBeDefined();
@@ -49,7 +49,7 @@ describe("RoomSession", () => {
         expect(gameSession.winner).toBeNull();
         expect(gameSession.speed).toBe(3);
         expect(gameSession.running).toBe(true);
-    });
+    }, 10000);
 
     test("should get list of connected clients", async () => {
         roomSession.addClient("bin", true);
