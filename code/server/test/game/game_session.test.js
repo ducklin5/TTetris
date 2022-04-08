@@ -45,6 +45,16 @@ let getRelevantData = (gs) => {
 
 describe("GameSession", () => {
     let settings, clients;
+    let currentData, previousData;
+    let expectDataDiff = (gs, diff_name) => {
+        previousData = currentData;
+        currentData = getRelevantData(gs);
+        expect({
+            diffA: previousData,
+            diffB: currentData,
+        }).toMatchSnapshot(diff_name);
+    }
+
 
     beforeEach(() => {
         clients = [];
@@ -53,6 +63,8 @@ describe("GameSession", () => {
         }
 
         settings = { speed: 50, seed: 1 };
+        currentData = null;
+        previousData = null;
     });
 
     test("should randomly assign an imposter", () => {
@@ -70,10 +82,10 @@ describe("GameSession", () => {
     test("should update the game state correctly on each step", (done) => {
         let gs = new GameSession(clients, settings);
         let stepsCompleted = 0;
-        let updatesToWait = 26;
+        let stepsToWait = 26;
         let pieceLastY = -Infinity;
 
-        gs.setOnGameUpdated(() => {
+        gs.setOnGameUpdated((type) => {
             if (type !== "step") return;
 
             let currentPiece = gs.players[0].currentPiece;
@@ -100,73 +112,50 @@ describe("GameSession", () => {
         gs.gameState.rowsCompleted = 2
 
         // Snapshot the initial game data
-        let previousData = null;
-        let currentData = getRelevantData(gs);
+        currentData = getRelevantData(gs);
         expect(currentData).toMatchSnapshot("Initial");
         // check that the data has changed approriately since the last snapshot
-        let expectDataDiff = (diff_name) => {
-            previousData = currentData;
-            currentData = getRelevantData(gs);
-            expect({
-                diffA: previousData,
-                diffB: currentData,
-            }).toMatchSnapshot(diff_name);
-        }
-
         let stepsCompleted = 0;
         let stepsToWait = 26;
         gs.setOnGameUpdated((type) => {
-            switch (type) {
-                case "step": {
-                    stepsCompleted++;
-                    switch (stepsCompleted) {
-                        case 1: {
-                            for (let i = 0; i < 10; i++) gs.inputEvent(0, "left");
-                            expectDataDiff("p0 left x10");
-                        } break;
-                        case 2: {
-                            gs.inputEvent(1, "right");
-                            gs.inputEvent(1, "right");
-                            gs.inputEvent(1, "left");
-                            gs.inputEvent(2, "rotate");
-                            expectDataDiff("p1 right x2 left; p2 rotate");
-                        } break;
-                        case 3: {
-                            gs.inputEvent(2, "drop");
-                            gs.inputEvent(3, "down");
-                            expectDataDiff("p2 drop; p3 down");
-                        } break;
-                        case 4: {
-                            for (let i = 0; i < 10; i++) gs.inputEvent(4, "right");
-                            expectDataDiff("p4 right x10");
-                        } break;
-                        case stepsToWait: {
-                            gs.inputEvent(1, "sabotage:Drop")
-                            expectDataDiff("p1 sabotage:Drop");
-                        } break;
-                        case stepsToWait + 1: {
-                            gs.inputEvent(1, "sabotage:Progress")
-                            expectDataDiff("p1 sabotage:Progress");
-                        } break;
-                        case stepsToWait + 2: {
-                            gs.inputEvent(1, "sabotage:Pieces")
-                            expectDataDiff("p1 sabotage:Pieces");
-                        } break;
-
-                        case stepsToWait + 3: {
-                            gs.inputEvent(2, "emergency");
-                            expectDataDiff("p2 emergency");
-                            gs.inputEvent(2, {
-                                name: "captureVote",
-                                args: {
-                                    targetPlayerId: 1
-                                }
-                            });
-                        } break;
-                    }
+            if (type !== "step") return;
+            stepsCompleted++;
+            switch (stepsCompleted) {
+                case 1: {
+                    for (let i = 0; i < 10; i++) gs.inputEvent(0, "left");
+                    expectDataDiff(gs, "p0 left x10");
                 } break;
-                case "end": {
-                    expectDataDiff("Game ended");
+                case 2: {
+                    gs.inputEvent(1, "right");
+                    gs.inputEvent(1, "right");
+                    gs.inputEvent(1, "left");
+                    gs.inputEvent(2, "rotate");
+                    expectDataDiff(gs, "p1 right x2 left; p2 rotate");
+                } break;
+                case 3: {
+                    gs.inputEvent(2, "drop");
+                    gs.inputEvent(3, "down");
+                    expectDataDiff(gs, "p2 drop; p3 down");
+                } break;
+                case 4: {
+                    for (let i = 0; i < 10; i++) gs.inputEvent(4, "right");
+                    expectDataDiff(gs, "p4 right x10");
+                } break;
+                case stepsToWait: {
+                    gs.inputEvent(1, "sabotage:Drop")
+                    expectDataDiff(gs, "p1 sabotage:Drop");
+                } break;
+                case stepsToWait + 1: {
+                    gs.inputEvent(1, "sabotage:Progress")
+                    expectDataDiff(gs, "p1 sabotage:Progress");
+                } break;
+                case stepsToWait + 2: {
+                    gs.inputEvent(1, "sabotage:Pieces")
+                    expectDataDiff(gs, "p1 sabotage:Pieces");
+                } break;
+
+                case stepsToWait + 3: {
+                    expectDataDiff(gs, "Final");
                     done()
                 } break;
             }
@@ -174,5 +163,41 @@ describe("GameSession", () => {
 
         gs.run();
     }, 5000);
+
+
+    test("should end correctly", (done) => {
+        let gs = new GameSession(clients, settings);
+        gs.voteDuration = 50;
+
+        // Snapshot the initial game data
+        currentData = getRelevantData(gs);
+        expect(currentData).toMatchSnapshot("Initial");
+
+        let stepsCompleted = 0;
+        gs.setOnGameUpdated((type) => {
+            switch (type) {
+                case "step": {
+                    if (!stepsCompleted) {
+                        gs.inputEvent(2, "emergency");
+                        expectDataDiff(gs, "p2 emergency");
+                        gs.inputEvent(2, {
+                            name: "captureVote",
+                            args: {
+                                targetPlayerId: 1
+                            }
+                        });
+                    }
+                    stepsCompleted++;
+                } break;
+                case "end": {
+                    expectDataDiff(gs, "Game ended");
+                    done()
+                } break;
+            }
+        });
+
+        gs.run();
+
+    }, 5000)
 
 });

@@ -82,7 +82,6 @@ class GameSession {
         this.winner = winner;
         this.pause();
         this.onGameUpdated("end");
-        console.log("The game has ended. The winner: " + winner);
     }
 
     getPlayer(playerId) {
@@ -159,7 +158,6 @@ class GameSession {
 
         switch (event) {
             case "left":
-                console.log(`moving ${playerId} left`)
                 return this.tryMovePiece(playerId, -1, 0);
             case "right":
                 return this.tryMovePiece(playerId, 1, 0);
@@ -242,13 +240,12 @@ class GameSession {
 
     // FRMARKER: FR36: Send.VoteData
     onVoteSessionDone(results) {
-        console.log(results);
 
         this.eliminatePlayer(results.targetPlayerId);
 
         this.votingPhase = false;
 
-        this.run();
+        if (!this.winner) this.run();
     }
 
     // FRMARKER: FR37: Return.VoteData
@@ -325,6 +322,7 @@ class GameSession {
     }
 
     // DEBUG: printing game data on the gameboard
+    /* istanbul ignore next */
     printGameData() {
         let gameData = this.getGameData();
         let grid = JSON.parse(JSON.stringify(gameData.board.grid));

@@ -1,21 +1,276 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GameSession should handle all player actions: Game ended 1`] = `
+exports[`GameSession should end correctly: Game ended 1`] = `
 - Diff A
 + Diff B
 
 @@ -60,13 +60,14 @@
           "height": 25,
           "width": 25,
-          "rowsCompleted": 1,
+          "rowsCompleted": 0,
           "requiredRows": 10
       },
 -     "winner": null,
 +     "winner": "civilians",
       "speed": 50,
--     "timeLeft": 652200
-+     "timeLeft": 652200,
+-     "timeLeft": 601800
++     "timeLeft": 601800,
 +     "imposterId": "1"
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+`;
+
+exports[`GameSession should end correctly: Initial 1`] = `
+{
+    "players": {
+        "0": {
+            "id": 0,
+            "nickName": "client0",
+            "init_ofx": 0,
+            "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-4,\\"ofx\\":0,\\"rotation\\":1}",
+            "isImposter": false,
+            "hasEmergency": true,
+            "isExiled": false,
+            "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
+        },
+        "1": {
+            "id": 1,
+            "nickName": "client1",
+            "init_ofx": 5,
+            "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":3}",
+            "isImposter": true,
+            "hasEmergency": true,
+            "isExiled": false,
+            "hasSabotage": {
+                "drop": true,
+                "pieces": true,
+                "progress": true
+            },
+            "nextPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":2}"
+        },
+        "2": {
+            "id": 2,
+            "nickName": "client2",
+            "init_ofx": 10,
+            "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":2}",
+            "isImposter": false,
+            "hasEmergency": true,
+            "isExiled": false,
+            "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}"
+        },
+        "3": {
+            "id": 3,
+            "nickName": "client3",
+            "init_ofx": 15,
+            "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":1}",
+            "isImposter": false,
+            "hasEmergency": true,
+            "isExiled": false,
+            "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":2}"
+        },
+        "4": {
+            "id": 4,
+            "nickName": "client4",
+            "init_ofx": 20,
+            "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-4,\\"ofx\\":20,\\"rotation\\":2}",
+            "isImposter": false,
+            "hasEmergency": true,
+            "isExiled": false,
+            "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":3}"
+        }
+    },
+    "board": {
+        "height": 25,
+        "width": 25,
+        "rowsCompleted": 0,
+        "requiredRows": 10
+    },
+    "winner": null,
+    "speed": 50,
+    "timeLeft": 600000
+}
+[pretty].board.grid:
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+                                                  
+
+`;
+
+exports[`GameSession should end correctly: p2 emergency 1`] = `
+- Diff A
++ Diff B
+
+@@ -2,21 +2,21 @@
+      "players": {
+          "0": {
+              "id": 0,
+              "nickName": "client0",
+              "init_ofx": 0,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-4,\\"ofx\\":0,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":1}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}"
+          },
+          "1": {
+              "id": 1,
+              "nickName": "client1",
+              "init_ofx": 5,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":5,\\"rotation\\":3}",
+              "isImposter": true,
+              "hasEmergency": true,
+              "isExiled": false,
+              "hasSabotage": {
+                  "drop": true,
+@@ -27,31 +27,31 @@
+          },
+          "2": {
+              "id": 2,
+              "nickName": "client2",
+              "init_ofx": 10,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":10,\\"rotation\\":2}",
+              "isImposter": false,
+-             "hasEmergency": true,
++             "hasEmergency": false,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}"
+          },
+          "3": {
+              "id": 3,
+              "nickName": "client3",
+              "init_ofx": 15,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":1}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":15,\\"rotation\\":1}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":2}"
+          },
+          "4": {
+              "id": 4,
+              "nickName": "client4",
+              "init_ofx": 20,
+-             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-4,\\"ofx\\":20,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":6,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":3}"
+          }
+@@ -62,11 +62,11 @@
+          "rowsCompleted": 0,
+          "requiredRows": 10
+      },
+      "winner": null,
+      "speed": 50,
+-     "timeLeft": 600000
++     "timeLeft": 601800
+  }
+  [pretty].board.grid:
+                                                    
+                                                    
+                                                    
+`;
+
+exports[`GameSession should handle all player actions: Final 1`] = `
+- Diff A
++ Diff B
+
+@@ -2,21 +2,21 @@
+      "players": {
+          "0": {
+              "id": 0,
+              "nickName": "client0",
+              "init_ofx": 0,
+-             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-2,\\"ofx\\":0,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":0}"
+          },
+          "1": {
+              "id": 1,
+              "nickName": "client1",
+              "init_ofx": 5,
+-             "currentPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":5,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":2,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":2}",
+              "isImposter": true,
+              "hasEmergency": true,
+              "isExiled": false,
+              "hasSabotage": {
+                  "drop": false,
+@@ -27,31 +27,31 @@
+          },
+          "2": {
+              "id": 2,
+              "nickName": "client2",
+              "init_ofx": 10,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":3}"
+          },
+          "3": {
+              "id": 3,
+              "nickName": "client3",
+              "init_ofx": 15,
+-             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}",
++             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":15,\\"rotation\\":3}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}"
+          },
+          "4": {
+              "id": 4,
+              "nickName": "client4",
+              "init_ofx": 20,
+-             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":2}",
++             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":20,\\"rotation\\":2}",
+              "isImposter": false,
+              "hasEmergency": true,
+              "isExiled": false,
+              "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":1}"
+          }
+@@ -62,11 +62,11 @@
+          "rowsCompleted": 1,
+          "requiredRows": 10
+      },
+      "winner": null,
+      "speed": 50,
+-     "timeLeft": 650400
++     "timeLeft": 652200
   }
   [pretty].board.grid:
                                                     
@@ -650,85 +905,6 @@ exports[`GameSession should handle all player actions: p2 drop; p3 down 1`] = `
   
 `;
 
-exports[`GameSession should handle all player actions: p2 emergency 1`] = `
-- Diff A
-+ Diff B
-
-@@ -2,21 +2,21 @@
-      "players": {
-          "0": {
-              "id": 0,
-              "nickName": "client0",
-              "init_ofx": 0,
--             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":2}",
-+             "currentPiece": "{\\"_typeId\\":3,\\"ofy\\":-2,\\"ofx\\":0,\\"rotation\\":2}",
-              "isImposter": false,
-              "hasEmergency": true,
-              "isExiled": false,
-              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":0,\\"rotation\\":0}"
-          },
-          "1": {
-              "id": 1,
-              "nickName": "client1",
-              "init_ofx": 5,
--             "currentPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":5,\\"rotation\\":2}",
-+             "currentPiece": "{\\"_typeId\\":2,\\"ofy\\":-2,\\"ofx\\":5,\\"rotation\\":2}",
-              "isImposter": true,
-              "hasEmergency": true,
-              "isExiled": false,
-              "hasSabotage": {
-                  "drop": false,
-@@ -27,31 +27,31 @@
-          },
-          "2": {
-              "id": 2,
-              "nickName": "client2",
-              "init_ofx": 10,
--             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":2}",
-+             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":10,\\"rotation\\":2}",
-              "isImposter": false,
--             "hasEmergency": true,
-+             "hasEmergency": false,
-              "isExiled": false,
-              "nextPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":10,\\"rotation\\":3}"
-          },
-          "3": {
-              "id": 3,
-              "nickName": "client3",
-              "init_ofx": 15,
--             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}",
-+             "currentPiece": "{\\"_typeId\\":5,\\"ofy\\":-2,\\"ofx\\":15,\\"rotation\\":3}",
-              "isImposter": false,
-              "hasEmergency": true,
-              "isExiled": false,
-              "nextPiece": "{\\"_typeId\\":2,\\"ofy\\":-3,\\"ofx\\":15,\\"rotation\\":3}"
-          },
-          "4": {
-              "id": 4,
-              "nickName": "client4",
-              "init_ofx": 20,
--             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-2,\\"ofx\\":20,\\"rotation\\":2}",
-+             "currentPiece": "{\\"_typeId\\":0,\\"ofy\\":-1,\\"ofx\\":20,\\"rotation\\":2}",
-              "isImposter": false,
-              "hasEmergency": true,
-              "isExiled": false,
-              "nextPiece": "{\\"_typeId\\":1,\\"ofy\\":-3,\\"ofx\\":20,\\"rotation\\":1}"
-          }
-@@ -62,11 +62,11 @@
-          "rowsCompleted": 1,
-          "requiredRows": 10
-      },
-      "winner": null,
-      "speed": 50,
--     "timeLeft": 650400
-+     "timeLeft": 652200
-  }
-  [pretty].board.grid:
-                                                    
-                                                    
-                                                    
-`;
-
 exports[`GameSession should handle all player actions: p4 right x10 1`] = `
 - Diff A
 + Diff B
@@ -806,3 +982,13 @@ exports[`GameSession should handle all player actions: p4 right x10 1`] = `
                                                     
                                                     
 `;
+
+exports[`GameSession should randomly assign an imposter 1`] = `"0"`;
+
+exports[`GameSession should randomly assign an imposter 2`] = `"1"`;
+
+exports[`GameSession should randomly assign an imposter 3`] = `"4"`;
+
+exports[`GameSession should randomly assign an imposter 4`] = `"3"`;
+
+exports[`GameSession should randomly assign an imposter 5`] = `"0"`;
