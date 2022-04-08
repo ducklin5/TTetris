@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { on } from "stream";
 import "./gameVotingComponent.css";
 
 const getPlayer = (playerId) => {

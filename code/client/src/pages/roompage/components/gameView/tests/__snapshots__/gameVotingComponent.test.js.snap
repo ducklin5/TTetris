@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing GameVotingComponent Should send 'game_input' on vote pressed 1`] = `
+<div
+  className="vote-box"
+>
+  <span
+    className="vote-title font-italic text-center"
+  >
+    Guess the Imposter!
+  </span>
+  <div
+    className="player-select-list"
+  >
+    <button
+      className="btn vote-button-color btn-block"
+      onClick={[Function]}
+      type="button"
+    />
+    <button
+      className="btn vote-button-color btn-block"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+  <div
+    className="voteResults"
+  >
+    <div>
+      : [
+      ]
+    </div>
+    <div>
+      : [
+      ]
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing GameVotingComponent Should show up 1`] = `
+<div
+  className="vote-box"
+>
+  <span
+    className="vote-title font-italic text-center"
+  >
+    Guess the Imposter!
+  </span>
+  <div
+    className="player-select-list"
+  >
+    <button
+      className="btn vote-button-color btn-block"
+      onClick={[Function]}
+      type="button"
+    />
+    <button
+      className="btn vote-button-color btn-block"
+      onClick={[Function]}
+      type="button"
+    />
+  </div>
+  <div
+    className="voteResults"
+  >
+    <div>
+      : [
+      ]
+    </div>
+    <div>
+      : [
+      ]
+    </div>
+  </div>
+</div>
+`;
