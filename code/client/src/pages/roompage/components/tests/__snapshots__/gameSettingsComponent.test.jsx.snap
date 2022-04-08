@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="game-sections card"
+>
+  <div
+    className="game-settings-component card"
+  >
+    <div
+      className="settings-content"
+    >
+      <span
+        className="game-title font-italic text-center"
+      >
+        Host Settings
+      </span>
+      <div
+        className="host-input"
+      >
+        <div
+          className="input-group"
+        >
+          <span
+            className="input-group-text"
+            id="inputGroup-sizing-default"
+          >
+            Set Speed:
+          </span>
+          <input
+            className="form-control set-speed"
+            disabled={true}
+            max="15"
+            min="1"
+            onChange={[Function]}
+            step="1"
+            type="range"
+            value={1}
+          />
+        </div>
+        <button
+          className="start-button btn btn-primary"
+          disabled={true}
+          onClick={[Function]}
+          role="button"
+          type="button"
+        >
+          Start Game
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="game-settings-component card"
+  >
+    <div
+      className="settings-content"
+    >
+      <span
+        className="game-title font-italic text-center"
+      >
+        Player Settings
+      </span>
+      <div
+        className="player-input"
+      >
+        <div
+          className="input-group mb-3"
+        >
+          <div
+            className="input-group-prepend"
+          >
+            <span
+              className="input-group-text"
+              id="inputGroup-sizing-default"
+            >
+              Nickname:
+            </span>
+          </div>
+          <input
+            aria-describedby="inputGroup-sizing-default"
+            aria-label="Default"
+            className="form-control"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="player-input"
+      >
+        <div
+          className="input-group"
+        >
+          <div
+            className="input-group-prepend"
+          >
+            <span
+              className="input-group-text"
+              id="inputGroup-sizing-default"
+            >
+              Piece Color:
+            </span>
+          </div>
+          <input
+            aria-describedby="inputGroup-sizing-default"
+            aria-label="Default"
+            className="form-control"
+            onChange={[Function]}
+            style={
+              Object {
+                "height": "40px",
+              }
+            }
+            type="color"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
