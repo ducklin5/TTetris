@@ -1,6 +1,9 @@
 {
   "scripts": {
-    "heroku-prebuild": "(cd code/client && npm install && npm run build) && (cd code/server && npm install)",
+    "heroku-prebuild": "(cd code/client && npm install --force && npm run build) && (cd code/server && npm install --force)",
     "start": "cd code/server && npm run prodStart"
+  },
+  "devDependencies": {
+    "tsconfig-paths": "^3.14.1"
   }
 }
