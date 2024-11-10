@@ -1,6 +1,9 @@
 # TTetris
 Treacherous Tetris: A capstone project
 ECE 493 Winter 2022 - Group 7
+
+<img src="./screenshots/Game.png" width="500px">
+
 ## Project members:
 - Azeez Abass CCID: aabass
 - Wonbin Jeong CCID: wonbin
