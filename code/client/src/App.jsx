@@ -5,7 +5,7 @@ import RoomPage from './pages/roompage/roompage';
 import HelpPage from './pages/helppage/helppage';
 import { io } from "socket.io-client";
 
-const socket = io.connect();
+const socket = io.connect("http://localhost:8080")
 
 function App() {
   return (

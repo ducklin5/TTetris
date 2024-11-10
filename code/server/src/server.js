@@ -29,6 +29,7 @@ let roomSessions = {};
 wsServer.on("connection", (socket) => {
   let clientId = null;
   let clientRoomId = null;
+  console.log("client connected")
 
   socket.on("create_room", (done) => {
     // TODO: generate room id, playerid, etc.

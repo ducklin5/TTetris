@@ -32,9 +32,27 @@ ECE 493 Winter 2022 - Group 7
 ## Running Instructions
 - Starting the server:
     - cd code/server
-    - npm install
+    - yarn install --frozen-lockfile
     - yarn start
 - Starting the Client:
     - cd code/client
-    - npm install
-    - npm start
+    - yarn install --frozen-lockfile
+    - yarn start
+
+## Screenshots
+
+#### Demo
+![Demo](./screenshots/Demo.mp4)
+
+#### Home page
+![Home page](./screenshots/Home.png)
+
+#### Info page
+![Info page](./screenshots/Info.png)
+
+#### Room page
+![Room page](./screenshots/Room.png)
+
+#### Game page
+![Game page](./screenshots/Game.png)
+
