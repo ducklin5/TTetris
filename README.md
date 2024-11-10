@@ -42,7 +42,9 @@ ECE 493 Winter 2022 - Group 7
 ## Screenshots
 
 #### Demo
-./screenshots/Demo.mp4
+![Demo](./screenshots/Demo.mp4)
+
+https://github.com/user-attachments/assets/27606dfe-5a73-4fe5-9ab5-a99fcae45070
 
 #### Home page
 ![Home page](./screenshots/Home.png)
